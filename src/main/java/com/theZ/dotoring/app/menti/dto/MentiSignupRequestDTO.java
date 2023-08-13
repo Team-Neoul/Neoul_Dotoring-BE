@@ -2,7 +2,6 @@ package com.theZ.dotoring.app.menti.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
