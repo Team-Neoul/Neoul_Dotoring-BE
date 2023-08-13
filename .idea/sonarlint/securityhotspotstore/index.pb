@@ -41,8 +41,6 @@ v
 Fsrc/main/java/com/theZ/dotoring/app/certificate/model/Certificate.java,5/2/52218ea30a6f8c9d24022bff2b4b8806e8f25f64
 ‰
 Ysrc/main/java/com/theZ/dotoring/app/memberAccount/repository/MemberAccountRepository.java,e/3/e372d41f12d743b930093fcf20512d33b6b79ba9
-z
-Jsrc/main/java/com/theZ/dotoring/app/memberAccount/model/MemberAccount.java,e/d/eda46f7d02d78ad5eebaaf3697ea7be71b2fc425
 d
 4src/main/java/com/theZ/dotoring/common/DataInit.java,e/a/ea1f37a584af90f462c103b5cf694507ad017b48
 h
@@ -57,8 +55,6 @@ y
 Isrc/main/java/com/theZ/dotoring/app/mento/repository/MentoRepository.java,b/f/bfa619415c7284f18561257f23f8c14004598c45
 a
 1src/main/java/com/theZ/dotoring/enums/Status.java,0/a/0ae341030fdb0b3f1bcda66f67629bd50282a958
-x
-Hsrc/main/java/com/theZ/dotoring/app/mento/dto/MentoSignupRequestDTO.java,7/2/723c427f819a1993c59825c96fe3b784c3a572c3
 O
 .idea/modules/dotoring.main.iml,e/9/e90c8cf3d1d74b5fa5d2b7de3552fefd034101d9
 v

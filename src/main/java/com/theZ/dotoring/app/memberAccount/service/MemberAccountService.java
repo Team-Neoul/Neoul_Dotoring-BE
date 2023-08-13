@@ -1,10 +1,14 @@
 package com.theZ.dotoring.app.memberAccount.service;
 
 import com.theZ.dotoring.app.certificate.model.Certificate;
+import com.theZ.dotoring.app.mento.dto.MentoNicknameRequestDTO;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.memberAccount.repository.MemberAccountRepository;
 import com.theZ.dotoring.app.menti.dto.MentiSignupRequestDTO;
 import com.theZ.dotoring.app.mento.dto.MentoSignupRequestDTO;
+import com.theZ.dotoring.common.MessageCode;
+import com.theZ.dotoring.exception.LoginIdDuplicateException;
+import com.theZ.dotoring.exception.NicknameDuplicateException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -31,5 +35,23 @@ public class MemberAccountService {
         memberAccountRepository.save(memberAccount);
         return memberAccount;
     }
+
+    public void validateNickname(MentoNicknameRequestDTO mentoNicknameRequestDTO) {
+        memberAccountRepository.findAll().stream().forEach(i ->{
+            if(i.getEmail().equals(mentoNicknameRequestDTO.getNickname())){
+                throw new NicknameDuplicateException(MessageCode.DUPLICATED_NICKNAME);
+            }
+        });
+    }
+
+    public void validateLoginId(String loginId) {
+        memberAccountRepository.findAll().stream().forEach(i -> {
+            if(i.getLoginId().equals(loginId)){
+                throw new LoginIdDuplicateException(MessageCode.DUPLICATED_LOGIN_ID);
+            }
+        });
+
+    }
+
 
 }
