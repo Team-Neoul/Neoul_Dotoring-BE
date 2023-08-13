@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.theZ.dotoring.Field.FieldJPARepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-13T03:53:37" hostname="hwangdaeseon-ui-MacBookPro.local" time="0.184">
+  <properties/>
+  <testcase name="field_find_test()" classname="com.theZ.dotoring.Field.FieldJPARepositoryTest" time="0.184"/>
+  <system-out><![CDATA[12:53:35.500 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+12:53:35.507 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+12:53:35.536 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.theZ.dotoring.Field.FieldJPARepositoryTest] from class [org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper]
+12:53:35.546 [Test worker] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.theZ.dotoring.Field.FieldJPARepositoryTest], using SpringBootContextLoader
+12:53:35.549 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.theZ.dotoring.Field.FieldJPARepositoryTest]: class path resource [com/theZ/dotoring/Field/FieldJPARepositoryTest-context.xml] does not exist
+12:53:35.550 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.theZ.dotoring.Field.FieldJPARepositoryTest]: class path resource [com/theZ/dotoring/Field/FieldJPARepositoryTestContext.groovy] does not exist
+12:53:35.550 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.theZ.dotoring.Field.FieldJPARepositoryTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+12:53:35.551 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.theZ.dotoring.Field.FieldJPARepositoryTest]: FieldJPARepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+12:53:35.601 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.theZ.dotoring.Field.FieldJPARepositoryTest]
+12:53:35.634 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/hwangdaeseon/Project/NDotoring/build/classes/java/main/com/theZ/dotoring/DotoringApplication.class]
+12:53:35.635 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.theZ.dotoring.DotoringApplication for test class com.theZ.dotoring.Field.FieldJPARepositoryTest
+12:53:35.637 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - @TestExecutionListeners is not present for class [com.theZ.dotoring.Field.FieldJPARepositoryTest]: using defaults.
+12:53:35.638 [Test worker] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+12:53:35.653 [Test worker] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@c1bd0be, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@476b0ae6, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@1c6804cd, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@655f7ea, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@549949be, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4b3a45f1, org.springframework.test.context.transaction.TransactionalTestExecutionListener@17a87e37, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3eeb318f, org.springframework.test.context.event.EventPublishingTestExecutionListener@20a14b55, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@39ad977d, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6da00fb9, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@a202ccb, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@20f12539, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@75b25825, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@18025ced]
+12:53:35.655 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@abf688e testClass = FieldJPARepositoryTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [MergedContextConfiguration@478ee483 testClass = FieldJPARepositoryTest, locations = '{}', classes = '{class com.theZ.dotoring.DotoringApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@460ebd80, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@1afdd473, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@351584c0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@7c15dd47, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@1941a8ff, [ImportsContextCustomizer@1a7288a3 key = [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration, org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration, org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration, org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration, org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration, org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@2a76840c, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@7cf6a5f9, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@0], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map[[empty]]], class annotated with @DirtiesContext [false] with mode [null].
+12:53:35.664 [Test worker] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener - Performing dependency injection for test context [[DefaultTestContext@abf688e testClass = FieldJPARepositoryTest, testInstance = com.theZ.dotoring.Field.FieldJPARepositoryTest@7e928e2f, testMethod = [null], testException = [null], mergedContextConfiguration = [MergedContextConfiguration@478ee483 testClass = FieldJPARepositoryTest, locations = '{}', classes = '{class com.theZ.dotoring.DotoringApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@460ebd80, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@1afdd473, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@351584c0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@7c15dd47, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@1941a8ff, [ImportsContextCustomizer@1a7288a3 key = [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration, org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration, org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration, org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration, org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration, org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@2a76840c, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@7cf6a5f9, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@0], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]].
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.11)
+
+2023-08-13 12:53:35.937  INFO 27625 --- [    Test worker] c.t.d.Field.FieldJPARepositoryTest       : Starting FieldJPARepositoryTest using Java 17.0.6 on hwangdaeseon-ui-MacBookPro.local with PID 27625 (started by hwangdaeseon in /Users/hwangdaeseon/Project/NDotoring)
+2023-08-13 12:53:35.937  INFO 27625 --- [    Test worker] c.t.d.Field.FieldJPARepositoryTest       : No active profile set, falling back to 1 default profile: "default"
+2023-08-13 12:53:36.138  INFO 27625 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-08-13 12:53:36.140  INFO 27625 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-13 12:53:36.236  INFO 27625 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 92 ms. Found 8 JPA repository interfaces.
+2023-08-13 12:53:36.263  INFO 27625 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2023-08-13 12:53:36.345  INFO 27625 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:182fba9c-3b99-4ea4-80de-b8c8e3c77fe3;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2023-08-13 12:53:36.503  INFO 27625 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-13 12:53:36.531  INFO 27625 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-08-13 12:53:36.619  INFO 27625 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-08-13 12:53:36.678  INFO 27625 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-08-13 12:53:37.046 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists certificate CASCADE 
+Hibernate: 
+    
+    drop table if exists certificate CASCADE 
+2023-08-13 12:53:37.048 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists desired_field CASCADE 
+Hibernate: 
+    
+    drop table if exists desired_field CASCADE 
+2023-08-13 12:53:37.048 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists field CASCADE 
+Hibernate: 
+    
+    drop table if exists field CASCADE 
+2023-08-13 12:53:37.049 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists major CASCADE 
+Hibernate: 
+    
+    drop table if exists major CASCADE 
+2023-08-13 12:53:37.049 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists member_account CASCADE 
+Hibernate: 
+    
+    drop table if exists member_account CASCADE 
+2023-08-13 12:53:37.049 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists member_major CASCADE 
+Hibernate: 
+    
+    drop table if exists member_major CASCADE 
+2023-08-13 12:53:37.049 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists mento CASCADE 
+Hibernate: 
+    
+    drop table if exists mento CASCADE 
+2023-08-13 12:53:37.049 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists profile CASCADE 
+Hibernate: 
+    
+    drop table if exists profile CASCADE 
+2023-08-13 12:53:37.051 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table certificate (
+       certificate_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        original_file_name varchar(255),
+        save_file_name varchar(255),
+        member_id bigint,
+        primary key (certificate_id)
+    )
+Hibernate: 
+    
+    create table certificate (
+       certificate_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        original_file_name varchar(255),
+        save_file_name varchar(255),
+        member_id bigint,
+        primary key (certificate_id)
+    )
+2023-08-13 12:53:37.055 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table desired_field (
+       desired_field_id bigint generated by default as identity,
+        field_name varchar(255),
+        mento_id bigint,
+        primary key (desired_field_id)
+    )
+Hibernate: 
+    
+    create table desired_field (
+       desired_field_id bigint generated by default as identity,
+        field_name varchar(255),
+        mento_id bigint,
+        primary key (desired_field_id)
+    )
+2023-08-13 12:53:37.056 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table field (
+       field_name varchar(255) not null,
+        primary key (field_name)
+    )
+Hibernate: 
+    
+    create table field (
+       field_name varchar(255) not null,
+        primary key (field_name)
+    )
+2023-08-13 12:53:37.058 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table major (
+       major_name varchar(255) not null,
+        primary key (major_name)
+    )
+Hibernate: 
+    
+    create table major (
+       major_name varchar(255) not null,
+        primary key (major_name)
+    )
+2023-08-13 12:53:37.059 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table member_account (
+       member_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        email varchar(255),
+        login_id varchar(12),
+        password varchar(255),
+        status varchar(255),
+        primary key (member_id)
+    )
+Hibernate: 
+    
+    create table member_account (
+       member_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        email varchar(255),
+        login_id varchar(12),
+        password varchar(255),
+        status varchar(255),
+        primary key (member_id)
+    )
+2023-08-13 12:53:37.061 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table member_major (
+       member_major_id bigint generated by default as identity,
+        major_name varchar(255),
+        mento_id bigint,
+        primary key (member_major_id)
+    )
+Hibernate: 
+    
+    create table member_major (
+       member_major_id bigint generated by default as identity,
+        major_name varchar(255),
+        mento_id bigint,
+        primary key (member_major_id)
+    )
+2023-08-13 12:53:37.062 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table mento (
+       mento_id bigint not null,
+        created_at timestamp not null,
+        updated_at timestamp,
+        grade bigint,
+        introduction varchar(100),
+        mentoring_count integer,
+        mentoring_system varchar(300),
+        nickname varchar(8),
+        school varchar(255),
+        profile_profile_id bigint,
+        primary key (mento_id)
+    )
+Hibernate: 
+    
+    create table mento (
+       mento_id bigint not null,
+        created_at timestamp not null,
+        updated_at timestamp,
+        grade bigint,
+        introduction varchar(100),
+        mentoring_count integer,
+        mentoring_system varchar(300),
+        nickname varchar(8),
+        school varchar(255),
+        profile_profile_id bigint,
+        primary key (mento_id)
+    )
+2023-08-13 12:53:37.063 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table profile (
+       profile_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        original_profile_name varchar(255),
+        saved_profile_name varchar(255),
+        primary key (profile_id)
+    )
+Hibernate: 
+    
+    create table profile (
+       profile_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        original_profile_name varchar(255),
+        saved_profile_name varchar(255),
+        primary key (profile_id)
+    )
+2023-08-13 12:53:37.064 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table member_account 
+       add constraint UK_m42std5vxkwbuq5rbtqsjk4x3 unique (login_id)
+Hibernate: 
+    
+    alter table member_account 
+       add constraint UK_m42std5vxkwbuq5rbtqsjk4x3 unique (login_id)
+2023-08-13 12:53:37.065 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table mento 
+       add constraint UK_t20jk7xborg6qmp59a1ymeq1q unique (nickname)
+Hibernate: 
+    
+    alter table mento 
+       add constraint UK_t20jk7xborg6qmp59a1ymeq1q unique (nickname)
+2023-08-13 12:53:37.065 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table certificate 
+       add constraint FK56g6co5krq5ton6a8xrvntjag 
+       foreign key (member_id) 
+       references member_account
+Hibernate: 
+    
+    alter table certificate 
+       add constraint FK56g6co5krq5ton6a8xrvntjag 
+       foreign key (member_id) 
+       references member_account
+2023-08-13 12:53:37.073 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table desired_field 
+       add constraint FKpr3t2t3pc0ywcrym85iavgql 
+       foreign key (field_name) 
+       references field
+Hibernate: 
+    
+    alter table desired_field 
+       add constraint FKpr3t2t3pc0ywcrym85iavgql 
+       foreign key (field_name) 
+       references field
+2023-08-13 12:53:37.074 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table desired_field 
+       add constraint FK6j7uyphsc6oth8a96vk5wriow 
+       foreign key (mento_id) 
+       references mento
+Hibernate: 
+    
+    alter table desired_field 
+       add constraint FK6j7uyphsc6oth8a96vk5wriow 
+       foreign key (mento_id) 
+       references mento
+2023-08-13 12:53:37.075 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table member_major 
+       add constraint FKnknjx9n040ev8rew3bykiqp2o 
+       foreign key (major_name) 
+       references major
+Hibernate: 
+    
+    alter table member_major 
+       add constraint FKnknjx9n040ev8rew3bykiqp2o 
+       foreign key (major_name) 
+       references major
+2023-08-13 12:53:37.077 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table member_major 
+       add constraint FKbaixae3yb9p6pkhu3skxr5jkr 
+       foreign key (mento_id) 
+       references mento
+Hibernate: 
+    
+    alter table member_major 
+       add constraint FKbaixae3yb9p6pkhu3skxr5jkr 
+       foreign key (mento_id) 
+       references mento
+2023-08-13 12:53:37.077 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table mento 
+       add constraint FK3857tpcc61d2hekrqvir7yffw 
+       foreign key (profile_profile_id) 
+       references profile
+Hibernate: 
+    
+    alter table mento 
+       add constraint FK3857tpcc61d2hekrqvir7yffw 
+       foreign key (profile_profile_id) 
+       references profile
+2023-08-13 12:53:37.078 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table mento 
+       add constraint FK5r6igmeaeokrobaiqix8m8tb2 
+       foreign key (mento_id) 
+       references member_account
+Hibernate: 
+    
+    alter table mento 
+       add constraint FK5r6igmeaeokrobaiqix8m8tb2 
+       foreign key (mento_id) 
+       references member_account
+2023-08-13 12:53:37.080  INFO 27625 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-13 12:53:37.085  INFO 27625 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-13 12:53:37.405  INFO 27625 --- [    Test worker] c.t.d.Field.FieldJPARepositoryTest       : Started FieldJPARepositoryTest in 1.722 seconds (JVM running for 2.352)
+2023-08-13 12:53:37.416  INFO 27625 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@abf688e testClass = FieldJPARepositoryTest, testInstance = com.theZ.dotoring.Field.FieldJPARepositoryTest@7e928e2f, testMethod = field_find_test@FieldJPARepositoryTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@478ee483 testClass = FieldJPARepositoryTest, locations = '{}', classes = '{class com.theZ.dotoring.DotoringApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@460ebd80, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@1afdd473, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@351584c0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@7c15dd47, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@1941a8ff, [ImportsContextCustomizer@1a7288a3 key = [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration, org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration, org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration, org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration, org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration, org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@2a76840c, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@7cf6a5f9, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@0], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@2e4339c1]; rollback [true]
+2023-08-13 12:53:37.500 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-13 12:53:37.521 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-13 12:53:37.521 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-13 12:53:37.522 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-13 12:53:37.523 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-13 12:53:37.523 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-13 12:53:37.524 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-13 12:53:37.524 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-13 12:53:37.524 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-13 12:53:37.533 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-13 12:53:37.536 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-13 12:53:37.536 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-13 12:53:37.536 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-13 12:53:37.536 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-13 12:53:37.537 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-13 12:53:37.537 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-13 12:53:37.537 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-13 12:53:37.537 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-13 12:53:37.566 DEBUG 27625 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name in (
+            ? , ?
+        )
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name in (
+            ? , ?
+        )
+2023-08-13 12:53:37.592  INFO 27625 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@abf688e testClass = FieldJPARepositoryTest, testInstance = com.theZ.dotoring.Field.FieldJPARepositoryTest@7e928e2f, testMethod = field_find_test@FieldJPARepositoryTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@478ee483 testClass = FieldJPARepositoryTest, locations = '{}', classes = '{class com.theZ.dotoring.DotoringApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@460ebd80, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@1afdd473, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@351584c0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@7c15dd47, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@1941a8ff, [ImportsContextCustomizer@1a7288a3 key = [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration, org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration, org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration, org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration, org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration, org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@2a76840c, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@7cf6a5f9, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@0], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
