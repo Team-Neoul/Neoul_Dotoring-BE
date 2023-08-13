@@ -26,6 +26,8 @@ public class QDesiredField extends EntityPathBase<DesiredField> {
 
     public final com.theZ.dotoring.app.field.model.QField field;
 
+    public final com.theZ.dotoring.app.menti.model.QMenti menti;
+
     public final com.theZ.dotoring.app.mento.model.QMento mento;
 
     public QDesiredField(String variable) {
@@ -47,6 +49,7 @@ public class QDesiredField extends EntityPathBase<DesiredField> {
     public QDesiredField(Class<? extends DesiredField> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.field = inits.isInitialized("field") ? new com.theZ.dotoring.app.field.model.QField(forProperty("field")) : null;
+        this.menti = inits.isInitialized("menti") ? new com.theZ.dotoring.app.menti.model.QMenti(forProperty("menti"), inits.get("menti")) : null;
         this.mento = inits.isInitialized("mento") ? new com.theZ.dotoring.app.mento.model.QMento(forProperty("mento"), inits.get("mento")) : null;
     }
 

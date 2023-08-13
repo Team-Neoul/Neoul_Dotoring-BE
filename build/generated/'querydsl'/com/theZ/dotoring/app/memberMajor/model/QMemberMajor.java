@@ -26,6 +26,8 @@ public class QMemberMajor extends EntityPathBase<MemberMajor> {
 
     public final NumberPath<Long> memberMajorId = createNumber("memberMajorId", Long.class);
 
+    public final com.theZ.dotoring.app.menti.model.QMenti menti;
+
     public final com.theZ.dotoring.app.mento.model.QMento mento;
 
     public QMemberMajor(String variable) {
@@ -47,6 +49,7 @@ public class QMemberMajor extends EntityPathBase<MemberMajor> {
     public QMemberMajor(Class<? extends MemberMajor> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.major = inits.isInitialized("major") ? new com.theZ.dotoring.app.major.model.QMajor(forProperty("major")) : null;
+        this.menti = inits.isInitialized("menti") ? new com.theZ.dotoring.app.menti.model.QMenti(forProperty("menti"), inits.get("menti")) : null;
         this.mento = inits.isInitialized("mento") ? new com.theZ.dotoring.app.mento.model.QMento(forProperty("mento"), inits.get("mento")) : null;
     }
 
