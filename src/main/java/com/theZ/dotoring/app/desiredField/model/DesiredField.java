@@ -1,6 +1,7 @@
 package com.theZ.dotoring.app.desiredField.model;
 
 import com.theZ.dotoring.app.field.model.Field;
+import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.mento.model.Mento;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -28,8 +29,16 @@ public class DesiredField {
     @JoinColumn(name = "mento_id")
     private Mento mento;
 
+    @ManyToOne
+    @JoinColumn(name = "menti_id")
+    private Menti menti;
+
     public void mappingMento(Mento mento) {
         this.mento = mento;
+    }
+
+    public void mappingMenti(Menti menti) {
+        this.menti = menti;
     }
 
     public DesiredField(Field field) {

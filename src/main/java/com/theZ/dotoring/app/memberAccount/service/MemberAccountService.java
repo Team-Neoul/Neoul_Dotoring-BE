@@ -3,6 +3,7 @@ package com.theZ.dotoring.app.memberAccount.service;
 import com.theZ.dotoring.app.certificate.model.Certificate;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.memberAccount.repository.MemberAccountRepository;
+import com.theZ.dotoring.app.menti.dto.MentiSignupRequestDTO;
 import com.theZ.dotoring.app.mento.dto.MentoSignupRequestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,6 +22,12 @@ public class MemberAccountService {
 
     public MemberAccount saveMentoAccount(MentoSignupRequestDTO mentoSignupRequestDTO, List<Certificate> certificates){
         MemberAccount memberAccount = MemberAccount.createMemberAccount(mentoSignupRequestDTO.getLoginId(), mentoSignupRequestDTO.getPassword(), mentoSignupRequestDTO.getEmail(), certificates);
+        memberAccountRepository.save(memberAccount);
+        return memberAccount;
+    }
+
+    public MemberAccount saveMentiAccount(MentiSignupRequestDTO mentiSignupRequestDTO, List<Certificate> certificates){
+        MemberAccount memberAccount = MemberAccount.createMemberAccount(mentiSignupRequestDTO.getLoginId(), mentiSignupRequestDTO.getPassword(), mentiSignupRequestDTO.getEmail(), certificates);
         memberAccountRepository.save(memberAccount);
         return memberAccount;
     }

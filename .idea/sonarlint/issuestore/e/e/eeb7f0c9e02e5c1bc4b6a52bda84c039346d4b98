@@ -1,0 +1,6 @@
+
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¹šç°ûÿÿÿÿ8žî¾ªž1
+{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(™áó†úÿÿÿÿ8¢î¾ªž1
+{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¾¥ïÎøÿÿÿÿ8¢î¾ªž1
+m
+java:S1128"PRemove this unused import 'com.theZ.dotoring.app.certificate.model.Certificate'.(ì†Ä°8ŸöÄæž1
