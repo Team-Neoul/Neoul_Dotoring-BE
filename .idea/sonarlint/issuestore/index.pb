@@ -39,8 +39,6 @@ v
 Fsrc/main/java/com/theZ/dotoring/app/certificate/model/Certificate.java,5/2/52218ea30a6f8c9d24022bff2b4b8806e8f25f64
 …
 Usrc/main/java/com/theZ/dotoring/app/certificate/repository/CertificateRepository.java,a/f/af79608124a71968a87badc32a908e3176436b36
-z
-Jsrc/main/java/com/theZ/dotoring/app/memberAccount/model/MemberAccount.java,e/d/eda46f7d02d78ad5eebaaf3697ea7be71b2fc425
 ‰
 Ysrc/main/java/com/theZ/dotoring/app/memberAccount/repository/MemberAccountRepository.java,e/3/e372d41f12d743b930093fcf20512d33b6b79ba9
 d
@@ -53,8 +51,6 @@ f
 6src/main/java/com/theZ/dotoring/common/UploadFile.java,7/0/7008d843bf6d83274a4464863945dffcb9370052
 {
 Ksrc/main/java/com/theZ/dotoring/exception/ExtentionNotAllowedException.java,2/2/22ef340aeb1b4e56975de3185778affae690fbe1
-x
-Hsrc/main/java/com/theZ/dotoring/app/mento/dto/MentoSignupRequestDTO.java,7/2/723c427f819a1993c59825c96fe3b784c3a572c3
 y
 Isrc/main/java/com/theZ/dotoring/app/mento/repository/MentoRepository.java,b/f/bfa619415c7284f18561257f23f8c14004598c45
 a
