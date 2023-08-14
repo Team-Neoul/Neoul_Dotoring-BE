@@ -1,4 +1,4 @@
-package com.theZ.dotoring.Field;
+package com.theZ.dotoring.field;
 
 import com.theZ.dotoring.app.field.repository.FieldRepository;
 import com.theZ.dotoring.common.Field;

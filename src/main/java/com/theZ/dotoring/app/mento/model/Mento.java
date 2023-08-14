@@ -53,6 +53,8 @@ public class Mento extends CommonEntity {
     @OneToMany(mappedBy = "mento")
     private List<MemberMajor> memberMajors = new ArrayList<>();
 
+    private Long viewCount;
+
     @Builder
     public Mento(String nickname, String introduction, String school, Long grade, Integer mentoringCount) {
         this.nickname = nickname;
@@ -60,6 +62,7 @@ public class Mento extends CommonEntity {
         this.school = school;
         this.grade = grade;
         this.mentoringCount = mentoringCount;
+        viewCount = 0L;
     }
 
     public static Mento createMento(String nickname, String introduction, String school, Long grade, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
@@ -75,6 +78,10 @@ public class Mento extends CommonEntity {
         mento.addDesiredFields(desiredFields);
         mento.addMemberMajors(memberMajors);
         return mento;
+    }
+
+    public void updateViewCount(){
+        this.viewCount ++;
     }
 
     private void mappingProfile(Profile profile){

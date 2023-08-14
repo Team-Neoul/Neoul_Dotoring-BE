@@ -1,9 +1,11 @@
 package com.theZ.dotoring.app.menti.controller;
 
+import com.theZ.dotoring.app.menti.dto.MentiCardResponseDTO;
 import com.theZ.dotoring.app.menti.dto.MentiNicknameRequestDTO;
 import com.theZ.dotoring.app.menti.dto.MentiSignupRequestDTO;
 import com.theZ.dotoring.app.menti.handler.SaveMentiHandler;
 import com.theZ.dotoring.app.menti.service.MentiService;
+import com.theZ.dotoring.app.mento.dto.MentoCardResponseDTO;
 import com.theZ.dotoring.app.mento.dto.MentoNicknameRequestDTO;
 import com.theZ.dotoring.app.mento.dto.MentoSignupRequestDTO;
 import com.theZ.dotoring.app.mento.handler.SaveMentoHandler;
@@ -38,6 +40,11 @@ public class MentiController {
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
+    @GetMapping("/menti/{id}")
+    public ApiResponse<ApiResponse.CustomBody<MentiCardResponseDTO>> findMentoById(@PathVariable Long id){
+        MentiCardResponseDTO mentiCardResponseDTO = mentiService.findMenti(id);
+        return ApiResponseGenerator.success(mentiCardResponseDTO,HttpStatus.OK);
+    }
 
 }
 

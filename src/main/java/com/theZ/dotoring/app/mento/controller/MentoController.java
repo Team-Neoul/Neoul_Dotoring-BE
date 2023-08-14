@@ -1,8 +1,10 @@
 package com.theZ.dotoring.app.mento.controller;
 
+import com.theZ.dotoring.app.mento.dto.MentoCardResponseDTO;
 import com.theZ.dotoring.app.mento.dto.MentoNicknameRequestDTO;
 import com.theZ.dotoring.app.mento.dto.MentoSignupRequestDTO;
 import com.theZ.dotoring.app.mento.handler.SaveMentoHandler;
+import com.theZ.dotoring.app.mento.mapper.MentoMapper;
 import com.theZ.dotoring.app.mento.service.MentoService;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
@@ -33,5 +35,11 @@ public class MentoController {
     public ApiResponse<ApiResponse.CustomBody<Void>> validateMemberNickname(@RequestBody @Valid MentoNicknameRequestDTO mentoNicknameRequestDTO){
         mentoService.validateNickname(mentoNicknameRequestDTO);
         return ApiResponseGenerator.success(HttpStatus.OK);
+    }
+
+    @GetMapping("/mento/{id}")
+    public ApiResponse<ApiResponse.CustomBody<MentoCardResponseDTO>> findMentoById(@PathVariable Long id){
+        MentoCardResponseDTO mentoCardResponseDTO = mentoService.findMento(id);
+        return ApiResponseGenerator.success(mentoCardResponseDTO,HttpStatus.OK);
     }
 }
