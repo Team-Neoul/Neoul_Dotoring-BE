@@ -1,0 +1,5160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.theZ.dotoring.mento.MentoJPARepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-14T04:51:29" hostname="hwangdaeseon-ui-MacBookPro.local" time="0.275">
+  <properties/>
+  <testcase name="findMentoWithProfileUsingFetchJoinByMentoId_test()" classname="com.theZ.dotoring.mento.MentoJPARepositoryTest" time="0.275"/>
+  <system-out><![CDATA[13:51:28.019 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+13:51:28.024 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+13:51:28.041 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.theZ.dotoring.mento.MentoJPARepositoryTest] from class [org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper]
+13:51:28.048 [Test worker] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.theZ.dotoring.mento.MentoJPARepositoryTest], using SpringBootContextLoader
+13:51:28.049 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.theZ.dotoring.mento.MentoJPARepositoryTest]: class path resource [com/theZ/dotoring/mento/MentoJPARepositoryTest-context.xml] does not exist
+13:51:28.050 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.theZ.dotoring.mento.MentoJPARepositoryTest]: class path resource [com/theZ/dotoring/mento/MentoJPARepositoryTestContext.groovy] does not exist
+13:51:28.050 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.theZ.dotoring.mento.MentoJPARepositoryTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+13:51:28.050 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.theZ.dotoring.mento.MentoJPARepositoryTest]: MentoJPARepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:51:28.082 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.theZ.dotoring.mento.MentoJPARepositoryTest]
+13:51:28.107 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/hwangdaeseon/Project/NDotoring/build/classes/java/main/com/theZ/dotoring/DotoringApplication.class]
+13:51:28.107 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.theZ.dotoring.DotoringApplication for test class com.theZ.dotoring.mento.MentoJPARepositoryTest
+13:51:28.108 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - @TestExecutionListeners is not present for class [com.theZ.dotoring.mento.MentoJPARepositoryTest]: using defaults.
+13:51:28.109 [Test worker] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+13:51:28.116 [Test worker] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5bd82fed, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@c1bd0be, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@476b0ae6, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@1c6804cd, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@655f7ea, org.springframework.test.context.support.DirtiesContextTestExecutionListener@549949be, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4b3a45f1, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@17a87e37, org.springframework.test.context.event.EventPublishingTestExecutionListener@3eeb318f, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@20a14b55, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@39ad977d, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@6da00fb9, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@a202ccb, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@20f12539, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@75b25825]
+13:51:28.119 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@3dd1dc90 testClass = MentoJPARepositoryTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [MergedContextConfiguration@abf688e testClass = MentoJPARepositoryTest, locations = '{}', classes = '{class com.theZ.dotoring.DotoringApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@6436a7db, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@16fdec90, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@351584c0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@be1c93ad, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@3a12c404, [ImportsContextCustomizer@478ee483 key = [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration, org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration, org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration, org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration, org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration, org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@46268f08, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@eda25e5, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@0], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map[[empty]]], class annotated with @DirtiesContext [false] with mode [null].
+13:51:28.125 [Test worker] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener - Performing dependency injection for test context [[DefaultTestContext@3dd1dc90 testClass = MentoJPARepositoryTest, testInstance = com.theZ.dotoring.mento.MentoJPARepositoryTest@2262b621, testMethod = [null], testException = [null], mergedContextConfiguration = [MergedContextConfiguration@abf688e testClass = MentoJPARepositoryTest, locations = '{}', classes = '{class com.theZ.dotoring.DotoringApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@6436a7db, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@16fdec90, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@351584c0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@be1c93ad, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@3a12c404, [ImportsContextCustomizer@478ee483 key = [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration, org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration, org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration, org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration, org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration, org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@46268f08, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@eda25e5, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@0], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]].
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.11)
+
+2023-08-14 13:51:28.294  INFO 5883 --- [    Test worker] c.t.d.mento.MentoJPARepositoryTest       : Starting MentoJPARepositoryTest using Java 17.0.6 on hwangdaeseon-ui-MacBookPro.local with PID 5883 (started by hwangdaeseon in /Users/hwangdaeseon/Project/NDotoring)
+2023-08-14 13:51:28.295  INFO 5883 --- [    Test worker] c.t.d.mento.MentoJPARepositoryTest       : No active profile set, falling back to 1 default profile: "default"
+2023-08-14 13:51:28.486  INFO 5883 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-08-14 13:51:28.487  INFO 5883 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-14 13:51:28.577  INFO 5883 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86 ms. Found 9 JPA repository interfaces.
+2023-08-14 13:51:28.605  INFO 5883 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2023-08-14 13:51:28.679  INFO 5883 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:7dc0be77-f44e-4272-9641-b19760546b01;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2023-08-14 13:51:28.823  INFO 5883 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-14 13:51:28.849  INFO 5883 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-08-14 13:51:28.942  INFO 5883 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-08-14 13:51:29.007  INFO 5883 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-08-14 13:51:29.378 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists certificate CASCADE 
+Hibernate: 
+    
+    drop table if exists certificate CASCADE 
+2023-08-14 13:51:29.380 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists desired_field CASCADE 
+Hibernate: 
+    
+    drop table if exists desired_field CASCADE 
+2023-08-14 13:51:29.380 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists field CASCADE 
+Hibernate: 
+    
+    drop table if exists field CASCADE 
+2023-08-14 13:51:29.380 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists major CASCADE 
+Hibernate: 
+    
+    drop table if exists major CASCADE 
+2023-08-14 13:51:29.380 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists member_account CASCADE 
+Hibernate: 
+    
+    drop table if exists member_account CASCADE 
+2023-08-14 13:51:29.381 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists member_major CASCADE 
+Hibernate: 
+    
+    drop table if exists member_major CASCADE 
+2023-08-14 13:51:29.381 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists menti CASCADE 
+Hibernate: 
+    
+    drop table if exists menti CASCADE 
+2023-08-14 13:51:29.381 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists mento CASCADE 
+Hibernate: 
+    
+    drop table if exists mento CASCADE 
+2023-08-14 13:51:29.381 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists profile CASCADE 
+Hibernate: 
+    
+    drop table if exists profile CASCADE 
+2023-08-14 13:51:29.383 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table certificate (
+       certificate_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        original_file_name varchar(255),
+        save_file_name varchar(255),
+        member_id bigint,
+        primary key (certificate_id)
+    )
+Hibernate: 
+    
+    create table certificate (
+       certificate_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        original_file_name varchar(255),
+        save_file_name varchar(255),
+        member_id bigint,
+        primary key (certificate_id)
+    )
+2023-08-14 13:51:29.387 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table desired_field (
+       desired_field_id bigint generated by default as identity,
+        field_name varchar(255),
+        menti_id bigint,
+        mento_id bigint,
+        primary key (desired_field_id)
+    )
+Hibernate: 
+    
+    create table desired_field (
+       desired_field_id bigint generated by default as identity,
+        field_name varchar(255),
+        menti_id bigint,
+        mento_id bigint,
+        primary key (desired_field_id)
+    )
+2023-08-14 13:51:29.388 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table field (
+       field_name varchar(255) not null,
+        primary key (field_name)
+    )
+Hibernate: 
+    
+    create table field (
+       field_name varchar(255) not null,
+        primary key (field_name)
+    )
+2023-08-14 13:51:29.389 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table major (
+       major_name varchar(255) not null,
+        primary key (major_name)
+    )
+Hibernate: 
+    
+    create table major (
+       major_name varchar(255) not null,
+        primary key (major_name)
+    )
+2023-08-14 13:51:29.391 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table member_account (
+       member_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        email varchar(255),
+        login_id varchar(12),
+        password varchar(255),
+        status varchar(255),
+        primary key (member_id)
+    )
+Hibernate: 
+    
+    create table member_account (
+       member_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        email varchar(255),
+        login_id varchar(12),
+        password varchar(255),
+        status varchar(255),
+        primary key (member_id)
+    )
+2023-08-14 13:51:29.391 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table member_major (
+       member_major_id bigint generated by default as identity,
+        major_name varchar(255),
+        menti_id bigint,
+        mento_id bigint,
+        primary key (member_major_id)
+    )
+Hibernate: 
+    
+    create table member_major (
+       member_major_id bigint generated by default as identity,
+        major_name varchar(255),
+        menti_id bigint,
+        mento_id bigint,
+        primary key (member_major_id)
+    )
+2023-08-14 13:51:29.393 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table menti (
+       mento_id bigint not null,
+        created_at timestamp not null,
+        updated_at timestamp,
+        grade bigint,
+        introduction varchar(100),
+        nickname varchar(8),
+        preferred_mentoring varchar(300),
+        school varchar(255),
+        view_count bigint,
+        profile_profile_id bigint,
+        primary key (mento_id)
+    )
+Hibernate: 
+    
+    create table menti (
+       mento_id bigint not null,
+        created_at timestamp not null,
+        updated_at timestamp,
+        grade bigint,
+        introduction varchar(100),
+        nickname varchar(8),
+        preferred_mentoring varchar(300),
+        school varchar(255),
+        view_count bigint,
+        profile_profile_id bigint,
+        primary key (mento_id)
+    )
+2023-08-14 13:51:29.394 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table mento (
+       mento_id bigint not null,
+        created_at timestamp not null,
+        updated_at timestamp,
+        grade bigint,
+        introduction varchar(100),
+        mentoring_count integer,
+        mentoring_system varchar(300),
+        nickname varchar(8),
+        school varchar(255),
+        view_count bigint,
+        profile_profile_id bigint,
+        primary key (mento_id)
+    )
+Hibernate: 
+    
+    create table mento (
+       mento_id bigint not null,
+        created_at timestamp not null,
+        updated_at timestamp,
+        grade bigint,
+        introduction varchar(100),
+        mentoring_count integer,
+        mentoring_system varchar(300),
+        nickname varchar(8),
+        school varchar(255),
+        view_count bigint,
+        profile_profile_id bigint,
+        primary key (mento_id)
+    )
+2023-08-14 13:51:29.396 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table profile (
+       profile_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        original_profile_name varchar(255),
+        saved_profile_name varchar(255),
+        primary key (profile_id)
+    )
+Hibernate: 
+    
+    create table profile (
+       profile_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        original_profile_name varchar(255),
+        saved_profile_name varchar(255),
+        primary key (profile_id)
+    )
+2023-08-14 13:51:29.397 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table member_account 
+       add constraint UK_m42std5vxkwbuq5rbtqsjk4x3 unique (login_id)
+Hibernate: 
+    
+    alter table member_account 
+       add constraint UK_m42std5vxkwbuq5rbtqsjk4x3 unique (login_id)
+2023-08-14 13:51:29.398 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table menti 
+       add constraint UK_rgme88cyp0qdjpvlaii01j41e unique (nickname)
+Hibernate: 
+    
+    alter table menti 
+       add constraint UK_rgme88cyp0qdjpvlaii01j41e unique (nickname)
+2023-08-14 13:51:29.398 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table mento 
+       add constraint UK_t20jk7xborg6qmp59a1ymeq1q unique (nickname)
+Hibernate: 
+    
+    alter table mento 
+       add constraint UK_t20jk7xborg6qmp59a1ymeq1q unique (nickname)
+2023-08-14 13:51:29.399 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table certificate 
+       add constraint FK56g6co5krq5ton6a8xrvntjag 
+       foreign key (member_id) 
+       references member_account
+Hibernate: 
+    
+    alter table certificate 
+       add constraint FK56g6co5krq5ton6a8xrvntjag 
+       foreign key (member_id) 
+       references member_account
+2023-08-14 13:51:29.404 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table desired_field 
+       add constraint FKpr3t2t3pc0ywcrym85iavgql 
+       foreign key (field_name) 
+       references field
+Hibernate: 
+    
+    alter table desired_field 
+       add constraint FKpr3t2t3pc0ywcrym85iavgql 
+       foreign key (field_name) 
+       references field
+2023-08-14 13:51:29.405 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table desired_field 
+       add constraint FKd6yys3af2ccmjf41prur7rr2 
+       foreign key (menti_id) 
+       references menti
+Hibernate: 
+    
+    alter table desired_field 
+       add constraint FKd6yys3af2ccmjf41prur7rr2 
+       foreign key (menti_id) 
+       references menti
+2023-08-14 13:51:29.406 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table desired_field 
+       add constraint FK6j7uyphsc6oth8a96vk5wriow 
+       foreign key (mento_id) 
+       references mento
+Hibernate: 
+    
+    alter table desired_field 
+       add constraint FK6j7uyphsc6oth8a96vk5wriow 
+       foreign key (mento_id) 
+       references mento
+2023-08-14 13:51:29.407 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table member_major 
+       add constraint FKnknjx9n040ev8rew3bykiqp2o 
+       foreign key (major_name) 
+       references major
+Hibernate: 
+    
+    alter table member_major 
+       add constraint FKnknjx9n040ev8rew3bykiqp2o 
+       foreign key (major_name) 
+       references major
+2023-08-14 13:51:29.408 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table member_major 
+       add constraint FKeu8ew3m9ia4pa9r4p4tkbljft 
+       foreign key (menti_id) 
+       references menti
+Hibernate: 
+    
+    alter table member_major 
+       add constraint FKeu8ew3m9ia4pa9r4p4tkbljft 
+       foreign key (menti_id) 
+       references menti
+2023-08-14 13:51:29.409 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table member_major 
+       add constraint FKbaixae3yb9p6pkhu3skxr5jkr 
+       foreign key (mento_id) 
+       references mento
+Hibernate: 
+    
+    alter table member_major 
+       add constraint FKbaixae3yb9p6pkhu3skxr5jkr 
+       foreign key (mento_id) 
+       references mento
+2023-08-14 13:51:29.410 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table menti 
+       add constraint FK9adrahm36ylb7k13ho3qeq54b 
+       foreign key (profile_profile_id) 
+       references profile
+Hibernate: 
+    
+    alter table menti 
+       add constraint FK9adrahm36ylb7k13ho3qeq54b 
+       foreign key (profile_profile_id) 
+       references profile
+2023-08-14 13:51:29.411 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table menti 
+       add constraint FKcy9u7u7by269dq99851x3wsmc 
+       foreign key (mento_id) 
+       references member_account
+Hibernate: 
+    
+    alter table menti 
+       add constraint FKcy9u7u7by269dq99851x3wsmc 
+       foreign key (mento_id) 
+       references member_account
+2023-08-14 13:51:29.412 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table mento 
+       add constraint FK3857tpcc61d2hekrqvir7yffw 
+       foreign key (profile_profile_id) 
+       references profile
+Hibernate: 
+    
+    alter table mento 
+       add constraint FK3857tpcc61d2hekrqvir7yffw 
+       foreign key (profile_profile_id) 
+       references profile
+2023-08-14 13:51:29.412 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table mento 
+       add constraint FK5r6igmeaeokrobaiqix8m8tb2 
+       foreign key (mento_id) 
+       references member_account
+Hibernate: 
+    
+    alter table mento 
+       add constraint FK5r6igmeaeokrobaiqix8m8tb2 
+       foreign key (mento_id) 
+       references member_account
+2023-08-14 13:51:29.414  INFO 5883 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-14 13:51:29.418  INFO 5883 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-14 13:51:29.743  INFO 5883 --- [    Test worker] c.t.d.mento.MentoJPARepositoryTest       : Started MentoJPARepositoryTest in 1.604 seconds (JVM running for 2.078)
+2023-08-14 13:51:29.756  INFO 5883 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@3dd1dc90 testClass = MentoJPARepositoryTest, testInstance = com.theZ.dotoring.mento.MentoJPARepositoryTest@2262b621, testMethod = findMentoWithProfileUsingFetchJoinByMentoId_test@MentoJPARepositoryTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@abf688e testClass = MentoJPARepositoryTest, locations = '{}', classes = '{class com.theZ.dotoring.DotoringApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@6436a7db, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@16fdec90, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@351584c0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@be1c93ad, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@3a12c404, [ImportsContextCustomizer@478ee483 key = [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration, org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration, org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration, org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration, org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration, org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@46268f08, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@eda25e5, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@0], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@29a1ec65]; rollback [true]
+2023-08-14 13:51:29.838 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.854 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.855 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.855 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.856 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.856 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.857 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.857 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.858 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.858 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.859 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.859 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.860 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.860 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.861 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.862 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.862 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.862 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.863 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.863 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.863 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.864 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.864 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.865 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.865 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.865 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.866 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.866 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.866 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.866 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.867 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.867 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.867 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.868 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.868 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.868 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.868 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.868 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.869 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.869 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.869 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.870 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.870 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.871 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.871 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.871 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.872 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.872 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.872 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.873 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.873 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.873 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.874 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.874 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.874 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.875 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.875 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.875 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.875 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.876 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.876 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.876 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.877 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.877 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.878 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.878 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.878 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.879 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.879 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.879 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.879 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.880 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.880 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.880 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.881 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.881 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.881 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.881 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.882 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.882 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.882 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.882 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.882 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.883 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.883 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.884 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.884 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.884 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.885 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.885 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.885 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.886 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.886 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.886 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.887 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.887 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.887 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.887 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.888 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.888 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.888 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.888 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.889 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.889 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.889 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.889 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.890 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.890 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.891 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.891 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.891 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.891 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.892 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.892 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.892 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.892 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.893 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.893 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.893 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.893 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.894 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.894 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.894 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.894 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.894 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.895 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.895 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.895 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.896 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.896 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.896 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.897 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.897 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.897 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.897 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.897 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.898 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.899 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.899 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.900 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.900 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.900 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.900 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.900 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.901 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.901 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.901 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.902 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.902 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+2023-08-14 13:51:29.905 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-14 13:51:29.905 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-14 13:51:29.905 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-14 13:51:29.906 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-14 13:51:29.906 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-14 13:51:29.906 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-14 13:51:29.906 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-14 13:51:29.906 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-14 13:51:29.907 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+2023-08-14 13:51:29.912 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.915 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.916 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.916 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.917 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.917 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.918 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.918 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.918 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.918 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.918 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.918 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.919 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.919 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.919 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.919 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.920 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.920 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.920 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.920 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.920 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.921 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.921 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.921 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.921 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.921 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.922 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.922 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.922 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.922 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.922 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.922 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.922 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.923 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.923 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.923 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.923 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.923 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.924 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.924 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.924 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.924 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.924 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.924 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.925 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.925 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.925 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.925 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.926 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.926 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.926 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.926 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.927 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.927 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.927 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.928 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.928 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.928 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.929 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.929 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.929 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.930 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.930 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.930 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.930 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.931 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.931 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.931 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.931 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.931 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.931 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.932 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.932 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.932 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.932 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.932 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.932 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.932 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.933 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.933 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.933 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.933 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.933 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.933 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.934 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.934 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.934 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.934 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.934 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.934 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.935 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.935 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.935 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.935 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.935 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.935 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.936 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.936 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.936 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.936 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.936 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.936 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.937 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.937 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.938 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.938 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.938 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.938 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.939 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.939 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.939 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.939 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.939 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.939 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.939 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.940 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.940 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.941 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.941 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.941 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.941 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.942 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.942 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.942 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.942 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.943 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.943 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.943 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.943 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.944 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.944 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.944 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.944 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.944 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.944 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.944 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.945 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.945 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.945 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.945 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.945 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.945 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.945 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.945 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.945 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.946 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.946 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.946 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.946 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+2023-08-14 13:51:29.946 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-14 13:51:29.946 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-14 13:51:29.946 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-14 13:51:29.946 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-14 13:51:29.947 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-14 13:51:29.947 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-14 13:51:29.947 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-14 13:51:29.947 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-14 13:51:29.947 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+2023-08-14 13:51:29.948 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        certificate
+        (certificate_id, created_at, updated_at, member_id, original_file_name, save_file_name) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        certificate
+        (certificate_id, created_at, updated_at, member_id, original_file_name, save_file_name) 
+    values
+        (default, ?, ?, ?, ?, ?)
+2023-08-14 13:51:29.963 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member_account
+        (member_id, created_at, updated_at, email, login_id, password, status) 
+    values
+        (default, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_account
+        (member_id, created_at, updated_at, email, login_id, password, status) 
+    values
+        (default, ?, ?, ?, ?, ?, ?)
+2023-08-14 13:51:29.965 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        profile
+        (profile_id, created_at, updated_at, original_profile_name, saved_profile_name) 
+    values
+        (default, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        profile
+        (profile_id, created_at, updated_at, original_profile_name, saved_profile_name) 
+    values
+        (default, ?, ?, ?, ?)
+2023-08-14 13:51:29.967 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field_.field_name 
+    from
+        field field_ 
+    where
+        field_.field_name=?
+Hibernate: 
+    select
+        field_.field_name 
+    from
+        field field_ 
+    where
+        field_.field_name=?
+2023-08-14 13:51:29.967 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+2023-08-14 13:51:29.967 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        field_.field_name 
+    from
+        field field_ 
+    where
+        field_.field_name=?
+Hibernate: 
+    select
+        field_.field_name 
+    from
+        field field_ 
+    where
+        field_.field_name=?
+2023-08-14 13:51:29.967 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+2023-08-14 13:51:29.968 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major_.major_name 
+    from
+        major major_ 
+    where
+        major_.major_name=?
+Hibernate: 
+    select
+        major_.major_name 
+    from
+        major major_ 
+    where
+        major_.major_name=?
+2023-08-14 13:51:29.969 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member_major
+        (member_major_id, major_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_major
+        (member_major_id, major_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+2023-08-14 13:51:29.969 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        major_.major_name 
+    from
+        major major_ 
+    where
+        major_.major_name=?
+Hibernate: 
+    select
+        major_.major_name 
+    from
+        major major_ 
+    where
+        major_.major_name=?
+2023-08-14 13:51:29.969 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member_major
+        (member_major_id, major_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_major
+        (member_major_id, major_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+2023-08-14 13:51:29.977 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        mento
+        (created_at, updated_at, grade, introduction, mentoring_count, mentoring_system, nickname, profile_profile_id, school, view_count, mento_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        mento
+        (created_at, updated_at, grade, introduction, mentoring_count, mentoring_system, nickname, profile_profile_id, school, view_count, mento_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2023-08-14 13:51:29.978 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+2023-08-14 13:51:29.980 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+2023-08-14 13:51:29.980 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    update
+        member_major 
+    set
+        major_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        member_major_id=?
+Hibernate: 
+    update
+        member_major 
+    set
+        major_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        member_major_id=?
+2023-08-14 13:51:29.980 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    update
+        member_major 
+    set
+        major_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        member_major_id=?
+Hibernate: 
+    update
+        member_major 
+    set
+        major_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        member_major_id=?
+2023-08-14 13:51:29.991 DEBUG 5883 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        mento0_.mento_id as mento_id1_7_0_,
+        profile1_.profile_id as profile_1_8_1_,
+        mento0_.created_at as created_2_7_0_,
+        mento0_.updated_at as updated_3_7_0_,
+        mento0_.grade as grade4_7_0_,
+        mento0_.introduction as introduc5_7_0_,
+        mento0_.mentoring_count as mentorin6_7_0_,
+        mento0_.mentoring_system as mentorin7_7_0_,
+        mento0_.nickname as nickname8_7_0_,
+        mento0_.profile_profile_id as profile11_7_0_,
+        mento0_.school as school9_7_0_,
+        mento0_.view_count as view_co10_7_0_,
+        profile1_.created_at as created_2_8_1_,
+        profile1_.updated_at as updated_3_8_1_,
+        profile1_.original_profile_name as original4_8_1_,
+        profile1_.saved_profile_name as saved_pr5_8_1_ 
+    from
+        mento mento0_ 
+    inner join
+        profile profile1_ 
+            on mento0_.profile_profile_id=profile1_.profile_id 
+    where
+        mento0_.mento_id=?
+Hibernate: 
+    select
+        mento0_.mento_id as mento_id1_7_0_,
+        profile1_.profile_id as profile_1_8_1_,
+        mento0_.created_at as created_2_7_0_,
+        mento0_.updated_at as updated_3_7_0_,
+        mento0_.grade as grade4_7_0_,
+        mento0_.introduction as introduc5_7_0_,
+        mento0_.mentoring_count as mentorin6_7_0_,
+        mento0_.mentoring_system as mentorin7_7_0_,
+        mento0_.nickname as nickname8_7_0_,
+        mento0_.profile_profile_id as profile11_7_0_,
+        mento0_.school as school9_7_0_,
+        mento0_.view_count as view_co10_7_0_,
+        profile1_.created_at as created_2_8_1_,
+        profile1_.updated_at as updated_3_8_1_,
+        profile1_.original_profile_name as original4_8_1_,
+        profile1_.saved_profile_name as saved_pr5_8_1_ 
+    from
+        mento mento0_ 
+    inner join
+        profile profile1_ 
+            on mento0_.profile_profile_id=profile1_.profile_id 
+    where
+        mento0_.mento_id=?
+2023-08-14 13:51:30.023  INFO 5883 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@3dd1dc90 testClass = MentoJPARepositoryTest, testInstance = com.theZ.dotoring.mento.MentoJPARepositoryTest@2262b621, testMethod = findMentoWithProfileUsingFetchJoinByMentoId_test@MentoJPARepositoryTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@abf688e testClass = MentoJPARepositoryTest, locations = '{}', classes = '{class com.theZ.dotoring.DotoringApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@6436a7db, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@16fdec90, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@351584c0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@be1c93ad, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@3a12c404, [ImportsContextCustomizer@478ee483 key = [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration, org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration, org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration, org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration, org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration, org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@46268f08, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@eda25e5, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@0], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
