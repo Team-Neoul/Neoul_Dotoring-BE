@@ -112,5 +112,23 @@ public class Mento extends CommonEntity {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Mento{" +
+                "mentoId=" + mentoId +
+                ", memberAccount=" + memberAccount +
+                ", nickname='" + nickname + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", school='" + school + '\'' +
+                ", grade=" + grade +
+                ", mentoringSystem='" + mentoringSystem + '\'' +
+                ", mentoringCount=" + mentoringCount +
+                ", profile=" + profile +
+                ", desiredFields=" + desiredFields +
+                ", memberMajors=" + memberMajors +
+                ", viewCount=" + viewCount +
+                '}';
+    }
+
 }
 
