@@ -9,6 +9,9 @@ import com.theZ.dotoring.app.menti.dto.MentiSignupRequestDTO;
 import com.theZ.dotoring.app.menti.mapper.MentiMapper;
 import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.menti.repository.MentiRepository;
+import com.theZ.dotoring.app.mento.dto.MentoCardResponseDTO;
+import com.theZ.dotoring.app.mento.mapper.MentoMapper;
+import com.theZ.dotoring.app.mento.model.Mento;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.exception.NicknameDuplicateException;
@@ -45,6 +48,13 @@ public class MentiService {
         MentiCardResponseDTO mentiCardResponseDTO = MentiMapper.from(menti);
         menti.updateViewCount();
         return mentiCardResponseDTO;
+    }
+
+    @Transactional(readOnly = true)
+    public List<MentiCardResponseDTO> findRecommendMentis(List<Long> mentiIds){
+        List<Menti> recommendMentis = mentiRepository.findMentisWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(mentiIds);
+        List<MentiCardResponseDTO> mentiCardResponseDTOList = MentiMapper.from(recommendMentis);
+        return mentiCardResponseDTOList;
     }
 
 
