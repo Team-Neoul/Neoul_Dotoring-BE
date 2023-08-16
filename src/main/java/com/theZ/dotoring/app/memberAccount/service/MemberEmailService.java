@@ -2,6 +2,8 @@ package com.theZ.dotoring.app.memberAccount.service;
 
 import com.theZ.dotoring.app.memberAccount.dto.MemberEmailCodeResponseDTO;
 import com.theZ.dotoring.app.memberAccount.dto.MemberEmailRequestDTO;
+import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
+import com.theZ.dotoring.app.memberAccount.repository.MemberAccountRepository;
 import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.common.RedisUtil;
 import com.theZ.dotoring.exception.EmailCodeException;
@@ -22,12 +24,23 @@ public class MemberEmailService {
     private final JavaMailSender javaMailSender;
     private final SpringTemplateEngine engine;
     private final RedisUtil redisUtil;
+    private final MemberAccountRepository memberAccountRepository;
 
     @Value("${email.validTime}")
     private Long validTime;
 
     @Transactional
     public MemberEmailCodeResponseDTO sendEmail(MemberEmailRequestDTO memberEmailRequestDTO) throws MessagingException {
+
+        /**
+         *  등록되어 있는 이메일인 지  확인!
+         */
+        memberAccountRepository.findByEmail(memberEmailRequestDTO.getEmail()).orElseThrow(() -> new IllegalArgumentException("등록되지 않은 이메일입니다. 다시 입력해주세요."));
+
+        /**
+         *  등록된 이메일이라면, 코드 생성 후 코드를 이메일로 발송 + 레디스를 활용해 유효기간 설정!
+         */
+
         MemberEmailCodeResponseDTO memberEmailCodeResponseDTO = createCode();
         redisUtil.setDataAndExpire(memberEmailCodeResponseDTO.getEmailVerificationCode(),memberEmailRequestDTO.getEmail(),validTime);
 //        MimeMessage message = javaMailSender.createMimeMessage();

@@ -23,8 +23,6 @@ Asrc/test/java/com/theZ/dotoring/Field/FieldJPARepositoryTest.java,5/a/5a2ddb38
 Msrc/main/java/com/theZ/dotoring/app/certificate/mapper/CertificateMapper.java,e/7/e7a5e5fea5364b8065a448a605869f948978c6ed
 Ö
 Usrc/main/java/com/theZ/dotoring/app/certificate/repository/CertificateRepository.java,a/f/af79608124a71968a87badc32a908e3176436b36
-â
-Ysrc/main/java/com/theZ/dotoring/app/memberAccount/repository/MemberAccountRepository.java,e/3/e372d41f12d743b930093fcf20512d33b6b79ba9
 h
 8src/main/java/com/theZ/dotoring/common/CommonEntity.java,2/b/2bb9b4a9b99078d95eb27f23c9e0240f1ff0f19a
 e
@@ -125,16 +123,12 @@ y
 Isrc/main/java/com/theZ/dotoring/app/major/controller/MajorController.java,f/e/fef69e905151500049e7de9590e7141283e98b37
 s
 Csrc/main/java/com/theZ/dotoring/app/major/dto/MajorResponseDTO.java,2/0/20a88a24dd2f377858db358ab0d4a57a2ad704b3
-É
-Ssrc/main/java/com/theZ/dotoring/app/memberAccount/service/MemberAccountService.java,f/4/f4110e0dcee2bac9e5b57c02464121f3eb5a1bd6
 x
 Hsrc/main/java/com/theZ/dotoring/exception/LoginIdDuplicateException.java,3/2/32e73253cd4f01345ff40324a60949ad0bb0b499
 Ñ
 Tsrc/main/java/com/theZ/dotoring/app/memberAccount/dto/MemberEmailCodeRequestDTO.java,a/e/aee4071077c6eb8abc4972764302cfdab50275a4
 Ö
 Usrc/main/java/com/theZ/dotoring/app/memberAccount/dto/MemberEmailCodeResponseDTO.java,b/5/b5b06ffa524cead52a191aebc8cc3290b3c32ceb
-Å
-Qsrc/main/java/com/theZ/dotoring/app/memberAccount/service/MemberEmailService.java,5/e/5ec4c5ccee09100f0ae566940c58f9b9c4540f3b
 e
 5src/main/java/com/theZ/dotoring/common/RedisUtil.java,5/9/591563b91d01107b913f16bd918b564fa7f653cd
 f
@@ -147,8 +141,6 @@ z
 Jsrc/main/java/com/theZ/dotoring/app/menti/dto/MentiNicknameRequestDTO.java,d/7/d78ac82725dde3fa8ff985ef8d2158ed2dab95d6
 y
 Isrc/main/java/com/theZ/dotoring/exception/NicknameDuplicateException.java,b/5/b5becdfe133d46cc3305dfecde34674c77dbc3f4
-â
-Ysrc/main/java/com/theZ/dotoring/app/memberAccount/controller/MemberAccountController.java,9/6/96dfa55ba3cc56177bfb2abb97eae780b2c54e1b
 Ç
 Rsrc/main/java/com/theZ/dotoring/app/memberAccount/dto/MemberLoginIdRequestDTO.java,6/0/6018d23b00aae3f98340df76b40d0c217a14a811
 z
@@ -379,8 +371,6 @@ v
 Fsrc/main/java/com/theZ/dotoring/app/memberMajor/model/MemberMajor.java,3/b/3b9fde466840ed4eeef498b74df61f17bb931d32
 j
 :src/main/java/com/theZ/dotoring/app/menti/model/Menti.java,e/a/eada900e9c294224e9b03e1a9dd7dde78ebc1770
-z
-Jsrc/main/java/com/theZ/dotoring/app/memberAccount/model/MemberAccount.java,e/d/eda46f7d02d78ad5eebaaf3697ea7be71b2fc425
 v
 Fsrc/main/java/com/theZ/dotoring/app/certificate/model/Certificate.java,5/2/52218ea30a6f8c9d24022bff2b4b8806e8f25f64
 q

@@ -1,12 +1,0 @@
-
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ªè›Ë
-ì
-java:S1130"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(ù…ÌΩ8£ç˙û1
-X	java:S125!"<This block of commented-out lines of code should be removed.(é´˚˙8 †∑¯û1
-T
-java:S1135&"2Complete the task associated to this TODO comment.(Ç≈à˛ˇˇˇˇ8 †∑¯û1
-X	java:S125+"<This block of commented-out lines of code should be removed.(é´˚˙8 †∑¯û1
-W
-java:S11442"5Remove this unused private "setContextToCode" method.(É≠âÅ¯ˇˇˇˇ8À†∑¯û1
-V
-java:S11448"9Remove this unused private "setContextToPassword" method.(ôˆ›ô8À†∑¯û1

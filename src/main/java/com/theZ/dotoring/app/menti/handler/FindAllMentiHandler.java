@@ -4,8 +4,6 @@ import com.theZ.dotoring.app.desiredField.service.DesiredFieldService;
 import com.theZ.dotoring.app.menti.dto.MentiCardResponseDTO;
 import com.theZ.dotoring.app.menti.dto.PageableMentiDTO;
 import com.theZ.dotoring.app.menti.service.MentiService;
-import com.theZ.dotoring.app.mento.dto.MentoCardResponseDTO;
-import com.theZ.dotoring.app.mento.dto.PageableMentoDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;

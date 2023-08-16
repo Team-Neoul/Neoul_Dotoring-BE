@@ -1,6 +1,7 @@
 package com.theZ.dotoring.app.memberAccount.service;
 
 import com.theZ.dotoring.app.certificate.model.Certificate;
+import com.theZ.dotoring.app.mento.dto.MemberPasswordRequestDTO;
 import com.theZ.dotoring.app.mento.dto.MentoNicknameRequestDTO;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.memberAccount.repository.MemberAccountRepository;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @Log4j2
@@ -36,7 +38,8 @@ public class MemberAccountService {
         return memberAccount;
     }
 
-    public void validateNickname(MentoNicknameRequestDTO mentoNicknameRequestDTO) {
+    @Transactional(readOnly = true)
+    public void checkDuplicateAboutNickname(MentoNicknameRequestDTO mentoNicknameRequestDTO) {
         memberAccountRepository.findAll().stream().forEach(i ->{
             if(i.getEmail().equals(mentoNicknameRequestDTO.getNickname())){
                 throw new NicknameDuplicateException(MessageCode.DUPLICATED_NICKNAME);
@@ -44,14 +47,35 @@ public class MemberAccountService {
         });
     }
 
-    public void validateLoginId(String loginId) {
-        memberAccountRepository.findAll().stream().forEach(i -> {
-            if(i.getLoginId().equals(loginId)){
-                throw new LoginIdDuplicateException(MessageCode.DUPLICATED_LOGIN_ID);
-            }
-        });
+    @Transactional(readOnly = true)
+    public void checkDuplicateAboutLoginId(String loginId) {
+        if(memberAccountRepository.findByLoginId(loginId).isPresent()){
+            throw new LoginIdDuplicateException(MessageCode.DUPLICATED_LOGIN_ID);
+        }
+    }
 
+    @Transactional(readOnly = true)
+    public String findLoginId(String email){
+        MemberAccount memberAccount = memberAccountRepository.findByEmail(email).orElseThrow(() -> new NoSuchElementException("존재하지 않는 이메일입니다."));
+        return memberAccount.getLoginId();
+    }
+
+    public void validateLoginIdForEmail(MemberPasswordRequestDTO memberPasswordRequestDTO){
+        MemberAccount memberAccount = memberAccountRepository.findByEmail(memberPasswordRequestDTO.getEmail()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 이메일입니다."));
+        String loginId = memberAccount.getLoginId();
+        if(!loginId.equals(memberPasswordRequestDTO.getLoginId())){
+            throw new IllegalArgumentException("아이디가 일치하지 않습니다.");
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public Boolean ifPresentLoginId(String loginId){
+        return memberAccountRepository.findByLoginId(loginId).isPresent();
     }
 
 
+    public void updatePassword(String email, String password) {
+        MemberAccount memberAccount = memberAccountRepository.findByEmail(email).orElseThrow(() -> new IllegalStateException("존재하지 않는 이메일입니다."));
+        memberAccount.updatePassword(password);
+    }
 }
