@@ -379,8 +379,6 @@ v
 Fsrc/main/java/com/theZ/dotoring/app/memberMajor/model/MemberMajor.java,3/b/3b9fde466840ed4eeef498b74df61f17bb931d32
 j
 :src/main/java/com/theZ/dotoring/app/menti/model/Menti.java,e/a/eada900e9c294224e9b03e1a9dd7dde78ebc1770
-x
-Hsrc/main/java/com/theZ/dotoring/app/menti/dto/MentiSignupRequestDTO.java,f/a/fac67f5a5badbb240d7b4cbb5f28050cb1a08a82
 z
 Jsrc/main/java/com/theZ/dotoring/app/memberAccount/model/MemberAccount.java,e/d/eda46f7d02d78ad5eebaaf3697ea7be71b2fc425
 v
