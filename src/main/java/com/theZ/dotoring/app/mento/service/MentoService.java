@@ -14,6 +14,8 @@ import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.exception.NicknameDuplicateException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.SliceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,5 +50,13 @@ public class MentoService {
         MentoCardResponseDTO mentoCardResponseDTO = MentoMapper.from(mento);
         return mentoCardResponseDTO;
     }
+
+    @Transactional(readOnly = true)
+    public List<MentoCardResponseDTO> findRecommendMentos(List<Long> mentoIds){
+        List<Mento> recommendMentos = mentoRepository.findMentosWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(mentoIds);
+        List<MentoCardResponseDTO> mentoCardResponseDTOList = MentoMapper.from(recommendMentos);
+        return mentoCardResponseDTOList;
+    }
+
 
 }
