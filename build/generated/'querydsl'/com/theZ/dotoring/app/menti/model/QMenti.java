@@ -50,6 +50,8 @@ public class QMenti extends EntityPathBase<Menti> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
+    public final NumberPath<Long> viewCount = createNumber("viewCount", Long.class);
+
     public QMenti(String variable) {
         this(Menti.class, forVariable(variable), INITS);
     }

@@ -52,6 +52,8 @@ public class QMento extends EntityPathBase<Mento> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
+    public final NumberPath<Long> viewCount = createNumber("viewCount", Long.class);
+
     public QMento(String variable) {
         this(Mento.class, forVariable(variable), INITS);
     }

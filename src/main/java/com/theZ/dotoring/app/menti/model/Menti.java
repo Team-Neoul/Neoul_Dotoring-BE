@@ -47,18 +47,21 @@ public class Menti extends CommonEntity {
     @OneToOne(fetch = FetchType.LAZY)
     private Profile profile;
 
-    @OneToMany(mappedBy = "mento")
+    @OneToMany(mappedBy = "menti")
     private List<DesiredField> desiredFields = new ArrayList<>();
 
-    @OneToMany(mappedBy = "mento")
+    @OneToMany(mappedBy = "menti")
     private List<MemberMajor> memberMajors = new ArrayList<>();
 
+    private Long viewCount;
+
     @Builder
-    public Menti(String nickname, String introduction, String school, Long grade, Integer mentoringCount) {
+    public Menti(String nickname, String introduction, String school, Long grade) {
         this.nickname = nickname;
         this.introduction = introduction;
         this.school = school;
         this.grade = grade;
+        this.viewCount = 0L;
     }
 
     public static Menti createMenti(String nickname, String introduction, String school, Long grade, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
@@ -73,6 +76,10 @@ public class Menti extends CommonEntity {
         menti.addDesiredFields(desiredFields);
         menti.addMemberMajors(memberMajors);
         return menti;
+    }
+
+    public void updateViewCount(){
+        this.viewCount ++;
     }
 
     private void mappingProfile(Profile profile){

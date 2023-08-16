@@ -3,12 +3,14 @@ package com.theZ.dotoring.app.menti.service;
 import com.theZ.dotoring.app.desiredField.model.DesiredField;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.memberMajor.model.MemberMajor;
+import com.theZ.dotoring.app.menti.dto.MentiCardResponseDTO;
 import com.theZ.dotoring.app.menti.dto.MentiNicknameRequestDTO;
 import com.theZ.dotoring.app.menti.dto.MentiSignupRequestDTO;
+import com.theZ.dotoring.app.menti.mapper.MentiMapper;
 import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.menti.repository.MentiRepository;
-import com.theZ.dotoring.app.mento.dto.MentoNicknameRequestDTO;
-import com.theZ.dotoring.app.mento.dto.MentoSignupRequestDTO;
+import com.theZ.dotoring.app.mento.dto.MentoCardResponseDTO;
+import com.theZ.dotoring.app.mento.mapper.MentoMapper;
 import com.theZ.dotoring.app.mento.model.Mento;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.common.MessageCode;
@@ -19,7 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+import java.util.NoSuchElementException;
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -40,4 +42,20 @@ public class MentiService {
             }
         });
     }
+
+    public MentiCardResponseDTO findMenti(Long mentiId){
+        Menti menti = mentiRepository.findMentiWithProfileUsingFetchJoinByMentiId(mentiId).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘티입니다."));
+        MentiCardResponseDTO mentiCardResponseDTO = MentiMapper.from(menti);
+        menti.updateViewCount();
+        return mentiCardResponseDTO;
+    }
+
+    @Transactional(readOnly = true)
+    public List<MentiCardResponseDTO> findRecommendMentis(List<Long> mentiIds){
+        List<Menti> recommendMentis = mentiRepository.findMentisWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(mentiIds);
+        List<MentiCardResponseDTO> mentiCardResponseDTOList = MentiMapper.from(recommendMentis);
+        return mentiCardResponseDTOList;
+    }
+
+
 }
