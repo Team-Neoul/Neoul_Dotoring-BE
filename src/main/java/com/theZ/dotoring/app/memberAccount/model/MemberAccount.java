@@ -68,4 +68,7 @@ public class MemberAccount extends CommonEntity {
         }
     }
 
+    public void updatePassword(String password) {
+        this.password = password;
+    }
 }

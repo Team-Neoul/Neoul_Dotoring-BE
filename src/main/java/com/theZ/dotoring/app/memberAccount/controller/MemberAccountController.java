@@ -1,9 +1,11 @@
 package com.theZ.dotoring.app.memberAccount.controller;
 
 import com.theZ.dotoring.app.memberAccount.dto.*;
+import com.theZ.dotoring.app.memberAccount.handler.FindMemberAccountHandler;
 import com.theZ.dotoring.app.memberAccount.service.MemberAccountService;
 import com.theZ.dotoring.app.memberAccount.service.MemberEmailService;
-import com.theZ.dotoring.app.mento.dto.MentoNicknameRequestDTO;
+import com.theZ.dotoring.app.mento.dto.EmailCodeRequestDTO;
+import com.theZ.dotoring.app.mento.dto.MemberPasswordRequestDTO;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
 import lombok.RequiredArgsConstructor;
@@ -20,10 +22,11 @@ public class MemberAccountController {
 
     private final MemberAccountService memberAccountService;
     private final MemberEmailService memberEmailService;
+    private final FindMemberAccountHandler findMemberAccountHandler;
 
     @PostMapping("/member/valid-loginId")
     public ApiResponse<ApiResponse.CustomBody<Void>> validateMemberLoginId(@RequestBody @Valid MemberLoginIdRequestDTO memberLoginIdRequestDTO){
-        memberAccountService.validateLoginId(memberLoginIdRequestDTO.getLoginId());
+        memberAccountService.checkDuplicateAboutLoginId(memberLoginIdRequestDTO.getLoginId());
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
@@ -37,6 +40,18 @@ public class MemberAccountController {
     public ApiResponse<ApiResponse.CustomBody<MemberEmailCodeResponseDTO>> sendEmail(@Valid MemberEmailRequestDTO memberEmailRequestDTO) throws MessagingException {
         MemberEmailCodeResponseDTO memberEmailCodeResponseDTO = memberEmailService.sendEmail(memberEmailRequestDTO);
         return ApiResponseGenerator.success(memberEmailCodeResponseDTO,HttpStatus.OK);
+    }
+
+
+    @GetMapping("/member/loginId")
+    public ApiResponse<ApiResponse.CustomBody<String>> findLoginId(@ModelAttribute @Valid EmailCodeRequestDTO emailCodeRequestDTO) {
+        return ApiResponseGenerator.success(findMemberAccountHandler.executeForLoginId(emailCodeRequestDTO),HttpStatus.OK);
+    }
+
+    @GetMapping("/member/password")
+    public ApiResponse<ApiResponse.CustomBody<Void>> findPassword(@ModelAttribute @Valid MemberPasswordRequestDTO memberPasswordRequestDTO) throws MessagingException {
+        findMemberAccountHandler.executeForPassword(memberPasswordRequestDTO);
+        return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
 

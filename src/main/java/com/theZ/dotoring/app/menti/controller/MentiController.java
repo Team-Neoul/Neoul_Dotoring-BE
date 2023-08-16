@@ -6,7 +6,6 @@ import com.theZ.dotoring.app.menti.dto.MentiSignupRequestDTO;
 import com.theZ.dotoring.app.menti.handler.FindAllMentiHandler;
 import com.theZ.dotoring.app.menti.handler.SaveMentiHandler;
 import com.theZ.dotoring.app.menti.service.MentiService;
-import com.theZ.dotoring.app.mento.dto.MentoCardResponseDTO;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
 import lombok.RequiredArgsConstructor;
