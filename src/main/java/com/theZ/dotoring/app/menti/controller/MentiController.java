@@ -3,9 +3,12 @@ package com.theZ.dotoring.app.menti.controller;
 import com.theZ.dotoring.app.menti.dto.MentiCardResponseDTO;
 import com.theZ.dotoring.app.menti.dto.MentiNicknameRequestDTO;
 import com.theZ.dotoring.app.menti.dto.MentiSignupRequestDTO;
+import com.theZ.dotoring.app.menti.dto.PreferredMentoringDTO;
 import com.theZ.dotoring.app.menti.handler.FindAllMentiHandler;
 import com.theZ.dotoring.app.menti.handler.SaveMentiHandler;
 import com.theZ.dotoring.app.menti.service.MentiService;
+import com.theZ.dotoring.app.mento.dto.MentoCardResponseDTO;
+import com.theZ.dotoring.app.mento.dto.MentoringSystemDTO;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
 import lombok.RequiredArgsConstructor;
@@ -49,6 +52,12 @@ public class MentiController {
     public ApiResponse<ApiResponse.CustomBody<Slice<MentiCardResponseDTO>>> findAllMentoBySlice(
             @RequestParam(required = false) Long lastMentiId, @RequestParam(defaultValue = "10") Integer size, Long mentoId){
         return ApiResponseGenerator.success(findAllMentiHandler.execute(lastMentiId, size, mentoId),HttpStatus.OK);
+    }
+
+    @PutMapping("/menti/preferredMentoring")
+    public ApiResponse<ApiResponse.CustomBody<MentiCardResponseDTO>> updateMentoringSystem(@RequestBody @Valid PreferredMentoringDTO preferredMentoringDTO){
+        MentiCardResponseDTO mentiCardResponseDTO = mentiService.updateMenti(preferredMentoringDTO);
+        return ApiResponseGenerator.success(mentiCardResponseDTO,HttpStatus.OK);
     }
 
 }

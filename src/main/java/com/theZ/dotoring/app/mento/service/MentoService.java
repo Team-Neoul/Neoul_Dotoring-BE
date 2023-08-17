@@ -5,6 +5,7 @@ import com.theZ.dotoring.app.mento.dto.MentoCardResponseDTO;
 import com.theZ.dotoring.app.mento.dto.MentoNicknameRequestDTO;
 import com.theZ.dotoring.app.memberMajor.model.MemberMajor;
 import com.theZ.dotoring.app.mento.dto.MentoSignupRequestDTO;
+import com.theZ.dotoring.app.mento.dto.MentoringSystemDTO;
 import com.theZ.dotoring.app.mento.mapper.MentoMapper;
 import com.theZ.dotoring.app.mento.model.Mento;
 import com.theZ.dotoring.app.mento.repository.MentoRepository;
@@ -56,6 +57,13 @@ public class MentoService {
         List<Mento> recommendMentos = mentoRepository.findMentosWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(mentoIds);
         List<MentoCardResponseDTO> mentoCardResponseDTOList = MentoMapper.from(recommendMentos);
         return mentoCardResponseDTOList;
+    }
+
+    public MentoCardResponseDTO updateMento(MentoringSystemDTO mentoringSystemDTO){
+        Mento mento = mentoRepository.findById(mentoringSystemDTO.getMentoId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
+        mento.updateMento(mentoringSystemDTO.getMentoringSystem());
+        MentoCardResponseDTO mentoCardResponseDTO = findMento(mento.getMentoId());
+        return mentoCardResponseDTO;
     }
 
 }

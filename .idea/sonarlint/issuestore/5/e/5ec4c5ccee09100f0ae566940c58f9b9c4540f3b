@@ -1,0 +1,16 @@
+
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(»İè8½óÈûŸ1
+“
+java:S1130!"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(Éí½8Øş»ıŸ1
+L
+java:S2201&"/The return value of "orElseThrow" must be used.(ÜææÍ8Øş»ıŸ1
+X	java:S125."<This block of commented-out lines of code should be removed.(«ûú8ÄóÈûŸ1
+T
+java:S11353"2Complete the task associated to this TODO comment.(‚ğÅˆşÿÿÿÿ8ÄóÈûŸ1
+X	java:S1258"<This block of commented-out lines of code should be removed.(«ûú8ÄóÈûŸ1
+q
+java:S1128"TRemove this unused import 'com.theZ.dotoring.app.memberAccount.model.MemberAccount'.(Ì³éÏ8Ûş»ıŸ1
+W
+java:S1144?"5Remove this unused private "setContextToCode" method.(ƒ­‰øÿÿÿÿ8ÅóÈûŸ1
+V
+java:S1144E"9Remove this unused private "setContextToPassword" method.(™öİ™8ÅóÈûŸ1

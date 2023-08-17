@@ -38,8 +38,7 @@ public class Mento extends CommonEntity {
 
     private Long grade;
 
-    @Size(min = 1, max = 300)
-    // todo 기본 값 세팅하기!
+    @Size(min = 10, max = 300)
     private String mentoringSystem;
 
     private Integer mentoringCount;
@@ -110,6 +109,10 @@ public class Mento extends CommonEntity {
             memberMajor.mappingMento(this);
             this.memberMajors.add(memberMajor);
         }
+    }
+
+    public void updateMento(String mentoringSystem){
+        this.mentoringSystem = mentoringSystem;
     }
 
     @Override

@@ -40,8 +40,7 @@ public class Menti extends CommonEntity {
 
     private Long grade;
 
-    @Size(min = 1, max = 300)
-    // todo 기본 값 세팅하기!
+    @Size(min = 10, max = 300)
     private String preferredMentoring;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -110,4 +109,7 @@ public class Menti extends CommonEntity {
         }
     }
 
+    public void updateMenti(String preferredMentoring) {
+        this.preferredMentoring = preferredMentoring;
+    }
 }

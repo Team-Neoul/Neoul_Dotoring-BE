@@ -24,7 +24,6 @@ public class MentoController {
 
     private final SaveMentoHandler saveMentoHandler;
     private final FindAllMentoHandler findAllMentoHandler;
-    private final FindMemberAccountHandler findMemberAccountHandler;
     private final MentoService mentoService;
 
     @PostMapping("/signup-mento")
@@ -51,6 +50,11 @@ public class MentoController {
         return ApiResponseGenerator.success(findAllMentoHandler.execute(lastMentoId, size, mentiId),HttpStatus.OK);
     }
 
+    @PutMapping("/mento/mentoringSystem")
+    public ApiResponse<ApiResponse.CustomBody<MentoCardResponseDTO>> updateMentoringSystem(@RequestBody @Valid MentoringSystemDTO mentoringSystemDTO){
+        MentoCardResponseDTO mentoCardResponseDTO = mentoService.updateMento(mentoringSystemDTO);
+        return ApiResponseGenerator.success(mentoCardResponseDTO,HttpStatus.OK);
+    }
 
 
 

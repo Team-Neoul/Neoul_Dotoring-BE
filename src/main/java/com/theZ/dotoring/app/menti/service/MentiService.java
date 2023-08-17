@@ -6,10 +6,12 @@ import com.theZ.dotoring.app.memberMajor.model.MemberMajor;
 import com.theZ.dotoring.app.menti.dto.MentiCardResponseDTO;
 import com.theZ.dotoring.app.menti.dto.MentiNicknameRequestDTO;
 import com.theZ.dotoring.app.menti.dto.MentiSignupRequestDTO;
+import com.theZ.dotoring.app.menti.dto.PreferredMentoringDTO;
 import com.theZ.dotoring.app.menti.mapper.MentiMapper;
 import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.menti.repository.MentiRepository;
 import com.theZ.dotoring.app.mento.dto.MentoCardResponseDTO;
+import com.theZ.dotoring.app.mento.dto.MentoringSystemDTO;
 import com.theZ.dotoring.app.mento.mapper.MentoMapper;
 import com.theZ.dotoring.app.mento.model.Mento;
 import com.theZ.dotoring.app.profile.model.Profile;
@@ -57,5 +59,11 @@ public class MentiService {
         return mentiCardResponseDTOList;
     }
 
+    public MentiCardResponseDTO updateMenti(PreferredMentoringDTO preferredMentoringDTO){
+        Menti menti = mentiRepository.findById(preferredMentoringDTO.getMentiId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘티입니다."));
+        menti.updateMenti(preferredMentoringDTO.getPreferredMentoring());
+        MentiCardResponseDTO mentiCardResponseDTO = findMenti(menti.getMentiId());
+        return mentiCardResponseDTO;
+    }
 
 }
