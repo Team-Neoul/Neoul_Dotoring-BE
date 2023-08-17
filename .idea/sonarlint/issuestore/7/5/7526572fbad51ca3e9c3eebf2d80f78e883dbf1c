@@ -1,0 +1,6 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ñş¢üÿÿÿÿ
+g
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ì¯±
+Z
+java:S1612"EReplace this lambda with method reference 'MentiRankDTO::getMentiId'.(ì¯±
