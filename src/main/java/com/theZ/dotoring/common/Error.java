@@ -7,8 +7,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class Error {
 
-    private String message;
     private String code;
+
+    private String message;
+
     private String status;
 
 }

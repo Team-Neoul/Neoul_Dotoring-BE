@@ -1,6 +1,7 @@
 package com.theZ.dotoring.app.mento.mapper;
 
-import com.theZ.dotoring.app.mento.dto.MentoCardResponseDTO;
+import com.theZ.dotoring.app.mento.dto.FindAllMentoRespDTO;
+import com.theZ.dotoring.app.mento.dto.FindMentoByIdRespDTO;
 import com.theZ.dotoring.app.mento.model.Mento;
 
 import java.util.ArrayList;
@@ -10,9 +11,9 @@ import java.util.stream.IntStream;
 
 public class MentoMapper {
 
-    public static MentoCardResponseDTO from(Mento mento){
+    public static FindAllMentoRespDTO fromCard(Mento mento){
 
-        return MentoCardResponseDTO.builder()
+        return FindAllMentoRespDTO.builder()
                 .id(mento.getMentoId())
                 .nickname(mento.getNickname())
                 .mentoringSystem(mento.getMentoringSystem())
@@ -23,13 +24,29 @@ public class MentoMapper {
                 .build();
     }
 
-    public static List<MentoCardResponseDTO> from(List<Mento> mentos){
+    public static FindMentoByIdRespDTO fromDetail(Mento mento){
 
-        List<MentoCardResponseDTO> mentoCardResponseDTOS = new ArrayList<>();
+        FindMentoByIdRespDTO findMentoByIdRespDTO = FindMentoByIdRespDTO.builder()
+                .mentoId(mento.getMentoId())
+                .nickname(mento.getNickname())
+                .mentoringSystem(mento.getMentoringSystem())
+                .introduction(mento.getIntroduction())
+                .profileImage(mento.getProfile().getSavedProfileName())
+                .majors(mento.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
+                .fields(mento.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
+                .build();
+        return findMentoByIdRespDTO;
+    }
+
+
+
+    public static List<FindAllMentoRespDTO> from(List<Mento> mentos){
+
+        List<FindAllMentoRespDTO> findAllMentoRespDTOS = new ArrayList<>();
 
         IntStream.range(0, mentos.size())
-                .forEach(i -> mentoCardResponseDTOS.add(
-                        MentoCardResponseDTO.builder()
+                .forEach(i -> findAllMentoRespDTOS.add(
+                        FindAllMentoRespDTO.builder()
                             .id(mentos.get(i).getMentoId())
                             .nickname(mentos.get(i).getNickname())
                             .mentoringSystem(mentos.get(i).getMentoringSystem())
@@ -39,6 +56,6 @@ public class MentoMapper {
                             .fields(mentos.get(i).getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                             .build())
                 );
-        return mentoCardResponseDTOS;
+        return findAllMentoRespDTOS;
     }
 }

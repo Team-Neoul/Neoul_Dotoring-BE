@@ -1,7 +1,9 @@
 package com.theZ.dotoring.app.desiredField.repository;
 
 import com.theZ.dotoring.app.desiredField.model.DesiredField;
+import com.theZ.dotoring.app.field.model.Field;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -18,4 +20,12 @@ public interface DesiredFieldRepository extends JpaRepository<DesiredField,Long>
 
     @Query("SELECT df FROM DesiredField df where df.field.fieldName in :fieldNames AND df.mento.mentoId is not null")
     List<DesiredField> findRecommendMentis(@Param("fieldNames") List<String> fieldNames);
+
+    @Query("SELECT df FROM DesiredField df where df.field.fieldName in :fieldNames")
+    List<DesiredField> findByFields(@Param("fieldNames") List<String> fieldNames);
+
+
+    @Modifying
+    void deleteAllByMento_MentoId(@Param("mentoId") Long mentoId);
+
 }

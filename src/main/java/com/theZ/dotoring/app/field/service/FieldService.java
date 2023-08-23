@@ -28,7 +28,7 @@ public class FieldService {
         fieldRepository.saveAll(fields);
     }
 
-    public List<com.theZ.dotoring.app.field.model.Field> validFields(List<String> uncertainFields){
+    public void validFields(List<String> uncertainFields){
 
         /**
          * uncertainFields에 중복된 값이 들어왔는 지 확인
@@ -39,11 +39,14 @@ public class FieldService {
          *  uncertainField가 유효한 Field인지 확인
          */
         List<String> fields = Field.getFields().stream().map(f -> f.toString()).collect(Collectors.toList());
-        if(fields.containsAll(uncertainFields)){
-            List<com.theZ.dotoring.app.field.model.Field> fieldList = fieldRepository.findAllById(uncertainFields);
-            return fieldList;
+        if(!fields.containsAll(uncertainFields)){
+            throw new IllegalArgumentException("유효하지 않은 분야입니다.");
         }
-        throw new IllegalArgumentException("유효하지 않은 분야입니다.");
+    }
+    @Transactional(readOnly = true)
+    public List<com.theZ.dotoring.app.field.model.Field> findFields(List<String> fields){
+        List<com.theZ.dotoring.app.field.model.Field> fieldList = fieldRepository.findAllById(fields);
+        return fieldList;
     }
 
 

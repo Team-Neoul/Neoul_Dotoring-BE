@@ -1,7 +1,7 @@
 package com.theZ.dotoring.app.mento.handler;
 
 import com.theZ.dotoring.app.desiredField.service.DesiredFieldService;
-import com.theZ.dotoring.app.mento.dto.MentoCardResponseDTO;
+import com.theZ.dotoring.app.mento.dto.FindAllMentoRespDTO;
 import com.theZ.dotoring.app.mento.dto.PageableMentoDTO;
 import com.theZ.dotoring.app.mento.service.MentoService;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +20,11 @@ public class FindAllMentoHandler {
     private final MentoService mentoService;
     private final DesiredFieldService desiredFieldService;
 
-    public Slice<MentoCardResponseDTO> execute(Long lastMentoId, Integer size, Long mentiId){
+    public Slice<FindAllMentoRespDTO> execute(Long lastMentoId, Integer size, Long mentiId){
 
         PageableMentoDTO pageableMento = desiredFieldService.findPageableMento(mentiId, lastMentoId, size);
         List<Long> mentoIds = pageableMento.getMentoRankDTOs().stream().map(mentoRankDTO -> mentoRankDTO.getMentoId()).collect(Collectors.toList());
-        List<MentoCardResponseDTO> recommendMentosDTO = mentoService.findRecommendMentos(mentoIds);
+        List<FindAllMentoRespDTO> recommendMentosDTO = mentoService.findRecommendMentos(mentoIds);
         PageRequest pageRequest = PageRequest.of(0, pageableMento.getSize());
         return new SliceImpl<>(recommendMentosDTO,pageRequest, pageableMento.getHasNext());
     }

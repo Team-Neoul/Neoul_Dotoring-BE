@@ -1,0 +1,2972 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-23T06:27:56" hostname="hwangdaeseon-ui-MacBookPro.local" time="0.225">
+  <properties/>
+  <testcase name="deleteAllByMento_MentoId()" classname="com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest" time="0.225"/>
+  <system-out><![CDATA[15:27:54.819 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+15:27:54.824 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+15:27:54.842 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest] from class [org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper]
+15:27:54.848 [Test worker] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest], using SpringBootContextLoader
+15:27:54.850 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest]: class path resource [com/theZ/dotoring/desiredField/DesiredFieldRepositoryTest-context.xml] does not exist
+15:27:54.850 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest]: class path resource [com/theZ/dotoring/desiredField/DesiredFieldRepositoryTestContext.groovy] does not exist
+15:27:54.850 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+15:27:54.850 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest]: DesiredFieldRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:27:54.875 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest]
+15:27:54.899 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/hwangdaeseon/Project/NDotoring/build/classes/java/main/com/theZ/dotoring/DotoringApplication.class]
+15:27:54.899 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.theZ.dotoring.DotoringApplication for test class com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest
+15:27:54.900 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - @TestExecutionListeners is not present for class [com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest]: using defaults.
+15:27:54.901 [Test worker] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+15:27:54.910 [Test worker] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@20f12539, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@75b25825, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@18025ced, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@13cf7d52, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3a3e4aff, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5d2a4eed, org.springframework.test.context.transaction.TransactionalTestExecutionListener@57459491, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3f0846c6, org.springframework.test.context.event.EventPublishingTestExecutionListener@77a98a6a, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@78fbff54, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@3e10dc6, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7e22550a, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@45e37a7e, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@62452cc9, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@6941827a]
+15:27:54.912 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@3b7ff809 testClass = DesiredFieldRepositoryTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [MergedContextConfiguration@1bb564e2 testClass = DesiredFieldRepositoryTest, locations = '{}', classes = '{class com.theZ.dotoring.DotoringApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@6995bf68, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3e7dd664, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@351584c0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@5455bbae, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@253d9f73, [ImportsContextCustomizer@62e6b5c8 key = [com.theZ.dotoring.config.TestQueryDslConfig, org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration, org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration, org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration, org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration, org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration, org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@67304a40, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@79351f41, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@0], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map[[empty]]], class annotated with @DirtiesContext [false] with mode [null].
+15:27:54.917 [Test worker] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener - Performing dependency injection for test context [[DefaultTestContext@3b7ff809 testClass = DesiredFieldRepositoryTest, testInstance = com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest@75459c75, testMethod = [null], testException = [null], mergedContextConfiguration = [MergedContextConfiguration@1bb564e2 testClass = DesiredFieldRepositoryTest, locations = '{}', classes = '{class com.theZ.dotoring.DotoringApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@6995bf68, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3e7dd664, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@351584c0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@5455bbae, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@253d9f73, [ImportsContextCustomizer@62e6b5c8 key = [com.theZ.dotoring.config.TestQueryDslConfig, org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration, org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration, org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration, org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration, org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration, org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@67304a40, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@79351f41, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@0], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]].
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.11)
+
+2023-08-23 15:27:55.075  INFO 33756 --- [    Test worker] c.t.d.d.DesiredFieldRepositoryTest       : Starting DesiredFieldRepositoryTest using Java 17.0.6 on hwangdaeseon-ui-MacBookPro.local with PID 33756 (started by hwangdaeseon in /Users/hwangdaeseon/Project/NDotoring)
+2023-08-23 15:27:55.076  INFO 33756 --- [    Test worker] c.t.d.d.DesiredFieldRepositoryTest       : No active profile set, falling back to 1 default profile: "default"
+2023-08-23 15:27:55.254  INFO 33756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-08-23 15:27:55.254  INFO 33756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-23 15:27:55.337  INFO 33756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 79 ms. Found 9 JPA repository interfaces.
+2023-08-23 15:27:55.363  INFO 33756 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2023-08-23 15:27:55.437  INFO 33756 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:845bb9b4-cb21-4ab1-a6a1-fe31470f8266;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2023-08-23 15:27:55.579  INFO 33756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-23 15:27:55.604  INFO 33756 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-08-23 15:27:55.683  INFO 33756 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-08-23 15:27:55.732  INFO 33756 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Hibernate: 
+    
+    drop table if exists certificate CASCADE 
+Hibernate: 
+    
+    drop table if exists desired_field CASCADE 
+Hibernate: 
+    
+    drop table if exists field CASCADE 
+Hibernate: 
+    
+    drop table if exists major CASCADE 
+Hibernate: 
+    
+    drop table if exists member_account CASCADE 
+Hibernate: 
+    
+    drop table if exists member_major CASCADE 
+Hibernate: 
+    
+    drop table if exists menti CASCADE 
+Hibernate: 
+    
+    drop table if exists mento CASCADE 
+Hibernate: 
+    
+    drop table if exists profile CASCADE 
+Hibernate: 
+    
+    create table certificate (
+       certificate_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        original_file_name varchar(255),
+        save_file_name varchar(255),
+        member_id bigint,
+        primary key (certificate_id)
+    )
+Hibernate: 
+    
+    create table desired_field (
+       desired_field_id bigint generated by default as identity,
+        field_name varchar(255),
+        menti_id bigint,
+        mento_id bigint,
+        primary key (desired_field_id)
+    )
+Hibernate: 
+    
+    create table field (
+       field_name varchar(255) not null,
+        primary key (field_name)
+    )
+Hibernate: 
+    
+    create table major (
+       major_name varchar(255) not null,
+        primary key (major_name)
+    )
+Hibernate: 
+    
+    create table member_account (
+       member_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        email varchar(255),
+        login_id varchar(12),
+        member_type varchar(255),
+        password varchar(255),
+        status varchar(255),
+        primary key (member_id)
+    )
+Hibernate: 
+    
+    create table member_major (
+       member_major_id bigint generated by default as identity,
+        major_name varchar(255),
+        menti_id bigint,
+        mento_id bigint,
+        primary key (member_major_id)
+    )
+Hibernate: 
+    
+    create table menti (
+       mento_id bigint not null,
+        created_at timestamp not null,
+        updated_at timestamp,
+        grade bigint,
+        introduction varchar(100),
+        nickname varchar(8),
+        preferred_mentoring varchar(300),
+        school varchar(255),
+        view_count bigint,
+        profile_profile_id bigint,
+        primary key (mento_id)
+    )
+Hibernate: 
+    
+    create table mento (
+       mento_id bigint not null,
+        created_at timestamp not null,
+        updated_at timestamp,
+        grade bigint,
+        introduction varchar(100),
+        mentoring_count integer,
+        mentoring_system varchar(300),
+        nickname varchar(8),
+        school varchar(255),
+        view_count bigint,
+        profile_profile_id bigint,
+        primary key (mento_id)
+    )
+Hibernate: 
+    
+    create table profile (
+       profile_id bigint generated by default as identity,
+        created_at timestamp not null,
+        updated_at timestamp,
+        original_profile_name varchar(255),
+        saved_profile_name varchar(255),
+        primary key (profile_id)
+    )
+Hibernate: 
+    
+    alter table member_account 
+       add constraint UK_m42std5vxkwbuq5rbtqsjk4x3 unique (login_id)
+Hibernate: 
+    
+    alter table menti 
+       add constraint UK_rgme88cyp0qdjpvlaii01j41e unique (nickname)
+Hibernate: 
+    
+    alter table mento 
+       add constraint UK_t20jk7xborg6qmp59a1ymeq1q unique (nickname)
+Hibernate: 
+    
+    alter table certificate 
+       add constraint FK56g6co5krq5ton6a8xrvntjag 
+       foreign key (member_id) 
+       references member_account
+Hibernate: 
+    
+    alter table desired_field 
+       add constraint FKpr3t2t3pc0ywcrym85iavgql 
+       foreign key (field_name) 
+       references field
+Hibernate: 
+    
+    alter table desired_field 
+       add constraint FKd6yys3af2ccmjf41prur7rr2 
+       foreign key (menti_id) 
+       references menti
+Hibernate: 
+    
+    alter table desired_field 
+       add constraint FK6j7uyphsc6oth8a96vk5wriow 
+       foreign key (mento_id) 
+       references mento
+Hibernate: 
+    
+    alter table member_major 
+       add constraint FKnknjx9n040ev8rew3bykiqp2o 
+       foreign key (major_name) 
+       references major
+Hibernate: 
+    
+    alter table member_major 
+       add constraint FKeu8ew3m9ia4pa9r4p4tkbljft 
+       foreign key (menti_id) 
+       references menti
+Hibernate: 
+    
+    alter table member_major 
+       add constraint FKbaixae3yb9p6pkhu3skxr5jkr 
+       foreign key (mento_id) 
+       references mento
+Hibernate: 
+    
+    alter table menti 
+       add constraint FK9adrahm36ylb7k13ho3qeq54b 
+       foreign key (profile_profile_id) 
+       references profile
+Hibernate: 
+    
+    alter table menti 
+       add constraint FKcy9u7u7by269dq99851x3wsmc 
+       foreign key (mento_id) 
+       references member_account
+Hibernate: 
+    
+    alter table mento 
+       add constraint FK3857tpcc61d2hekrqvir7yffw 
+       foreign key (profile_profile_id) 
+       references profile
+Hibernate: 
+    
+    alter table mento 
+       add constraint FK5r6igmeaeokrobaiqix8m8tb2 
+       foreign key (mento_id) 
+       references member_account
+2023-08-23 15:27:56.094  INFO 33756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-23 15:27:56.098  INFO 33756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-23 15:27:56.449  INFO 33756 --- [    Test worker] c.t.d.d.DesiredFieldRepositoryTest       : Started DesiredFieldRepositoryTest in 1.519 seconds (JVM running for 2.022)
+2023-08-23 15:27:56.461  INFO 33756 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@3b7ff809 testClass = DesiredFieldRepositoryTest, testInstance = com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest@75459c75, testMethod = deleteAllByMento_MentoId@DesiredFieldRepositoryTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@1bb564e2 testClass = DesiredFieldRepositoryTest, locations = '{}', classes = '{class com.theZ.dotoring.DotoringApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@6995bf68, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3e7dd664, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@351584c0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@5455bbae, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@253d9f73, [ImportsContextCustomizer@62e6b5c8 key = [com.theZ.dotoring.config.TestQueryDslConfig, org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration, org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration, org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration, org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration, org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration, org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@67304a40, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@79351f41, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@0], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@583030bd]; rollback [true]
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        major0_.major_name as major_na1_3_0_ 
+    from
+        major major0_ 
+    where
+        major0_.major_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    select
+        field0_.field_name as field_na1_2_0_ 
+    from
+        field field0_ 
+    where
+        field0_.field_name=?
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        major
+        (major_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        field
+        (field_name) 
+    values
+        (?)
+Hibernate: 
+    insert 
+    into
+        certificate
+        (certificate_id, created_at, updated_at, member_id, original_file_name, save_file_name) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_account
+        (member_id, created_at, updated_at, email, login_id, member_type, password, status) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        profile
+        (profile_id, created_at, updated_at, original_profile_name, saved_profile_name) 
+    values
+        (default, ?, ?, ?, ?)
+Hibernate: 
+    select
+        field_.field_name 
+    from
+        field field_ 
+    where
+        field_.field_name=?
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    select
+        field_.field_name 
+    from
+        field field_ 
+    where
+        field_.field_name=?
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    select
+        field_.field_name 
+    from
+        field field_ 
+    where
+        field_.field_name=?
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    select
+        major_.major_name 
+    from
+        major major_ 
+    where
+        major_.major_name=?
+Hibernate: 
+    insert 
+    into
+        member_major
+        (member_major_id, major_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    select
+        major_.major_name 
+    from
+        major major_ 
+    where
+        major_.major_name=?
+Hibernate: 
+    insert 
+    into
+        member_major
+        (member_major_id, major_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        menti
+        (created_at, updated_at, grade, introduction, nickname, preferred_mentoring, profile_profile_id, school, view_count, mento_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        certificate
+        (certificate_id, created_at, updated_at, member_id, original_file_name, save_file_name) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_account
+        (member_id, created_at, updated_at, email, login_id, member_type, password, status) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_major
+        (member_major_id, major_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_major
+        (member_major_id, major_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        mento
+        (created_at, updated_at, grade, introduction, mentoring_count, mentoring_system, nickname, profile_profile_id, school, view_count, mento_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        certificate
+        (certificate_id, created_at, updated_at, member_id, original_file_name, save_file_name) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_account
+        (member_id, created_at, updated_at, email, login_id, member_type, password, status) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        field_.field_name 
+    from
+        field field_ 
+    where
+        field_.field_name=?
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_major
+        (member_major_id, major_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_major
+        (member_major_id, major_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        mento
+        (created_at, updated_at, grade, introduction, mentoring_count, mentoring_system, nickname, profile_profile_id, school, view_count, mento_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        certificate
+        (certificate_id, created_at, updated_at, member_id, original_file_name, save_file_name) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_account
+        (member_id, created_at, updated_at, email, login_id, member_type, password, status) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_major
+        (member_major_id, major_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        mento
+        (created_at, updated_at, grade, introduction, mentoring_count, mentoring_system, nickname, profile_profile_id, school, view_count, mento_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        certificate
+        (certificate_id, created_at, updated_at, member_id, original_file_name, save_file_name) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_account
+        (member_id, created_at, updated_at, email, login_id, member_type, password, status) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    select
+        field_.field_name 
+    from
+        field field_ 
+    where
+        field_.field_name=?
+Hibernate: 
+    insert 
+    into
+        desired_field
+        (desired_field_id, field_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        member_major
+        (member_major_id, major_name, menti_id, mento_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        mento
+        (created_at, updated_at, grade, introduction, mentoring_count, mentoring_system, nickname, profile_profile_id, school, view_count, mento_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        member_major 
+    set
+        major_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        member_major_id=?
+Hibernate: 
+    update
+        member_major 
+    set
+        major_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        member_major_id=?
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        member_major 
+    set
+        major_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        member_major_id=?
+Hibernate: 
+    update
+        member_major 
+    set
+        major_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        member_major_id=?
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        member_major 
+    set
+        major_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        member_major_id=?
+Hibernate: 
+    update
+        member_major 
+    set
+        major_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        member_major_id=?
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        member_major 
+    set
+        major_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        member_major_id=?
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        desired_field 
+    set
+        field_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        desired_field_id=?
+Hibernate: 
+    update
+        member_major 
+    set
+        major_name=?,
+        menti_id=?,
+        mento_id=? 
+    where
+        member_major_id=?
+Hibernate: 
+    select
+        desiredfie0_.desired_field_id as desired_1_1_,
+        desiredfie0_.field_name as field_na2_1_,
+        desiredfie0_.menti_id as menti_id3_1_,
+        desiredfie0_.mento_id as mento_id4_1_ 
+    from
+        desired_field desiredfie0_ 
+    left outer join
+        mento mento1_ 
+            on desiredfie0_.mento_id=mento1_.mento_id 
+    where
+        mento1_.mento_id=?
+Hibernate: 
+    delete 
+    from
+        desired_field 
+    where
+        desired_field_id=?
+Hibernate: 
+    delete 
+    from
+        desired_field 
+    where
+        desired_field_id=?
+Hibernate: 
+    delete 
+    from
+        desired_field 
+    where
+        desired_field_id=?
+2023-08-23 15:27:56.678  INFO 33756 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@3b7ff809 testClass = DesiredFieldRepositoryTest, testInstance = com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest@75459c75, testMethod = deleteAllByMento_MentoId@DesiredFieldRepositoryTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@1bb564e2 testClass = DesiredFieldRepositoryTest, locations = '{}', classes = '{class com.theZ.dotoring.DotoringApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@6995bf68, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3e7dd664, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@351584c0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@5455bbae, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@253d9f73, [ImportsContextCustomizer@62e6b5c8 key = [com.theZ.dotoring.config.TestQueryDslConfig, org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration, org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration, org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration, org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration, org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration, org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@67304a40, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@79351f41, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@0], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

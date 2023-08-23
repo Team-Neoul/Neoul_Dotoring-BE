@@ -27,7 +27,7 @@ public class MajorService {
         majorRepository.saveAll(majors);
     }
 
-    public List<com.theZ.dotoring.app.major.model.Major> validMajors(List<String> uncertainMajors){
+    public void validMajors(List<String> uncertainMajors){
 
         /**
          * uncertainMajors에 중복된 값이 들어왔는 지 확인
@@ -39,11 +39,15 @@ public class MajorService {
          *  uncertainMajors가 유효한 Major인지 확인
          */
         List<String> majors = Major.getMajors().stream().map(m -> m.toString()).collect(Collectors.toList());
-        if(majors.containsAll(uncertainMajors)){
-            List<com.theZ.dotoring.app.major.model.Major> majorList = majorRepository.findAllById(uncertainMajors);
-            return majorList;
+        if(!majors.containsAll(uncertainMajors)){
+            throw new IllegalArgumentException("유효하지 않은 학과입니다.");
         }
-        throw new IllegalArgumentException("유효하지 않은 학과입니다.");
+
     }
 
+    @Transactional(readOnly = true)
+    public List<com.theZ.dotoring.app.major.model.Major> findMajors(List<String> majors) {
+        List<com.theZ.dotoring.app.major.model.Major> majorList = majorRepository.findAllById(majors);
+        return majorList;
+    }
 }

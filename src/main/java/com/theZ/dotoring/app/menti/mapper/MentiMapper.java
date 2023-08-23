@@ -1,9 +1,8 @@
 package com.theZ.dotoring.app.menti.mapper;
 
-import com.theZ.dotoring.app.menti.dto.MentiCardResponseDTO;
+import com.theZ.dotoring.app.menti.dto.FindAllMentiRespDTO;
+import com.theZ.dotoring.app.menti.dto.FindMentiByIdRespDTO;
 import com.theZ.dotoring.app.menti.model.Menti;
-import com.theZ.dotoring.app.mento.dto.MentoCardResponseDTO;
-import com.theZ.dotoring.app.mento.model.Mento;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +11,9 @@ import java.util.stream.IntStream;
 
 public class MentiMapper {
 
-    public static MentiCardResponseDTO from(Menti menti){
+    public static FindAllMentiRespDTO fromCard(Menti menti){
 
-        return MentiCardResponseDTO.builder()
+        return FindAllMentiRespDTO.builder()
                 .id(menti.getMentiId())
                 .nickname(menti.getNickname())
                 .preferredMentoringSystem(menti.getPreferredMentoring())
@@ -24,13 +23,27 @@ public class MentiMapper {
                 .fields(menti.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                 .build();
     }
-    public static List<MentiCardResponseDTO> from(List<Menti> mentis){
 
-        List<MentiCardResponseDTO> mentiCardResponseDTOS = new ArrayList<>();
+    public static FindMentiByIdRespDTO fromDetail(Menti menti){
+        FindMentiByIdRespDTO findMentiByIdRespDTO = FindMentiByIdRespDTO.builder()
+                .mentiId(menti.getMentiId())
+                .nickname(menti.getNickname())
+                .preferredMentoring(menti.getPreferredMentoring())
+                .introduction(menti.getIntroduction())
+                .profileImage(menti.getProfile().getSavedProfileName())
+                .majors(menti.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
+                .fields(menti.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
+                .build();
+
+        return findMentiByIdRespDTO;
+    }
+    public static List<FindAllMentiRespDTO> from(List<Menti> mentis){
+
+        List<FindAllMentiRespDTO> findAllMentiRespDTOS = new ArrayList<>();
 
         IntStream.range(0, mentis.size())
-                .forEach(i -> mentiCardResponseDTOS.add(
-                        MentiCardResponseDTO.builder()
+                .forEach(i -> findAllMentiRespDTOS.add(
+                        FindAllMentiRespDTO.builder()
                                 .id(mentis.get(i).getMentiId())
                                 .nickname(mentis.get(i).getNickname())
                                 .preferredMentoringSystem(mentis.get(i).getPreferredMentoring())
@@ -40,7 +53,7 @@ public class MentiMapper {
                                 .fields(mentis.get(i).getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                                 .build())
                 );
-        return mentiCardResponseDTOS;
+        return findAllMentiRespDTOS;
     }
 
 }

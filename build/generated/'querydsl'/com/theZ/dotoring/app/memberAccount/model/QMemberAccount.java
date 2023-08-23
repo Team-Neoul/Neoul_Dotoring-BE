@@ -33,6 +33,8 @@ public class QMemberAccount extends EntityPathBase<MemberAccount> {
 
     public final StringPath loginId = createString("loginId");
 
+    public final EnumPath<com.theZ.dotoring.enums.MemberType> memberType = createEnum("memberType", com.theZ.dotoring.enums.MemberType.class);
+
     public final StringPath password = createString("password");
 
     public final EnumPath<com.theZ.dotoring.enums.Status> status = createEnum("status", com.theZ.dotoring.enums.Status.class);

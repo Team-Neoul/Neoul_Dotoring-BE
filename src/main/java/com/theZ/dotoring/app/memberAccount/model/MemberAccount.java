@@ -3,6 +3,7 @@ package com.theZ.dotoring.app.memberAccount.model;
 
 import com.theZ.dotoring.app.certificate.model.Certificate;
 import com.theZ.dotoring.common.CommonEntity;
+import com.theZ.dotoring.enums.MemberType;
 import com.theZ.dotoring.enums.Status;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -39,24 +40,29 @@ public class MemberAccount extends CommonEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Enumerated(EnumType.STRING)
+    private MemberType memberType;
+
     @OneToMany(mappedBy = "memberAccount")
     private List<Certificate> certificates = new ArrayList<>();
 
     @Builder
-    public MemberAccount(String loginId, String password, String email, List<Certificate> certificates) {
+    public MemberAccount(String loginId, String password, String email, List<Certificate> certificates, MemberType memberType) {
         this.loginId = loginId;
         this.password = password;
         this.email = email;
         this.status = Status.WAIT;
         this.certificates = certificates;
+        this.memberType = memberType;
     }
 
-    public static MemberAccount createMemberAccount(String loginId, String password, String email, List<Certificate> certificates){
+    public static MemberAccount createMemberAccount(String loginId, String password, String email, MemberType memberType ,List<Certificate> certificates){
         MemberAccount memberAccount = MemberAccount.builder()
                 .loginId(loginId)
                 .password(password)
                 .email(email)
                 .certificates(certificates)
+                .memberType(memberType)
                 .build();
         memberAccount.mappingCertificate(certificates);
         return memberAccount;

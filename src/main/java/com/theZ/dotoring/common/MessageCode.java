@@ -16,7 +16,7 @@ public enum MessageCode {
     DUPLICATED_LOGIN_ID("4010","중복된 아이디가 존재합니다."),
     DUPLICATED_VALUE("4023","중복된 값이 존재합니다."),
 
-    WRONG_CODE("4077","잘못된 코드입니다."),
+    WRONG_CODE("4077","인증코드가 일치하지 않습니다."),
     WRONG_REQUEST("4444","잘못된 요청입니다."),
 
     VALIDATION_FAIL("4011","유효성 검증 실패"),

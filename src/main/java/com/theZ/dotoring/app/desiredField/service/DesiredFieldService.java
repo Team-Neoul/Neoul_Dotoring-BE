@@ -29,6 +29,19 @@ public class DesiredFieldService {
         return savedDesiredFields;
     }
 
+
+    public void deleteAllByMentoId(Long mentoId){
+//
+//        List<DesiredField> desiredFields = desiredFieldRepository.findByMentoId(mentoId);
+//
+//        /**
+//         *  Mento에서 desiredFields로의 연관관계 해제
+//         */
+//        desiredFields.stream().forEach(i -> i.getMento().getDesiredFields().clear());
+//        desiredFields.stream().forEach(i -> i.getField().getDesiredFields().clear());
+        desiredFieldRepository.deleteAllByMento_MentoId(mentoId);
+    }
+
     @Transactional(readOnly = true)
     public PageableMentoDTO findPageableMento(Long mentiId, Long lastMentoId, int size){
         List<String> fieldNames = desiredFieldRepository.findByMentiId(mentiId).stream().map(df -> df.getField().getFieldName()).collect(Collectors.toList());

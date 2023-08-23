@@ -22,15 +22,15 @@ public class MemberMajor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberMajorId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "major_name")
     private Major major;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mento_id")
     private Mento mento;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menti_id")
     private Menti menti;
 
