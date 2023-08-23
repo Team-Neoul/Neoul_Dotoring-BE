@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.Size;
 
 @Data
-public class PreferredMentoringDTO {
+public class UpdateMentiMentoringSystemRqDTO {
 
     private Long mentiId;
 
