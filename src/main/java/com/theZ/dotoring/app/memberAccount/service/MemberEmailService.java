@@ -35,7 +35,7 @@ public class MemberEmailService {
         /**
          *  등록되어 있는 이메일인 지  확인!
          */
-        memberAccountRepository.findByEmail(memberEmailRequestDTO.getEmail()).orElseThrow(() -> new IllegalArgumentException("등록되지 않은 이메일입니다. 다시 입력해주세요."));
+        memberAccountRepository.findByEmail(memberEmailRequestDTO.getEmail()).orElseThrow(() -> new IllegalArgumentException("등록되지 않은 이메일입니다."));
 
         /**
          *  등록된 이메일이라면, 코드 생성 후 코드를 이메일로 발송 + 레디스를 활용해 유효기간 설정!
@@ -78,8 +78,15 @@ public class MemberEmailService {
 
 
     public String validateCode(String code, String email){
+
+        /**
+         *  등록되지 않은 이메일인지 확인!
+         */
+        memberAccountRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("등록되지 않은 이메일입니다."));
+
         String savedEmail = redisUtil.getData(code); // 입력 받은 인증 코드(key)를 이용해 email(value)을 꺼낸다.
-        if (email == null || !savedEmail.equals(email)) { // email이 존재하지 않으면, 유효 기간 만료이거나 코드 잘못 입력
+
+        if (savedEmail == null || !savedEmail.equals(email)) { // email이 존재하지 않으면, 유효 기간 만료이거나 코드 잘못 입력
             throw new EmailCodeException(MessageCode.WRONG_CODE);
         }
         return email;
