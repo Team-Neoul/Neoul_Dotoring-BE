@@ -21,15 +21,15 @@ public class DesiredField {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long desiredFieldId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "field_name")
     private Field field;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mento_id")
     private Mento mento;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menti_id")
     private Menti menti;
 

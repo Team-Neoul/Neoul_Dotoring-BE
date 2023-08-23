@@ -10,6 +10,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -81,13 +82,15 @@ public class Menti extends CommonEntity {
         this.viewCount ++;
     }
 
-    private void mappingProfile(Profile profile){
+    public void mappingProfile(Profile profile){
         this.profile = profile;
     }
 
     private void mappingMemberAccount(MemberAccount memberAccount){
         this.memberAccount = memberAccount;
     }
+
+    // todo 멘티 학년 재 설정 요청보내기! - 매학기 시작할 때마다
 
     private void addDesiredFields(List<DesiredField> desiredFields){
         if(desiredFields.isEmpty()){
@@ -109,7 +112,26 @@ public class Menti extends CommonEntity {
         }
     }
 
-    public void updateMenti(String preferredMentoring) {
+    public void updateDesiredField(List<DesiredField> desiredFields) {
+        if(desiredFields.isEmpty()){
+            throw new IllegalArgumentException("희망 멘토링 분야가 1개 이상 있어야합니다.");
+        }
+        this.desiredFields.clear();
+        for(DesiredField desiredField : desiredFields){
+            desiredField.mappingMenti(this);
+            this.desiredFields.add(desiredField);
+        }
+    }
+
+    public void updatePreferredMentoring(String preferredMentoring) {
         this.preferredMentoring = preferredMentoring;
+    }
+
+    public void updateIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public void updateNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

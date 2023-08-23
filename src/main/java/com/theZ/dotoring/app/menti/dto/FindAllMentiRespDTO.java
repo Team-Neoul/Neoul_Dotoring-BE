@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class MentiCardResponseDTO {
+public class FindAllMentiRespDTO {
 
     private Long id;
     private String profileImage;
@@ -21,7 +21,7 @@ public class MentiCardResponseDTO {
     private String introduction;
 
     @Builder
-    public MentiCardResponseDTO(Long id, String profileImage, String nickname, String preferredMentoringSystem, List<String> fields, List<String> majors, String introduction) {
+    public FindAllMentiRespDTO(Long id, String profileImage, String nickname, String preferredMentoringSystem, List<String> fields, List<String> majors, String introduction) {
         this.id = id;
         this.profileImage = profileImage;
         this.nickname = nickname;
