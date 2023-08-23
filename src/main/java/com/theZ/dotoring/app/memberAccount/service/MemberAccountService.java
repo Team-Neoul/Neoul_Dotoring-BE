@@ -2,12 +2,13 @@ package com.theZ.dotoring.app.memberAccount.service;
 
 import com.theZ.dotoring.app.certificate.model.Certificate;
 import com.theZ.dotoring.app.mento.dto.MemberPasswordRequestDTO;
-import com.theZ.dotoring.app.mento.dto.MentoNicknameRequestDTO;
+import com.theZ.dotoring.app.mento.dto.ValidateMentoNicknameRqDTO;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.memberAccount.repository.MemberAccountRepository;
-import com.theZ.dotoring.app.menti.dto.MentiSignupRequestDTO;
-import com.theZ.dotoring.app.mento.dto.MentoSignupRequestDTO;
+import com.theZ.dotoring.app.menti.dto.SaveMentiRqDTO;
+import com.theZ.dotoring.app.mento.dto.SaveMentoRqDTO;
 import com.theZ.dotoring.common.MessageCode;
+import com.theZ.dotoring.enums.MemberType;
 import com.theZ.dotoring.exception.LoginIdDuplicateException;
 import com.theZ.dotoring.exception.NicknameDuplicateException;
 import lombok.RequiredArgsConstructor;
@@ -26,22 +27,22 @@ public class MemberAccountService {
 
     private final MemberAccountRepository memberAccountRepository;
 
-    public MemberAccount saveMentoAccount(MentoSignupRequestDTO mentoSignupRequestDTO, List<Certificate> certificates){
-        MemberAccount memberAccount = MemberAccount.createMemberAccount(mentoSignupRequestDTO.getLoginId(), mentoSignupRequestDTO.getPassword(), mentoSignupRequestDTO.getEmail(), certificates);
+    public MemberAccount saveMentoAccount(SaveMentoRqDTO mentoSignupRequestDTO, List<Certificate> certificates){
+        MemberAccount memberAccount = MemberAccount.createMemberAccount(mentoSignupRequestDTO.getLoginId(), mentoSignupRequestDTO.getPassword(), mentoSignupRequestDTO.getEmail(), MemberType.MENTO, certificates);
         memberAccountRepository.save(memberAccount);
         return memberAccount;
     }
 
-    public MemberAccount saveMentiAccount(MentiSignupRequestDTO mentiSignupRequestDTO, List<Certificate> certificates){
-        MemberAccount memberAccount = MemberAccount.createMemberAccount(mentiSignupRequestDTO.getLoginId(), mentiSignupRequestDTO.getPassword(), mentiSignupRequestDTO.getEmail(), certificates);
+    public MemberAccount saveMentiAccount(SaveMentiRqDTO saveMentiRqDTO, List<Certificate> certificates){
+        MemberAccount memberAccount = MemberAccount.createMemberAccount(saveMentiRqDTO.getLoginId(), saveMentiRqDTO.getPassword(), saveMentiRqDTO.getEmail(),MemberType.MENTI, certificates);
         memberAccountRepository.save(memberAccount);
         return memberAccount;
     }
 
     @Transactional(readOnly = true)
-    public void checkDuplicateAboutNickname(MentoNicknameRequestDTO mentoNicknameRequestDTO) {
+    public void checkDuplicateAboutNickname(ValidateMentoNicknameRqDTO validateMentoNicknameRqDTO) {
         memberAccountRepository.findAll().stream().forEach(i ->{
-            if(i.getEmail().equals(mentoNicknameRequestDTO.getNickname())){
+            if(i.getEmail().equals(validateMentoNicknameRqDTO.getNickname())){
                 throw new NicknameDuplicateException(MessageCode.DUPLICATED_NICKNAME);
             }
         });
@@ -77,5 +78,18 @@ public class MemberAccountService {
     public void updatePassword(String email, String password) {
         MemberAccount memberAccount = memberAccountRepository.findByEmail(email).orElseThrow(() -> new IllegalStateException("존재하지 않는 이메일입니다."));
         memberAccount.updatePassword(password);
+    }
+
+    /**
+     *
+     * MemberAccount를 통해 Mento인지 Menti인지를 판별 할 수 있는 메서드
+     */
+
+    public Boolean isMento(Long memberId){
+        MemberAccount memberAccount = memberAccountRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
+        if(memberAccount.getMemberType() == MemberType.MENTO){
+            return true;
+        }
+        return false;
     }
 }

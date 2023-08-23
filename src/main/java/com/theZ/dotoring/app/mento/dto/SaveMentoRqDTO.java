@@ -2,9 +2,7 @@ package com.theZ.dotoring.app.mento.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
@@ -12,10 +10,9 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Data
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MentoSignupRequestDTO {
+public class SaveMentoRqDTO {
 
     private String school;
 

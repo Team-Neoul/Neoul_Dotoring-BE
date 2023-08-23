@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MentiSignupRequestDTO {
+public class SaveMentiRqDTO {
 
     private String school;
     private Long grade;

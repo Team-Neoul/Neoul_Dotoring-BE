@@ -12,7 +12,7 @@ import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.memberAccount.service.MemberAccountService;
 import com.theZ.dotoring.app.memberMajor.model.MemberMajor;
 import com.theZ.dotoring.app.memberMajor.service.MemberMajorService;
-import com.theZ.dotoring.app.mento.dto.MentoSignupRequestDTO;
+import com.theZ.dotoring.app.mento.dto.SaveMentoRqDTO;
 import com.theZ.dotoring.app.mento.service.MentoService;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.app.profile.service.ProfileService;
@@ -39,7 +39,7 @@ public class SaveMentoHandler {
 
 
     @Transactional
-    public void execute(MentoSignupRequestDTO mentoSignupRequestDTO, List<MultipartFile> certificates) throws IOException {
+    public void execute(SaveMentoRqDTO saveMentoRqDTO, List<MultipartFile> certificates) throws IOException {
         /**
          *  증명서 저장
          */
@@ -49,7 +49,7 @@ public class SaveMentoHandler {
          * 회원 계정 저장
          */
 
-        MemberAccount memberAccount = memberAccountService.saveMentoAccount(mentoSignupRequestDTO, savedCertificates);
+        MemberAccount memberAccount = memberAccountService.saveMentoAccount(saveMentoRqDTO, savedCertificates);
 
         /**
          * 회원가입이후 프로필 변경전까지는 기본 프로필 이미지 사용
@@ -61,15 +61,16 @@ public class SaveMentoHandler {
          *  fields와 majors가 유효한 지를 검사한다음에 유효하지 않으면 에러 터뜨리고, 유효하다면, 해당 majors와 fields들을 가져온다.
          */
 
-        List<Field> fields = fieldService.validFields(mentoSignupRequestDTO.getFields());
-        List<Major> majors = majorService.validMajors(mentoSignupRequestDTO.getMajors());
-
+        fieldService.validFields(saveMentoRqDTO.getFields());
+        List<Field> fields = fieldService.findFields(saveMentoRqDTO.getFields());
+        majorService.validMajors(saveMentoRqDTO.getMajors());
+        List<Major> majors = majorService.findMajors(saveMentoRqDTO.getMajors());
 
 
         List<DesiredField> desiredFields = desiredFieldService.save(fields);
         List<MemberMajor> memberMajors = memberMajorService.save(majors);
 
-        mentoService.saveMento(mentoSignupRequestDTO,memberAccount,defaultProfile,desiredFields,memberMajors);
+        mentoService.saveMento(saveMentoRqDTO,memberAccount,defaultProfile,desiredFields,memberMajors);
     }
 
 }
