@@ -20,7 +20,7 @@ public class FileUtils {
 
     private static final String rootPath = System.getProperty("user.dir");
 
-    private static final String fileDir = rootPath + "/src/main/resources/static/files/";
+    private static final String fileDir = rootPath + "/src/main/resources/image/";
 
     private final List<String> fileExts = List.of("pdf","jpg","jpeg","png");
 

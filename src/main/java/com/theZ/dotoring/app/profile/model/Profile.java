@@ -1,5 +1,6 @@
 package com.theZ.dotoring.app.profile.model;
 
+import com.theZ.dotoring.app.mento.model.Mento;
 import com.theZ.dotoring.common.CommonEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -28,6 +29,14 @@ public class Profile extends CommonEntity {
     public Profile(String savedProfileName, String originalProfileName) {
         this.savedProfileName = savedProfileName;
         this.originalProfileName = originalProfileName;
+    }
+
+    public static Profile createProfile(String savedProfileName, String originalProfileName){
+        Profile profile = Profile.builder()
+                .originalProfileName(originalProfileName)
+                .savedProfileName(savedProfileName)
+                .build();
+        return profile;
     }
 
 }
