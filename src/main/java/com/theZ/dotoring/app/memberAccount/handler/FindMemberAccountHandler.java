@@ -31,7 +31,7 @@ public class FindMemberAccountHandler {
         memberAccountService.validateLoginIdForEmail(memberPasswordRequestDTO);
         String password = makePassword();
         memberEmailService.sendPasswordByEmail(memberPasswordRequestDTO.getEmail(), password);
-        memberAccountService.updatePassword(memberPasswordRequestDTO.getEmail(),password);
+        memberAccountService.updatePasswordByEmail(memberPasswordRequestDTO.getEmail(),password);
     }
 
     private String makePassword(){

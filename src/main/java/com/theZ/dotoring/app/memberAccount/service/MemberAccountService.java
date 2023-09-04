@@ -1,6 +1,8 @@
 package com.theZ.dotoring.app.memberAccount.service;
 
 import com.theZ.dotoring.app.certificate.model.Certificate;
+import com.theZ.dotoring.app.memberAccount.dto.UpdateMemberLoginIdRequestDTO;
+import com.theZ.dotoring.app.memberAccount.dto.UpdateMemberPasswordRequestDTO;
 import com.theZ.dotoring.app.mento.dto.MemberPasswordRequestDTO;
 import com.theZ.dotoring.app.mento.dto.ValidateMentoNicknameRqDTO;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
@@ -75,7 +77,7 @@ public class MemberAccountService {
     }
 
 
-    public void updatePassword(String email, String password) {
+    public void updatePasswordByEmail(String email, String password) {
         MemberAccount memberAccount = memberAccountRepository.findByEmail(email).orElseThrow(() -> new IllegalStateException("존재하지 않는 이메일입니다."));
         memberAccount.updatePassword(password);
     }
@@ -92,4 +94,15 @@ public class MemberAccountService {
         }
         return false;
     }
+
+    public void updateLoginId(UpdateMemberLoginIdRequestDTO updateMemberLoginIdRequestDTO) {
+        MemberAccount memberAccount = memberAccountRepository.findById(updateMemberLoginIdRequestDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
+        memberAccount.updateLoginId(updateMemberLoginIdRequestDTO.getLoginId());
+    }
+
+    public void updatePassword(UpdateMemberPasswordRequestDTO updateMemberPasswordRequestDTO) {
+        MemberAccount memberAccount = memberAccountRepository.findById(updateMemberPasswordRequestDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
+        memberAccount.updatePassword(updateMemberPasswordRequestDTO.getPassword());
+    }
+
 }
