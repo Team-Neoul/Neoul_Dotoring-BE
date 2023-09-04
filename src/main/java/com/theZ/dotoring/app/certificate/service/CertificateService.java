@@ -39,4 +39,12 @@ public class CertificateService {
                 .filter(certification -> certificationIds.contains(certification.getId()))
                 .collect(Collectors.toList());
     }
+
+
+    /**
+     *  증명서를 반환해주는 기능
+     *  @Param : String content,
+     */
+
+
 }

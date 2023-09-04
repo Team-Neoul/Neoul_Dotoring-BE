@@ -54,6 +54,17 @@ public class MemberAccountController {
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
+    @PatchMapping("/member/loginId")
+    public ApiResponse<ApiResponse.CustomBody<Void>> updateLoginId(@RequestBody UpdateMemberLoginIdRequestDTO updateMemberLoginIdRequestDTO){
+        memberAccountService.updateLoginId(updateMemberLoginIdRequestDTO);
+        return ApiResponseGenerator.success(HttpStatus.OK);
+    }
+
+    @PatchMapping("/member/password")
+    public ApiResponse<ApiResponse.CustomBody<Void>> updatePassword(@RequestBody UpdateMemberPasswordRequestDTO updateMemberPasswordRequestDTO){
+        memberAccountService.updatePassword(updateMemberPasswordRequestDTO);
+        return ApiResponseGenerator.success(HttpStatus.OK);
+    }
 
 
 }

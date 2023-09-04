@@ -23,7 +23,7 @@ import java.util.NoSuchElementException;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@Transactional()
+@Transactional
 public class MentoService {
 
     private final MentoRepository mentoRepository;
@@ -62,6 +62,14 @@ public class MentoService {
         mento.updateMentoringSystem(updateMentoringSystemRqDTO.getMentoringSystem());
         FindMentoByIdRespDTO findMentoByIdRespDTO = MentoMapper.fromDetail(mento);
         return findMentoByIdRespDTO;
+    }
+
+    /**
+     *  회원 승인하기 기능
+     */
+
+    public void approveWaitMento(ApproveWaitMentoDTO approveWaitMentoDTO){
+
     }
 
     public FindMentoByIdRespDTO updateIntroduction(UpdateMentoIntroductionRqDTO updateMentoIntroductionRqDTO) {
