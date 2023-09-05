@@ -1,7 +1,7 @@
 ---
-name: "[NickName] 이슈 제목"
+name: "✅ Feature Issue"
 about: Feature Issue
-title: ''
+title: "[NickName] 이슈 제목"
 labels: ''
 assignees: ''
 
