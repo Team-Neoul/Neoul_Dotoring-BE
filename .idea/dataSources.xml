@@ -9,7 +9,6 @@
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="User Data Source" uuid="c4029ba2-5353-489d-a4c1-4664eddca427">
-      <driver-ref>af7f130b-d44b-4d7e-a1f7-d186852e77b2</driver-ref>
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>
       <jdbc-driver>java.sql.Driver</jdbc-driver>

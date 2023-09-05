@@ -42,7 +42,7 @@ public class MentiController {
 
     @GetMapping("/menti/{id}")
     public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> findMentiById(@PathVariable Long id){
-        FindMentiByIdRespDTO findMentiByIdRespDTO = mentiService.findMenti(id);
+        FindMentiByIdRespDTO findMentiByIdRespDTO = mentiService.findMentiWithProfile(id);
         return ApiResponseGenerator.success(findMentiByIdRespDTO,HttpStatus.OK);
     }
 

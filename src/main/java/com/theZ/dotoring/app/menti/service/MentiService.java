@@ -41,12 +41,17 @@ public class MentiService {
         });
     }
 
-    public FindMentiByIdRespDTO findMenti(Long mentiId){
+    public FindMentiByIdRespDTO findMentiWithProfile(Long mentiId){
         Menti menti = mentiRepository.findMentiWithProfileUsingFetchJoinByMentiId(mentiId).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘티입니다."));
         FindMentiByIdRespDTO findMentiByIdRespDTO = MentiMapper.fromDetail(menti);
         menti.updateViewCount();
         return findMentiByIdRespDTO;
     }
+
+    public Menti findMenti(Long mentiId){
+        return mentiRepository.findById(mentiId).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘티입니다."));
+    }
+
 
     @Transactional(readOnly = true)
     public List<FindAllMentiRespDTO> findRecommendMentis(List<Long> mentiIds){
