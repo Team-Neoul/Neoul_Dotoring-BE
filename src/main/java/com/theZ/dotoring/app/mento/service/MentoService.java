@@ -43,11 +43,15 @@ public class MentoService {
     }
 
     @Transactional(readOnly = true)
-    public FindMentoByIdRespDTO findMento(Long mentoId){
+    public FindMentoByIdRespDTO findMentoByProfile(Long mentoId){
         Mento mento = mentoRepository.findMentoWithProfileUsingFetchJoinByMentoId(mentoId).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘토입니다."));
         mento.updateViewCount();
         FindMentoByIdRespDTO findMentoByIdRespDTO = MentoMapper.fromDetail(mento);
         return findMentoByIdRespDTO;
+    }
+
+    public Mento findMento(Long mentoId){
+        return mentoRepository.findById(mentoId).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
     }
 
     @Transactional(readOnly = true)
