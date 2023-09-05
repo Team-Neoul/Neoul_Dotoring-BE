@@ -37,8 +37,6 @@ public class QMemberAccount extends EntityPathBase<MemberAccount> {
 
     public final StringPath password = createString("password");
 
-    public final EnumPath<com.theZ.dotoring.enums.Status> status = createEnum("status", com.theZ.dotoring.enums.Status.class);
-
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 

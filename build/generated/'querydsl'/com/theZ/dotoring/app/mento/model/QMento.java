@@ -49,6 +49,8 @@ public class QMento extends EntityPathBase<Mento> {
 
     public final StringPath school = createString("school");
 
+    public final EnumPath<com.theZ.dotoring.enums.Status> status = createEnum("status", com.theZ.dotoring.enums.Status.class);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 

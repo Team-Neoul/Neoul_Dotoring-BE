@@ -66,5 +66,9 @@ public class MemberAccountController {
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
+    /**
+     *  승인하기 기능 구현
+     */
+
 
 }

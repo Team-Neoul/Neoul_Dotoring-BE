@@ -1,18 +1,0 @@
-
-‰
-java:S1488"lImmediately return this expression instead of assigning it to the temporary variable "findMentiByIdRespDTO".(¡×…Ø8‹™Ÿ”¢1
-u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¢¹P8”íŠÈ 1
-W
-java:S1118":Add a private constructor to hide the implicit public one.(×°ï‚8šíŠÈ 1
-o
-java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¨••Ş8›íŠÈ 1
-o
-java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ãç„Ñ8›íŠÈ 1
-o
-java:S6204""RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¨••Ş8íŠÈ 1
-o
-java:S6204#"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ãç„Ñ8íŠÈ 1
-n
-java:S62044"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ŠãÄv8 íŠÈ 1
-o
-java:S62045"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(òáÌÉ8 íŠÈ 1

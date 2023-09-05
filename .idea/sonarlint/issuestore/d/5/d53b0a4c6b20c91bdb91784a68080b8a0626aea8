@@ -1,21 +1,0 @@
-
-‡
-java:S1192-"eDefine a constant instead of duplicating this literal "ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë©˜í‹°ì…ë‹ˆë‹¤." 5 times.(µâúÿÿÿÿ8·¥£”¢1
-Œ
-java:S14886"oImmediately return this expression instead of assigning it to the temporary variable "findAllMentiRespDTOList".(ŸèìÒ8·¥£”¢1
-
-java:S1488="kImmediately return this expression instead of assigning it to the temporary variable "findAllMentiRespDTO".(È¬Æğùÿÿÿÿ8·¥£”¢1
-
-java:S1488D"lImmediately return this expression instead of assigning it to the temporary variable "findMentiByIdRespDTO".(®½ßµÿÿÿÿÿ8·¥£”¢1
-
-java:S1488K"lImmediately return this expression instead of assigning it to the temporary variable "findMentiByIdRespDTO".(®½ßµÿÿÿÿÿ8·¥£”¢1
-
-java:S1488T"lImmediately return this expression instead of assigning it to the temporary variable "findMentiByIdRespDTO".(®½ßµÿÿÿÿÿ8·¥£”¢1
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¸òø¬ıÿÿÿÿ8¸¥£”¢1
-n
-java:S1128
-"QRemove this unused import 'com.theZ.dotoring.app.mento.dto.FindMentoByIdRespDTO'.(¸«‰±8ÿ²”¢1
-h
-java:S1128"KRemove this unused import 'com.theZ.dotoring.app.mento.mapper.MentoMapper'.(êú®¬8ÿ²”¢1
-a
-java:S1128"DRemove this unused import 'com.theZ.dotoring.app.mento.model.Mento'.(Ú­Íİ8ÿ²”¢1

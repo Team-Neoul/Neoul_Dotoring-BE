@@ -37,8 +37,6 @@ public class MemberAccount extends CommonEntity {
     @Email
     private String email;
 
-    @Enumerated(EnumType.STRING)
-    private Status status;
 
     @Enumerated(EnumType.STRING)
     private MemberType memberType;
@@ -51,7 +49,6 @@ public class MemberAccount extends CommonEntity {
         this.loginId = loginId;
         this.password = password;
         this.email = email;
-        this.status = Status.WAIT;
         this.certificates = certificates;
         this.memberType = memberType;
     }
