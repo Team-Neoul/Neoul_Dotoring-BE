@@ -55,6 +55,7 @@ public class Mento extends CommonEntity {
 
     private Long viewCount;
 
+
     @Builder
     public Mento(String nickname, String introduction, String school, Long grade, Integer mentoringCount) {
         this.nickname = nickname;

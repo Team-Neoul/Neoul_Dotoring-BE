@@ -23,7 +23,7 @@ import java.util.NoSuchElementException;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@Transactional()
+@Transactional
 public class MentoService {
 
     private final MentoRepository mentoRepository;
@@ -50,8 +50,9 @@ public class MentoService {
         return findMentoByIdRespDTO;
     }
 
+    @Transactional(readOnly = true)
     public Mento findMento(Long mentoId){
-        return mentoRepository.findById(mentoId).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
+        return mentoRepository.findById(mentoId).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘토입니다."));
     }
 
     @Transactional(readOnly = true)
@@ -66,6 +67,14 @@ public class MentoService {
         mento.updateMentoringSystem(updateMentoringSystemRqDTO.getMentoringSystem());
         FindMentoByIdRespDTO findMentoByIdRespDTO = MentoMapper.fromDetail(mento);
         return findMentoByIdRespDTO;
+    }
+
+    /**
+     *  회원 승인하기 기능
+     */
+
+    public void approveWaitMento(ApproveWaitMentoDTO approveWaitMentoDTO){
+
     }
 
     public FindMentoByIdRespDTO updateIntroduction(UpdateMentoIntroductionRqDTO updateMentoIntroductionRqDTO) {
@@ -88,6 +97,4 @@ public class MentoService {
         FindMentoByIdRespDTO findMentoByIdRespDTO = MentoMapper.fromDetail(mento);
         return findMentoByIdRespDTO;
     }
-
-
 }

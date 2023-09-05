@@ -23,4 +23,5 @@ public class MemberMajorService {
         List<MemberMajor> memberMajors = memberMajorRepository.saveAll(desiredFields);
         return memberMajors;
     }
+
 }
