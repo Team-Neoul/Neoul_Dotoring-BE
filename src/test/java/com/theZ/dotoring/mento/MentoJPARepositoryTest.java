@@ -21,11 +21,15 @@ import com.theZ.dotoring.app.mento.repository.MentoRepository;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.app.profile.repository.ProfileRepository;
 import com.theZ.dotoring.enums.MemberType;
+import com.theZ.dotoring.enums.Status;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
@@ -250,6 +254,15 @@ public class MentoJPARepositoryTest {
         Assertions.assertThat(mentos.get(0).getDesiredFields().stream().map(df -> df.getField().getFieldName()).collect(Collectors.toList()).get(1)).isEqualTo("개발_언어");
         Assertions.assertThat(mentos.get(0).getDesiredFields().stream().map(df -> df.getField().getFieldName()).collect(Collectors.toList()).get(2)).isEqualTo( "공모전");
     }
+
+    @Test
+    void findMentosByStatus(){
+        Sort sort = Sort.by("createdAt");
+        PageRequest pageRequest = PageRequest.of(0, 10, sort);
+        mentoRepository.findMentosByStatus(Status.WAIT,pageRequest);
+    }
+
+
 
 
 

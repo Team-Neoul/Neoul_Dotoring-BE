@@ -7,14 +7,16 @@ import com.theZ.dotoring.app.menti.dto.*;
 import com.theZ.dotoring.app.menti.mapper.MentiMapper;
 import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.menti.repository.MentiRepository;
-import com.theZ.dotoring.app.mento.dto.FindMentoByIdRespDTO;
-import com.theZ.dotoring.app.mento.mapper.MentoMapper;
-import com.theZ.dotoring.app.mento.model.Mento;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.common.MessageCode;
+import com.theZ.dotoring.enums.Status;
 import com.theZ.dotoring.exception.NicknameDuplicateException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,6 +54,15 @@ public class MentiService {
         return mentiRepository.findById(mentiId).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘티입니다."));
     }
 
+    @Transactional(readOnly = true)
+    public Page<FindWaitMentiRespDTO> findWaitMentis(Pageable pageable){
+        Sort sort = Sort.by("createdAt");
+        PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+        Page<Menti> pagingMenti = mentiRepository.findMentisByStatus(Status.WAIT, pageRequest);
+        Page<FindWaitMentiRespDTO> findWaitMentiRespDTOS = MentiMapper.fromWaitMenti(pagingMenti);
+        return findWaitMentiRespDTOS;
+    }
+
 
     @Transactional(readOnly = true)
     public List<FindAllMentiRespDTO> findRecommendMentis(List<Long> mentiIds){
@@ -83,10 +94,15 @@ public class MentiService {
     }
 
     public FindMentiByIdRespDTO updateDesiredFields(List<DesiredField> desiredFields, Long mentiId) {
-
         Menti menti = mentiRepository.findMentiWithProfileAndMajorsUsingFetchJoinByMentoId(mentiId).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘티입니다."));
         menti.updateDesiredField(desiredFields);
         FindMentiByIdRespDTO findMentiByIdRespDTO = MentiMapper.fromDetail(menti);
         return findMentiByIdRespDTO;
+    }
+
+
+    public void approveWaitMentis(ApproveWaitMentisRqDTO approveWaitMentisRqDTO) {
+        List<Menti> mentis = mentiRepository.findAllById(approveWaitMentisRqDTO.getMentiIds());
+        mentis.stream().forEach(i -> i.approveStatus());
     }
 }

@@ -1,7 +1,6 @@
 package com.theZ.dotoring.app.mento.service;
 
 import com.theZ.dotoring.app.desiredField.model.DesiredField;
-import com.theZ.dotoring.app.menti.dto.UpdateMentoDesiredFieldRqDTO;
 import com.theZ.dotoring.app.mento.dto.*;
 import com.theZ.dotoring.app.memberMajor.model.MemberMajor;
 import com.theZ.dotoring.app.mento.mapper.MentoMapper;
@@ -10,9 +9,14 @@ import com.theZ.dotoring.app.mento.repository.MentoRepository;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.common.MessageCode;
+import com.theZ.dotoring.enums.Status;
 import com.theZ.dotoring.exception.NicknameDuplicateException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -62,12 +66,21 @@ public class MentoService {
         return findAllMentoRespDTOList;
     }
 
-    public FindMentoByIdRespDTO updateMentoringSystem(UpdateMentoringSystemRqDTO updateMentoringSystemRqDTO){
-        Mento mento = mentoRepository.findById(updateMentoringSystemRqDTO.getMentoId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
-        mento.updateMentoringSystem(updateMentoringSystemRqDTO.getMentoringSystem());
-        FindMentoByIdRespDTO findMentoByIdRespDTO = MentoMapper.fromDetail(mento);
-        return findMentoByIdRespDTO;
+
+    /**
+     *  대기 회원 보여주기 기능
+     */
+
+    @Transactional(readOnly = true)
+    public Page<FindWaitMentoRespDTO> findWaitMentos(Pageable pageable){
+        Sort sort = Sort.by("createdAt");
+        PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+        Page<Mento> pagingMento = mentoRepository.findMentosByStatus(Status.WAIT, pageRequest);
+        Page<FindWaitMentoRespDTO> findWaitMentoRespDTOS = MentoMapper.fromWaitMento(pagingMento);
+        return findWaitMentoRespDTOS;
     }
+
+
 
     /**
      *  회원 승인하기 기능
@@ -75,6 +88,13 @@ public class MentoService {
 
     public void approveWaitMento(ApproveWaitMentoDTO approveWaitMentoDTO){
 
+    }
+
+    public FindMentoByIdRespDTO updateMentoringSystem(UpdateMentoringSystemRqDTO updateMentoringSystemRqDTO){
+        Mento mento = mentoRepository.findById(updateMentoringSystemRqDTO.getMentoId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
+        mento.updateMentoringSystem(updateMentoringSystemRqDTO.getMentoringSystem());
+        FindMentoByIdRespDTO findMentoByIdRespDTO = MentoMapper.fromDetail(mento);
+        return findMentoByIdRespDTO;
     }
 
     public FindMentoByIdRespDTO updateIntroduction(UpdateMentoIntroductionRqDTO updateMentoIntroductionRqDTO) {
@@ -96,5 +116,10 @@ public class MentoService {
         mento.updateDesiredField(desiredFields);
         FindMentoByIdRespDTO findMentoByIdRespDTO = MentoMapper.fromDetail(mento);
         return findMentoByIdRespDTO;
+    }
+
+    public void approveWaitMentos(ApproveWaitMentosRqDTO approveWaitMentosRqDTO) {
+        List<Mento> mentos = mentoRepository.findAllById(approveWaitMentosRqDTO.getMentoIds());
+        mentos.stream().forEach(i -> i.approveStatus());
     }
 }

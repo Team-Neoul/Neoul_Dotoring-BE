@@ -21,7 +21,7 @@ public class FindAllMentoHandler {
     private final DesiredFieldService desiredFieldService;
 
     public Slice<FindAllMentoRespDTO> execute(Long lastMentoId, Integer size, Long mentiId){
-
+        // todo 활동중인 회원만 보여줘야된다!
         PageableMentoDTO pageableMento = desiredFieldService.findPageableMento(mentiId, lastMentoId, size);
         List<Long> mentoIds = pageableMento.getMentoRankDTOs().stream().map(mentoRankDTO -> mentoRankDTO.getMentoId()).collect(Collectors.toList());
         List<FindAllMentoRespDTO> recommendMentosDTO = mentoService.findRecommendMentos(mentoIds);

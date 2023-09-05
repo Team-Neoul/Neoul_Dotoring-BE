@@ -6,11 +6,11 @@ import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.memberMajor.model.MemberMajor;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.common.CommonEntity;
+import com.theZ.dotoring.enums.Status;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -47,6 +47,9 @@ public class Menti extends CommonEntity {
     @OneToOne(fetch = FetchType.LAZY)
     private Profile profile;
 
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
     @OneToMany(mappedBy = "menti")
     private List<DesiredField> desiredFields = new ArrayList<>();
 
@@ -61,6 +64,7 @@ public class Menti extends CommonEntity {
         this.introduction = introduction;
         this.school = school;
         this.grade = grade;
+        this.status = Status.WAIT;
         this.viewCount = 0L;
     }
 
@@ -133,5 +137,9 @@ public class Menti extends CommonEntity {
 
     public void updateNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public void approveStatus() {
+        this.status = Status.ACTIVE;
     }
 }

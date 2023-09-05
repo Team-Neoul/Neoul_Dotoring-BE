@@ -2,7 +2,11 @@ package com.theZ.dotoring.app.menti.mapper;
 
 import com.theZ.dotoring.app.menti.dto.FindAllMentiRespDTO;
 import com.theZ.dotoring.app.menti.dto.FindMentiByIdRespDTO;
+import com.theZ.dotoring.app.menti.dto.FindWaitMentiRespDTO;
 import com.theZ.dotoring.app.menti.model.Menti;
+import com.theZ.dotoring.app.mento.dto.FindWaitMentoRespDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,4 +60,20 @@ public class MentiMapper {
         return findAllMentiRespDTOS;
     }
 
+    public static Page<FindWaitMentiRespDTO> fromWaitMenti(Page<Menti> pagingMenti) {
+
+        List<FindWaitMentiRespDTO> findWaitMentiRespDTOS = new ArrayList<>();
+
+        IntStream.range(0,pagingMenti.getContent().size())
+                .forEach(i -> findWaitMentiRespDTOS.add(
+                        FindWaitMentiRespDTO.builder()
+                                .nickname(pagingMenti.getContent().get(i).getNickname())
+                                .grade(pagingMenti.getContent().get(i).getGrade())
+                                .school(pagingMenti.getContent().get(i).getSchool())
+                                .build()
+                ));
+
+        Page<FindWaitMentiRespDTO> findWaitMentiPagindRespDTOS = new PageImpl<>(findWaitMentiRespDTOS,pagingMenti.getPageable(),pagingMenti.getTotalPages());
+        return findWaitMentiPagindRespDTOS;
+    }
 }

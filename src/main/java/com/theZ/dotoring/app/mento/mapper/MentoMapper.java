@@ -2,7 +2,10 @@ package com.theZ.dotoring.app.mento.mapper;
 
 import com.theZ.dotoring.app.mento.dto.FindAllMentoRespDTO;
 import com.theZ.dotoring.app.mento.dto.FindMentoByIdRespDTO;
+import com.theZ.dotoring.app.mento.dto.FindWaitMentoRespDTO;
 import com.theZ.dotoring.app.mento.model.Mento;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,5 +60,22 @@ public class MentoMapper {
                             .build())
                 );
         return findAllMentoRespDTOS;
+    }
+
+    public static Page<FindWaitMentoRespDTO> fromWaitMento(Page<Mento> pagingMento) {
+
+        List<FindWaitMentoRespDTO> findWaitMentoRespDTOS = new ArrayList<>();
+
+        IntStream.range(0,pagingMento.getContent().size())
+                .forEach(i -> findWaitMentoRespDTOS.add(
+                        FindWaitMentoRespDTO.builder()
+                                .nickname(pagingMento.getContent().get(i).getNickname())
+                                .grade(pagingMento.getContent().get(i).getGrade())
+                                .school(pagingMento.getContent().get(i).getSchool())
+                                .build()
+                ));
+
+        Page<FindWaitMentoRespDTO> findWaitMentoPagindRespDTOS = new PageImpl<>(findWaitMentoRespDTOS,pagingMento.getPageable(),pagingMento.getTotalPages());
+        return findWaitMentoPagindRespDTOS;
     }
 }

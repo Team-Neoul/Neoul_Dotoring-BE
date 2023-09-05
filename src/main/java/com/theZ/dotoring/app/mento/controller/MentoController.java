@@ -9,7 +9,10 @@ import com.theZ.dotoring.app.mento.service.MentoService;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,6 +47,19 @@ public class MentoController {
     public ApiResponse<ApiResponse.CustomBody<Slice<FindAllMentoRespDTO>>> findAllMentoBySlice(
             @RequestParam(required = false) Long lastMentoId, @RequestParam(defaultValue = "10") Integer size, Long mentiId){
         return ApiResponseGenerator.success(findAllMentoHandler.execute(lastMentoId, size, mentiId),HttpStatus.OK);
+    }
+
+    @GetMapping("/wait-mento")
+    public ApiResponse<ApiResponse.CustomBody<Page<FindWaitMentoRespDTO>>> findWaitMentoByPage(
+        @PageableDefault(size = 20) Pageable pageable
+    ){
+        return ApiResponseGenerator.success(mentoService.findWaitMentos(pageable),HttpStatus.OK);
+    }
+
+    @PatchMapping("/mento/status")
+    public ApiResponse<ApiResponse.CustomBody<Void>> approveWaitMentos(@RequestBody ApproveWaitMentosRqDTO approveWaitMentosRqDTO){
+        mentoService.approveWaitMentos(approveWaitMentosRqDTO);
+        return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
     @GetMapping("/mento/{id}")

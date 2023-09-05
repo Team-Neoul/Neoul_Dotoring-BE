@@ -5,11 +5,13 @@ import com.theZ.dotoring.app.menti.handler.FindAllMentiHandler;
 import com.theZ.dotoring.app.menti.handler.SaveMentiHandler;
 import com.theZ.dotoring.app.menti.handler.UpdateMentiDesiredFieldHandler;
 import com.theZ.dotoring.app.menti.service.MentiService;
-import com.theZ.dotoring.app.mento.dto.FindMentoByIdRespDTO;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,6 +52,19 @@ public class MentiController {
     public ApiResponse<ApiResponse.CustomBody<Slice<FindAllMentiRespDTO>>> findAllMentiBySlice(
             @RequestParam(required = false) Long lastMentiId, @RequestParam(defaultValue = "10") Integer size, Long mentoId){
         return ApiResponseGenerator.success(findAllMentiHandler.execute(lastMentiId, size, mentoId),HttpStatus.OK);
+    }
+
+    @GetMapping("/wait-menti")
+    public ApiResponse<ApiResponse.CustomBody<Page<FindWaitMentiRespDTO>>> findWaitMentiByPage(
+            @PageableDefault(size = 20) Pageable pageable
+    ){
+        return ApiResponseGenerator.success(mentiService.findWaitMentis(pageable),HttpStatus.OK);
+    }
+
+    @PatchMapping("/menti/status")
+    public ApiResponse<ApiResponse.CustomBody<Void>> approveWaitMentis(@RequestBody ApproveWaitMentisRqDTO approveWaitMentisRqDTO){
+        mentiService.approveWaitMentis(approveWaitMentisRqDTO);
+        return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
     @PatchMapping("/menti/preferredMentoring")

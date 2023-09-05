@@ -6,6 +6,7 @@ import com.theZ.dotoring.app.memberMajor.model.MemberMajor;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.common.CommonEntity;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
+import com.theZ.dotoring.enums.Status;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -44,6 +45,9 @@ public class Mento extends CommonEntity {
 
     private Integer mentoringCount;
 
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
     @OneToOne(fetch = FetchType.LAZY)
     private Profile profile;
 
@@ -63,6 +67,7 @@ public class Mento extends CommonEntity {
         this.school = school;
         this.grade = grade;
         this.mentoringCount = mentoringCount;
+        this.status = Status.WAIT;
         viewCount = 0L;
     }
 
@@ -155,6 +160,10 @@ public class Mento extends CommonEntity {
 
     public void updateNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public void approveStatus(){
+        this.status = Status.ACTIVE;
     }
 }
 
