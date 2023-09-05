@@ -10,7 +10,7 @@ assignees: ''
 ## Description
 
 ## To Do
-- []
-- [] 
+- [ ]
+- [ ]
 
 ## ETC
