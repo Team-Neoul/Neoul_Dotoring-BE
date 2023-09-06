@@ -21,7 +21,15 @@ public interface RoomMapper {
     RoomMapper INSTANCE = Mappers.getMapper(RoomMapper.class);
 
     // List<Room> -> List<RoomResponseDto> 매핑, 이 때 반드시 Room -> RoomResponseDto 메서드가 먼저 있어야 한다.
-    ArrayList<RoomResponseDTO> toDTOsFromMento(List<Room> room, Mento receiver);
+    // Room 엔티티 목록을 RoomResponseDTO 목록으로 변환하는 메서드
+    default ArrayList<RoomResponseDTO> toDTOsFromMento(List<Room> room, Mento receiver) {
+        ArrayList<RoomResponseDTO> roomResponseDTOList = new ArrayList<>();
+        for (Room roomEntity : room) {
+            RoomResponseDTO roomResponseDTO = toDTOFromMento(roomEntity, receiver);
+            roomResponseDTOList.add(roomResponseDTO);
+        }
+        return roomResponseDTOList;
+    }
 
     @Mapping(source = "room.id", target = "roomPK")
     @Mapping(source = "receiver.nickname", target = "nickname")
@@ -36,7 +44,14 @@ public interface RoomMapper {
         return majorList.get(0).getMajor().getMajorName();
     }
 
-    ArrayList<RoomResponseDTO> toDTOsFromMenti(List<Room> room, Menti receiver);
+    default ArrayList<RoomResponseDTO> toDTOsFromMenti(List<Room> room, Menti receiver) {
+        ArrayList<RoomResponseDTO> roomResponseDTOList = new ArrayList<>();
+        for (Room roomEntity : room) {
+            RoomResponseDTO roomResponseDTO = toDTOFromMenti(roomEntity, receiver);
+            roomResponseDTOList.add(roomResponseDTO);
+        }
+        return roomResponseDTOList;
+    }
 
     @Mapping(source = "room.id", target = "roomPK")
     @Mapping(source = "receiver.nickname", target = "nickname")
