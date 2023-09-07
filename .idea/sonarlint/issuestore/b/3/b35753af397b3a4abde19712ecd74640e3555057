@@ -1,13 +1,0 @@
-
-†
-java:S1488"jImmediately return this expression instead of assigning it to the temporary variable "savedDesiredFields".(µÕ¯s8‚Ú¾¡1
-‡
-java:S14880"eImmediately return this expression instead of assigning it to the temporary variable "pageableMento".(ÒÙÒîùÿÿÿÿ8‚Ú¾¡1
-‡
-java:S14887"eImmediately return this expression instead of assigning it to the temporary variable "pageableMenti".(×Ñï¹øÿÿÿÿ8‚Ú¾¡1
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®±¤ıÿÿÿÿ8‚Ú¾¡1
-X	java:S125#"<This block of commented-out lines of code should be removed.(ŸĞ˜8óÅ¢1
-t
-java:S6204/"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ˆ£·„ûÿÿÿÿ8ŒÚ¾¡1
-t
-java:S62046"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ÎìãÖùÿÿÿÿ8Ú¾¡1

@@ -9,6 +9,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 증명서 엔티티
+ *
+ * @author Sonny
+ * @version 1.0
+ */
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

@@ -15,7 +15,12 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * 멘토 엔티티
+ *
+ * @author Sonny
+ * @version 1.0
+ */
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

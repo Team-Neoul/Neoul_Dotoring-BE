@@ -4,27 +4,14 @@ import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.mento.model.Mento;
 import com.theZ.dotoring.app.room.domain.Room;
 import com.theZ.dotoring.app.room.dto.RoomResponseDTO;
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-09-06T00:59:51+0900",
+    date = "2023-09-07T18:45:56+0900",
     comments = "version: 1.5.3.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.6.1.jar, environment: Java 17.0.6 (Oracle Corporation)"
 )
 public class RoomMapperImpl implements RoomMapper {
-
-    @Override
-    public ArrayList<RoomResponseDTO> toDTOsFromMento(List<Room> room, Mento receiver) {
-        if ( room == null && receiver == null ) {
-            return null;
-        }
-
-        ArrayList<RoomResponseDTO> arrayList = new ArrayList<RoomResponseDTO>();
-
-        return arrayList;
-    }
 
     @Override
     public RoomResponseDTO toDTOFromMento(Room room, Mento receiver) {
@@ -46,17 +33,6 @@ public class RoomMapperImpl implements RoomMapper {
         }
 
         return roomResponseDTO.build();
-    }
-
-    @Override
-    public ArrayList<RoomResponseDTO> toDTOsFromMenti(List<Room> room, Menti receiver) {
-        if ( room == null && receiver == null ) {
-            return null;
-        }
-
-        ArrayList<RoomResponseDTO> arrayList = new ArrayList<RoomResponseDTO>();
-
-        return arrayList;
     }
 
     @Override

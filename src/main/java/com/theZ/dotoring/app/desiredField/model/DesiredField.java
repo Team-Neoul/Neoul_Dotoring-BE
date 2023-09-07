@@ -11,7 +11,12 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * 희망 분야 엔티티 - 분야 엔티티와 멘토 및 멘티 엔티티의 다대 다 관계를 1대 다 관계로 풀어주는 엔티티
+ *
+ * @author Sonny
+ * @version 1.0
+ */
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
