@@ -20,16 +20,29 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Letter에 관한 비즈니스 로직이 담겨있습니다.
+ *
+ * @author Kevin
+ * @version 1.0
+ */
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class LetterMentiService {
 
-    // private final RoomService roomService;
-
     private final LetterRepository letterRepository;
 
-    // 밖에서 쪽지 보내기
+
+    /**
+     * 쪽지 상세 페이지가 아닌 곳에서 쪽지를 보내는 메서드
+     *
+     * @param room - Handler로부터 전달받은 room 엔티티
+     * @param user - API를 요청한 멘티
+     * @param letterRequestDTO - 쪽지 내용이 담겨있는 DTO
+     *
+     * @return DB로부터 저장되고, 반환된 쪽지를 반환
+     */
     @Transactional
     public Letter sendLetterWhereOut(LetterByMemberRequestDTO letterRequestDTO, Menti user, Room room) {
         Letter letter = LetterMapper.INSTANCE.toEntity(letterRequestDTO, user.getNickname());
@@ -42,7 +55,15 @@ public class LetterMentiService {
         return letterRepository.save(letter);
     }
 
-    // 안에서 쪽지 보내기
+    /**
+     * 쪽지 상세 페이지에서 쪽지를 보내는 메서드
+     *
+     * @param room - Handler로부터 전달받은 room 엔티티
+     * @param user - API를 요청한 멘티
+     * @param letterRequestDTO - 쪽지 내용이 담겨있는 DTO
+     *
+     * @return DB로부터 저장되고, 반환된 쪽지를 반환
+     */
     @Transactional
     public Letter sendLetterWhereIn(LetterByMemberRequestDTO letterRequestDTO, Menti user, Room room) {
         Letter letter = LetterMapper.INSTANCE.toEntity(letterRequestDTO, user.getNickname());
@@ -54,16 +75,15 @@ public class LetterMentiService {
         return letterRepository.save(letter);
     }
 
-/*    @Transactional(readOnly = true)
-    public List<Room> getLettersByGroup(Long userId) {
-
-        //Move To RoomService
-        List<Room> roomList = roomService.findAllByUserId(userId);
-
-        return roomList;
-    }*/
-
-    // 해당 Room에 해당하는 메시지들 반환
+    /**
+     * 특정 쪽지함에 있는 쪽지들을 반환하는 메서드
+     *
+     * @param room - Handler로부터 전달받은 room 엔티티
+     * @param user - API를 요청한 멘티
+     * @param pageable - 페이지네이션을 위한 Pageable 객체
+     *
+     * @return 페이징된 LetterByMemberResponseDTO 컬렉션을 반환
+     */
     @Transactional(readOnly = true)
     public Slice<LetterByMemberResponseDTO> getLettersByOne(Menti user, Room room, Pageable pageable) throws NotFoundLetterException {
         Slice<Letter> letters = letterRepository.findByRoom(room, pageable)

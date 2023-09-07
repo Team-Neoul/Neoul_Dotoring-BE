@@ -14,6 +14,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * MapStruct를 사용해서, Letter Entity와 LetterByMemberResponseDTO간의 매핑을 합니다.
+ *
+ * @author Kevin
+ * @version 1.0
+ */
 @Mapper(componentModel = "spring")
 public interface LetterMapper {
     // 매퍼 클래스에서 MentoMapper를 찾을 수 있도록 하는 코드
@@ -25,7 +31,6 @@ public interface LetterMapper {
     @Mapping(source = "writerName", target = "writerName")
     @Mapping(source = "letterRequestDTO.content", target = "content")
     Letter toEntity(LetterByMemberRequestDTO letterRequestDTO, String writerName);
-
 
     // List<Room> -> List<RoomResponseDto> 매핑, 이 때 반드시 Room -> RoomResponseDto 메서드가 먼저 있어야 한다.
     ArrayList<LetterByMemberResponseDTO> toDTOs(List<Letter> letter, @Context String writerName);

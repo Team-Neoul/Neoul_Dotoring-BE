@@ -15,6 +15,13 @@ import org.mapstruct.factory.Mappers;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * MapStruct를 사용해서, Room Entity와 RoomResponseDTO간의 매핑을 합니다.
+ *
+ * @author Kevin
+ * @version 1.0
+ */
 @Mapper
 public interface RoomMapper {
     // 매퍼 클래스에서 MentoMapper를 찾을 수 있도록 하는 코드

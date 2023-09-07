@@ -7,6 +7,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
+/**
+ * 쪽지 엔티티
+ *
+ * @author Kevin
+ * @version 1.0
+ */
 @Entity
 @Getter
 @Setter
@@ -29,7 +35,11 @@ public class Letter extends CommonEntity {
     @JoinColumn(name = "room_id")
     private Room room;
 
-    // letterList에 추가하기
+    /**
+     * Room 엔티티와의 연관 관계 편의 메서드
+     *
+     * @param room - 연관 관계를 정의할 Room 엔티티
+     */
     public void addLetter(Room room){
         if (this.room != null) {
             this.room.getLetterList().remove(this);
