@@ -12,7 +12,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * DB로부터 Letter 테이블에 대해서 질의를 통해 데이터를 가져옵니다.
+ *
+ * @author Kevin
+ * @version 1.0
+ */
 @Repository
 public interface LetterRepository extends JpaRepository<Letter, Long> {
 
