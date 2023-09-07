@@ -16,11 +16,20 @@ public class FindMemberAccountHandler {
     private final MemberEmailService memberEmailService;
     private final RedisUtil redisUtil;
 
+    /**
+     * MemberAccount를 통해 Mento인지 Menti인지를 판별 할 수 있는 메서드
+     *
+     * @param emailCodeRequestDTO
+     *
+     * @return loginId
+     */
+
     public String executeForLoginId(EmailCodeRequestDTO emailCodeRequestDTO){
         String email = memberEmailService.validateCode(emailCodeRequestDTO.getCode(),emailCodeRequestDTO.getEmail());
         redisUtil.deleteData(emailCodeRequestDTO.getCode());
         return memberAccountService.findLoginId(email);
     }
+
 
     public void executeForPassword(MemberPasswordRequestDTO memberPasswordRequestDTO) {
 

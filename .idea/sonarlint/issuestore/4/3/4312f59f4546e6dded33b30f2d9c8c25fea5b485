@@ -1,0 +1,12 @@
+
+ƒ
+java:S1488I"aImmediately return this expression instead of assigning it to the temporary variable "majorList".(Œ”æŒıÿÿÿÿ8ÂŠ¤¢1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¥×åÙ8ûòŒÄ1
+o
+java:S6204 "RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(„™ıù8ƒóŒÄ1
+Z
+java:S1612 "=Replace this lambda with method reference 'Object::toString'.(„™ıù8ƒóŒÄ1
+o
+java:S62048"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(çÄÆá8„óŒÄ1
+Z
+java:S16128"=Replace this lambda with method reference 'Object::toString'.(çÄÆá8„óŒÄ1

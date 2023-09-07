@@ -1,0 +1,20 @@
+
+‡
+java:S1192Q"eDefine a constant instead of duplicating this literal "ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë©˜í† ì…ë‹ˆë‹¤." 6 times.(Œ»–àúÿÿÿÿ8À¹¿°¦1
+‰
+java:S1488S"lImmediately return this expression instead of assigning it to the temporary variable "findMentoByIdRespDTO".(Äí¿º8À¹¿°¦1
+‘
+java:S1488n"oImmediately return this expression instead of assigning it to the temporary variable "findAllMentoRespDTOList".(á¼»Õıÿÿÿÿ8À¹¿°¦1
+
+java:S1488€"mImmediately return this expression instead of assigning it to the temporary variable "findWaitMentoRespDTOS".(«¸ğşÿÿÿÿ8À¹¿°¦1
+Š
+java:S1488"lImmediately return this expression instead of assigning it to the temporary variable "findMentoByIdRespDTO".(Äí¿º8À¹¿°¦1
+Š
+java:S1488"lImmediately return this expression instead of assigning it to the temporary variable "findMentoByIdRespDTO".(Äí¿º8À¹¿°¦1
+Š
+java:S1488¬"lImmediately return this expression instead of assigning it to the temporary variable "findMentoByIdRespDTO".(Äí¿º8À¹¿°¦1
+Š
+java:S1488»"lImmediately return this expression instead of assigning it to the temporary variable "findMentoByIdRespDTO".(Äí¿º8À¹¿°¦1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(æºúÅıÿÿÿÿ8Á¹¿°¦1
+d
+java:S1612Ç"AReplace this lambda with method reference 'Mento::approveStatus'.(â™àŠşÿÿÿÿ8¸òÅÆ¦1

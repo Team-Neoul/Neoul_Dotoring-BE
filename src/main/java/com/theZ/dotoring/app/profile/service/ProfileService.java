@@ -40,7 +40,9 @@ public class ProfileService {
     private final MentiRepository mentiRepository;
 
     /**
-     * 기본 프로필 이미지 가져오기
+     * 기본 프로필을 반환하는 메서드
+     *
+     * @retrun profile
      */
     @Transactional(readOnly = true)
     public Profile getDefaultProfile(){
@@ -49,7 +51,9 @@ public class ProfileService {
     }
 
     /**
-     *  기본 프로필 이미지 저장하기
+     * 기본 프로필을 저장하는 메서드
+     *
+     * @retrun savedProfile
      */
     public Profile saveDefaultProfile(){
         Profile profile = new Profile("default_profile20230812110822", "default_profile");
@@ -59,11 +63,12 @@ public class ProfileService {
 
 
     /**
-     *  프로필 이미지 업데이트하기
+     * 해당 회원의 프로필을 수정하는 메서드
      *
-     *  1. 기본 프로필 이미지 -> 개인 프로필 이미지
-     *  2. 개인 프로필 이미지 -> 기본 프로필 이미지
-     *  3. 개인 프로필 이미지 -> 개인 프로필 이미지
+     * @param multipartFile
+     * @param profileRequestDTO
+     * @Exception - NoSuchElementException 존재하지 않는 회원입니다.
+     *
      */
 
     public void updateProfile(MultipartFile multipartFile, ProfileRequestDTO profileRequestDTO) throws IOException {
@@ -80,7 +85,11 @@ public class ProfileService {
 
 
     /**
-     *  기본 이미지로 변경
+     * 해당 회원의 프로필을 기본 프로필로 수정하는 메서드
+     *
+     * @param profileRequestDTO
+     * @Exception - NoSuchElementException 존재하지 않는 회원입니다.
+     *
      */
 
     public void updateDefaultProfile(ProfileRequestDTO profileRequestDTO) {
@@ -92,4 +101,5 @@ public class ProfileService {
         Menti menti = mentiRepository.findById(profileRequestDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
         menti.mappingProfile(defaultProfile);
     }
+
 }
