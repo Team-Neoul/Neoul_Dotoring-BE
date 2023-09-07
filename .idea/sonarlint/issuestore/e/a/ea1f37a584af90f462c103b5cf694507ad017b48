@@ -1,0 +1,58 @@
+
+ƒ
+java:S1192V"aDefine a constant instead of duplicating this literal "ì›ë³¸ ì¦ëª…ì„œì´ë¦„ì…ë‹ˆë‹¤." 8 times.(‚èëóşÿÿÿÿ8µ‡éø¦1
+m
+java:S1192e"PDefine a constant instead of duplicating this literal "ìˆ˜í•™êµìœ¡ê³¼" 5 times.(Ş˜¾ı8¶‡éø¦1
+k
+java:S1192`"NDefine a constant instead of duplicating this literal "ê°œë°œ_ì–¸ì–´" 6 times.(¿ç²“8¶‡éø¦1
+m
+java:S1192j"PDefine a constant instead of duplicating this literal "ì „ë‚¨ëŒ€í•™êµ" 8 times.(Â¬î8¶‡éø¦1
+v
+java:S1192e"YDefine a constant instead of duplicating this literal "ì†Œí”„íŠ¸ì›¨ì–´ê³µí•™ê³¼" 7 times.(Ş˜¾ı8¶‡éø¦1
+
+java:S1192V"nDefine a constant instead of duplicating this literal "ì €ì¥ì‹œ ì‚¬ìš©ë  ì¦ëª…ì„œì´ë¦„ì…ë‹ˆë‹¤." 4 times.(‚èëóşÿÿÿÿ8¶‡éø¦1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¹šç°ûÿÿÿÿ8¸‡éø¦1
+Y
+java:S1854˜";Remove this useless assignment to local variable "fields3".(Ã­“ë8Æ‡éø¦1
+t
+java:S6204a"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ô­†şÿÿÿÿ8Ç‡éø¦1
+t
+java:S6204f"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ìôÃèøÿÿÿÿ8È‡éø¦1
+o
+java:S6204|"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¿„”»8É‡éø¦1
+p
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ã‰¦8É‡éø¦1
+p
+java:S6204˜"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ã­“ë8Ê‡éø¦1
+J
+java:S1481˜",Remove this unused "fields3" local variable.(Ã­“ë8Ê‡éø¦1
+p
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(à¯©Å8Ê‡éø¦1
+u
+java:S6204³"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(­Š·üşÿÿÿÿ8Ë‡éø¦1
+p
+java:S6204¸"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(íşÓó8Ì‡éø¦1
+u
+java:S6204Ò"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ô­†şÿÿÿÿ8Î‡éø¦1
+u
+java:S6204×"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ìôÃèøÿÿÿÿ8Ï‡éø¦1
+u
+java:S6204î"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ÚÅéúûÿÿÿÿ8Ğ‡éø¦1
+p
+java:S6204ó"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ùµ‹—8Ñ‡éø¦1
+p
+java:S6204‹"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¿„”»8Ñ‡éø¦1
+p
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ã‰¦8Ò‡éø¦1
+p
+java:S6204¨"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ã­“ë8Ó‡éø¦1
+p
+java:S6204­"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(à¯©Å8Ôíéø¦1
+p
+java:S1128"SRemove this unused import 'com.theZ.dotoring.app.field.repository.FieldRepository'.(¯±¦ö8Öğø¦1
+o
+java:S1128	"SRemove this unused import 'com.theZ.dotoring.app.major.repository.MajorRepository'.(µ€ñt8Öğø¦1
+t
+java:S1128"WRemove this unused import 'com.theZ.dotoring.app.profile.repository.ProfileRepository'.(æ¶íÍ8Öğø¦1
+u
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8Öğø¦1

@@ -1,0 +1,18 @@
+
+‡
+java:S1192P"eDefine a constant instead of duplicating this literal "ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë©˜í‹°ì…ë‹ˆë‹¤." 6 times.(µâúÿÿÿÿ8îü‚ø¦1
+
+java:S1488o"mImmediately return this expression instead of assigning it to the temporary variable "findWaitMentiRespDTOS".(­ÁÁúÿÿÿÿ8îü‚ø¦1
+Œ
+java:S1488~"oImmediately return this expression instead of assigning it to the temporary variable "findAllMentiRespDTOList".(ŸèìÒ8îü‚ø¦1
+
+java:S1488"kImmediately return this expression instead of assigning it to the temporary variable "findAllMentiRespDTO".(È¬Æğùÿÿÿÿ8îü‚ø¦1
+
+java:S1488"lImmediately return this expression instead of assigning it to the temporary variable "findMentiByIdRespDTO".(®½ßµÿÿÿÿÿ8ïü‚ø¦1
+
+java:S1488¬"lImmediately return this expression instead of assigning it to the temporary variable "findMentiByIdRespDTO".(®½ßµÿÿÿÿÿ8ïü‚ø¦1
+
+java:S1488¼"lImmediately return this expression instead of assigning it to the temporary variable "findMentiByIdRespDTO".(®½ßµÿÿÿÿÿ8ïü‚ø¦1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¸òø¬ıÿÿÿÿ8×Ÿ°¦1
+_
+java:S1612É"AReplace this lambda with method reference 'Menti::approveStatus'.(Æ¶Ù´8€ı‚ø¦1

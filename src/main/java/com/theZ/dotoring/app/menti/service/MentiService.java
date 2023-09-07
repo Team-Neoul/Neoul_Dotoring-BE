@@ -52,6 +52,13 @@ public class MentiService {
         mentiRepository.save(menti);
     }
 
+    /**
+     * 멘티의 닉네임을 중복 확인 하는 메서드
+     *
+     * @parma mentiNicknameRequestDTO
+     * @Exception NicknameDuplicateException - 닉네임이 중복됬을 시 예외 발생
+     */
+
     public void validateNickname(ValidateMentiNicknameRqDTO mentiNicknameRequestDTO) {
         mentiRepository.findAll().stream().forEach(i ->{
             if(i.getNickname().equals(mentiNicknameRequestDTO.getNickname())){
@@ -60,6 +67,15 @@ public class MentiService {
         });
     }
 
+    /**
+     * 멘티 상세 조회할 때 조회수 올라가고, findMentiByIdRespDTO 반환하는 메서드
+     *
+     * @parma mentiId
+     *
+     * @retrun findMentiByIdRespDTO
+     */
+
+
     public FindMentiByIdRespDTO findMentiWithProfile(Long mentiId){
         Menti menti = mentiRepository.findMentiWithProfileUsingFetchJoinByMentiId(mentiId).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘티입니다."));
         FindMentiByIdRespDTO findMentiByIdRespDTO = MentiMapper.fromDetail(menti);
@@ -67,9 +83,25 @@ public class MentiService {
         return findMentiByIdRespDTO;
     }
 
+    /**
+     * 멘티 상세 메서드
+     *
+     * @parma mentiId
+     *
+     * @retrun Menti
+     */
+
     public Menti findMenti(Long mentiId){
         return mentiRepository.findById(mentiId).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘티입니다."));
     }
+
+    /**
+     * 대기 멘티들을 생성 순으로 페이징하여 반환하는 메서드
+     *
+     * @parma mentiId
+     *
+     * @retrun Menti
+     */
 
     @Transactional(readOnly = true)
     public Page<FindWaitMentiRespDTO> findWaitMentis(Pageable pageable){
@@ -80,6 +112,13 @@ public class MentiService {
         return findWaitMentiRespDTOS;
     }
 
+    /**
+     * mentiId가 일치하는 Menti 엔티티들을 DB에서 조회하여 findAllMentiRespDTOList로 변환후 반환하는 메서드
+     *
+     * @parma mentiIds
+     *
+     * @retrun findAllMentiRespDTOList
+     */
 
     @Transactional(readOnly = true)
     public List<FindAllMentiRespDTO> findRecommendMentis(List<Long> mentiIds){
@@ -88,6 +127,15 @@ public class MentiService {
         return findAllMentiRespDTOList;
     }
 
+
+    /**
+     * mentiId가 일치하는 Menti 엔티티들을 DB에서 조회한 후 선호 멘토링 수정하는 메서드
+     *
+     * @parma updateMentiMentoringSystemRqDTO
+     *
+     * @retrun findAllMentiRespDTO
+     */
+
     public FindAllMentiRespDTO updatePreferredMentoring(UpdateMentiMentoringSystemRqDTO updateMentiMentoringSystemRqDTO){
         Menti menti = mentiRepository.findById(updateMentiMentoringSystemRqDTO.getMentiId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘티입니다."));
         menti.updatePreferredMentoring(updateMentiMentoringSystemRqDTO.getPreferredMentoring());
@@ -95,12 +143,28 @@ public class MentiService {
         return findAllMentiRespDTO;
     }
 
+    /**
+     * mentiId가 일치하는 Menti 엔티티들을 DB에서 조회한 후 소개글 수정하는 메서드
+     *
+     * @parma updateMentiIntroduction
+     *
+     * @retrun FindMentiByIdRespDTO
+     */
+
     public FindMentiByIdRespDTO updateItroduction(UpdateMentiIntroductionRqDTO updateMentiIntroduction) {
         Menti menti = mentiRepository.findById(updateMentiIntroduction.getMentiId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘티입니다."));
         menti.updateIntroduction(updateMentiIntroduction.getIntroduction());
         FindMentiByIdRespDTO findMentiByIdRespDTO = MentiMapper.fromDetail(menti);
         return findMentiByIdRespDTO;
     }
+
+    /**
+     * mentiId가 일치하는 Menti 엔티티들을 DB에서 조회한 후 닉네임을 수정하는 메서드
+     *
+     * @parma updateMentiNicknameRqDTO
+     *
+     * @retrun FindMentiByIdRespDTO
+     */
 
     public FindMentiByIdRespDTO updateNickname(UpdateMentiNicknameRqDTO updateMentiNicknameRqDTO) {
         Menti menti = mentiRepository.findById(updateMentiNicknameRqDTO.getMentiId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘티입니다."));
@@ -110,6 +174,14 @@ public class MentiService {
 
     }
 
+    /**
+     * mentiId가 일치하는 Menti 엔티티들을 DB에서 조회한 후 선호 멘토링 분야들을 수정하는 메서드
+     *
+     * @parma desiredFields
+     * @parma mentiId
+     *
+     * @retrun FindMentiByIdRespDTO
+     */
     public FindMentiByIdRespDTO updateDesiredFields(List<DesiredField> desiredFields, Long mentiId) {
         Menti menti = mentiRepository.findMentiWithProfileAndMajorsUsingFetchJoinByMentoId(mentiId).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘티입니다."));
         menti.updateDesiredField(desiredFields);
@@ -117,6 +189,12 @@ public class MentiService {
         return findMentiByIdRespDTO;
     }
 
+    /**
+     * mentiId가 일치하는 Menti 엔티티들을 DB에서 조회한 후 대기 상태를 활동 상태로 바꿔주는 메서드
+     *
+     * @parma approveWaitMentisRqDTO
+     *
+     */
 
     public void approveWaitMentis(ApproveWaitMentisRqDTO approveWaitMentisRqDTO) {
         List<Menti> mentis = mentiRepository.findAllById(approveWaitMentisRqDTO.getMentiIds());

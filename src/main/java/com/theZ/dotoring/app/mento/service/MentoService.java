@@ -54,6 +54,12 @@ public class MentoService {
         mentoRepository.save(mento);
     }
 
+    /**
+     * 멘토의 닉네임을 중복 확인 하는 메서드
+     *
+     * @parma validateMentoNicknameRqDTO
+     * @Exception NicknameDuplicateException - 닉네임이 중복됬을 시 예외 발생
+     */
 
     public void validateNickname(ValidateMentoNicknameRqDTO validateMentoNicknameRqDTO) {
         mentoRepository.findAll().stream().forEach(i ->{
@@ -63,6 +69,13 @@ public class MentoService {
         });
     }
 
+    /**
+     * 멘토 상세 조회하고, 조회수가 올라가고, findMentiByIdRespDTO를 반환하는 메서드
+     *
+     * @parma mentoId
+     *
+     * @retrun findMentoByIdRespDTO
+     */
     @Transactional(readOnly = true)
     public FindMentoByIdRespDTO findMentoByProfile(Long mentoId){
         Mento mento = mentoRepository.findMentoWithProfileUsingFetchJoinByMentoId(mentoId).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘토입니다."));
@@ -71,10 +84,25 @@ public class MentoService {
         return findMentoByIdRespDTO;
     }
 
+    /**
+     * 멘토 상세 메서드
+     *
+     * @parma mentoId
+     *
+     * @retrun Mento
+     */
     @Transactional(readOnly = true)
     public Mento findMento(Long mentoId){
         return mentoRepository.findById(mentoId).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘토입니다."));
     }
+
+    /**
+     * mentiId가 일치하는 Mento 엔티티들을 DB에서 조회하여 findAllMentoRespDTOList로 변환후 반환하는 메서드
+     *
+     * @parma mentoIds
+     *
+     * @retrun findAllMentoRespDTOList
+     */
 
     @Transactional(readOnly = true)
     public List<FindAllMentoRespDTO> findRecommendMentos(List<Long> mentoIds){
@@ -85,7 +113,11 @@ public class MentoService {
 
 
     /**
-     *  대기 회원 보여주기 기능
+     * 대기 멘토들을 생성 순으로 페이징하여 반환하는 메서드
+     *
+     * @parma pageable
+     *
+     * @retrun FindWaitMentoRespDTO
      */
 
     @Transactional(readOnly = true)
@@ -97,15 +129,13 @@ public class MentoService {
         return findWaitMentoRespDTOS;
     }
 
-
-
     /**
-     *  회원 승인하기 기능
+     * mentoId가 일치하는 Mento 엔티티들을 DB에서 조회한 후 멘토링 수행 방법을 수정하는 메서드
+     *
+     * @parma updateMentoringSystemRqDTO
+     *
+     * @retrun findMentoByIdRespDTO
      */
-
-    public void approveWaitMento(ApproveWaitMentoDTO approveWaitMentoDTO){
-
-    }
 
     public FindMentoByIdRespDTO updateMentoringSystem(UpdateMentoringSystemRqDTO updateMentoringSystemRqDTO){
         Mento mento = mentoRepository.findById(updateMentoringSystemRqDTO.getMentoId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
@@ -114,6 +144,14 @@ public class MentoService {
         return findMentoByIdRespDTO;
     }
 
+    /**
+     * mentoId가 일치하는 Mento 엔티티들을 DB에서 조회한 후 소개글 수정하는 메서드
+     *
+     * @parma updateMentoIntroductionRqDTO
+     *
+     * @retrun findMentoByIdRespDTO
+     */
+
     public FindMentoByIdRespDTO updateIntroduction(UpdateMentoIntroductionRqDTO updateMentoIntroductionRqDTO) {
         Mento mento = mentoRepository.findById(updateMentoIntroductionRqDTO.getMentoId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
         mento.updateIntroduction(updateMentoIntroductionRqDTO.getIntroduction());
@@ -121,6 +159,13 @@ public class MentoService {
         return findMentoByIdRespDTO;
     }
 
+    /**
+     * mentoId가 일치하는 Mento 엔티티들을 DB에서 조회한 후 닉네임을 수정하는 메서드
+     *
+     * @parma updateMentoNicknameRqDTO
+     *
+     * @retrun findMentoByIdRespDTO
+     */
     public FindMentoByIdRespDTO updateNickname(UpdateMentoNicknameRqDTO updateMentoNicknameRqDTO) {
         Mento mento = mentoRepository.findById(updateMentoNicknameRqDTO.getMentoId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
         mento.updateNickname(updateMentoNicknameRqDTO.getNickname());
@@ -128,6 +173,14 @@ public class MentoService {
         return findMentoByIdRespDTO;
     }
 
+    /**
+     * mentoId가 일치하는 Mento 엔티티들을 DB에서 조회한 후 선호 멘토링 분야들을 수정하는 메서드
+     *
+     * @parma desiredFields
+     * @parma mentoId
+     *
+     * @retrun findMentoByIdRespDTO
+     */
     public FindMentoByIdRespDTO updateDesiredFields(List<DesiredField> desiredFields, Long mentoId) {
         Mento mento = mentoRepository.findMentoWithProfileAndMajorsUsingFetchJoinByMentoId(mentoId).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
         mento.updateDesiredField(desiredFields);
@@ -135,6 +188,12 @@ public class MentoService {
         return findMentoByIdRespDTO;
     }
 
+    /**
+     * mentoId가 일치하는 Mento 엔티티들을 DB에서 조회한 후 대기 상태를 활동 상태로 바꿔주는 메서드
+     *
+     * @parma approveWaitMentosRqDTO
+     *
+     */
     public void approveWaitMentos(ApproveWaitMentosRqDTO approveWaitMentosRqDTO) {
         List<Mento> mentos = mentoRepository.findAllById(approveWaitMentosRqDTO.getMentoIds());
         mentos.stream().forEach(i -> i.approveStatus());
