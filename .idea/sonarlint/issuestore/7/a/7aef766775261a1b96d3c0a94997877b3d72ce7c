@@ -1,0 +1,8 @@
+
+[
+java:S2184""@Cast one of the operands of this addition operation to a "long".(ù•ïÜþÿÿÿÿ
+[
+java:S2184O"@Cast one of the operands of this addition operation to a "long".(ù•ïÜþÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ø¡âñ
+T
+java:S1155)">Use isEmpty() to check whether the collection is empty or not.(Å÷ƒà
