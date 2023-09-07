@@ -22,6 +22,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+
+/**
+ * Menti에관한 비즈니스 로직이 담겨있습니다.
+ *
+ * @author Sonny
+ * @version 1.0
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -30,6 +37,16 @@ public class MentiService {
 
     private final MentiRepository mentiRepository;
 
+    /**
+     * 인자로 받은 매개변수들을 사용하여 Menti 엔티티를 생성하여 이를 DB에 저장한 후 반환하는 메서드
+     *
+     * @param saveMentiRqDTO
+     * @param memberAccount
+     * @parma profile
+     * @param desiredFields
+     * @param memberMajors
+     *
+     */
     public void saveMenti(SaveMentiRqDTO saveMentiRqDTO, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
         Menti menti = Menti.createMenti(saveMentiRqDTO.getNickname(), saveMentiRqDTO.getIntroduction(), saveMentiRqDTO.getSchool(), saveMentiRqDTO.getGrade(), memberAccount,profile,desiredFields,memberMajors);
         mentiRepository.save(menti);

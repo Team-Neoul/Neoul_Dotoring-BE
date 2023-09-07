@@ -1,8 +1,0 @@
-
-Š
-java:S1192>"hDefine a constant instead of duplicating this literal "ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì´ë©”ì¼ì…ë‹ˆë‹¤." 3 times.(œ¬ÿÿÿÿÿ8‚©à÷¥1
-‚
-java:S1192["eDefine a constant instead of duplicating this literal "ì¡´ì¬í•˜ì§€ ì•ŠëŠ” íšŒì›ì…ë‹ˆë‹¤." 3 times.(·…¸ì8èóì÷¥1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(»İè8ƒ©à÷¥1
-^
-java:S1126\"AReplace this if-then-else statement by a single return statement.(œ­ë8“©à÷¥1

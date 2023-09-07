@@ -11,6 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Field에관한 비즈니스 로직이 담겨있습니다.
+ *
+ * @author Sonny
+ * @version 1.0
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -20,7 +26,8 @@ public class FieldService {
     private final FieldRepository fieldRepository;
 
     /**
-     *  기존 분야 모두 저장
+     * 서버가 시작할 때, Enum Field에 정의되어 있는 분야들을 모두 Field 엔티티로 만들어 DB에 이를 저장하는 메서드
+     *
      */
     public void saveAll(){
         List<String> fieldNames = Field.getFields().stream().map(f -> f.toString()).collect(Collectors.toList());
@@ -28,6 +35,13 @@ public class FieldService {
         fieldRepository.saveAll(fields);
     }
 
+    /**
+     * 인자로 받은 uncertainFields 사용하여 이들이 유효한 Field인지 확인하는 메서드
+     *
+     * @param uncertainFields
+     * @Exception IllegalArgumentException - 유효하지 않은 분야일 때 발생하는 예외
+     *
+     */
     public void validFields(List<String> uncertainFields){
 
         /**
@@ -43,6 +57,14 @@ public class FieldService {
             throw new IllegalArgumentException("유효하지 않은 분야입니다.");
         }
     }
+
+    /**
+     * 인자로 받은 fields를 사용하여 해당 Field 엔티티들을 반환하는 메서드
+     *
+     * @param fields
+     *
+     * @return fieldList
+     */
     @Transactional(readOnly = true)
     public List<com.theZ.dotoring.app.field.model.Field> findFields(List<String> fields){
         List<com.theZ.dotoring.app.field.model.Field> fieldList = fieldRepository.findAllById(fields);

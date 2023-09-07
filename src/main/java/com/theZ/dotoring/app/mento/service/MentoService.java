@@ -24,6 +24,12 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 
+/**
+ * Mento에관한 비즈니스 로직이 담겨있습니다.
+ *
+ * @author Sonny
+ * @version 1.0
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -33,10 +39,21 @@ public class MentoService {
     private final MentoRepository mentoRepository;
 
 
+    /**
+     * 인자로 받은 매개변수들을 사용하여 Mento 엔티티를 생성하여 이를 DB에 저장한 후 반환하는 메서드
+     *
+     * @param saveMentoRqDTO
+     * @param memberAccount
+     * @parma profile
+     * @param desiredFields
+     * @param memberMajors
+     *
+     */
     public void saveMento(SaveMentoRqDTO saveMentoRqDTO, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
         Mento mento = Mento.createMento(saveMentoRqDTO.getNickname(), saveMentoRqDTO.getIntroduction(), saveMentoRqDTO.getSchool(), saveMentoRqDTO.getGrade(), memberAccount,profile,desiredFields,memberMajors);
         mentoRepository.save(mento);
     }
+
 
     public void validateNickname(ValidateMentoNicknameRqDTO validateMentoNicknameRqDTO) {
         mentoRepository.findAll().stream().forEach(i ->{

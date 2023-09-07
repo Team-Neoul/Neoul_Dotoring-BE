@@ -17,6 +17,12 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.MessagingException;
 
+/**
+ * MemberAccount의 email에관한 비즈니스 로직이 담겨있습니다.
+ *
+ * @author Sonny
+ * @version 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class MemberEmailService {
@@ -29,6 +35,13 @@ public class MemberEmailService {
     @Value("${email.validTime}")
     private Long validTime;
 
+    /**
+     * 등록되어 있는 이메일인 지 확인 후 등록된 이메일이라면, 코드 생성후 코드를 이메일로 발송하고 레디스를 사용해 이메일과 코드의 유효기간 설정
+     *
+     * @param memberEmailRequestDTO
+     *
+     * @return memberEmailCodeResponseDTO - 인증 코드
+     */
     @Transactional
     public MemberEmailCodeResponseDTO sendEmail(MemberEmailRequestDTO memberEmailRequestDTO) throws MessagingException {
 
@@ -72,10 +85,24 @@ public class MemberEmailService {
         return engine.process("mailPassword", context);
     }
 
+    /**
+     * 인증 코드 임시로 생성 후 반환
+     *
+     * @return 12345678 - 인증 코드
+     */
     private MemberEmailCodeResponseDTO createCode() {
         return new MemberEmailCodeResponseDTO("12345678");
     }
 
+    /**
+     * 등록된 이메일인지 확인 후 code를 사용해 해당 code와 일치하는 savedemail을 찾아온 후 이를 email과 비교한 후 같다면 email을 반환하는 메서드
+     *
+     * @param code
+     * @param email
+     * @Exception EmailCodeException - 입력한 코드가 잘못된 경우 발생하는 예외
+     *
+     * @return email
+     */
 
     public String validateCode(String code, String email){
 

@@ -10,6 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Major에관한 비즈니스 로직이 담겨있습니다.
+ *
+ * @author Sonny
+ * @version 1.0
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -19,13 +25,22 @@ public class MajorService {
     private final MajorRepository majorRepository;
 
     /**
-     *  기존 학과 모두 저장
+     * 서버가 시작할 때, Enum Major에 정의되어 있는 학과들을 모두 Majro 엔티티로 만들어 DB에 이를 저장하는 메서드
+     *
      */
     public void saveAll(){
         List<String> majorNames = Major.getMajors().stream().map(m -> m.toString()).collect(Collectors.toList());
         List<com.theZ.dotoring.app.major.model.Major> majors = com.theZ.dotoring.app.major.model.Major.createMajors(majorNames);
         majorRepository.saveAll(majors);
     }
+
+    /**
+     * 인자로 받은 uncertainMajors를 사용하여 이들이 유효한 Major인지 확인하는 메서드
+     *
+     * @param uncertainMajors
+     * @Exception IllegalArgumentException - 유효하지 않은 학과일 때 발생하는 예외
+     *
+     */
 
     public void validMajors(List<String> uncertainMajors){
 
@@ -44,6 +59,14 @@ public class MajorService {
         }
 
     }
+
+    /**
+     * 인자로 받은 majors를 사용하여 해당 Major 엔티티들을 반환하는 메서드
+     *
+     * @param majors
+     *
+     * @return majorList
+     */
 
     @Transactional(readOnly = true)
     public List<com.theZ.dotoring.app.major.model.Major> findMajors(List<String> majors) {
