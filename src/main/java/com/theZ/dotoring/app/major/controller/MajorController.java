@@ -25,4 +25,6 @@ public class MajorController {
         MajorResponseDTO majorResponseDTO = new MajorResponseDTO(majors);
         return ApiResponseGenerator.success(majorResponseDTO, HttpStatus.OK);
     }
+
+
 }
