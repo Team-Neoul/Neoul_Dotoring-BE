@@ -16,6 +16,7 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.MessagingException;
+import java.util.Optional;
 
 /**
  * MemberAccount의 email에관한 비즈니스 로직이 담겨있습니다.
@@ -36,12 +37,43 @@ public class MemberEmailService {
     private Long validTime;
 
     /**
-     * 등록되어 있는 이메일인 지 확인 후 등록된 이메일이라면, 코드 생성후 코드를 이메일로 발송하고 레디스를 사용해 이메일과 코드의 유효기간 설정
+     * 회원가입 시 기존에 등록되어 있는 이메일인 지 확인하고 등록되어 있다면 에러 발생! 아니라면, 코드 생성후 코드를 이메일로 발송하고 레디스를 사용해 이메일과 코드의 유효기간 설정
+     *
      *
      * @param memberEmailRequestDTO
      *
      * @return memberEmailCodeResponseDTO - 인증 코드
      */
+    @Transactional
+    public MemberEmailCodeResponseDTO sendEmailForSignup(MemberEmailRequestDTO memberEmailRequestDTO) throws MessagingException {
+
+        Optional<MemberAccount> uncertainEmail = memberAccountRepository.findByEmail(memberEmailRequestDTO.getEmail());
+
+        MemberEmailCodeResponseDTO memberEmailCodeResponseDTO = createCode();
+
+        if(!uncertainEmail.isEmpty()){
+            throw new IllegalArgumentException("이미 등록된 이메일입니다. 아이디 찾기를 해주세요!");
+        }
+
+        redisUtil.setDataAndExpire(memberEmailCodeResponseDTO.getEmailVerificationCode(),memberEmailRequestDTO.getEmail(),validTime);
+//        MimeMessage message = javaMailSender.createMimeMessage();
+//        message.addRecipients(MimeMessage.RecipientType.TO, memberEmailRequestDTO.getEmail()); // 보낼 이메일 설정
+//        message.setSubject("안녕하세요. dotoring입니다. " + memberEmailCodeResponseDTO.getEmailVerificationCode()); // 이메일 제목
+//        message.setText(setContext(memberEmailCodeResponseDTO.getEmailVerificationCode()), "utf-8", "html"); // 내용 설정(Template Process)
+//        javaMailSender.send(message);
+        // todo 실제 이메일이 만들어진다면 사용!
+        return memberEmailCodeResponseDTO;
+    }
+
+
+    /**
+     * 아이디 찾기 시 등록되어 있는 이메일인 지 확인 후 등록된 이메일이라면, 코드 생성후 코드를 이메일로 발송하고 레디스를 사용해 이메일과 코드의 유효기간 설정
+     *
+     * @param memberEmailRequestDTO
+     *
+     * @return memberEmailCodeResponseDTO - 인증 코드
+     */
+
     @Transactional
     public MemberEmailCodeResponseDTO sendEmail(MemberEmailRequestDTO memberEmailRequestDTO) throws MessagingException {
 
