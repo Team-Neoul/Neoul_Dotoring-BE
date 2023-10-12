@@ -1,18 +1,21 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ªè›Ë8Éô«¥†1
-ì
-java:S1130."vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(ù…ÌΩ8îô«¥†1
-L
-java:S22013"/The return value of "orElseThrow" must be used.(Õô≥•8ïô«¥†1
-X	java:S125;"<This block of commented-out lines of code should be removed.(é´˚˙8òô«¥†1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ªè›Ë8∫Ò˚ì≤1
+ò
+java:S11300"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(çªŒÅ¯ˇˇˇˇ8√Ò˚ì≤1
+X	java:S125;"<This block of commented-out lines of code should be removed.(é´˚˙8≈Ò˚ì≤1
 T
-java:S1135@"2Complete the task associated to this TODO comment.(Ç≈à˛ˇˇˇˇ8òô«¥†1
-X	java:S125E"<This block of commented-out lines of code should be removed.(é´˚˙8ôô«¥†1
+java:S1135@"2Complete the task associated to this TODO comment.(Ç≈à˛ˇˇˇˇ8≈Ò˚ì≤1
+ì
+java:S1130N"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(ù…ÌΩ8≈Ò˚ì≤1
 L
-java:S2201p"/The return value of "orElseThrow" must be used.(ﬂÎî˝8úô«¥†1
-q
-java:S1128"TRemove this unused import 'com.theZ.dotoring.app.memberAccount.model.MemberAccount'.(Ã≥Èœ8ûô«¥†1
+java:S2201S"/The return value of "orElseThrow" must be used.(Õô≥•8≈Ò˚ì≤1
+X	java:S125["<This block of commented-out lines of code should be removed.(é´˚˙8∆Ò˚ì≤1
+T
+java:S1135`"2Complete the task associated to this TODO comment.(Ç≈à˛ˇˇˇˇ8∆Ò˚ì≤1
+X	java:S125e"<This block of commented-out lines of code should be removed.(é´˚˙8«Ò˚ì≤1
+M
+java:S2201ê"/The return value of "orElseThrow" must be used.(ﬂÎî˝8»Ò˚ì≤1
 W
-java:S1144L"5Remove this unused private "setContextToCode" method.(É≠âÅ¯ˇˇˇˇ8ûô«¥†1
+java:S1144l"5Remove this unused private "setContextToCode" method.(É≠âÅ¯ˇˇˇˇ8…Ò˚ì≤1
 V
-java:S1144R"9Remove this unused private "setContextToPassword" method.(ôˆ›ô8ûô«¥†1
+java:S1144r"9Remove this unused private "setContextToPassword" method.(ôˆ›ô8…Ò˚ì≤1

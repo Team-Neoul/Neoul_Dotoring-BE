@@ -36,6 +36,12 @@ public class MemberAccountController {
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
+    @PostMapping("/member/signup/valid-code")
+    public ApiResponse<ApiResponse.CustomBody<Void>> validateMemberEmailCodeForSignUp(@RequestBody @Valid MemberEmailCodeRequestDTO memberEmailCodeRequestDTO){
+        memberEmailService.validateCodeForSignUp(memberEmailCodeRequestDTO.getEmailVerificationCode(),memberEmailCodeRequestDTO.getEmail());
+        return ApiResponseGenerator.success(HttpStatus.OK);
+    }
+
     @GetMapping("/member/code")
     public ApiResponse<ApiResponse.CustomBody<MemberEmailCodeResponseDTO>> sendEmail(@Valid MemberEmailRequestDTO memberEmailRequestDTO) throws MessagingException {
         MemberEmailCodeResponseDTO memberEmailCodeResponseDTO = memberEmailService.sendEmail(memberEmailRequestDTO);
