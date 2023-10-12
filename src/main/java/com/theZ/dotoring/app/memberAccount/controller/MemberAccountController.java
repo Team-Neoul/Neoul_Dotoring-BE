@@ -42,6 +42,13 @@ public class MemberAccountController {
         return ApiResponseGenerator.success(memberEmailCodeResponseDTO,HttpStatus.OK);
     }
 
+    @GetMapping("/member/signup/code")
+    public ApiResponse<ApiResponse.CustomBody<MemberEmailCodeResponseDTO>> sendEmailForSignUp(@Valid MemberEmailRequestDTO memberEmailRequestDTO) throws MessagingException {
+        MemberEmailCodeResponseDTO memberEmailCodeResponseDTO = memberEmailService.sendEmailForSignup(memberEmailRequestDTO);
+        return ApiResponseGenerator.success(memberEmailCodeResponseDTO,HttpStatus.OK);
+    }
+
+
 
     @GetMapping("/member/loginId")
     public ApiResponse<ApiResponse.CustomBody<String>> findLoginId(@ModelAttribute @Valid EmailCodeRequestDTO emailCodeRequestDTO) {
