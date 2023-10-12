@@ -151,4 +151,14 @@ public class MemberEmailService {
         return email;
     }
 
+    public void validateCodeForSignUp(String code, String email){
+
+        String savedEmail = redisUtil.getData(code); // 입력 받은 인증 코드(key)를 이용해 email(value)을 꺼낸다.
+
+        if (savedEmail == null || !savedEmail.equals(email)) { // email이 존재하지 않으면, 유효 기간 만료이거나 코드 잘못 입력
+            throw new EmailCodeException(MessageCode.WRONG_CODE);
+        }
+    }
+
+
 }

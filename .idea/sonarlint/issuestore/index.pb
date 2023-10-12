@@ -445,3 +445,9 @@ z
 Jsrc/main/java/com/theZ/dotoring/app/memberAccount/model/MemberAccount.java,e/d/eda46f7d02d78ad5eebaaf3697ea7be71b2fc425
 y
 Isrc/main/java/com/theZ/dotoring/app/major/controller/MajorController.java,f/e/fef69e905151500049e7de9590e7141283e98b37
+O
+.idea/modules/dotoring.test.iml,8/d/8d32535a2842ac898bdc76586100d5211a2aab55
+J
+.idea/modules/dotoring.iml,f/4/f4ff6985df6f930b51fa78397ffd9b5413f789e8
+S
+#.idea/modules/dotoring.querydsl.iml,c/d/cdac47094243f26955246d763f2f7f33fbce00da
