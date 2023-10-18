@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a051cdc2-22af-4eb2-9436-942597b8cfad" name="Changes" comment="fix : 회원가입 시 이메일 인증 기능에 동일 이메일이 존재하면 에러 반환하게끔 수정">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/memberAccount/controller/MemberAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/memberAccount/controller/MemberAccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/menti/controller/MentiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/menti/controller/MentiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/mento/controller/MentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/mento/controller/MentoController.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="dotoring" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="dotoring" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="dotoring" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Tq0fE8CnYaRhd9V7Qhg0IXUfmI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat#13&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/hwangdaeseon/Project/NDotoring&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;build.tools&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;46b1a4f1927e48b767745d09b435b151&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;
+    ],
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;H2&quot;
+    ]
+  }
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.theZ.dotoring.app.memberAccount.dto" />
+      <recent name="com.theZ.dotoring.app.mento.dto" />
+      <recent name="com.theZ.dotoring.app.menti.dto" />
+      <recent name="com.theZ.dotoring.app.menti.handler" />
+      <recent name="com.theZ.dotoring.app.profile.controller" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/image" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/image" />
+      <recent name="$PROJECT_DIR$/src/main/resources/static/files" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.DotoringApplication">
+    <configuration name="DesiredFieldRepositoryTest.deleteAllByMento_MentoId" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest.deleteAllByMento_MentoId&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="DesiredFieldRepositoryTest.findPageableMento" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.theZ.dotoring.desiredField.DesiredFieldRepositoryTest.findPageableMento&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="MentoJPARepositoryTest.findMentoWithProfileUsingFetchJoinByMentoId" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.theZ.dotoring.mento.MentoJPARepositoryTest.findMentoWithProfileUsingFetchJoinByMentoId&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="MentoJPARepositoryTest.findMentosByStatus" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.theZ.dotoring.mento.MentoJPARepositoryTest.findMentosByStatus&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="MentoJPARepositoryTest.findMentosWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.theZ.dotoring.mento.MentoJPARepositoryTest.findMentosWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="DotoringApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="dotoring.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.theZ.dotoring.DotoringApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.MentoJPARepositoryTest.findMentosByStatus" />
+        <item itemvalue="Gradle.DesiredFieldRepositoryTest.deleteAllByMento_MentoId" />
+        <item itemvalue="Gradle.MentoJPARepositoryTest.findMentosWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId" />
+        <item itemvalue="Gradle.MentoJPARepositoryTest.findMentoWithProfileUsingFetchJoinByMentoId" />
+        <item itemvalue="Gradle.DesiredFieldRepositoryTest.findPageableMento" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a051cdc2-22af-4eb2-9436-942597b8cfad" name="Changes" comment="" />
+      <created>1691755406362</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1691755406362</updated>
+      <workItem from="1691755407517" duration="14663000" />
+      <workItem from="1691803058565" duration="31109000" />
+      <workItem from="1691918069426" duration="10364000" />
+      <workItem from="1691939637025" duration="2414000" />
+      <workItem from="1691975860178" duration="9588000" />
+      <workItem from="1691990062440" duration="25266000" />
+      <workItem from="1692072218238" duration="30274000" />
+      <workItem from="1692167406953" duration="8825000" />
+      <workItem from="1692199475671" duration="10127000" />
+      <workItem from="1692246887606" duration="4203000" />
+      <workItem from="1692289505909" duration="6221000" />
+      <workItem from="1692325849977" duration="4801000" />
+      <workItem from="1692359531733" duration="17967000" />
+      <workItem from="1692504217780" duration="74836000" />
+      <workItem from="1692798825638" duration="604000" />
+      <workItem from="1692803697733" duration="652000" />
+      <workItem from="1692933990814" duration="2028000" />
+      <workItem from="1692977371065" duration="2271000" />
+      <workItem from="1693044964180" duration="1373000" />
+      <workItem from="1693296945488" duration="33000" />
+      <workItem from="1693299147669" duration="258000" />
+      <workItem from="1693552325765" duration="1129000" />
+      <workItem from="1693571320830" duration="2214000" />
+      <workItem from="1693788607115" duration="2166000" />
+      <workItem from="1693800368922" duration="1330000" />
+      <workItem from="1693803404156" duration="382000" />
+      <workItem from="1693809689503" duration="4715000" />
+      <workItem from="1693894880155" duration="17042000" />
+      <workItem from="1693975663679" duration="61000" />
+      <workItem from="1693980662814" duration="625000" />
+      <workItem from="1694069923849" duration="7538000" />
+      <workItem from="1694087599101" duration="480000" />
+      <workItem from="1694088082781" duration="172000" />
+      <workItem from="1694088257311" duration="6096000" />
+      <workItem from="1694094789989" duration="273000" />
+      <workItem from="1694097786179" duration="619000" />
+      <workItem from="1694396470939" duration="654000" />
+      <workItem from="1694757387124" duration="8000" />
+      <workItem from="1695015793247" duration="63000" />
+      <workItem from="1695015877432" duration="502000" />
+      <workItem from="1695018175134" duration="728000" />
+      <workItem from="1695369593781" duration="966000" />
+      <workItem from="1695381425592" duration="76000" />
+      <workItem from="1697089264045" duration="3560000" />
+      <workItem from="1697129657023" duration="1268000" />
+      <workItem from="1697594368994" duration="466000" />
+      <workItem from="1697594867854" duration="239000" />
+      <workItem from="1697601142108" duration="1745000" />
+      <workItem from="1697602894849" duration="28000" />
+      <workItem from="1697602926064" duration="160000" />
+      <workItem from="1697603694322" duration="3200000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat : 공통응답 형식(성공 또는 실패)을 위한 클래스 생성">
+      <option name="closed" value="true" />
+      <created>1691915669686</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1691915669686</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat : 학과 및 분야 엔티티 생성 및 service, repository 구현">
+      <option name="closed" value="true" />
+      <created>1691915813228</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1691915813228</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat : 프로필 엔티티 및 각 계층 구현">
+      <option name="closed" value="true" />
+      <created>1691915943393</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1691915943393</updated>
+    </task>
+    <task id="LOCAL-00004" summary="test : FieldJPARepositoryTest를 통해 Field의 id가 String일 때 정상 동작하나 확인">
+      <option name="closed" value="true" />
+      <created>1691916123991</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1691916123991</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat : 증명서 엔티티 및 각 계층 구현">
+      <option name="closed" value="true" />
+      <created>1691916191071</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1691916191071</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat : 회원 계정 엔티티 및 각 계층 구현">
+      <option name="closed" value="true" />
+      <created>1691916231568</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1691916231568</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat : 분야, 학과, 프로필 기본 데이터 생성">
+      <option name="closed" value="true" />
+      <created>1691916370873</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1691916370873</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat : 공통 엔티티 생성">
+      <option name="closed" value="true" />
+      <created>1691916450869</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1691916450869</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat : 파일 핸들링을 위한 FileUtils 클래스 생성">
+      <option name="closed" value="true" />
+      <created>1691916531212</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1691916531212</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat : 멘토 엔티티 및 각 계층 구현">
+      <option name="closed" value="true" />
+      <created>1691916633812</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1691916633812</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat : build.gradle 에 의존성 추가 및 빌드 관련 클래스">
+      <option name="closed" value="true" />
+      <created>1691916886693</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1691916886693</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat : 멘티 엔티티 및 각 계층 구현">
+      <option name="closed" value="true" />
+      <created>1691919976663</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1691919976663</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat : 학과 및 분야 보여주기 기능 구현">
+      <option name="closed" value="true" />
+      <created>1691936056125</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1691936056125</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat : 아이디 중복 검사 기능">
+      <option name="closed" value="true" />
+      <created>1691936221356</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1691936221356</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat : 이메일 코드 보내기, 이메일 코드 검증하기 기능 구현">
+      <option name="closed" value="true" />
+      <created>1691936317494</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1691936317494</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat : 닉네임 중복 검사 기능 구현">
+      <option name="closed" value="true" />
+      <created>1691936371665</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1691936371665</updated>
+    </task>
+    <task id="LOCAL-00017" summary="feat : 글로벌 예외 처리 핸들러 구현">
+      <option name="closed" value="true" />
+      <created>1691936399334</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1691936399334</updated>
+    </task>
+    <task id="LOCAL-00018" summary="test : 멘토 상세 조회 테스트 수행">
+      <option name="closed" value="true" />
+      <created>1691989743803</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1691989743803</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat : 멘토, 멘티 상세 조회 기능 구현">
+      <option name="closed" value="true" />
+      <created>1691989776262</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1691989776262</updated>
+    </task>
+    <task id="LOCAL-00020" summary="test : 회원가입 시 기입했던 멘토링 희망 분야를 기반으로 멘토 추천 쿼리 테스트">
+      <option name="closed" value="true" />
+      <created>1692196880458</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1692196880458</updated>
+    </task>
+    <task id="LOCAL-00021" summary="feat : 회원가입 시 기입했던 멘토링 희망 분야를 기반으로 멘토 추천 기능 구현">
+      <option name="closed" value="true" />
+      <created>1692196914011</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1692196914011</updated>
+    </task>
+    <task id="LOCAL-00022" summary="feat : 회원가입 시 기입했던 멘토링 희망 분야를 기반으로 멘티 추천 기능 구현">
+      <option name="closed" value="true" />
+      <created>1692196934251</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1692196934251</updated>
+    </task>
+    <task id="LOCAL-00023" summary="feat : 아이디 찾기 및 비밀번호 찾기 구현">
+      <option name="closed" value="true" />
+      <created>1692211818684</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1692211818684</updated>
+    </task>
+    <task id="LOCAL-00024" summary="feat : 멘토 멘토링 방식 수정, 멘티 선호 멘토링 방식 수정, 멘토/멘티 닉네임 수정 구현">
+      <option name="closed" value="true" />
+      <created>1692797687551</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1692797687552</updated>
+    </task>
+    <task id="LOCAL-00025" summary="feat : 프로필 이미지 수정 구현">
+      <option name="closed" value="true" />
+      <created>1692797789569</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1692797789569</updated>
+    </task>
+    <task id="LOCAL-00026" summary="feat : 이메일 예외처리 관련 코드 수정 및 응답 관련 클래스 수정">
+      <option name="closed" value="true" />
+      <created>1692797964046</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1692797964046</updated>
+    </task>
+    <task id="LOCAL-00027" summary="feat : MemberAccount에 Mento인지 Menti인지 구분할 수 있는 구분 컬럼 추가">
+      <option name="closed" value="true" />
+      <created>1692798100661</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1692798100661</updated>
+    </task>
+    <task id="LOCAL-00028" summary="feat : 멘토, 멘티 희망 멘토링 수정 기능 구현">
+      <option name="closed" value="true" />
+      <created>1692798121022</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1692798121022</updated>
+    </task>
+    <task id="LOCAL-00029" summary="fix : 회원가입시 사용하는 이메일 보내는 URL과 아이디 찾기 시 사용하는 이메일 보내는 URL을 분리함">
+      <option name="closed" value="true" />
+      <created>1697091640151</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1697091640151</updated>
+    </task>
+    <task id="LOCAL-00030" summary="fix : 회원가입 시 이메일 인증 기능에 동일 이메일이 존재하면 에러 반환하게끔 수정">
+      <option name="closed" value="true" />
+      <created>1697091682122</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1697091682122</updated>
+    </task>
+    <task id="LOCAL-00031" summary="build : intellij 오류로 인한 build.gradle 재 빌드">
+      <option name="closed" value="true" />
+      <created>1697606600774</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1697606600774</updated>
+    </task>
+    <task id="LOCAL-00032" summary="feat : Swagger 적용을 위한 SwaggerConfig 파일 생성">
+      <option name="closed" value="true" />
+      <created>1697606640796</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1697606640796</updated>
+    </task>
+    <task id="LOCAL-00033" summary="feat : properties 파일에 경로 전략 추가">
+      <option name="closed" value="true" />
+      <created>1697606738368</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1697606738368</updated>
+    </task>
+    <task id="LOCAL-00034" summary="refactor : 목 데이터 수정">
+      <option name="closed" value="true" />
+      <created>1697606773518</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1697606773518</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="1297137c-f7c9-4096-b066-b77a23a0176a" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1297137c-f7c9-4096-b066-b77a23a0176a">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat : build.gradle 에 의존성 추가 및 빌드 관련 클래스" />
+    <MESSAGE value="feat : 멘티 엔티티 및 각 계층 구현" />
+    <MESSAGE value="feat : 학과 및 분야 보여주기 기능 구현" />
+    <MESSAGE value="feat : 아이디 중복 검사 기능 구현" />
+    <MESSAGE value="feat : 아이디 중복 검사 기능" />
+    <MESSAGE value="feat : 이메일 코드 보내기, 이메일 코드 검증하기 기능 구현" />
+    <MESSAGE value="feat : 닉네임 중복 검사 기능 구현" />
+    <MESSAGE value="feat : 글로벌 예외 처리 핸들러 구현" />
+    <MESSAGE value="test : 멘토 상세 조회 테스트 수행" />
+    <MESSAGE value="feat : 멘토, 멘티 상세 조회 기능 구현" />
+    <MESSAGE value="test : 회원가입 시 기입했던 멘토링 희망 분야를 기반으로 멘토 추천 쿼리 테스트" />
+    <MESSAGE value="feat : 회원가입 시 기입했던 멘토링 희망 분야를 기반으로 멘토 추천 기능 구현" />
+    <MESSAGE value="feat : 회원가입 시 기입했던 멘토링 희망 분야를 기반으로 멘티 추천 기능 구현" />
+    <MESSAGE value="feat : 아이디 찾기 및 비밀번호 찾기 구현" />
+    <MESSAGE value="feat : 멘토 멘토링 방식 수정, 멘티 선호 멘토링 방식 수정, 멘토/멘티 닉네임 수정 구현" />
+    <MESSAGE value="feat : 프로필 이미지 수정 구현" />
+    <MESSAGE value="feat : 이메일 예외처리 관련 코드 수정 및 응답 관련 클래스 수정" />
+    <MESSAGE value="feat : MemberAccount에 Mento인지 Menti인지 구분할 수 있는 구분 컬럼 추가" />
+    <MESSAGE value="feat : 멘토, 멘티 희망 멘토링 수정 기능 구현" />
+    <MESSAGE value="fix : 회원가입시 사용하는 이메일 보내는 URL과 아이디 찾기 시 사용하는 이메일 보내는 URL을 분리함" />
+    <MESSAGE value="fix : 회원가입 시 이메일 인증 기능에 동일 이메일이 존재하면 에러 반환하게끔 수정" />
+    <MESSAGE value="build : intellij 오류로 인한 build.gradle 재 빌드" />
+    <MESSAGE value="feat : Swagger 적용을 위한 SwaggerConfig 파일 생성" />
+    <MESSAGE value="feat : properties 파일에 경로 전략 추가" />
+    <MESSAGE value="refactor : 목 데이터 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor : 목 데이터 수정" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.querydsl/querydsl-core/5.0.0/f768407377750c5de288bea9881a6e1c80b2c22c/querydsl-core-5.0.0-sources.jar!/com/querydsl/core/types/dsl/Expressions.java</url>
+          <line>1178</line>
+          <properties class="com.querydsl.core.types.dsl.Expressions" method="stringPath">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.querydsl/querydsl-core/5.0.0/f768407377750c5de288bea9881a6e1c80b2c22c/querydsl-core-5.0.0-sources.jar!/com/querydsl/core/types/dsl/StringPath.java</url>
+          <line>40</line>
+          <properties class="com.querydsl.core.types.dsl.StringPath" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.7.11/2fa3066116ba51d0a7dc46946b8d2ae345ecf2bc/spring-data-jpa-2.7.11-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>167</line>
+          <properties class="org.springframework.data.jpa.repository.support.SimpleJpaRepository" method="deleteById">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.7.11/2fa3066116ba51d0a7dc46946b8d2ae345ecf2bc/spring-data-jpa-2.7.11-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>208</line>
+          <properties class="org.springframework.data.jpa.repository.support.SimpleJpaRepository" method="deleteAllById">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.7.11/2fa3066116ba51d0a7dc46946b8d2ae345ecf2bc/spring-data-jpa-2.7.11-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>223</line>
+          <properties class="org.springframework.data.jpa.repository.support.SimpleJpaRepository" method="deleteAllByIdInBatch">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.7.11/2fa3066116ba51d0a7dc46946b8d2ae345ecf2bc/spring-data-jpa-2.7.11-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>279</line>
+          <properties class="org.springframework.data.jpa.repository.support.SimpleJpaRepository" method="deleteAllInBatch">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.7.11/2fa3066116ba51d0a7dc46946b8d2ae345ecf2bc/spring-data-jpa-2.7.11-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>297</line>
+          <properties class="org.springframework.data.jpa.repository.support.SimpleJpaRepository" method="deleteAll">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.7.11/2fa3066116ba51d0a7dc46946b8d2ae345ecf2bc/spring-data-jpa-2.7.11-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>264</line>
+          <properties class="org.springframework.data.jpa.repository.support.SimpleJpaRepository" method="deleteAll">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.7.11/2fa3066116ba51d0a7dc46946b8d2ae345ecf2bc/spring-data-jpa-2.7.11-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>182</line>
+          <properties class="org.springframework.data.jpa.repository.support.SimpleJpaRepository" method="delete">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.querydsl/querydsl-core/5.0.0/f768407377750c5de288bea9881a6e1c80b2c22c/querydsl-core-5.0.0-sources.jar!/com/querydsl/core/types/dsl/Expressions.java</url>
+          <line>1179</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.querydsl/querydsl-core/5.0.0/f768407377750c5de288bea9881a6e1c80b2c22c/querydsl-core-5.0.0-sources.jar!/com/querydsl/core/types/dsl/Expressions.java</url>
+          <line>1180</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.querydsl/querydsl-core/5.0.0/f768407377750c5de288bea9881a6e1c80b2c22c/querydsl-core-5.0.0-sources.jar!/com/querydsl/core/types/dsl/StringPath.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.querydsl/querydsl-core/5.0.0/f768407377750c5de288bea9881a6e1c80b2c22c/querydsl-core-5.0.0-sources.jar!/com/querydsl/core/types/dsl/StringPath.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.7.11/2fa3066116ba51d0a7dc46946b8d2ae345ecf2bc/spring-data-jpa-2.7.11-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>311</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.theZ.dotoring.app.memberAccount.model.MemberAccount" memberName="loginId" />
+        <PinnedItemInfo parentTag="com.theZ.dotoring.app.field.model.Field" memberName="fieldName" />
+        <PinnedItemInfo parentTag="com.theZ.dotoring.app.field.model.Field" memberName="desiredFields" />
+        <PinnedItemInfo parentTag="com.theZ.dotoring.app.desiredField.model.DesiredField" memberName="desiredFieldId" />
+        <PinnedItemInfo parentTag="java.lang.String" memberName="value" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+</project>
