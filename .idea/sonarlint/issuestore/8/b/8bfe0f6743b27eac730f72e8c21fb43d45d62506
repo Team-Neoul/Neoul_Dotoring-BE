@@ -1,15 +1,0 @@
-
-K
-java:S2699ƒ"-Add at least one assertion to this test case.(šòÇÉ8”¶»¢¦1
-:
-java:S5786)"Remove this 'public' modifier.(ŞŞ«}8´²¢¢¦1
-y
-java:S3415ê"VSwap these 2 arguments so they are in the correct order: actual value, expected value.(é´‘üÿÿÿÿ8¹²¢¢¦1
-y
-java:S3415ë"VSwap these 2 arguments so they are in the correct order: actual value, expected value.(‘ø‡üÿÿÿÿ8¹²¢¢¦1
-y
-java:S3415ì"VSwap these 2 arguments so they are in the correct order: actual value, expected value.(Ñ»ŠÈøÿÿÿÿ8¹²¢¢¦1
-t
-java:S3415í"VSwap these 2 arguments so they are in the correct order: actual value, expected value.(§œì8º²¢¢¦1
-T
-java:S5838ü"1Use assertThat(actual).hasSize(expected) instead.(ÓëğÙıÿÿÿÿ8º²¢¢¦1

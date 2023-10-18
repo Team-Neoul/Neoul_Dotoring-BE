@@ -1,4 +1,0 @@
-
-
-java:S14886"dImmediately return this expression instead of assigning it to the temporary variable "desiredField".(Áø¾Š8İƒ†¢1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Æµá‰8ßƒ†¢1

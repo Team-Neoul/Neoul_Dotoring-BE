@@ -1,6 +1,0 @@
-
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(»åÈÆ8åÔÈúŸ1
-a
-java:S1128"DRemove this unused import 'com.theZ.dotoring.app.mento.model.Mento'.(Ú­Íİ8çÔÈúŸ1
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8çÔÈúŸ1
