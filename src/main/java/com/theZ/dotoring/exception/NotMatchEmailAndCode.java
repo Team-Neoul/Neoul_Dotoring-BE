@@ -4,11 +4,11 @@ import com.theZ.dotoring.common.MessageCode;
 import lombok.Getter;
 
 @Getter
-public class EmailCodeException extends RuntimeException{
+public class NotMatchEmailAndCode extends RuntimeException{
 
     public final MessageCode messageCode;
 
-    public EmailCodeException(MessageCode messageCode) {
+    public NotMatchEmailAndCode(MessageCode messageCode) {
         this.messageCode = messageCode;
     }
 }
