@@ -39,11 +39,11 @@ public class SaveMentoHandler {
 
 
     @Transactional
-    public void execute(SaveMentoRqDTO saveMentoRqDTO, List<MultipartFile> certificates) throws IOException {
+    public void execute(SaveMentoRqDTO saveMentoRqDTO) throws IOException {
         /**
          *  증명서 저장
          */
-        List<Certificate> savedCertificates = certificateService.saveCertifications(certificates);
+        List<Certificate> savedCertificates = certificateService.saveCertifications(saveMentoRqDTO.getCertifications());
 
         /**
          * 회원 계정 저장
