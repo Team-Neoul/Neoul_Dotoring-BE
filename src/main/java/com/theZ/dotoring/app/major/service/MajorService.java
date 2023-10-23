@@ -2,6 +2,7 @@ package com.theZ.dotoring.app.major.service;
 
 import com.theZ.dotoring.app.major.repository.MajorRepository;
 import com.theZ.dotoring.common.Major;
+import com.theZ.dotoring.common.MessageCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -47,8 +48,10 @@ public class MajorService {
         /**
          * uncertainMajors에 중복된 값이 들어왔는 지 확인
          */
-
-
+        int size = uncertainMajors.stream().distinct().collect(Collectors.toList()).size();
+        if(uncertainMajors.size() != size){
+            throw new IllegalArgumentException(MessageCode.DUPLICATED_VALUE.getValue());
+        }
 
         /**
          *  uncertainMajors가 유효한 Major인지 확인
