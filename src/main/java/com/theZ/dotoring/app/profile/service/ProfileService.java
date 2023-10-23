@@ -11,7 +11,9 @@ import com.theZ.dotoring.app.profile.controller.ProfileRequestDTO;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.app.profile.repository.ProfileRepository;
 import com.theZ.dotoring.common.FileUtils;
+import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.common.UploadFile;
+import com.theZ.dotoring.exception.DefaultProfileImageNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -46,7 +48,7 @@ public class ProfileService {
      */
     @Transactional(readOnly = true)
     public Profile getDefaultProfile(){
-        Profile profile = profileRepository.findById(1L).orElseThrow(() -> new IllegalStateException("존재하지 않는 이미지입니다."));
+        Profile profile = profileRepository.findById(1L).orElseThrow(() -> new DefaultProfileImageNotFoundException(MessageCode.IMAGE_NOT_FOUND));
         return profile;
     }
 
