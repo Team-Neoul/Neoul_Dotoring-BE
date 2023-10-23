@@ -4,8 +4,9 @@ import com.theZ.dotoring.app.certificate.mapper.CertificateMapper;
 import com.theZ.dotoring.app.certificate.model.Certificate;
 import com.theZ.dotoring.app.certificate.repository.CertificateRepository;
 import com.theZ.dotoring.common.FileUtils;
+import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.common.UploadFile;
-import com.theZ.dotoring.exception.NotFoundRoomException;
+import com.theZ.dotoring.exception.FileSaveFailedException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -42,9 +43,9 @@ public class CertificateService {
     public List<Certificate> saveCertifications(List<MultipartFile> certificates) throws IOException {
         List<UploadFile> uploadFiles = fileUtils.storeFiles(certificates);
         List<Certificate> certificateList = CertificateMapper.to(uploadFiles);
-        /**
-         *  null인지 확인!
-         */
+        if(certificateList.isEmpty()){
+            throw new FileSaveFailedException(MessageCode.FILE_SAVE_FAIL);
+        }
         certificateRepository.saveAll(certificateList);
         return certificateList;
     }
