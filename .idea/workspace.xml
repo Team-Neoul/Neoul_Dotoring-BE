@@ -4,11 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a051cdc2-22af-4eb2-9436-942597b8cfad" name="Changes" comment="fix : 회원가입 시 이메일 인증 기능에 동일 이메일이 존재하면 에러 반환하게끔 수정">
+    <list default="true" id="a051cdc2-22af-4eb2-9436-942597b8cfad" name="Changes" comment="refactor : Swagger 이슈로 인해 @RequestPart -&gt; @">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/5/0516ac68340b0dcb9bc1bf13bde00d0a0b7fcae3" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/5/0516ac68340b0dcb9bc1bf13bde00d0a0b7fcae3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/6/96dfa55ba3cc56177bfb2abb97eae780b2c54e1b" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/6/96dfa55ba3cc56177bfb2abb97eae780b2c54e1b" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/e/be6e9e1529b1f8414aec40f1002293d623087fba" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/e/be6e9e1529b1f8414aec40f1002293d623087fba" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/a/da163273dfd48a2fa55e8087ef0d0c93aec40053" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/a/da163273dfd48a2fa55e8087ef0d0c93aec40053" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/d/eda46f7d02d78ad5eebaaf3697ea7be71b2fc425" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/d/eda46f7d02d78ad5eebaaf3697ea7be71b2fc425" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/e/fef69e905151500049e7de9590e7141283e98b37" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/e/fef69e905151500049e7de9590e7141283e98b37" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/memberAccount/controller/MemberAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/memberAccount/controller/MemberAccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/theZ/dotoring/app/menti/controller/MentiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/theZ/dotoring/app/menti/controller/MentiController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/theZ/dotoring/app/menti/dto/SaveMentiRqDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/theZ/dotoring/app/menti/dto/SaveMentiRqDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/theZ/dotoring/app/menti/handler/SaveMentiHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/theZ/dotoring/app/menti/handler/SaveMentiHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/theZ/dotoring/common/DataInit$InitService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/theZ/dotoring/common/DataInit$InitService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/theZ/dotoring/common/DataInit.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/theZ/dotoring/common/DataInit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/DataInit$InitService.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/DataInit.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/menti/controller/MentiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/menti/controller/MentiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/mento/controller/MentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/mento/controller/MentoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/menti/dto/SaveMentiRqDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/menti/dto/SaveMentiRqDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/menti/handler/SaveMentiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/menti/handler/SaveMentiHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -320,7 +343,12 @@
       <workItem from="1697601142108" duration="1745000" />
       <workItem from="1697602894849" duration="28000" />
       <workItem from="1697602926064" duration="160000" />
-      <workItem from="1697603694322" duration="3200000" />
+      <workItem from="1697603694322" duration="4879000" />
+      <workItem from="1697618226726" duration="193000" />
+      <workItem from="1697681038577" duration="1737000" />
+      <workItem from="1697703493823" duration="1133000" />
+      <workItem from="1697985658922" duration="5075000" />
+      <workItem from="1698045523935" duration="8212000" />
     </task>
     <task id="LOCAL-00001" summary="feat : 공통응답 형식(성공 또는 실패)을 위한 클래스 생성">
       <option name="closed" value="true" />
@@ -594,7 +622,31 @@
       <option name="project" value="LOCAL" />
       <updated>1697606773518</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="feat : .gitignore 파일 추가">
+      <option name="closed" value="true" />
+      <created>1697606931616</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1697606931616</updated>
+    </task>
+    <task id="LOCAL-00036" summary="doc : 각 EndPoint마다 설명 추가">
+      <option name="closed" value="true" />
+      <created>1697607018934</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1697607018934</updated>
+    </task>
+    <task id="LOCAL-00037" summary="refactor : 멘토, 멘티 데이터 제거">
+      <option name="closed" value="true" />
+      <created>1698053849351</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1698053849351</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -642,9 +694,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat : build.gradle 에 의존성 추가 및 빌드 관련 클래스" />
-    <MESSAGE value="feat : 멘티 엔티티 및 각 계층 구현" />
-    <MESSAGE value="feat : 학과 및 분야 보여주기 기능 구현" />
     <MESSAGE value="feat : 아이디 중복 검사 기능 구현" />
     <MESSAGE value="feat : 아이디 중복 검사 기능" />
     <MESSAGE value="feat : 이메일 코드 보내기, 이메일 코드 검증하기 기능 구현" />
@@ -667,7 +716,10 @@
     <MESSAGE value="feat : Swagger 적용을 위한 SwaggerConfig 파일 생성" />
     <MESSAGE value="feat : properties 파일에 경로 전략 추가" />
     <MESSAGE value="refactor : 목 데이터 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor : 목 데이터 수정" />
+    <MESSAGE value="feat : .gitignore 파일 추가" />
+    <MESSAGE value="doc : 각 EndPoint마다 설명 추가" />
+    <MESSAGE value="refactor : 멘토, 멘티 데이터 제거" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor : 멘토, 멘티 데이터 제거" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -753,6 +805,15 @@
           </properties>
           <option name="timeStamp" value="78" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/theZ/dotoring/common/FileUtils.java</url>
+          <line>30</line>
+          <properties class="com.theZ.dotoring.common.FileUtils" method="storeFiles">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="117" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.querydsl/querydsl-core/5.0.0/f768407377750c5de288bea9881a6e1c80b2c22c/querydsl-core-5.0.0-sources.jar!/com/querydsl/core/types/dsl/Expressions.java</url>
           <line>1179</line>
@@ -777,6 +838,56 @@
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.7.11/2fa3066116ba51d0a7dc46946b8d2ae345ecf2bc/spring-data-jpa-2.7.11-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
           <line>311</line>
           <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.3.27/c0ebcedcdf71237631dfdcef45666c2e6272b790/spring-web-5.3.27-sources.jar!/org/springframework/web/method/annotation/ModelAttributeMethodProcessor.java</url>
+          <line>242</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.3.27/c0ebcedcdf71237631dfdcef45666c2e6272b790/spring-web-5.3.27-sources.jar!/org/springframework/web/method/annotation/ModelAttributeMethodProcessor.java</url>
+          <line>352</line>
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/certificate/service/CertificateService.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/theZ/dotoring/common/FileUtils.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="119" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/theZ/dotoring/common/FileUtils.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="120" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/theZ/dotoring/common/FileUtils.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="121" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/theZ/dotoring/common/FileUtils.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/theZ/dotoring/common/FileUtils.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/theZ/dotoring/common/FileUtils.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="124" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/theZ/dotoring/common/FileUtils.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="125" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
