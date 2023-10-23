@@ -18,16 +18,40 @@ import java.io.IOException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(IOException.class)
-    public ApiResponse<ApiResponse.CustomBody> handleIOException(IOException ioException){
-        return ApiResponseGenerator.fail(MessageCode.FILE_NOT_INPUT_OUTPUT.getCode(),MessageCode.FILE_NOT_INPUT_OUTPUT.getValue(), HttpStatus.BAD_REQUEST);
+
+    @ExceptionHandler(NotMatchEmailAndCode.class)
+    public ApiResponse<ApiResponse.CustomBody> handleLoginIdDuplicateException(NotMatchEmailAndCode e){
+        return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(LoginIdDuplicateException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleLoginIdDuplicateException(LoginIdDuplicateException e){
+        return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NicknameDuplicateException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleNicknameDuplicateException(NicknameDuplicateException e){
+        return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FileSaveFailedException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleNicknameDuplicateException(FileSaveFailedException e){
+        return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(ExtentionNotAllowedException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleExtentionNotAllowedException(ExtentionNotAllowedException e){
+        return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.BAD_REQUEST);
+    }
+
 
     @ExceptionHandler(IllegalStateException.class)
     public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(IllegalStateException illegalStateException){
         return ApiResponseGenerator.fail(MessageCode.VALIDATION_FAIL.getCode(),illegalStateException.getMessage(), HttpStatus.BAD_REQUEST);
     }
-
+    @ExceptionHandler(IOException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIOException(IOException ioException){
+        return ApiResponseGenerator.fail(MessageCode.FILE_NOT_INPUT_OUTPUT.getCode(),MessageCode.FILE_NOT_INPUT_OUTPUT.getValue(), HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ApiResponse<ApiResponse.CustomBody> handleIllegalArgumentException(IllegalArgumentException illegalArgumentException){
@@ -48,29 +72,9 @@ public class GlobalExceptionHandler {
     public ApiResponse<ApiResponse.CustomBody> handleIOFileSizeLimitExceededException(FileSizeLimitExceededException e){
         return ApiResponseGenerator.fail(MessageCode.LIMIT_FILE_SIZE.getCode(),MessageCode.LIMIT_FILE_SIZE.getValue(),HttpStatus.BAD_REQUEST);
     }
-    @ExceptionHandler(ExtentionNotAllowedException.class)
-    public ApiResponse<ApiResponse.CustomBody> handleExtentionNotAllowedException(ExtentionNotAllowedException e){
-        return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.BAD_REQUEST);
-    }
-
     @ExceptionHandler(FileNotFoundException.class)
     public ApiResponse<ApiResponse.CustomBody> handleFileNotFoundException(FileNotFoundException fileNotFoundException){
         return ApiResponseGenerator.fail(MessageCode.FIlE_NOT_FOUND.getCode(),MessageCode.FIlE_NOT_FOUND.getValue(), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(NicknameDuplicateException.class)
-    public ApiResponse<ApiResponse.CustomBody> handleNicknameDuplicateException(NicknameDuplicateException e){
-        return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.CONFLICT);
-    }
-
-    @ExceptionHandler(LoginIdDuplicateException.class)
-    public ApiResponse<ApiResponse.CustomBody> handleLoginIdDuplicateException(LoginIdDuplicateException e){
-        return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.CONFLICT);
-    }
-
-    @ExceptionHandler(EmailCodeException.class)
-    public ApiResponse<ApiResponse.CustomBody> handleLoginIdDuplicateException(EmailCodeException e){
-        return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)

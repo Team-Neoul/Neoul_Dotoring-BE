@@ -12,7 +12,7 @@ public class CertificateMapper {
     // entity로 변환 : to
     public static List<Certificate> to(List<UploadFile> uploadFiles){
 
-        if(uploadFiles == null && uploadFiles.size() >0){
+        if(uploadFiles == null || uploadFiles.size() == 0){
             return null;
         }
 

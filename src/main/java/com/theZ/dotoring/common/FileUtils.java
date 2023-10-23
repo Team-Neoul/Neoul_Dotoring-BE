@@ -34,7 +34,7 @@ public class FileUtils {
             if (!multipartFile.isEmpty()) {
                 storeFileResult.add(storeFile(multipartFile));
             }else{
-                throw new FileNotFoundException();
+                throw new FileNotFoundException(MessageCode.FIlE_NOT_FOUND.getValue());
             }
         }
         return storeFileResult;
