@@ -2,11 +2,11 @@ package com.theZ.dotoring.app.memberAccount.service;
 
 import com.theZ.dotoring.app.memberAccount.dto.MemberEmailCodeResponseDTO;
 import com.theZ.dotoring.app.memberAccount.dto.MemberEmailRequestDTO;
-import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.memberAccount.repository.MemberAccountRepository;
 import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.common.RedisUtil;
-import com.theZ.dotoring.exception.EmailCodeException;
+import com.theZ.dotoring.exception.EmailAlreadyExistsException;
+import com.theZ.dotoring.exception.NotMatchEmailAndCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -16,7 +16,6 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.MessagingException;
-import java.util.Optional;
 
 /**
  * MemberAccount의 email에관한 비즈니스 로직이 담겨있습니다.
@@ -47,13 +46,13 @@ public class MemberEmailService {
     @Transactional
     public MemberEmailCodeResponseDTO sendEmailForSignup(MemberEmailRequestDTO memberEmailRequestDTO) throws MessagingException {
 
-        Optional<MemberAccount> uncertainEmail = memberAccountRepository.findByEmail(memberEmailRequestDTO.getEmail());
+        boolean hasEmail = memberAccountRepository.findByEmail(memberEmailRequestDTO.getEmail()).isPresent();
+
+        if(!hasEmail){
+            throw new EmailAlreadyExistsException(MessageCode.ALREADY_EXISTS_EMAIL);
+        }
 
         MemberEmailCodeResponseDTO memberEmailCodeResponseDTO = createCode();
-
-        if(!uncertainEmail.isEmpty()){
-            throw new IllegalArgumentException("이미 등록된 이메일입니다. 아이디 찾기를 해주세요!");
-        }
 
         redisUtil.setDataAndExpire(memberEmailCodeResponseDTO.getEmailVerificationCode(),memberEmailRequestDTO.getEmail(),validTime);
 //        MimeMessage message = javaMailSender.createMimeMessage();
@@ -80,7 +79,7 @@ public class MemberEmailService {
         /**
          *  등록되어 있는 이메일인 지  확인!
          */
-        memberAccountRepository.findByEmail(memberEmailRequestDTO.getEmail()).orElseThrow(() -> new IllegalArgumentException("등록되지 않은 이메일입니다."));
+        memberAccountRepository.findByEmail(memberEmailRequestDTO.getEmail()).orElseThrow(() -> new IllegalArgumentException(MessageCode.EMAIL_NOT_FOUND.getValue()));
 
         /**
          *  등록된 이메일이라면, 코드 생성 후 코드를 이메일로 발송 + 레디스를 활용해 유효기간 설정!
@@ -141,12 +140,12 @@ public class MemberEmailService {
         /**
          *  등록되지 않은 이메일인지 확인!
          */
-        memberAccountRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("등록되지 않은 이메일입니다."));
+        memberAccountRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException(MessageCode.EMAIL_NOT_FOUND.getValue()));
 
         String savedEmail = redisUtil.getData(code); // 입력 받은 인증 코드(key)를 이용해 email(value)을 꺼낸다.
 
         if (savedEmail == null || !savedEmail.equals(email)) { // email이 존재하지 않으면, 유효 기간 만료이거나 코드 잘못 입력
-            throw new EmailCodeException(MessageCode.WRONG_CODE);
+            throw new NotMatchEmailAndCode(MessageCode.NOT_MATCH_CODE);
         }
         return email;
     }
@@ -156,7 +155,7 @@ public class MemberEmailService {
         String savedEmail = redisUtil.getData(code); // 입력 받은 인증 코드(key)를 이용해 email(value)을 꺼낸다.
 
         if (savedEmail == null || !savedEmail.equals(email)) { // email이 존재하지 않으면, 유효 기간 만료이거나 코드 잘못 입력
-            throw new EmailCodeException(MessageCode.WRONG_CODE);
+            throw new NotMatchEmailAndCode(MessageCode.NOT_MATCH_CODE);
         }
     }
 
