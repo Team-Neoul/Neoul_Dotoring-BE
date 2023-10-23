@@ -74,7 +74,6 @@ public class MemberAccountController {
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
-
     @ApiOperation(value = "아이디를 수정할 때 사용")
     @PatchMapping("/member/loginId")
     public ApiResponse<ApiResponse.CustomBody<Void>> updateLoginId(@RequestBody UpdateMemberLoginIdRequestDTO updateMemberLoginIdRequestDTO){
