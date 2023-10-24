@@ -48,7 +48,7 @@ public class MemberEmailService {
 
         boolean hasEmail = memberAccountRepository.findByEmail(memberEmailRequestDTO.getEmail()).isPresent();
 
-        if(!hasEmail){
+        if(hasEmail){
             throw new EmailAlreadyExistsException(MessageCode.ALREADY_EXISTS_EMAIL);
         }
 
