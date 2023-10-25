@@ -3,8 +3,8 @@ package com.theZ.dotoring.app.memberAccount.service;
 import com.theZ.dotoring.app.certificate.model.Certificate;
 import com.theZ.dotoring.app.memberAccount.dto.UpdateMemberLoginIdRequestDTO;
 import com.theZ.dotoring.app.memberAccount.dto.UpdateMemberPasswordRequestDTO;
+import com.theZ.dotoring.app.memberAccount.model.MemberRole;
 import com.theZ.dotoring.app.mento.dto.MemberPasswordRequestDTO;
-import com.theZ.dotoring.app.mento.dto.ValidateMentoNicknameRqDTO;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.memberAccount.repository.MemberAccountRepository;
 import com.theZ.dotoring.app.menti.dto.SaveMentiRqDTO;
@@ -12,9 +12,9 @@ import com.theZ.dotoring.app.mento.dto.SaveMentoRqDTO;
 import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.enums.MemberType;
 import com.theZ.dotoring.exception.LoginIdDuplicateException;
-import com.theZ.dotoring.exception.NicknameDuplicateException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,9 +31,10 @@ import java.util.NoSuchElementException;
 @Log4j2
 @RequiredArgsConstructor
 @Transactional
-public class MemberAccountService {
+public class MemberAccountService{
 
     private final MemberAccountRepository memberAccountRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     /**
@@ -46,7 +47,7 @@ public class MemberAccountService {
      */
 
     public MemberAccount saveMentoAccount(SaveMentoRqDTO mentoSignupRequestDTO, List<Certificate> certificates){
-        MemberAccount memberAccount = MemberAccount.createMemberAccount(mentoSignupRequestDTO.getLoginId(), mentoSignupRequestDTO.getPassword(), mentoSignupRequestDTO.getEmail(), MemberType.MENTO, certificates);
+        MemberAccount memberAccount = MemberAccount.createMemberAccount(mentoSignupRequestDTO.getLoginId(), bCryptPasswordEncoder.encode(mentoSignupRequestDTO.getPassword()), mentoSignupRequestDTO.getEmail(), MemberType.MENTO, certificates, MemberRole.ROLE_WAIT);
         memberAccountRepository.save(memberAccount);
         return memberAccount;
     }
@@ -60,7 +61,7 @@ public class MemberAccountService {
      * @return memberAccount
      */
     public MemberAccount saveMentiAccount(SaveMentiRqDTO saveMentiRqDTO, List<Certificate> certificates){
-        MemberAccount memberAccount = MemberAccount.createMemberAccount(saveMentiRqDTO.getLoginId(), saveMentiRqDTO.getPassword(), saveMentiRqDTO.getEmail(),MemberType.MENTI, certificates);
+        MemberAccount memberAccount = MemberAccount.createMemberAccount(saveMentiRqDTO.getLoginId(), bCryptPasswordEncoder.encode(saveMentiRqDTO.getPassword()), saveMentiRqDTO.getEmail(),MemberType.MENTI, certificates, MemberRole.ROLE_WAIT);
         memberAccountRepository.save(memberAccount);
         return memberAccount;
     }
@@ -156,5 +157,4 @@ public class MemberAccountService {
         MemberAccount memberAccount = memberAccountRepository.findById(updateMemberPasswordRequestDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
         memberAccount.updatePassword(updateMemberPasswordRequestDTO.getPassword());
     }
-
 }
