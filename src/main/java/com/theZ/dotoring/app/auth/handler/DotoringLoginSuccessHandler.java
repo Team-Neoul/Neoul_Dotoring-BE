@@ -3,7 +3,7 @@ package com.theZ.dotoring.app.auth.handler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theZ.dotoring.app.auth.AuthConstants;
 import com.theZ.dotoring.app.auth.model.MemberDetails;
-import com.theZ.dotoring.app.auth.service.TokenService;
+import com.theZ.dotoring.app.auth.model.Token;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.common.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +20,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.Instant;
-import java.util.Date;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 public class DotoringLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-    private final TokenService tokenService;
+    private final Token token;
 
     @SneakyThrows
     @Override
@@ -35,8 +34,8 @@ public class DotoringLoginSuccessHandler extends SavedRequestAwareAuthentication
                                         final Authentication authentication) {
         final MemberAccount memberAccount = ((MemberDetails) authentication.getPrincipal()).getMemberAccount();
 
-        final String accessToken = tokenService.generateAccessToken(memberAccount, Instant.now());
-        final String refreshToken = tokenService.generateRefreshToken(memberAccount, Instant.now());
+        final String accessToken = token.generateAccessToken(memberAccount, Instant.now());
+        final String refreshToken = token.generateRefreshToken(memberAccount, Instant.now());
 
         log.info("accessToken : " + accessToken);
         log.info("refreshToken : " + refreshToken);
