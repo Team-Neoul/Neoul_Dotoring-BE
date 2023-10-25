@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:Ndotoring;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: dotoring
+    password: dotoring
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    default_batch_fetch_size: 1000
+  servlet:
+    multipart:
+      maxFileSize: 20MB
+      maxRequestSize: 40MB
+  redis:
+    host: localhost
+    port: 6379
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+logging:
+  level:
+    sql: error
+    org:
+      hibernate:
+        SQL: off
+
+email:
+  name: Dotoring
+  link: https://dotoring.com
+  validTime: 300000
+
+jwt:
+  secretKey: s2cr435ek45dfoafcretKeyfcs35e6K9ys8e5qtKeyse2342c424324seuphetocyse4351tnmy
+  # 2일
+  accessTokenExp: 172800000
+  # 5일
+  refreshTokenExp: 432000000
+
+
