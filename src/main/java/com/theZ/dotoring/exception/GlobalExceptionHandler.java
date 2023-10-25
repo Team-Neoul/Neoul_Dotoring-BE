@@ -11,12 +11,14 @@ import org.springframework.validation.BindException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
 
     @ExceptionHandler(BindException.class)
     public ApiResponse<ApiResponse.CustomBody> handleBindException(BindException e){
@@ -26,6 +28,17 @@ public class GlobalExceptionHandler {
     public ApiResponse<ApiResponse.CustomBody> handleConstraintViolationException(ConstraintViolationException e){
         return ApiResponseGenerator.fail(MessageCode.DUPLICATED_VALUE.getCode(),MessageCode.DUPLICATED_VALUE.getValue(),HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(DefaultProfileImageNotFoundException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleBindException(DefaultProfileImageNotFoundException e){
+        return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleBindException(EmailAlreadyExistsException e){
+        return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(NotFoundMemberException.class)
     public ApiResponse<ApiResponse.CustomBody> handleLoginIdDuplicateException(NotFoundMemberException e){
         return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.BAD_REQUEST);
@@ -54,6 +67,11 @@ public class GlobalExceptionHandler {
         return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleExtentionNotAllowedException(MaxUploadSizeExceededException e){
+        return ApiResponseGenerator.fail(MessageCode.LIMIT_FILE_SIZE.getCode(),MessageCode.LIMIT_FILE_SIZE.getValue(), HttpStatus.BAD_REQUEST);
+    }
+    
     @ExceptionHandler(ExtentionNotAllowedException.class)
     public ApiResponse<ApiResponse.CustomBody> handleExtentionNotAllowedException(ExtentionNotAllowedException e){
         return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.BAD_REQUEST);
@@ -90,7 +108,6 @@ public class GlobalExceptionHandler {
     public ApiResponse<ApiResponse.CustomBody> handleHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException e){
         return ApiResponseGenerator.fail(MessageCode.NOT_ALLOWED_FILE_EXT.getCode(),MessageCode.NOT_ALLOWED_FILE_EXT.getValue(), HttpStatus.BAD_REQUEST);
     }
-
 
 
     @ExceptionHandler(RuntimeException.class)

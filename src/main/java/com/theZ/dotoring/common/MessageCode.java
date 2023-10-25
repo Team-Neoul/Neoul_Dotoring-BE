@@ -24,7 +24,7 @@ public enum MessageCode {
 
     VALIDATION_FAIL("4011","유효성 검증 실패"),
 
-    LIMIT_FILE_SIZE("4012","파일 사이즈는 20MB 입니다."),
+    LIMIT_FILE_SIZE("4012","파일 사이즈는 최대 20MB 입니다."),
     MEMBER_NOT_FOUND("4938","회원이 존재하지 않습니다."),
 
     ROOM_NOT_FOUND("4013","채팅방이 존재하지 않습니다."),
