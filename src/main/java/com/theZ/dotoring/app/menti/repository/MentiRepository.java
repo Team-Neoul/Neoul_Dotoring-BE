@@ -18,8 +18,8 @@ public interface MentiRepository extends JpaRepository<Menti,Long> {
     @Query("SELECT M FROM Menti M JOIN FETCH M.profile WHERE M.mentiId = :mentiId")
     Optional<Menti> findMentiWithProfileUsingFetchJoinByMentiId(@Param("mentiId") Long mentiId);
 
-    @Query("SELECT distinct M FROM Menti M JOIN FETCH M.profile JOIN FETCH M.memberMajors WHERE M.mentiId in :mentiIds")
-    List<Menti> findMentisWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(@Param("mentiIds") List<Long> mentiIds);
+    @Query("SELECT distinct M FROM Menti M JOIN FETCH M.profile JOIN FETCH M.memberMajors WHERE M.mentiId in :mentiIds and M.status = :status")
+    List<Menti> findMentisWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(@Param("mentiIds") List<Long> mentiIds, @Param("status") Status status);
 
     @Query("SELECT M FROM Menti M JOIN FETCH M.profile JOIN FETCH M.memberMajors WHERE M.mentiId = :mentiId")
     Optional<Menti> findMentiWithProfileAndMajorsUsingFetchJoinByMentoId(@Param("mentiId") Long mentiId);
