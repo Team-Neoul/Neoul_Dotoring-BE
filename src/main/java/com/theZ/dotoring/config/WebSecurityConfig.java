@@ -3,6 +3,7 @@ package com.theZ.dotoring.config;
 import com.theZ.dotoring.app.auth.DotoringAuthenticationFilter;
 import com.theZ.dotoring.app.auth.DotoringAuthenticationProvider;
 import com.theZ.dotoring.app.auth.FilterResponseUtils;
+import com.theZ.dotoring.app.auth.JwtAuthenticationFilter;
 import com.theZ.dotoring.app.auth.handler.DotoringLoginSuccessHandler;
 import com.theZ.dotoring.app.auth.service.MemberDetailService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -52,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http.authorizeRequests().antMatchers("/h2-console/*").permitAll();
 
-        //http.addFilterBefore(jwtAuthenticationFilter(), BasicAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationFilter(), BasicAuthenticationFilter.class);
 
     }
 
@@ -73,6 +75,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DotoringAuthenticationProvider dotoringAuthenticationProvider() {
         return new DotoringAuthenticationProvider(memberDetailService, bCryptPasswordEncoder());
+    }
+
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter() throws Exception {
+        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager(),memberDetailService);
+        jwtAuthenticationFilter.afterPropertiesSet();
+        return jwtAuthenticationFilter;
     }
 
     @Override
