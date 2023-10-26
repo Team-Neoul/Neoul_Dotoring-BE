@@ -19,7 +19,6 @@ import java.io.IOException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-
     @ExceptionHandler(BindException.class)
     public ApiResponse<ApiResponse.CustomBody> handleBindException(BindException e){
         return ApiResponseGenerator.fail(e.getFieldError().getDefaultMessage(),null, HttpStatus.BAD_REQUEST);

@@ -22,10 +22,7 @@ spring:
 
 logging:
   level:
-    sql: error
-    org:
-      hibernate:
-        SQL: off
+    root: debug
 
 email:
   name: Dotoring

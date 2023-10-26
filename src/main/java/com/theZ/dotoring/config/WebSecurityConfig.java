@@ -48,8 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/api/fields","/api/majors","/api/member/code","/api/member/loginId","/api/member/password",
                             "/api/member/signup/code","/api/member/signup/valid-code","/api/member/valid-code","/api/member/valid-loginId",
                             "/api/menti/valid-nickname","/api/mento/valid-nickname","/api/member/login","/api/signup-menti","/api/signup-mento").permitAll()
-                    .antMatchers("/api/menti","/api/menti/{id}","/api/mento/desiredField","/api/mento/introduction","/api/mento/mentoringSystem","/api/mento/nickname","/api/profile").hasRole("MENTO")
-                    .antMatchers("/api/mento","/api/mento/{id}","/api/menti/desiredField","/api/menti/introduction","/api/menti/mentoringSystem","/api/menti/nickname","/api/profile").hasRole("MENTI");
+                    .antMatchers("/api/menti/{id}","/api/mento/desiredField","/api/mento/introduction","/api/mento/mentoringSystem","/api/mento/nickname","/api/profile","/api/menti").hasRole("MENTO")
+                    .antMatchers("/api/mento/{id}","/api/menti/desiredField","/api/menti/introduction","/api/menti/mentoringSystem","/api/menti/nickname","/api/profile","/api/mento").hasRole("MENTI");
 
         http.headers().frameOptions().disable();
         http.authorizeRequests().antMatchers("/h2-console/*").permitAll();

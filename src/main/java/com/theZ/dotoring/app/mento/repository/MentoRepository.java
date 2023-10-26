@@ -16,8 +16,8 @@ public interface MentoRepository extends JpaRepository<Mento,Long> {
     @Query("SELECT M FROM Mento M JOIN FETCH M.profile WHERE M.mentoId = :mentoId")
     Optional<Mento> findMentoWithProfileUsingFetchJoinByMentoId(@Param("mentoId") Long mentoId);
 
-    @Query("SELECT distinct M FROM Mento M JOIN FETCH M.profile JOIN FETCH M.memberMajors WHERE M.mentoId in :mentoIds")
-    List<Mento> findMentosWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(@Param("mentoIds") List<Long> mentoIds);
+    @Query("SELECT distinct M FROM Mento M JOIN FETCH M.profile JOIN FETCH M.memberMajors WHERE M.mentoId in :mentoIds and M.status = :status")
+    List<Mento> findMentosWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(@Param("mentoIds") List<Long> mentoIds, @Param("status") Status status);
 
 
     @Query("SELECT M FROM Mento M JOIN FETCH M.profile JOIN FETCH M.memberMajors WHERE M.mentoId = :mentoId")

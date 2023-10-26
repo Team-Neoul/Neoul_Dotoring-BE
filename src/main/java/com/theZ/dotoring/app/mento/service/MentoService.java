@@ -106,7 +106,7 @@ public class MentoService {
 
     @Transactional(readOnly = true)
     public List<FindAllMentoRespDTO> findRecommendMentos(List<Long> mentoIds){
-        List<Mento> recommendMentos = mentoRepository.findMentosWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(mentoIds);
+        List<Mento> recommendMentos = mentoRepository.findMentosWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(mentoIds, Status.ACTIVE);
         List<FindAllMentoRespDTO> findAllMentoRespDTOList = MentoMapper.from(recommendMentos);
         return findAllMentoRespDTOList;
     }
