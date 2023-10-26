@@ -75,13 +75,49 @@ public class Token {
 
     public static Claims getClaimsFormToken(String token) {
         token = token.replace(AuthConstants.TOKEN_TYPE, "");
-        Object claim = Jwts.parserBuilder()
+        Object oClaims = Jwts.parserBuilder()
                 .setSigningKey(Base64.getDecoder().decode(secretKey))
                 .build()
                 .parse(token)
                 .getBody();
-        return (Claims)claim;
+        return (Claims)oClaims;
     }
 
+    public String getSubjectFormToken(String token) {
+        token = token.replace(AuthConstants.TOKEN_TYPE, "");
+        Object oClaims = Jwts.parserBuilder()
+                .setSigningKey(Base64.getDecoder().decode(secretKey))
+                .build()
+                .parse(token)
+                .getBody();
+        Claims claims = (Claims)oClaims;
+        return claims.getSubject();
+    }
+
+    public static boolean isValidAccessToken(String accessToken) {
+        try {
+            Claims claims = getClaimsFormToken(accessToken);
+            log.info("expireTime :" + claims.getExpiration());
+            return true;
+        } catch (ExpiredJwtException e) {
+            return false;
+        } catch (JwtException e) {
+            throw new JwtException("잘못된 엑세스 토큰입니다.");
+        }
+    }
+
+    public static boolean isValidRefreshToken(String refreshToken) {
+        try {
+            Claims claims = getClaimsFormToken(refreshToken);
+            log.info("expireTime :" + claims.getExpiration());
+            log.info("email :" + claims.get("email"));
+            log.info("role :" + claims.get("role"));
+            return true;
+        } catch (ExpiredJwtException e) {
+            throw new ExpiredJwtException(e.getHeader(), e.getClaims(), "만료된 Refresh 토큰입니다.");
+        } catch (JwtException e) {
+            throw new JwtException("잘못된 Refresh 토큰입니다.");
+        }
+    }
 
 }
