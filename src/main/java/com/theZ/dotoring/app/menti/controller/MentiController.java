@@ -1,5 +1,6 @@
 package com.theZ.dotoring.app.menti.controller;
 
+import com.theZ.dotoring.app.auth.model.MemberDetails;
 import com.theZ.dotoring.app.menti.dto.*;
 import com.theZ.dotoring.app.menti.handler.FindAllMentiHandler;
 import com.theZ.dotoring.app.menti.handler.SaveMentiHandler;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.IOException;
@@ -53,8 +55,8 @@ public class MentiController {
     @ApiOperation(value = "멘티 홈에서 도토링 추천 방식에따른 멘티들 추천")
     @GetMapping("/menti")
     public ApiResponse<ApiResponse.CustomBody<Slice<FindAllMentiRespDTO>>> findAllMentiBySlice(
-            @RequestParam(required = false) Long lastMentiId, @RequestParam(defaultValue = "10") Integer size, Long mentoId){
-        return ApiResponseGenerator.success(findAllMentiHandler.execute(lastMentiId, size, mentoId),HttpStatus.OK);
+            @RequestParam(required = false) Long lastMentiId, @RequestParam(defaultValue = "10") Integer size, @AuthenticationPrincipal MemberDetails memberDetails){
+        return ApiResponseGenerator.success(findAllMentiHandler.execute(lastMentiId, size, memberDetails.getId()),HttpStatus.OK);
     }
 
     @GetMapping("/wait-menti")
