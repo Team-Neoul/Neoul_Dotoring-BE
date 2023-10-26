@@ -4,9 +4,7 @@ import com.theZ.dotoring.app.certificate.model.Certificate;
 import com.theZ.dotoring.app.certificate.repository.CertificateRepository;
 import com.theZ.dotoring.app.desiredField.model.DesiredField;
 import com.theZ.dotoring.app.desiredField.repository.DesiredFieldRepository;
-import com.theZ.dotoring.app.field.repository.FieldRepository;
 import com.theZ.dotoring.app.field.service.FieldService;
-import com.theZ.dotoring.app.major.repository.MajorRepository;
 import com.theZ.dotoring.app.major.service.MajorService;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.memberAccount.model.MemberRole;
@@ -19,12 +17,10 @@ import com.theZ.dotoring.app.menti.repository.MentiRepository;
 import com.theZ.dotoring.app.mento.dto.SaveMentoRqDTO;
 import com.theZ.dotoring.app.mento.model.Mento;
 import com.theZ.dotoring.app.mento.repository.MentoRepository;
-import com.theZ.dotoring.app.profile.model.Profile;
-import com.theZ.dotoring.app.profile.repository.ProfileRepository;
 import com.theZ.dotoring.app.profile.service.ProfileService;
 import com.theZ.dotoring.enums.MemberType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +30,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@Profile("local")
 @RequiredArgsConstructor
 public class DataInit {
 
@@ -93,7 +90,7 @@ public class DataInit {
             MemberAccount memberAccount = new MemberAccount("dotoring92", bCryptPasswordEncoder.encode("dotoring92@@"), "dotoring92@naver.com", saveCertificates, MemberType.MENTI, MemberRole.ROLE_MENTI);
             memberAccountRepository.save(memberAccount);
 
-            Profile defaultProfile = profileService.getDefaultProfile();
+            com.theZ.dotoring.app.profile.model.Profile defaultProfile = profileService.getDefaultProfile();
 
             List<String> fieldList = List.of("진로", "개발_언어", "공모전");
             List<com.theZ.dotoring.app.field.model.Field> fields = fieldList.stream().map(com.theZ.dotoring.app.field.model.Field::new).collect(Collectors.toList());
@@ -200,7 +197,7 @@ public class DataInit {
 
         public void initMento(){
 
-            Profile defaultProfile = profileService.getDefaultProfile();
+            com.theZ.dotoring.app.profile.model.Profile defaultProfile = profileService.getDefaultProfile();
 
             /**
              *  멘토 저장 1 - 멘티와 분야가 3개 겹침  => 우선 순위 1
