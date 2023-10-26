@@ -1,12 +1,16 @@
 package com.theZ.dotoring.app.auth.model;
 
 import com.theZ.dotoring.app.auth.AuthConstants;
+import com.theZ.dotoring.app.auth.FilterResponseUtils;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
@@ -94,7 +98,7 @@ public class Token {
         return claims.getSubject();
     }
 
-    public static boolean isValidAccessToken(String accessToken) {
+    public static boolean isValidAccessToken(String accessToken, HttpServletResponse response) throws IOException {
         try {
             Claims claims = getClaimsFormToken(accessToken);
             log.info("expireTime :" + claims.getExpiration());
@@ -102,11 +106,12 @@ public class Token {
         } catch (ExpiredJwtException e) {
             return false;
         } catch (JwtException e) {
-            throw new JwtException("잘못된 엑세스 토큰입니다.");
+            FilterResponseUtils.invalidAccessToken(response);
+            return false;
         }
     }
 
-    public static boolean isValidRefreshToken(String refreshToken) {
+    public static boolean isValidRefreshToken(String refreshToken, HttpServletResponse response) throws IOException {
         try {
             Claims claims = getClaimsFormToken(refreshToken);
             log.info("expireTime :" + claims.getExpiration());
@@ -114,9 +119,10 @@ public class Token {
             log.info("role :" + claims.get("role"));
             return true;
         } catch (ExpiredJwtException e) {
-            throw new ExpiredJwtException(e.getHeader(), e.getClaims(), "만료된 Refresh 토큰입니다.");
+            return false;
         } catch (JwtException e) {
-            throw new JwtException("잘못된 Refresh 토큰입니다.");
+            FilterResponseUtils.invalidRefreshToken(response);
+            return false;
         }
     }
 
