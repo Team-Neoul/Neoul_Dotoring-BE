@@ -37,6 +37,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().accessDeniedHandler((request, response, authException) -> {
             FilterResponseUtils.unAuthorized(response);
         });
+
+        http.headers().frameOptions().disable();
+        http.authorizeRequests().antMatchers("/h2-console/*").permitAll();
+
         http.addFilterBefore(dotoringAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .csrf().disable()
                 // 인증 정보를 세션에 저장하지 않고, 상태가 없는(무상태) 웹 애플리케이션을 구성하기 위해 사용됩니다.
@@ -51,8 +55,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/api/menti/{id}","/api/mento/desiredField","/api/mento/introduction","/api/mento/mentoringSystem","/api/mento/nickname","/api/profile","/api/menti").hasRole("MENTO")
                     .antMatchers("/api/mento/{id}","/api/menti/desiredField","/api/menti/introduction","/api/menti/mentoringSystem","/api/menti/nickname","/api/profile","/api/mento").hasRole("MENTI");
 
-        http.headers().frameOptions().disable();
-        http.authorizeRequests().antMatchers("/h2-console/*").permitAll();
 
         http.addFilterBefore(jwtAuthenticationFilter(), BasicAuthenticationFilter.class);
 

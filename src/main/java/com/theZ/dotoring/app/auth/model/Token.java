@@ -101,27 +101,27 @@ public class Token {
     public static boolean isValidAccessToken(String accessToken, HttpServletResponse response) throws IOException {
         try {
             Claims claims = getClaimsFormToken(accessToken);
-            log.info("expireTime :" + claims.getExpiration());
             return true;
-        } catch (ExpiredJwtException e) {
-            return false;
         } catch (JwtException e) {
             FilterResponseUtils.invalidAccessToken(response);
             return false;
         }
     }
 
+    public static boolean isExpiredToken(String accessToken) throws IOException {
+        try {
+            Claims claims = getClaimsFormToken(accessToken);
+            return false;
+        } catch (JwtException e) {
+            return true;
+        }
+    }
+
     public static boolean isValidRefreshToken(String refreshToken, HttpServletResponse response) throws IOException {
         try {
             Claims claims = getClaimsFormToken(refreshToken);
-            log.info("expireTime :" + claims.getExpiration());
-            log.info("email :" + claims.get("email"));
-            log.info("role :" + claims.get("role"));
             return true;
-        } catch (ExpiredJwtException e) {
-            return false;
         } catch (JwtException e) {
-            FilterResponseUtils.invalidRefreshToken(response);
             return false;
         }
     }

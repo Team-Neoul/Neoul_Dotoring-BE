@@ -30,7 +30,6 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
 
         Optional<String> accessToken = Optional.ofNullable(request.getHeader(AuthConstants.AUTH_HEADER));
-        log.debug("accessToken, {}", accessToken.get());
 
         if(accessToken.isEmpty()){
             chain.doFilter(request,response);
@@ -44,24 +43,34 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
             Authentication authentication = memberDetailService.getAuthentication(accessToken.get());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             chain.doFilter(request,response);
-        }else{
-            log.debug("isValidAccessToken, {}", false);
-            Optional<Cookie[]> cookies = Optional.ofNullable(request.getCookies());
-            Optional<String> refreshToken = Optional.ofNullable(getRefreshToken(cookies));
-            if(refreshToken.isEmpty()){
-                response.sendRedirect(request.getContextPath() + "/api/auth/reRequest");
-            }else{
-                boolean isValidRefreshToken = Token.isValidRefreshToken(refreshToken.get(),response);
-                if(isValidRefreshToken){
-                    log.debug("isValidRefreshToken, {}", true);
-                    chain.doFilter(request,response);
-                }else {
-                    log.debug("isValidRefreshToken, {}", false);
-                    response.sendRedirect(request.getContextPath() + "/api/auth/fail");
-                }
-            }
-
         }
+
+        boolean expiredToken = Token.isExpiredToken(accessToken.get());
+
+        if(!expiredToken){
+            FilterResponseUtils.invalidAccessToken(response);
+            return;
+        }
+
+        log.debug("isExpiredAccessToken, {}", true);
+
+        Optional<Cookie[]> cookies = Optional.ofNullable(request.getCookies());
+        Optional<String> refreshToken = Optional.ofNullable(getRefreshToken(cookies));
+
+        if(refreshToken.isEmpty()){
+            response.sendRedirect(request.getContextPath() + "/api/auth/reRequest");
+        }else{
+            boolean isValidRefreshToken = Token.isValidRefreshToken(refreshToken.get(),response);
+            if(isValidRefreshToken){
+                log.debug("isValidRefreshToken, {}", true);
+                response.sendRedirect(request.getContextPath() + "/api/auth/reIssue");
+            }else {
+                log.debug("isValidRefreshToken, {}", false);
+                FilterResponseUtils.invalidRefreshToken(response);
+            }
+        }
+
+
 
     }
 
