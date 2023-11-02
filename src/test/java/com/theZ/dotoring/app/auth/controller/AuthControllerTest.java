@@ -52,6 +52,32 @@ class AuthControllerTest {
 
     }
 
+    @Test
+    @DisplayName("잘못된 AccessToken을 줄 때")
+    void invalid_accessToken_test() throws Exception {
+        // given
+
+        String accessToken = "112e3";
+
+
+        // then
+
+        ResultActions result = mvc.perform(
+                MockMvcRequestBuilders
+                        .get("/api/menti/3")
+                        .header("Authorization", "Bearer " + accessToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        String responseBody = result.andReturn().getResponse().getContentAsString();
+        System.out.println("responseBody = " + responseBody);
+
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.success").value(false));
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.error.code").value(9000));
+
+    }
+
+
     class RequestDTO {
         private String loginId;
         private String password;
