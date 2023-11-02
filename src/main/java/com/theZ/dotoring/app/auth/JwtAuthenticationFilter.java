@@ -43,6 +43,7 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
             Authentication authentication = memberDetailService.getAuthentication(accessToken.get());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             chain.doFilter(request,response);
+            return;
         }
 
         boolean expiredToken = Token.isExpiredToken(accessToken.get());
