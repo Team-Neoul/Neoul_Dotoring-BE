@@ -3,7 +3,7 @@ package com.theZ.dotoring.common;
 public enum MessageCode {
 
     REQUIRE_LOGIN("1010","로그인이 필요합니다."),
-    EXPIRED_ACCESS_TOKEN("8080","만료된 AccessToken입니다. 재발행 요청을 해주세요."),
+    EXPIRED_ACCESS_TOKEN("9001","만료된 AccessToken입니다. 재발행 요청을 해주세요."),
 
     INVALID_ACCESS_TOKEN("9000","잘못된 AccessToken입니다."),
     INVALID_REFRESH_TOKEN("1919","잘못된 RefreshToken입니다."),
