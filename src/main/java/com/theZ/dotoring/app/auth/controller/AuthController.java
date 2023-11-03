@@ -30,11 +30,6 @@ public class AuthController {
     private final Token token;
     private final MemberDetailService memberDetailService;
 
-    @GetMapping("/auth/reRequest")
-    public ApiResponse<ApiResponse.CustomBody> alertExpiredToken() {
-        return ApiResponseGenerator.fail(MessageCode.EXPIRED_ACCESS_TOKEN.getCode(),MessageCode.EXPIRED_ACCESS_TOKEN.getValue(), HttpStatus.OK);
-    }
-
     @PostMapping("/auth/reIssue")
     public ApiResponse<ApiResponse.CustomBody<Void>> reissueTokens(HttpServletRequest request, HttpServletResponse response) {
         String accessToken = request.getHeader(AuthConstants.AUTH_HEADER);

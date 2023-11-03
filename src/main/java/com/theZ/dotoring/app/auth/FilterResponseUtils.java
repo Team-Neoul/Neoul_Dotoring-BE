@@ -33,4 +33,10 @@ public class FilterResponseUtils {
     }
 
 
+    public static void reRequest(HttpServletResponse response) throws IOException {
+        ApiResponse<?> apiResponse = ApiResponseGenerator.fail(MessageCode.EXPIRED_ACCESS_TOKEN.getCode(), MessageCode.EXPIRED_ACCESS_TOKEN.getValue(), HttpStatus.UNAUTHORIZED);
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        response.getWriter().write(new ObjectMapper().writeValueAsString(apiResponse.getBody()));
+    }
 }
