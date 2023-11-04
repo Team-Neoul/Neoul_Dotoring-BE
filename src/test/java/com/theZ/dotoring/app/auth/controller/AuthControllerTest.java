@@ -1,6 +1,7 @@
 package com.theZ.dotoring.app.auth.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.theZ.dotoring.app.auth.AuthConstants;
 import com.theZ.dotoring.app.auth.model.Token;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.enums.MemberType;
@@ -16,6 +17,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import javax.servlet.http.Cookie;
 import java.time.Instant;
 
 @ActiveProfiles("local")
@@ -68,13 +70,12 @@ class AuthControllerTest {
 
         String accessToken = "112e3";
 
-
         // then
 
         ResultActions result = mvc.perform(
                 MockMvcRequestBuilders
                         .get("/api/menti/3")
-                        .header("Authorization", "Bearer " + accessToken)
+                        .header("Authorization", AuthConstants.TOKEN_TYPE + accessToken)
                         .contentType(MediaType.APPLICATION_JSON)
         );
 
@@ -99,7 +100,7 @@ class AuthControllerTest {
         ResultActions result = mvc.perform(
                 MockMvcRequestBuilders
                         .get("/api/menti/3")
-                        .header("Authorization",expiredToken)
+                        .header("Authorization",AuthConstants.TOKEN_TYPE + expiredToken)
                         .contentType(MediaType.APPLICATION_JSON)
         );
 
@@ -111,7 +112,31 @@ class AuthControllerTest {
 
     }
 
-
+//    @Test
+//    @DisplayName("유효기간이 지난 AccessToken과 정상적인 RefreshToken 제공 즉 토큰 재발행행 , 새로운 AccessToken과 RefreshToken을 제공")
+//    void reissue_test() throws Exception {
+//        // given
+//
+//        String expiredToken = token.generateAccessToken(makeMemberAccount(), Instant.now().minusSeconds(172800));
+//        String refreshToken = token.generateRefreshToken(makeMemberAccount(), Instant.now()); // 정상 리프레시 토큰
+//
+//
+//        // then
+//
+//        ResultActions result = mvc.perform(
+//                MockMvcRequestBuilders
+//                        .post("/api/auth/reIssue")
+//                        .header("Authorization",AuthConstants.TOKEN_TYPE + expiredToken)
+//                        .cookie(new Cookie("refreshToken",AuthConstants.TOKEN_TYPE + refreshToken))
+//                        .contentType(MediaType.APPLICATION_JSON)
+//        );
+//
+//        String responseBody = result.andReturn().getResponse().getContentAsString();
+//        System.out.println("responseBody = " + responseBody);
+//
+//        result.andExpect(MockMvcResultMatchers.jsonPath("$.success").value(true));
+//
+//    }
 
 
 

@@ -6,13 +6,11 @@ import com.theZ.dotoring.app.auth.model.Token;
 import com.theZ.dotoring.app.auth.service.MemberDetailService;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
-import com.theZ.dotoring.common.MessageCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +34,6 @@ public class AuthController {
         String refreshToken = Arrays.stream(request.getCookies()).filter(cookie -> cookie.getName().equals("refreshToken")).findAny().orElseThrow(() -> new IllegalStateException("refreshToken 이라는 이름을 가진 cookie가 없습니다.")).getValue();
         String loginIdFromAccessToken = token.getSubjectFormToken(accessToken);
         String loginIdFromRefreshToken = token.getSubjectFormToken(refreshToken);
-
         verifySameLoginId(response, loginIdFromAccessToken, loginIdFromRefreshToken);
 
         return ApiResponseGenerator.success(HttpStatus.OK);
