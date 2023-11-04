@@ -20,7 +20,6 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
 import java.util.Arrays;
 
 @Configuration
@@ -85,7 +84,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         jwtAuthenticationFilter.afterPropertiesSet();
         return jwtAuthenticationFilter;
     }
-
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) {
         authenticationManagerBuilder.authenticationProvider(dotoringAuthenticationProvider());
