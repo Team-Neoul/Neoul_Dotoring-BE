@@ -30,23 +30,14 @@ public class AuthController {
 
     @PostMapping("/auth/reIssue")
     public ApiResponse<ApiResponse.CustomBody<Void>> reissueTokens(HttpServletRequest request, HttpServletResponse response) {
-        String accessToken = request.getHeader(AuthConstants.AUTH_HEADER);
         String refreshToken = Arrays.stream(request.getCookies()).filter(cookie -> cookie.getName().equals("refreshToken")).findAny().orElseThrow(() -> new IllegalStateException("refreshToken 이라는 이름을 가진 cookie가 없습니다.")).getValue();
-        String loginIdFromAccessToken = token.getSubjectFormToken(accessToken);
         String loginIdFromRefreshToken = token.getSubjectFormToken(refreshToken);
-        verifySameLoginId(response, loginIdFromAccessToken, loginIdFromRefreshToken);
-
+        UserDetails userDetails = memberDetailService.loadUserByUsername(loginIdFromRefreshToken);
+        MemberDetails memberDetails = (MemberDetails) userDetails;
+        String newAccessToken = token.generateAccessToken(memberDetails.getMemberAccount(), Instant.now());
+        String newRefreshToken = token.generateRefreshToken(memberDetails.getMemberAccount(), Instant.now());
+        setResponse(response, newAccessToken, newRefreshToken);
         return ApiResponseGenerator.success(HttpStatus.OK);
-    }
-
-    private void verifySameLoginId(HttpServletResponse response, String loginIdFromAccessToken, String loginIdFromRefreshToken) {
-        if(loginIdFromAccessToken.equals(loginIdFromRefreshToken)){
-            UserDetails userDetails = memberDetailService.loadUserByUsername(loginIdFromAccessToken);
-            MemberDetails memberDetails = (MemberDetails) userDetails;
-            String newAccessToken = token.generateAccessToken(memberDetails.getMemberAccount(), Instant.now());
-            String newRefreshToken = token.generateRefreshToken(memberDetails.getMemberAccount(), Instant.now());
-            setResponse(response, newAccessToken, newRefreshToken);
-        }
     }
 
 
