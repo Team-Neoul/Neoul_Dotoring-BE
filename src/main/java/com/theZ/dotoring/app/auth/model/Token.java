@@ -95,10 +95,8 @@ public class Token {
             getClaimsFormToken(accessToken);
             return TokenStatus.VALID;
         } catch (MalformedJwtException e) {
-            FilterResponsor.invalidAccessToken(response);
             return TokenStatus.INVALID;
         } catch (IllegalArgumentException e) {
-            FilterResponsor.invalidAccessToken(response);
             return TokenStatus.INVALID;
         } catch(ExpiredJwtException e){
             return TokenStatus.EXPIRED;
