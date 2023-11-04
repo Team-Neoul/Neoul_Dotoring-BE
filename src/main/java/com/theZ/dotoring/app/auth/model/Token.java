@@ -1,13 +1,14 @@
 package com.theZ.dotoring.app.auth.model;
 
 import com.theZ.dotoring.app.auth.AuthConstants;
-import com.theZ.dotoring.app.auth.FilterResponseUtils;
+import com.theZ.dotoring.app.auth.controller.FilterResponsor;
+import com.theZ.dotoring.app.auth.TokenStatus;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -16,12 +17,10 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.UUID;
 
-@Service
+@Component
 @RequiredArgsConstructor
 @Slf4j
 public class Token {
-
-
     private static String secretKey;
 
     @Value("${jwt.secretKey}")
@@ -88,42 +87,25 @@ public class Token {
     }
 
     public String getSubjectFormToken(String token) {
-        token = token.replace(AuthConstants.TOKEN_TYPE, "");
-        Object oClaims = Jwts.parserBuilder()
-                .setSigningKey(Base64.getDecoder().decode(secretKey))
-                .build()
-                .parse(token)
-                .getBody();
-        Claims claims = (Claims)oClaims;
-        return claims.getSubject();
+        return getClaimsFormToken(token).getSubject();
     }
 
-    public static boolean isValidAccessToken(String accessToken, HttpServletResponse response) throws IOException {
+    public static TokenStatus isValidToken(String accessToken, HttpServletResponse response) throws IOException {
         try {
-            Claims claims = getClaimsFormToken(accessToken);
-            return true;
-        } catch (JwtException e) {
-            FilterResponseUtils.invalidAccessToken(response);
-            return false;
+            getClaimsFormToken(accessToken);
+            return TokenStatus.VALID;
+        } catch (MalformedJwtException e) {
+            FilterResponsor.invalidAccessToken(response);
+            return TokenStatus.INVALID;
+        } catch (IllegalArgumentException e) {
+            FilterResponsor.invalidAccessToken(response);
+            return TokenStatus.INVALID;
+        } catch(ExpiredJwtException e){
+            return TokenStatus.EXPIRED;
+        }catch (JwtException e){
+            return TokenStatus.INVALID;
         }
     }
 
-    public static boolean isExpiredToken(String accessToken) throws IOException {
-        try {
-            Claims claims = getClaimsFormToken(accessToken);
-            return false;
-        } catch (JwtException e) {
-            return true;
-        }
-    }
-
-    public static boolean isValidRefreshToken(String refreshToken, HttpServletResponse response) throws IOException {
-        try {
-            Claims claims = getClaimsFormToken(refreshToken);
-            return true;
-        } catch (JwtException e) {
-            return false;
-        }
-    }
 
 }
