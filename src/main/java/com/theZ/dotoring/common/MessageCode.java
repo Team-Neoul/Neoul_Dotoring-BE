@@ -2,7 +2,7 @@ package com.theZ.dotoring.common;
 
 public enum MessageCode {
 
-    REQUIRE_LOGIN("1010","로그인이 필요합니다."),
+    REQUIRE_ACCESS("9003","권한이 없습니다."),
     EXPIRED_ACCESS_TOKEN("9001","만료된 AccessToken입니다. 재발행 요청을 해주세요."),
     EXPIRED_REFRESH_TOKEN("9002","만료된 RefreshToken입니다. 다시 로그인을 해주세요."),
 
