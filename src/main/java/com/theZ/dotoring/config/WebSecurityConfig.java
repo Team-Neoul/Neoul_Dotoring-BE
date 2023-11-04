@@ -2,7 +2,7 @@ package com.theZ.dotoring.config;
 
 import com.theZ.dotoring.app.auth.DotoringAuthenticationFilter;
 import com.theZ.dotoring.app.auth.DotoringAuthenticationProvider;
-import com.theZ.dotoring.app.auth.FilterResponseUtils;
+import com.theZ.dotoring.app.auth.controller.FilterResponsor;
 import com.theZ.dotoring.app.auth.JwtAuthenticationFilter;
 import com.theZ.dotoring.app.auth.handler.DotoringLoginSuccessHandler;
 import com.theZ.dotoring.app.auth.service.MemberDetailService;
@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.exceptionHandling().accessDeniedHandler((request, response, authException) -> {
-            FilterResponseUtils.unAuthorized(response);
+            FilterResponsor.unAuthorized(response);
         });
 
         http.headers().frameOptions().disable();
@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()//요청에 대한 인증/인가 규칙을 설정합니다. 즉, 특정한 URL 패턴에 대해 어떤 역할(Role)을 가진 사용자만 접근을 허용할지를 지정합니다.
                     .antMatchers("/api/fields","/api/majors","/api/member/code","/api/member/loginId","/api/member/password",
                             "/api/member/signup/code","/api/member/signup/valid-code","/api/member/valid-code","/api/member/valid-loginId",
-                            "/api/menti/valid-nickname","/api/mento/valid-nickname","/api/member/login","/api/signup-menti","/api/signup-mento").permitAll()
+                            "/api/menti/valid-nickname","/api/mento/valid-nickname","/api/member/login","/api/signup-menti","/api/signup-mento","/api/auth/reIssue").permitAll()
                     .antMatchers("/api/menti/{id}","/api/mento/desiredField","/api/mento/introduction","/api/mento/mentoringSystem","/api/mento/nickname","/api/profile","/api/menti").hasRole("MENTO")
                     .antMatchers("/api/mento/{id}","/api/menti/desiredField","/api/menti/introduction","/api/menti/mentoringSystem","/api/menti/nickname","/api/profile","/api/mento").hasRole("MENTI");
 
