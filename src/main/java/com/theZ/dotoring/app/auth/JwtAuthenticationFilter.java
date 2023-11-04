@@ -1,5 +1,6 @@
 package com.theZ.dotoring.app.auth;
 
+import com.theZ.dotoring.app.auth.controller.FilterResponsor;
 import com.theZ.dotoring.app.auth.model.Token;
 import com.theZ.dotoring.app.auth.service.MemberDetailService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,47 +31,42 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
 
         Optional<String> accessToken = Optional.ofNullable(request.getHeader(AuthConstants.AUTH_HEADER));
+        Optional<Cookie[]> cookies = Optional.ofNullable(request.getCookies());
+        Optional<String> refreshToken = Optional.ofNullable(getRefreshToken(cookies));
 
         if(accessToken.isEmpty()){
             chain.doFilter(request,response);
             return;
         }
 
-        boolean isValidAccessToken = Token.isValidAccessToken(accessToken.get(),response);
+        TokenStatus accessTokenStatus = Token.isValidToken(accessToken.get(), response);
 
-        if(isValidAccessToken){
+        if(accessTokenStatus == TokenStatus.VALID){
             log.debug("isValidAccessToken, {}", true);
             Authentication authentication = memberDetailService.getAuthentication(accessToken.get());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             chain.doFilter(request,response);
-            return;
-        }
-
-        boolean expiredToken = Token.isExpiredToken(accessToken.get());
-
-        if(!expiredToken){
-            FilterResponseUtils.invalidAccessToken(response);
-            return;
-        }
-
-        log.debug("isExpiredAccessToken, {}", true);
-
-        Optional<Cookie[]> cookies = Optional.ofNullable(request.getCookies());
-        Optional<String> refreshToken = Optional.ofNullable(getRefreshToken(cookies));
-
-        if(refreshToken.isEmpty()){
-            response.sendRedirect(request.getContextPath() + "/api/auth/reRequest");
-        }else{
-            boolean isValidRefreshToken = Token.isValidRefreshToken(refreshToken.get(),response);
-            if(isValidRefreshToken){
+        } else if (accessTokenStatus == TokenStatus.INVALID) {
+            log.debug("isValidAccessToken, {}", false);
+            FilterResponsor.invalidAccessToken(response);
+        } else if (accessTokenStatus == TokenStatus.EXPIRED && refreshToken.isEmpty()) {
+            log.debug("isExpiredAccessToken, {}", true);
+            FilterResponsor.reRequest(response);
+        } else if (accessTokenStatus == TokenStatus.EXPIRED && refreshToken.isPresent()) {
+            log.debug("isExpiredAccesssToken and isRefreshTokenPresent, {}", true);
+            TokenStatus refreshTokenStatus = Token.isValidToken(refreshToken.get(), response);
+            if(refreshTokenStatus == TokenStatus.VALID){
                 log.debug("isValidRefreshToken, {}", true);
-                response.sendRedirect(request.getContextPath() + "/api/auth/reIssue");
-            }else {
+                chain.doFilter(request,response);
+            }else if(refreshTokenStatus == TokenStatus.INVALID){
                 log.debug("isValidRefreshToken, {}", false);
-                FilterResponseUtils.invalidRefreshToken(response);
+                FilterResponsor.invalidRefreshToken(response);
+            }else {
+                log.debug("isExpiredRefreshToken, {}", true);
+                FilterResponsor.reLogin(response);
             }
-        }
 
+        }
 
 
     }
