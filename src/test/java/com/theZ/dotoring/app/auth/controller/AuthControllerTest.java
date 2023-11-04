@@ -158,6 +158,58 @@ class AuthControllerTest {
         System.out.println("responseBody = " + responseBody);
 
         result.andExpect(MockMvcResultMatchers.jsonPath("$.success").value(true));
+        result.andExpect(MockMvcResultMatchers.cookie().exists("refreshToken"));
+        result.andExpect(MockMvcResultMatchers.header().exists(AuthConstants.AUTH_HEADER));
+    }
+
+    @Test
+    @DisplayName("유효기간이 지난 AccessToken과 유효기간 지난 RefreshToken 제공")
+    void reLogin() throws Exception {
+
+        // given
+        String expiredToken = token.generateAccessToken(makeMemberAccount(), Instant.now().minusSeconds(172800));
+        String refreshToken = token.generateRefreshToken(makeMemberAccount(), Instant.now().minusSeconds(432000000));
+
+
+        // then
+        ResultActions result = mvc.perform(
+                MockMvcRequestBuilders
+                        .get("/api/menti/3")
+                        .header(AuthConstants.AUTH_HEADER,AuthConstants.TOKEN_TYPE + expiredToken)
+                        .cookie(new Cookie("refreshToken",AuthConstants.TOKEN_TYPE + refreshToken))
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        String responseBody = result.andReturn().getResponse().getContentAsString();
+        System.out.println("responseBody = " + responseBody);
+
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.success").value(false));
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.error.code").value(9002));
+    }
+
+    @Test
+    @DisplayName("유효기간이 지난 AccessToken과 잘못된 RefreshToken 제공")
+    void reLogin_2() throws Exception {
+
+        // given
+        String expiredToken = token.generateAccessToken(makeMemberAccount(), Instant.now().minusSeconds(172800));
+        String refreshToken = "asdfasf";
+
+
+        // then
+        ResultActions result = mvc.perform(
+                MockMvcRequestBuilders
+                        .get("/api/menti/3")
+                        .header(AuthConstants.AUTH_HEADER,AuthConstants.TOKEN_TYPE + expiredToken)
+                        .cookie(new Cookie("refreshToken",AuthConstants.TOKEN_TYPE + refreshToken))
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        String responseBody = result.andReturn().getResponse().getContentAsString();
+        System.out.println("responseBody = " + responseBody);
+
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.success").value(false));
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.error.code").value(9004));
     }
 
 
