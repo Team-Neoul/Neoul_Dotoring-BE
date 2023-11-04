@@ -59,7 +59,7 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
                 log.debug("isValidRefreshToken, {}", true);
                 chain.doFilter(request,response);
             }else if(refreshTokenStatus == TokenStatus.INVALID){
-                log.debug("isValidRefreshToken, {}", false);
+                log.debug("isInValidRefreshToken, {}", false);
                 FilterResponsor.invalidRefreshToken(response);
             }else {
                 log.debug("isExpiredRefreshToken, {}", true);
@@ -67,8 +67,6 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
             }
 
         }
-
-
     }
 
     private String getRefreshToken(Optional<Cookie[]> cookies){
