@@ -64,6 +64,30 @@ class AuthControllerTest {
     }
 
     @Test
+    @DisplayName("정상적인 AccessToken을 줄 때")
+    void accessToken_test() throws Exception {
+
+        // given
+        String accessToken = token.generateAccessToken(makeMemberAccount(), Instant.now());
+
+
+        // then
+
+        ResultActions result = mvc.perform(
+                MockMvcRequestBuilders
+                        .get("/api/mento/5")
+                        .header(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE + accessToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        String responseBody = result.andReturn().getResponse().getContentAsString();
+        System.out.println("responseBody = " + responseBody);
+
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.success").value(true));
+
+    }
+
+    @Test
     @DisplayName("잘못된 AccessToken을 줄 때, error.code는 9000 반환")
     void invalid_accessToken_test() throws Exception {
         // given
@@ -75,7 +99,7 @@ class AuthControllerTest {
         ResultActions result = mvc.perform(
                 MockMvcRequestBuilders
                         .get("/api/menti/3")
-                        .header("Authorization", AuthConstants.TOKEN_TYPE + accessToken)
+                        .header(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE + accessToken)
                         .contentType(MediaType.APPLICATION_JSON)
         );
 
@@ -100,7 +124,7 @@ class AuthControllerTest {
         ResultActions result = mvc.perform(
                 MockMvcRequestBuilders
                         .get("/api/menti/3")
-                        .header("Authorization",AuthConstants.TOKEN_TYPE + expiredToken)
+                        .header(AuthConstants.AUTH_HEADER,AuthConstants.TOKEN_TYPE + expiredToken)
                         .contentType(MediaType.APPLICATION_JSON)
         );
 
@@ -112,31 +136,29 @@ class AuthControllerTest {
 
     }
 
-//    @Test
-//    @DisplayName("유효기간이 지난 AccessToken과 정상적인 RefreshToken 제공 즉 토큰 재발행행 , 새로운 AccessToken과 RefreshToken을 제공")
-//    void reissue_test() throws Exception {
-//        // given
-//
-//        String expiredToken = token.generateAccessToken(makeMemberAccount(), Instant.now().minusSeconds(172800));
-//        String refreshToken = token.generateRefreshToken(makeMemberAccount(), Instant.now()); // 정상 리프레시 토큰
-//
-//
-//        // then
-//
-//        ResultActions result = mvc.perform(
-//                MockMvcRequestBuilders
-//                        .post("/api/auth/reIssue")
-//                        .header("Authorization",AuthConstants.TOKEN_TYPE + expiredToken)
-//                        .cookie(new Cookie("refreshToken",AuthConstants.TOKEN_TYPE + refreshToken))
-//                        .contentType(MediaType.APPLICATION_JSON)
-//        );
-//
-//        String responseBody = result.andReturn().getResponse().getContentAsString();
-//        System.out.println("responseBody = " + responseBody);
-//
-//        result.andExpect(MockMvcResultMatchers.jsonPath("$.success").value(true));
-//
-//    }
+    @Test
+    @DisplayName("유효기간이 지난 AccessToken과 정상적인 RefreshToken 제공 즉 토큰 재발행행 , 새로운 AccessToken과 RefreshToken을 제공")
+    void reissue_test() throws Exception {
+
+        // given
+        String expiredToken = token.generateAccessToken(makeMemberAccount(), Instant.now().minusSeconds(172800));
+        String refreshToken = token.generateRefreshToken(makeMemberAccount(), Instant.now()); // 정상 리프레시 토큰
+
+
+        // then
+        ResultActions result = mvc.perform(
+                MockMvcRequestBuilders
+                        .post("/api/auth/reIssue")
+                        .header(AuthConstants.AUTH_HEADER,AuthConstants.TOKEN_TYPE + expiredToken)
+                        .cookie(new Cookie("refreshToken",AuthConstants.TOKEN_TYPE + refreshToken))
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        String responseBody = result.andReturn().getResponse().getContentAsString();
+        System.out.println("responseBody = " + responseBody);
+
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.success").value(true));
+    }
 
 
 
