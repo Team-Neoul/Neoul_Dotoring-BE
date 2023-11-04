@@ -7,7 +7,7 @@ public enum MessageCode {
     EXPIRED_REFRESH_TOKEN("9002","만료된 RefreshToken입니다. 다시 로그인을 해주세요."),
 
     INVALID_ACCESS_TOKEN("9000","잘못된 AccessToken입니다."),
-    INVALID_REFRESH_TOKEN("1919","잘못된 RefreshToken입니다."),
+    INVALID_REFRESH_TOKEN("9004","잘못된 RefreshToken입니다."),
     NOT_ALLOWED_FILE_EXT("4003","파일 확장명은 pdf,img만 가능합니다."),
     FILE_NOT_INPUT_OUTPUT("4004","파일 입출력 오류입니다."),
     FILE_SAVE_FAIL("4005","파일 저장에 실패하였습니다."),
