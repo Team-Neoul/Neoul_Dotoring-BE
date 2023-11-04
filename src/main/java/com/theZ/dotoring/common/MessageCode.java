@@ -2,11 +2,12 @@ package com.theZ.dotoring.common;
 
 public enum MessageCode {
 
-    REQUIRE_LOGIN("1010","로그인이 필요합니다."),
-    EXPIRED_ACCESS_TOKEN("8080","만료된 AccessToken입니다. 재발행 요청을 해주세요."),
+    REQUIRE_ACCESS("9003","권한이 없습니다."),
+    EXPIRED_ACCESS_TOKEN("9001","만료된 AccessToken입니다. 재발행 요청을 해주세요."),
+    EXPIRED_REFRESH_TOKEN("9002","만료된 RefreshToken입니다. 다시 로그인을 해주세요."),
 
-    INVALID_ACCESS_TOKEN("9919","잘못된 AccessToken입니다."),
-    INVALID_REFRESH_TOKEN("1919","잘못된 RefreshToken입니다."),
+    INVALID_ACCESS_TOKEN("9000","잘못된 AccessToken입니다."),
+    INVALID_REFRESH_TOKEN("9004","잘못된 RefreshToken입니다. 다시 로그인을 해주세요."),
     NOT_ALLOWED_FILE_EXT("4003","파일 확장명은 pdf,img만 가능합니다."),
     FILE_NOT_INPUT_OUTPUT("4004","파일 입출력 오류입니다."),
     FILE_SAVE_FAIL("4005","파일 저장에 실패하였습니다."),
