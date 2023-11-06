@@ -13,10 +13,14 @@ spring:
         use_sql_comments: true
         show_sql: true
     default_batch_fetch_size: 1000
+    defer-datasource-initialization: true
   servlet:
     multipart:
       maxFileSize: 20MB
       maxRequestSize: 40MB
+  sql:
+    init:
+      data-locations: classpath:db/init.sql
 
   redis:
     host: localhost
