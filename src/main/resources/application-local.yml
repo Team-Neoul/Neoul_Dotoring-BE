@@ -36,4 +36,5 @@ jwt:
   # 5일
   refreshTokenExp: 432000000
 
+url: http://localhost:8080
 
