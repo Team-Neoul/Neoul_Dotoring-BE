@@ -1,6 +1,5 @@
 package com.theZ.dotoring.common;
 
-import com.theZ.dotoring.app.certificate.model.Certificate;
 import com.theZ.dotoring.exception.ExtentionNotAllowedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -20,11 +19,11 @@ public class FileUtils {
 
     private static final String rootPath = System.getProperty("user.dir");
 
-    private static final String fileDir = rootPath + "/images/";
+    private static final String fileDir = "/images/";
 
     private final List<String> fileExts = List.of("pdf","jpg","jpeg","png");
 
-    public static String getFullPath(String filename) {
+    public static String getFilePath(String filename) {
         return fileDir + filename;
     }
 
