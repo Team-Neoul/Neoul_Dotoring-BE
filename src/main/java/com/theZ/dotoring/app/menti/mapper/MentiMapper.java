@@ -5,6 +5,7 @@ import com.theZ.dotoring.app.menti.dto.FindMentiByIdRespDTO;
 import com.theZ.dotoring.app.menti.dto.FindWaitMentiRespDTO;
 import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.mento.dto.FindWaitMentoRespDTO;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
@@ -14,6 +15,13 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class MentiMapper {
+
+    private static String url;
+
+    @Value("${url}")
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public static FindAllMentiRespDTO fromCard(Menti menti){
 
@@ -76,5 +84,9 @@ public class MentiMapper {
 
         Page<FindWaitMentiRespDTO> findWaitMentiPagindRespDTOS = new PageImpl<>(findWaitMentiRespDTOS,pagingMenti.getPageable(),pagingMenti.getTotalPages());
         return findWaitMentiPagindRespDTOS;
+    }
+
+    private static String makeUrl(String imageUri) {
+        return url + imageUri;
     }
 }
