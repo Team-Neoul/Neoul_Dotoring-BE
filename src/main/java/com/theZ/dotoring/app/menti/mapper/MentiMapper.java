@@ -37,6 +37,7 @@ public class MentiMapper {
                 .profileImage(menti.getProfile().getSavedProfileName())
                 .majors(menti.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                 .fields(menti.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
+                .grade(menti.getGrade())
                 .build();
 
         return findMentiByIdRespDTO;
