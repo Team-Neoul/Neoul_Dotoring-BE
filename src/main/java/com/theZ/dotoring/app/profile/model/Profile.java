@@ -31,16 +31,20 @@ public class Profile extends CommonEntity {
 
     private String originalProfileName;
 
+    private String profilePath;
+
     @Builder
-    public Profile(String savedProfileName, String originalProfileName) {
+    public Profile(String savedProfileName, String originalProfileName, String profilePath) {
         this.savedProfileName = savedProfileName;
         this.originalProfileName = originalProfileName;
+        this.profilePath = profilePath;
     }
 
-    public static Profile createProfile(String savedProfileName, String originalProfileName){
+    public static Profile createProfile(String savedProfileName, String originalProfileName, String profilePath){
         Profile profile = Profile.builder()
                 .originalProfileName(originalProfileName)
                 .savedProfileName(savedProfileName)
+                .profilePath(profilePath)
                 .build();
         return profile;
     }
