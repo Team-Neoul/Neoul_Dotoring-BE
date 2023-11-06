@@ -33,7 +33,7 @@ public class Menti extends CommonEntity {
 
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mentoId")
+    @JoinColumn(name = "memberAccountId")
     private MemberAccount memberAccount;
 
     @Column(unique = true)
