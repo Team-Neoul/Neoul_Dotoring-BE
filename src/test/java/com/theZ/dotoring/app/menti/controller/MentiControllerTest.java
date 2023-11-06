@@ -83,5 +83,6 @@ class MentiControllerTest {
         resultActions.andExpect(status().isOk());
         resultActions.andExpect(jsonPath("$.success").value(true));
         resultActions.andExpect(jsonPath("$.response").exists());
+        resultActions.andExpect(jsonPath("$.response.grade").value(3));
     }
 }
