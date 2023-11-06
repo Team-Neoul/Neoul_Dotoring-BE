@@ -19,9 +19,10 @@ public class FindMentiByIdRespDTO {
     private List<String> fields;
     private List<String> majors;
     private String introduction;
+    private Long grade;
 
     @Builder
-    public FindMentiByIdRespDTO(Long mentiId, String profileImage, String nickname, String preferredMentoring, List<String> fields, List<String> majors, String introduction) {
+    public FindMentiByIdRespDTO(Long mentiId, String profileImage, String nickname, String preferredMentoring, List<String> fields, List<String> majors, String introduction, Long grade) {
         this.mentiId = mentiId;
         this.profileImage = profileImage;
         this.nickname = nickname;
@@ -29,6 +30,7 @@ public class FindMentiByIdRespDTO {
         this.fields = fields;
         this.majors = majors;
         this.introduction = introduction;
+        this.grade = grade;
     }
 
 }
