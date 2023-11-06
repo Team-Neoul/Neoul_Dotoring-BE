@@ -52,7 +52,7 @@ class MentiControllerTest {
 
     @Test
     @DisplayName("해당 멘토의 전공은 소프트웨어공학과, 수학교육과이고, 관심 분야는 진로, 개발_언어이다..")
-    @WithUserDetails(value = "sonny12385")
+    @WithUserDetails(value = "dotoring10")
     void findAllMenti() throws Exception {
 
         ResultActions resultActions = mockMvc.perform(
@@ -69,7 +69,7 @@ class MentiControllerTest {
     }
 
     @Test
-    @WithUserDetails(value = "sonny12385")
+    @WithUserDetails(value = "dotoring10")
     void findMentiById() throws Exception {
 
         String mentiId = "1";

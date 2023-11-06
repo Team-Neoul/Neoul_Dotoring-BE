@@ -50,7 +50,7 @@ class MentoControllerTest {
 
     @Test
     @DisplayName("해당 멘티의 전공은 소프트웨어공학과, 수학교육과이고, 관심 분야는 진로, 개발_언어, 공모전이다.")
-    @WithUserDetails(value = "dotoring92")
+    @WithUserDetails(value = "dotoring1")
     void findAllMentoBySlice() throws Exception {
 
         ResultActions resultActions = mockMvc.perform(
@@ -67,10 +67,10 @@ class MentoControllerTest {
     }
 
     @Test
-    @WithUserDetails(value = "dotoring92")
+    @WithUserDetails(value = "dotoring1")
     void findMentoById() throws Exception {
 
-        String mentoId = "5";
+        String mentoId = "11";
 
         ResultActions resultActions = mockMvc.perform(
                 get("/api/mento/" + mentoId)
