@@ -36,5 +36,8 @@ jwt:
   # 5일
   refreshTokenExp: 432000000
 
+file:
+  path: ./images/
+
 url: http://localhost:8080
 
