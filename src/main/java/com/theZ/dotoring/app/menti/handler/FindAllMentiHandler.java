@@ -21,7 +21,6 @@ public class FindAllMentiHandler {
     private final DesiredFieldService desiredFieldService;
 
     public Slice<FindAllMentiRespDTO> execute(Long lastMentiId, Integer size, Long mentoId){
-
         PageableMentiDTO pageableMenti = desiredFieldService.findPageableMenti(mentoId, lastMentiId, size);
         List<Long> mentiIds = pageableMenti.getMentiRankDTOs().stream().map(mentiRankDTO -> mentiRankDTO.getMentiId()).collect(Collectors.toList());
         List<FindAllMentiRespDTO> recommendMentis = mentiService.findRecommendMentis(mentiIds);
