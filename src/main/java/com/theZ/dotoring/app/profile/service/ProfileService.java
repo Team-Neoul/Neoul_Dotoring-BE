@@ -3,10 +3,8 @@ package com.theZ.dotoring.app.profile.service;
 import com.theZ.dotoring.app.memberAccount.service.MemberAccountService;
 import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.menti.repository.MentiRepository;
-import com.theZ.dotoring.app.menti.service.MentiService;
 import com.theZ.dotoring.app.mento.model.Mento;
 import com.theZ.dotoring.app.mento.repository.MentoRepository;
-import com.theZ.dotoring.app.mento.service.MentoService;
 import com.theZ.dotoring.app.profile.controller.ProfileRequestDTO;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.app.profile.repository.ProfileRepository;
@@ -58,7 +56,7 @@ public class ProfileService {
      * @retrun savedProfile
      */
     public Profile saveDefaultProfile(){
-        Profile profile = new Profile("default_profile20230812110822", "default_profile");
+        Profile profile = new Profile("default_profile.png", "default_profile", "/images/default_profile.png");
         Profile savedProfile = profileRepository.save(profile);
         return savedProfile;
     }
@@ -75,13 +73,13 @@ public class ProfileService {
 
     public void updateProfile(MultipartFile multipartFile, ProfileRequestDTO profileRequestDTO) throws IOException {
         UploadFile uploadFile = fileUtils.storeFile(multipartFile);
-        Profile profile = Profile.createProfile(uploadFile.getStoreFileName(), uploadFile.getOriginalFileName());
+        Profile profile = Profile.createProfile(uploadFile.getStoreFileName(), uploadFile.getOriginalFileName(), FileUtils.getFilePath(uploadFile.getStoreFileName()));
         Profile savedProfile = profileRepository.save(profile);
         if(memberAccountService.isMento(profileRequestDTO.getMemberId())){
-            Mento mento = mentoRepository.findById(profileRequestDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
+            Mento mento = mentoRepository.findById(profileRequestDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘토입니다."));
             mento.mappingProfile(savedProfile);
         }
-        Menti menti = mentiRepository.findById(profileRequestDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
+        Menti menti = mentiRepository.findById(profileRequestDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘티입니다."));
         menti.mappingProfile(savedProfile);
     }
 
