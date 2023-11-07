@@ -39,8 +39,8 @@ class AuthControllerTest {
     void login_test() throws Exception {
         // given
 
-        String loginId = "dotoring92";
-        String password = "dotoring92@@";
+        String loginId = "dotoring1";
+        String password = "dotoring1@";
 
         // when
 
@@ -75,8 +75,9 @@ class AuthControllerTest {
 
         ResultActions result = mvc.perform(
                 MockMvcRequestBuilders
-                        .get("/api/mento/5")
+                        .get("/api/mento/11")
                         .header(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE + accessToken)
+                        .header("origin","http://localhost:8080")
                         .contentType(MediaType.APPLICATION_JSON)
         );
 
@@ -218,7 +219,7 @@ class AuthControllerTest {
 
     private MemberAccount makeMemberAccount(){
         return MemberAccount.builder()
-                .loginId("dotoring92")
+                .loginId("dotoring1")
                 .memberType(MemberType.MENTI)
                 .build();
     }
