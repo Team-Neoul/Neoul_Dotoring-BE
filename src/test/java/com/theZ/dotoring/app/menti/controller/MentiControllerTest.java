@@ -17,8 +17,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -52,7 +50,7 @@ class MentiControllerTest {
 
     @Test
     @DisplayName("해당 멘토의 전공은 소프트웨어공학과, 수학교육과이고, 관심 분야는 진로, 개발_언어이다..")
-    @WithUserDetails(value = "dotoring10")
+    @WithUserDetails(value = "dotoring11")
     void findAllMenti() throws Exception {
 
         ResultActions resultActions = mockMvc.perform(
@@ -61,15 +59,16 @@ class MentiControllerTest {
 
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
 
-        System.out.println("findAllMentoBySlice_test : " + responseBody);
+        System.out.println("findAllMenti_test : " + responseBody);
 
         resultActions.andExpect(status().isOk());
         resultActions.andExpect(jsonPath("$.success").value(true));
         resultActions.andExpect(jsonPath("$.response").exists());
+        resultActions.andExpect(jsonPath("$.response.pageable.nickname").value("가나다2"));
     }
 
     @Test
-    @WithUserDetails(value = "dotoring10")
+    @WithUserDetails(value = "dotoring11")
     void findMentiById() throws Exception {
 
         String mentiId = "1";
