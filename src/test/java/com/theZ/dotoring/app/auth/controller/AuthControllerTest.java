@@ -5,6 +5,7 @@ import com.theZ.dotoring.app.auth.AuthConstants;
 import com.theZ.dotoring.app.auth.model.Token;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.enums.MemberType;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 import javax.servlet.http.Cookie;
 import java.time.Instant;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @ActiveProfiles("local")
 @AutoConfigureMockMvc
@@ -53,6 +59,7 @@ class AuthControllerTest {
                 MockMvcRequestBuilders
                         .post("/member/login")
                         .content(requestBody)
+                        .header("origin","http://localhost:8080")
                         .contentType("application/json")
         );
 
