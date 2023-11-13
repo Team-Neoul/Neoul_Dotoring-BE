@@ -18,8 +18,14 @@ public class CustomPageRequest extends PageRequest {
 
     private final String nickname;
 
-    public CustomPageRequest(int page, int size, Sort sort, String nickname) {
+    protected CustomPageRequest(int page, int size, Sort sort, String nickname) {
         super(page, size, sort);
         this.nickname = nickname;
     }
+
+    public static CustomPageRequest of(PageRequest pageRequest, String nickname){
+        return new CustomPageRequest(pageRequest.getPageNumber(), pageRequest.getPageSize(), pageRequest.getSort(), nickname);
+    }
+
+
 }
