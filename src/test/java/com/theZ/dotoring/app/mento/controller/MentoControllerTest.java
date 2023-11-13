@@ -64,6 +64,7 @@ class MentoControllerTest {
         resultActions.andExpect(status().isOk());
         resultActions.andExpect(jsonPath("$.success").value(true));
         resultActions.andExpect(jsonPath("$.response").exists());
+        resultActions.andExpect(jsonPath("$.response.pageable.nickname").value("도레미1"));
     }
 
     @Test
