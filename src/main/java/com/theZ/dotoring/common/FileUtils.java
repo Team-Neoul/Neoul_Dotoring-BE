@@ -30,11 +30,7 @@ public class FileUtils {
     public List<UploadFile> storeFiles(List<MultipartFile> multipartFiles) throws IOException {
         List<UploadFile> storeFileResult = new ArrayList<>();
         for (MultipartFile multipartFile : multipartFiles) {
-            if (!multipartFile.isEmpty()) {
-                storeFileResult.add(storeFile(multipartFile));
-            }else{
-                throw new FileNotFoundException(MessageCode.FIlE_NOT_FOUND.getValue());
-            }
+            storeFileResult.add(storeFile(multipartFile));
         }
         return storeFileResult;
     }
