@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@Transactional
+@Transactional(readOnly = true)
 public class CertificateService {
 
     private final FileUtils fileUtils;
@@ -40,12 +40,10 @@ public class CertificateService {
      * @return certificate 엔티티들을 반환
      */
 
+    @Transactional(rollbackFor = IOException.class)
     public List<Certificate> saveCertifications(List<MultipartFile> certificates) throws IOException {
         List<UploadFile> uploadFiles = fileUtils.storeFiles(certificates);
         List<Certificate> certificateList = CertificateMapper.to(uploadFiles);
-        if(certificateList.isEmpty()){
-            throw new FileSaveFailedException(MessageCode.FILE_SAVE_FAIL);
-        }
         certificateRepository.saveAll(certificateList);
         return certificateList;
     }
