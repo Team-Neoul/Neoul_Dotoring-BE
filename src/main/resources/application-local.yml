@@ -45,7 +45,7 @@ email:
   validTime: 300000
 
 jwt:
-  secretKey: s2cr435ek45dfoafcretKeyfcs35e6K9ys8e5qtKeyse2342c424324seuphetocyse4351tnmy
+  secretKey: dotoringTestlocal109304i4023912431243r34
   # 2일
   accessTokenExp: 172800000
   # 5일
@@ -54,5 +54,5 @@ jwt:
 file:
   path: ./images/
 
-url: http://localhost:8080
+profileUrl: http://localhost:8080/images/
 
