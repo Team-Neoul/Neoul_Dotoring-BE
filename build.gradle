@@ -54,6 +54,8 @@ dependencies {
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.3.1'
+	implementation 'software.amazon.awssdk:s3:2.17.89'
 }
 
 test {
