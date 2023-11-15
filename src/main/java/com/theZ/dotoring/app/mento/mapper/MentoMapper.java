@@ -17,11 +17,6 @@ import java.util.stream.IntStream;
 @Component
 public class MentoMapper {
 
-    private static String url;
-    @Value("${url}")
-    public void setUrl(String url) {
-        this.url = url;
-    }
     public static FindAllMentoRespDTO fromCard(Mento mento){
 
         return FindAllMentoRespDTO.builder()
@@ -29,7 +24,7 @@ public class MentoMapper {
                 .nickname(mento.getNickname())
                 .mentoringSystem(mento.getMentoringSystem())
                 .introduction(mento.getIntroduction())
-                .profileImage(makeUrl(mento.getProfile().getProfilePath()))
+                .profileImage(mento.getProfile().getSavedProfileName())
                 .majors(mento.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                 .fields(mento.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                 .build();
@@ -42,7 +37,7 @@ public class MentoMapper {
                 .nickname(mento.getNickname())
                 .mentoringSystem(mento.getMentoringSystem())
                 .introduction(mento.getIntroduction())
-                .profileImage(makeUrl(mento.getProfile().getProfilePath()))
+                .profileImage(mento.getProfile().getSavedProfileName())
                 .majors(mento.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                 .fields(mento.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                 .grade(mento.getGrade())
@@ -63,7 +58,7 @@ public class MentoMapper {
                             .nickname(mentos.get(i).getNickname())
                             .mentoringSystem(mentos.get(i).getMentoringSystem())
                             .introduction(mentos.get(i).getIntroduction())
-                            .profileImage(makeUrl(mentos.get(i).getProfile().getProfilePath()))
+                            .profileImage(mentos.get(i).getProfile().getSavedProfileName())
                             .majors(mentos.get(i).getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                             .fields(mentos.get(i).getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                             .build())
@@ -88,7 +83,4 @@ public class MentoMapper {
         return findWaitMentoPagindRespDTOS;
     }
 
-    private static String makeUrl(String imageUri) {
-        return url + imageUri;
-    }
 }
