@@ -54,13 +54,13 @@ public class MentiController {
 
     @ApiOperation(value = "멘티 홈에서 도토링 추천 방식에따른 멘티들 추천")
     @GetMapping("/menti")
-    public ApiResponse<ApiResponse.CustomBody<Slice<FindAllMentiRespDTO>>> findAllMentiBySlice(
+    public ApiResponse<ApiResponse.CustomBody<Slice<FindAllMentiRespDTO>>> findAllMenti(
             @RequestParam(required = false) Long lastMentiId, @RequestParam(defaultValue = "10") Integer size, @AuthenticationPrincipal MemberDetails memberDetails){
         return ApiResponseGenerator.success(findAllMentiHandler.execute(lastMentiId, size, memberDetails.getId()),HttpStatus.OK);
     }
 
     @GetMapping("/wait-menti")
-    public ApiResponse<ApiResponse.CustomBody<Page<FindWaitMentiRespDTO>>> findWaitMentiByPage(
+    public ApiResponse<ApiResponse.CustomBody<Page<FindWaitMentiRespDTO>>> findWaitMenti(
             @PageableDefault(size = 20) Pageable pageable
     ){
         return ApiResponseGenerator.success(mentiService.findWaitMentis(pageable),HttpStatus.OK);
