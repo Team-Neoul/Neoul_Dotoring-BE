@@ -70,7 +70,7 @@ public class MentoController {
     @ApiOperation(value = "멘토 홈에서 해당 멘토 상세 조회시 사용")
     @GetMapping("/mento/{id}")
     public ApiResponse<ApiResponse.CustomBody<FindMentoByIdRespDTO>> findMentoById(@PathVariable Long id){
-        FindMentoByIdRespDTO findMentoByIdRespDTO = mentoService.findMentoByProfile(id);
+        FindMentoByIdRespDTO findMentoByIdRespDTO = mentoService.findMentoWithProfile(id);
         return ApiResponseGenerator.success(findMentoByIdRespDTO,HttpStatus.OK);
     }
 
