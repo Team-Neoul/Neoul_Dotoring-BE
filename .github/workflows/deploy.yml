@@ -7,12 +7,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      SPRING_PROFILES_ACTIVE: test
       JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
       ACCESS_EXP: ${{ secrets.ACCESS_EXP }}
       REFRESH_EXP: ${{ secrets.REFRESH_EXP }}
       ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      S3_BUCKET: ${{ secrets.S3_BUCKET }}
+      S3_BUCKET: ${{ secrets.BUCKET }}
       PROFILE_URL: ${{ secrets.PROFILE_URL }}
 
     services:

@@ -45,24 +45,24 @@ email:
   validTime: 300000
 
 jwt:
-  secretKey: ${jwt-secret-key}
+  secretKey: ${JWT_SECRET_KEY}
   # 2일
-  accessTokenExp: ${access-exp}
+  accessTokenExp: ${ACCESS_EXP}
   # 5일
-  refreshTokenExp: ${refresh-exp}
+  refreshTokenExp: ${REFRESH_EXP}
 
 file:
   path: ./images/
 
-profileUrl: ${profile-url}
+profileUrl: ${PROFILE_URL}
 
 cloud:
   aws:
     credentials:
-      accessKey: ${access-key}
-      secretKey: ${secret-key}
+      accessKey: ${ACCESS_KEY}
+      secretKey: ${SECRET_KEY}
     s3:
-      bucket: ${bucket}
+      bucket: ${BUCKET}
     region:
       static: "ap-northeast-2"
     stack:

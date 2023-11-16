@@ -61,8 +61,6 @@ class MentiControllerTest {
 
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
 
-        ApiResponse<FindAllMentiRespDTO> findAllMentiRespDTOApiResponse = objectMapper.readValue(responseBody, ApiResponse.class);// json -> Object
-        System.out.println(findAllMentiRespDTOApiResponse.getBody().getId());
         System.out.println("findAllMenti_test : " + responseBody);
 
         resultActions.andExpect(status().isOk());
