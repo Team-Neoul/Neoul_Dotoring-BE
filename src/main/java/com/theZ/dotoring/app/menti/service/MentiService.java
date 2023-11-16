@@ -23,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Menti에관한 비즈니스 로직이 담겨있습니다.
@@ -126,8 +128,18 @@ public class MentiService {
     @Transactional(readOnly = true)
     public List<FindAllMentiRespDTO> findRecommendMentis(List<Long> mentiIds){
         List<Menti> recommendMentis = mentiRepository.findMentisWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(mentiIds, Status.ACTIVE);
-        List<FindAllMentiRespDTO> findAllMentiRespDTOList = MentiMapper.from(recommendMentis);
-        return findAllMentiRespDTOList;
+        return getSortedRecommendMentis(mentiIds,recommendMentis);
+    }
+
+    private List<FindAllMentiRespDTO> getSortedRecommendMentis(List<Long> mentiIds, List<Menti> recommendMentis) {
+        List<Menti> sortedRecommendMentis = mentiIds.stream()
+                .map(id -> recommendMentis.stream()
+                        .filter(menti -> menti.getMentiId().equals(id))
+                        .findFirst()
+                        .orElse(null))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+        return MentiMapper.from(sortedRecommendMentis);
     }
 
 
