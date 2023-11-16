@@ -9,6 +9,7 @@ import com.theZ.dotoring.app.mento.repository.MentoRepository;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.common.MessageCode;
+import com.theZ.dotoring.common.URLConverter;
 import com.theZ.dotoring.enums.Status;
 import com.theZ.dotoring.exception.NicknameDuplicateException;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,7 @@ import java.util.NoSuchElementException;
 public class MentoService {
 
     private final MentoRepository mentoRepository;
+    private final URLConverter urlConverter;
 
 
     /**
@@ -77,10 +79,11 @@ public class MentoService {
      * @retrun findMentoByIdRespDTO
      */
     @Transactional(readOnly = true)
-    public FindMentoByIdRespDTO findMentoByProfile(Long mentoId){
+    public FindMentoByIdRespDTO findMentoWithProfile(Long mentoId){
         Mento mento = mentoRepository.findMentoWithProfileUsingFetchJoinByMentoId(mentoId).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘토입니다."));
         mento.updateViewCount();
-        FindMentoByIdRespDTO findMentoByIdRespDTO = MentoMapper.fromDetail(mento);
+        FindMentoByIdRespDTO findMentoByIdDTO = MentoMapper.fromDetail(mento);
+        FindMentoByIdRespDTO findMentoByIdRespDTO = urlConverter.getFindMentoRespDTO(findMentoByIdDTO);
         return findMentoByIdRespDTO;
     }
 
