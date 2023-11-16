@@ -2,6 +2,8 @@ package com.theZ.dotoring.app.menti.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theZ.dotoring.app.desiredField.repository.QueryDesiredFieldRepository;
+import com.theZ.dotoring.app.menti.dto.FindAllMentiRespDTO;
+import com.theZ.dotoring.common.ApiResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,12 +51,36 @@ class MentiControllerTest {
     }
 
     @Test
-    @DisplayName("해당 멘토의 전공은 소프트웨어공학과, 수학교육과이고, 관심 분야는 진로, 개발_언어이다..")
+    @DisplayName("해당 멘토의 전공은 소프트웨어공학과, 수학교육과이고, 관심 분야는 진로, 개발_언어이다.")
     @WithUserDetails(value = "dotoring11")
     void findAllMenti() throws Exception {
 
         ResultActions resultActions = mockMvc.perform(
                 get("/api/menti")
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+
+        ApiResponse<FindAllMentiRespDTO> findAllMentiRespDTOApiResponse = objectMapper.readValue(responseBody, ApiResponse.class);// json -> Object
+        System.out.println(findAllMentiRespDTOApiResponse.getBody().getId());
+        System.out.println("findAllMenti_test : " + responseBody);
+
+        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(jsonPath("$.success").value(true));
+        resultActions.andExpect(jsonPath("$.response").exists());
+        resultActions.andExpect(jsonPath("$.response.pageable.nickname").value("가나다2"));
+    }
+
+    @Test
+    @DisplayName("해당 멘토의 전공은 소프트웨어공학과, 수학교육과이고, 관심 분야는 진로, 개발_언어이다." +
+            "last는 false가 나와야한다." +
+            "size는 5가 나와야한다.")
+    @WithUserDetails(value = "dotoring11")
+    void findAllMenti_first_size5() throws Exception {
+
+        ResultActions resultActions = mockMvc.perform(
+                get("/api/menti")
+                        .param("size","5")
                         .contentType(MediaType.APPLICATION_JSON));
 
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
@@ -65,6 +91,33 @@ class MentiControllerTest {
         resultActions.andExpect(jsonPath("$.success").value(true));
         resultActions.andExpect(jsonPath("$.response").exists());
         resultActions.andExpect(jsonPath("$.response.pageable.nickname").value("가나다2"));
+        resultActions.andExpect(jsonPath("$.response.last").value(false));
+        resultActions.andExpect(jsonPath("$.response.size").value(5));
+    }
+
+    @Test
+    @DisplayName("해당 멘토의 전공은 소프트웨어공학과, 수학교육과이고, 관심 분야는 진로, 개발_언어이다." +
+            "last는 true가 나와야한다." +
+            "size는 5가 나와야한다.")
+    @WithUserDetails(value = "dotoring11")
+    void findAllMenti_last_size5() throws Exception {
+
+        ResultActions resultActions = mockMvc.perform(
+                get("/api/menti")
+                        .param("size","5")
+                        .param("lastMentiId","6")
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+
+        System.out.println("findAllMenti_test : " + responseBody);
+
+        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(jsonPath("$.success").value(true));
+        resultActions.andExpect(jsonPath("$.response").exists());
+        resultActions.andExpect(jsonPath("$.response.pageable.nickname").value("가나다2"));
+        resultActions.andExpect(jsonPath("$.response.last").value(true));
+        resultActions.andExpect(jsonPath("$.response.size").value(5));
     }
 
     @Test

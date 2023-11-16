@@ -49,9 +49,11 @@ class MentoControllerTest {
     }
 
     @Test
-    @DisplayName("해당 멘티의 전공은 소프트웨어공학과, 수학교육과이고, 관심 분야는 진로, 개발_언어, 공모전이다.")
+    @DisplayName("해당 멘티의 전공은 소프트웨어공학과, 수학교육과이고, 관심 분야는 진로, 개발_언어, 공모전이다." +
+            "size는 10이다." +
+            "last는 true이다.")
     @WithUserDetails(value = "dotoring1")
-    void findAllMentoBySlice() throws Exception {
+    void findAllMento() throws Exception {
 
         ResultActions resultActions = mockMvc.perform(
                 get("/api/mento")
@@ -65,6 +67,57 @@ class MentoControllerTest {
         resultActions.andExpect(jsonPath("$.success").value(true));
         resultActions.andExpect(jsonPath("$.response").exists());
         resultActions.andExpect(jsonPath("$.response.pageable.nickname").value("도레미1"));
+        resultActions.andExpect(jsonPath("$.response.last").value(true));
+        resultActions.andExpect(jsonPath("$.response.size").value(10));
+    }
+
+    @Test
+    @DisplayName("해당 멘티의 전공은 소프트웨어공학과, 수학교육과이고, 관심 분야는 진로, 개발_언어, 공모전이다." +
+            "size는 5이다." +
+            "last는 false이다.")
+    @WithUserDetails(value = "dotoring1")
+    void findAllMento_first_size5() throws Exception {
+
+        ResultActions resultActions = mockMvc.perform(
+                get("/api/mento")
+                        .param("size","5")
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+
+        System.out.println("findAllMentoBySlice_test : " + responseBody);
+
+        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(jsonPath("$.success").value(true));
+        resultActions.andExpect(jsonPath("$.response").exists());
+        resultActions.andExpect(jsonPath("$.response.pageable.nickname").value("도레미1"));
+        resultActions.andExpect(jsonPath("$.response.last").value(false));
+        resultActions.andExpect(jsonPath("$.response.size").value(5));
+    }
+
+    @Test
+    @DisplayName("해당 멘티의 전공은 소프트웨어공학과, 수학교육과이고, 관심 분야는 진로, 개발_언어, 공모전이다." +
+            "size는 5이다." +
+            "last는 true이다.")
+    @WithUserDetails(value = "dotoring1")
+    void findAllMento_last_size5() throws Exception {
+
+        ResultActions resultActions = mockMvc.perform(
+                get("/api/mento")
+                        .param("size","5")
+                        .param("lastMentoId","16")
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+
+        System.out.println("findAllMentoBySlice_test : " + responseBody);
+
+        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(jsonPath("$.success").value(true));
+        resultActions.andExpect(jsonPath("$.response").exists());
+        resultActions.andExpect(jsonPath("$.response.pageable.nickname").value("도레미1"));
+        resultActions.andExpect(jsonPath("$.response.last").value(true));
+        resultActions.andExpect(jsonPath("$.response.size").value(5));
     }
 
     @Test
