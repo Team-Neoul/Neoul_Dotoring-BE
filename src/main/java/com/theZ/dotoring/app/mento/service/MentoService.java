@@ -22,6 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 /**
@@ -72,7 +74,7 @@ public class MentoService {
     /**
      * 멘토 상세 조회하고, 조회수가 올라가고, findMentiByIdRespDTO를 반환하는 메서드
      *
-     * @parma mentoId
+     * @param mentoId
      *
      * @retrun findMentoByIdRespDTO
      */
@@ -107,8 +109,18 @@ public class MentoService {
     @Transactional(readOnly = true)
     public List<FindAllMentoRespDTO> findRecommendMentos(List<Long> mentoIds){
         List<Mento> recommendMentos = mentoRepository.findMentosWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(mentoIds, Status.ACTIVE);
-        List<FindAllMentoRespDTO> findAllMentoRespDTOList = MentoMapper.from(recommendMentos);
-        return findAllMentoRespDTOList;
+        return getSortedRecommendMentos(mentoIds, recommendMentos);
+    }
+
+    private List<FindAllMentoRespDTO> getSortedRecommendMentos(List<Long> mentoIds, List<Mento> recommendMentos) {
+        List<Mento> sortedRecommendMentos = mentoIds.stream()
+                .map(id -> recommendMentos.stream()
+                        .filter(mento -> mento.getMentoId().equals(id))
+                        .findFirst()
+                        .orElse(null))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+        return MentoMapper.from(sortedRecommendMentos);
     }
 
 
