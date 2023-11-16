@@ -6,7 +6,7 @@ import com.theZ.dotoring.app.mento.dto.CustomPageRequest;
 import com.theZ.dotoring.app.mento.dto.FindAllMentoRespDTO;
 import com.theZ.dotoring.app.mento.dto.PageableMentoDTO;
 import com.theZ.dotoring.app.mento.service.MentoService;
-import com.theZ.dotoring.common.S3Service;
+import com.theZ.dotoring.common.URLConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
@@ -23,24 +23,14 @@ public class FindAllMentoHandler {
     private final MentoService mentoService;
     private final DesiredFieldService desiredFieldService;
     private final MentiService mentiService;
-    private final S3Service s3Service;
+    private final URLConverter URLConverter;
 
     public Slice<FindAllMentoRespDTO> execute(Long lastMentoId, Integer size, Long mentiId){
         String mentiNickname = getNickname(mentiId);
         PageableMentoDTO pageableMento = desiredFieldService.findPageableMento(mentiId, lastMentoId, size);
         List<Long> mentoIds = pageableMento.getMentoRankDTOs().stream().map(mentoRankDTO -> mentoRankDTO.getMentoId()).collect(Collectors.toList());
         List<FindAllMentoRespDTO> recommendMentors = mentoService.findRecommendMentos(mentoIds);
-        return new SliceImpl<>(getFindAllMentoRespDTOS(recommendMentors), getPageRequest(mentiNickname, pageableMento), pageableMento.getHasNext());
-    }
-
-    private List<FindAllMentoRespDTO> getFindAllMentoRespDTOS(List<FindAllMentoRespDTO> recommendMentors) {
-        return recommendMentors.stream().map(mentoRespDTO -> new FindAllMentoRespDTO(mentoRespDTO.getId(),
-                s3Service.getPreSignedUrl(mentoRespDTO.getProfileImage()),
-                mentoRespDTO.getNickname(),
-                mentoRespDTO.getMentoringSystem(),
-                mentoRespDTO.getFields(),
-                mentoRespDTO.getMajors(),
-                mentoRespDTO.getIntroduction())).collect(Collectors.toList());
+        return new SliceImpl<>(URLConverter.getFindAllMentoRespDTOS(recommendMentors), getPageRequest(mentiNickname, pageableMento), pageableMento.getHasNext());
     }
 
     private String getNickname(Long mentiId) {
