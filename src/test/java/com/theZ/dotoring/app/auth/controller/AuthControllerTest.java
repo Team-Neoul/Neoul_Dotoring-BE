@@ -26,7 +26,7 @@ import java.time.Instant;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-@ActiveProfiles("local")
+@ActiveProfiles("test")
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class AuthControllerTest {
