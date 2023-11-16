@@ -31,6 +31,7 @@ public class QueryDesiredFieldRepository {
                 .where(eqFieldNames(fieldNames), desiredField.mento.mentoId.isNotNull(), lessThanMentoId(lastMentoId))
                 .groupBy(desiredField.mento.mentoId)
                 .orderBy(mentoCount.desc())
+                .orderBy(desiredField.mento.updatedAt.desc())
                 .limit(size + 1)
                 .fetch();
 
@@ -76,6 +77,7 @@ public class QueryDesiredFieldRepository {
                 .where(eqFieldNames(fieldNames), desiredField.menti.mentiId.isNotNull(), lessThanMentiId(lastMentiId))
                 .groupBy(desiredField.menti.mentiId)
                 .orderBy(mentiCount.desc())
+                .orderBy(desiredField.menti.updatedAt.desc())
                 .limit(size + 1)
                 .fetch();
 
