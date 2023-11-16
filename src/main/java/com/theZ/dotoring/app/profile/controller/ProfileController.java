@@ -21,8 +21,7 @@ public class ProfileController {
     public ApiResponse<ApiResponse.CustomBody<Void>> updateProfile(@RequestPart(required = false) MultipartFile profile, @RequestPart ProfileRequestDTO profileRequestDTO) throws IOException {
 
         if(profile == null){
-            profileService.updateDefaultProfile(profileRequestDTO);
-            return ApiResponseGenerator.success(HttpStatus.OK);
+            return ApiResponseGenerator.success(HttpStatus.BAD_REQUEST);
         }
         profileService.updateProfile(profile,profileRequestDTO);
         return ApiResponseGenerator.success(HttpStatus.CREATED);

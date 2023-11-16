@@ -10,8 +10,8 @@ TRUNCATE TABLE menti;
 TRUNCATE TABLE mento;
 SET REFERENTIAL_INTEGRITY True;
 
-INSERT INTO profile (created_at, updated_at, original_profile_name, profile_path, saved_profile_name)
-VALUES (NOW(),NOW(),'default_profile', '/images/default_profile.png', 'default_profile.png');
+INSERT INTO profile (created_at, updated_at, original_profile_name, saved_profile_name)
+VALUES (NOW(),NOW(),'default_profile', 'default_profile.png');
 
 INSERT INTO major (major_name)
 VALUES

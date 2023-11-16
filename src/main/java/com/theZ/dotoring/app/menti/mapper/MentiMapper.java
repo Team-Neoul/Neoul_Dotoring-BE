@@ -18,13 +18,6 @@ import java.util.stream.IntStream;
 @Component
 public class MentiMapper {
 
-    private static String url;
-
-    @Value("${url}")
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public static FindAllMentiRespDTO fromCard(Menti menti){
 
         return FindAllMentiRespDTO.builder()
@@ -32,7 +25,7 @@ public class MentiMapper {
                 .nickname(menti.getNickname())
                 .preferredMentoringSystem(menti.getPreferredMentoring())
                 .introduction(menti.getIntroduction())
-                .profileImage(makeUrl(menti.getProfile().getProfilePath()))
+                .profileImage(menti.getProfile().getSavedProfileName())
                 .majors(menti.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                 .fields(menti.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                 .build();
@@ -44,7 +37,7 @@ public class MentiMapper {
                 .nickname(menti.getNickname())
                 .preferredMentoring(menti.getPreferredMentoring())
                 .introduction(menti.getIntroduction())
-                .profileImage(makeUrl(menti.getProfile().getProfilePath()))
+                .profileImage(menti.getProfile().getSavedProfileName())
                 .majors(menti.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                 .fields(menti.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                 .grade(menti.getGrade())
@@ -63,7 +56,7 @@ public class MentiMapper {
                                 .nickname(mentis.get(i).getNickname())
                                 .preferredMentoringSystem(mentis.get(i).getPreferredMentoring())
                                 .introduction(mentis.get(i).getIntroduction())
-                                .profileImage(makeUrl(mentis.get(i).getProfile().getProfilePath()))
+                                .profileImage(mentis.get(i).getProfile().getSavedProfileName())
                                 .majors(mentis.get(i).getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                                 .fields(mentis.get(i).getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                                 .build())
@@ -88,7 +81,4 @@ public class MentiMapper {
         return findWaitMentiPagindRespDTOS;
     }
 
-    private static String makeUrl(String imageUri) {
-        return url + imageUri;
-    }
 }

@@ -48,14 +48,14 @@ public class MentoController {
 
     @ApiOperation(value = "멘토 홈에서 도토링 추천 방식에따른 멘토들 추천")
     @GetMapping("/mento")
-    public ApiResponse<ApiResponse.CustomBody<Slice<FindAllMentoRespDTO>>> findAllMentoBySlice(
+    public ApiResponse<ApiResponse.CustomBody<Slice<FindAllMentoRespDTO>>> findAllMento(
             @RequestParam(required = false) Long lastMentoId, @RequestParam(defaultValue = "10") Integer size, @AuthenticationPrincipal MemberDetails memberDetails){
 
         return ApiResponseGenerator.success(findAllMentoHandler.execute(lastMentoId, size, memberDetails.getId()),HttpStatus.OK);
     }
 
     @GetMapping("/wait-mento")
-    public ApiResponse<ApiResponse.CustomBody<Page<FindWaitMentoRespDTO>>> findWaitMentoByPage(
+    public ApiResponse<ApiResponse.CustomBody<Page<FindWaitMentoRespDTO>>> findWaitMento(
         @PageableDefault(size = 20) Pageable pageable
     ){
         return ApiResponseGenerator.success(mentoService.findWaitMentos(pageable),HttpStatus.OK);
@@ -70,7 +70,7 @@ public class MentoController {
     @ApiOperation(value = "멘토 홈에서 해당 멘토 상세 조회시 사용")
     @GetMapping("/mento/{id}")
     public ApiResponse<ApiResponse.CustomBody<FindMentoByIdRespDTO>> findMentoById(@PathVariable Long id){
-        FindMentoByIdRespDTO findMentoByIdRespDTO = mentoService.findMentoByProfile(id);
+        FindMentoByIdRespDTO findMentoByIdRespDTO = mentoService.findMentoWithProfile(id);
         return ApiResponseGenerator.success(findMentoByIdRespDTO,HttpStatus.OK);
     }
 

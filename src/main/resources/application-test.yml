@@ -37,7 +37,7 @@ logging:
         SQL: debug
         type:
           descriptor:
-              sql: trace
+            sql: trace
 
 email:
   name: Dotoring
@@ -45,14 +45,25 @@ email:
   validTime: 300000
 
 jwt:
-  secretKey: dotoringTestlocal109304i4023912431243r34
+  secretKey: ${jwt-secret-key}
   # 2일
-  accessTokenExp: 172800000
+  accessTokenExp: ${access-exp}
   # 5일
-  refreshTokenExp: 432000000
+  refreshTokenExp: ${refresh-exp}
 
 file:
   path: ./images/
 
-profileUrl: http://localhost:8080/images/
+profileUrl: ${profile-url}
 
+cloud:
+  aws:
+    credentials:
+      accessKey: ${access-key}
+      secretKey: ${secret-key}
+    s3:
+      bucket: ${bucket}
+    region:
+      static: "ap-northeast-2"
+    stack:
+      auto: false

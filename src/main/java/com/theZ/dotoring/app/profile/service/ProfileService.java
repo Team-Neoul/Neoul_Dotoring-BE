@@ -8,7 +8,7 @@ import com.theZ.dotoring.app.mento.repository.MentoRepository;
 import com.theZ.dotoring.app.profile.controller.ProfileRequestDTO;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.app.profile.repository.ProfileRepository;
-import com.theZ.dotoring.common.FileUtils;
+import com.theZ.dotoring.common.S3Service;
 import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.common.UploadFile;
 import com.theZ.dotoring.exception.DefaultProfileImageNotFoundException;
@@ -33,7 +33,7 @@ import java.util.NoSuchElementException;
 @Transactional
 public class ProfileService {
 
-    private final FileUtils fileUtils;
+    private final S3Service s3Service;
     private final ProfileRepository profileRepository;
     private final MemberAccountService memberAccountService;
     private final MentoRepository mentoRepository;
@@ -51,18 +51,6 @@ public class ProfileService {
     }
 
     /**
-     * 기본 프로필을 저장하는 메서드
-     *
-     * @retrun savedProfile
-     */
-    public Profile saveDefaultProfile(){
-        Profile profile = new Profile("default_profile.png", "default_profile", "/images/default_profile.png");
-        Profile savedProfile = profileRepository.save(profile);
-        return savedProfile;
-    }
-
-
-    /**
      * 해당 회원의 프로필을 수정하는 메서드
      *
      * @param multipartFile
@@ -72,8 +60,8 @@ public class ProfileService {
      */
 
     public void updateProfile(MultipartFile multipartFile, ProfileRequestDTO profileRequestDTO) throws IOException {
-        UploadFile uploadFile = fileUtils.storeFile(multipartFile);
-        Profile profile = Profile.createProfile(uploadFile.getStoreFileName(), uploadFile.getOriginalFileName(), FileUtils.getFilePath(uploadFile.getStoreFileName()));
+        UploadFile uploadFile = s3Service.storeProfile(multipartFile);
+        Profile profile = Profile.createProfile(uploadFile.getStoreFileName(), uploadFile.getOriginalFileName());
         Profile savedProfile = profileRepository.save(profile);
         if(memberAccountService.isMento(profileRequestDTO.getMemberId())){
             Mento mento = mentoRepository.findById(profileRequestDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘토입니다."));
@@ -81,25 +69,6 @@ public class ProfileService {
         }
         Menti menti = mentiRepository.findById(profileRequestDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘티입니다."));
         menti.mappingProfile(savedProfile);
-    }
-
-
-    /**
-     * 해당 회원의 프로필을 기본 프로필로 수정하는 메서드
-     *
-     * @param profileRequestDTO
-     * @Exception - NoSuchElementException 존재하지 않는 회원입니다.
-     *
-     */
-
-    public void updateDefaultProfile(ProfileRequestDTO profileRequestDTO) {
-        Profile defaultProfile = getDefaultProfile();
-        if(memberAccountService.isMento(profileRequestDTO.getMemberId())){
-            Mento mento = mentoRepository.findById(profileRequestDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
-            mento.mappingProfile(defaultProfile);
-        }
-        Menti menti = mentiRepository.findById(profileRequestDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
-        menti.mappingProfile(defaultProfile);
     }
 
 }
