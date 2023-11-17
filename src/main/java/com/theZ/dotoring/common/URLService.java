@@ -2,8 +2,10 @@ package com.theZ.dotoring.common;
 
 import com.theZ.dotoring.app.menti.dto.FindAllMentiRespDTO;
 import com.theZ.dotoring.app.menti.dto.FindMentiByIdRespDTO;
+import com.theZ.dotoring.app.menti.dto.FindMyMentiRespDTO;
 import com.theZ.dotoring.app.mento.dto.FindAllMentoRespDTO;
 import com.theZ.dotoring.app.mento.dto.FindMentoByIdRespDTO;
+import com.theZ.dotoring.app.mento.dto.FindMyMentoRespDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -56,5 +58,25 @@ public class URLService {
                 findMentoByIdRespDTO.getMajors(),
                 findMentoByIdRespDTO.getIntroduction(),
                 findMentoByIdRespDTO.getGrade());
+    }
+
+    public FindMyMentoRespDTO getMyMentoRespDTO(FindMyMentoRespDTO findMyMentoRespDTO) {
+        return new FindMyMentoRespDTO(findMyMentoRespDTO.getMentoId(),
+                s3Connector.getPreSignedUrl(findMyMentoRespDTO.getProfileImage()),
+                findMyMentoRespDTO.getNickname(),
+                findMyMentoRespDTO.getFields(),
+                findMyMentoRespDTO.getMajors(),
+                findMyMentoRespDTO.getIntroduction(),
+                findMyMentoRespDTO.getGrade());
+    }
+
+    public FindMyMentiRespDTO getMyMentiRespDTO(FindMyMentiRespDTO findMyMentiRespDTO) {
+        return new FindMyMentiRespDTO(findMyMentiRespDTO.getMentiId(),
+                s3Connector.getPreSignedUrl(findMyMentiRespDTO.getProfileImage()),
+                findMyMentiRespDTO.getNickname(),
+                findMyMentiRespDTO.getFields(),
+                findMyMentiRespDTO.getMajors(),
+                findMyMentiRespDTO.getIntroduction(),
+                findMyMentiRespDTO.getGrade());
     }
 }
