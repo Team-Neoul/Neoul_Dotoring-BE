@@ -3,7 +3,7 @@ package com.theZ.dotoring.app.certificate.service;
 import com.theZ.dotoring.app.certificate.mapper.CertificateMapper;
 import com.theZ.dotoring.app.certificate.model.Certificate;
 import com.theZ.dotoring.app.certificate.repository.CertificateRepository;
-import com.theZ.dotoring.common.S3Service;
+import com.theZ.dotoring.common.S3Connector;
 import com.theZ.dotoring.common.UploadFile;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class CertificateService {
 
-    private final S3Service s3Service;
+    private final S3Connector s3Connector;
     private final CertificateRepository certificateRepository;
 
     /**
@@ -40,7 +40,7 @@ public class CertificateService {
 
     @Transactional(rollbackFor = IOException.class)
     public List<Certificate> saveCertifications(List<MultipartFile> certificates) throws IOException {
-        List<UploadFile> uploadFiles = s3Service.storeCertificates(certificates);
+        List<UploadFile> uploadFiles = s3Connector.storeCertificates(certificates);
         List<Certificate> certificateList = CertificateMapper.to(uploadFiles);
         certificateRepository.saveAll(certificateList);
         return certificateList;
