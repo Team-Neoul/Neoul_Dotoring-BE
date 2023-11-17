@@ -6,6 +6,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+      ACCESS_EXP: ${{ secrets.ACCESS_EXP }}
+      REFRESH_EXP: ${{ secrets.REFRESH_EXP }}
+      ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      BUCKET: ${{ secrets.BUCKET }}
+      PROFILE_URL: ${{ secrets.PROFILE_URL }}
+
     services:
       redis:
         image: redis
@@ -20,7 +29,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'corretto'  #Amazon Corretto 사용
+          distribution: 'adopt'
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v2
@@ -28,9 +37,6 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-
-      - name: Build and Test
-        run: ./gradlew clean build
 
       - name: Run Spring Boot App for 30 seconds
         run: |
@@ -40,3 +46,7 @@ jobs:
           sleep 30
           kill $APP_PID
         continue-on-error: false
+
+      - name: Build and Test
+        run: ./gradlew clean build
+

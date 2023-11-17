@@ -23,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 /**
@@ -110,8 +112,18 @@ public class MentoService {
     @Transactional(readOnly = true)
     public List<FindAllMentoRespDTO> findRecommendMentos(List<Long> mentoIds){
         List<Mento> recommendMentos = mentoRepository.findMentosWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(mentoIds, Status.ACTIVE);
-        List<FindAllMentoRespDTO> findAllMentoDTO = MentoMapper.from(recommendMentos);
-        return findAllMentoDTO;
+        return getSortedRecommendMentos(mentoIds, recommendMentos);
+    }
+
+    private List<FindAllMentoRespDTO> getSortedRecommendMentos(List<Long> mentoIds, List<Mento> recommendMentos) {
+        List<Mento> sortedRecommendMentos = mentoIds.stream()
+                .map(id -> recommendMentos.stream()
+                        .filter(mento -> mento.getMentoId().equals(id))
+                        .findFirst()
+                        .orElse(null))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+        return MentoMapper.from(sortedRecommendMentos);
     }
 
 
