@@ -38,9 +38,6 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
 
-      - name: Build and Test
-        run: ./gradlew clean build
-
       - name: Run Spring Boot App for 30 seconds
         run: |
           export SPRING_PROFILES_ACTIVE=test
@@ -49,3 +46,7 @@ jobs:
           sleep 30
           kill $APP_PID
         continue-on-error: false
+
+      - name: Build and Test
+        run: ./gradlew clean build
+
