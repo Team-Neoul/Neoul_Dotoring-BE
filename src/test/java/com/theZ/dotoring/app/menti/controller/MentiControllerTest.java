@@ -147,4 +147,28 @@ class MentiControllerTest {
         resultActions.andExpect(jsonPath("$.response").exists());
         resultActions.andExpect(jsonPath("$.response.grade").value(3));
     }
+
+    @Test
+    @WithUserDetails(value = "dotoring1")
+    void findMyMenti() throws Exception {
+
+        ResultActions resultActions = mockMvc.perform(
+                get("/api/menti/my-page")
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+
+        System.out.println("findMyMenti_test : " + responseBody);
+
+        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(jsonPath("$.success").value(true));
+        resultActions.andExpect(jsonPath("$.response").exists());
+        resultActions.andExpect(jsonPath("$.response.mentiId").exists());
+        resultActions.andExpect(jsonPath("$.response.grade").exists());
+        resultActions.andExpect(jsonPath("$.response.nickname").exists());
+        resultActions.andExpect(jsonPath("$.response.profileImage").exists());
+        resultActions.andExpect(jsonPath("$.response.introduction").exists());
+        resultActions.andExpect(jsonPath("$.response.majors").exists());
+        resultActions.andExpect(jsonPath("$.response.fields").exists());
+    }
 }

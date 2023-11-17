@@ -2,6 +2,7 @@ package com.theZ.dotoring.app.mento.mapper;
 
 import com.theZ.dotoring.app.mento.dto.FindAllMentoRespDTO;
 import com.theZ.dotoring.app.mento.dto.FindMentoByIdRespDTO;
+import com.theZ.dotoring.app.mento.dto.FindMyMentoRespDTO;
 import com.theZ.dotoring.app.mento.dto.FindWaitMentoRespDTO;
 import com.theZ.dotoring.app.mento.model.Mento;
 import org.springframework.beans.factory.annotation.Value;
@@ -83,4 +84,16 @@ public class MentoMapper {
         return findWaitMentoPagindRespDTOS;
     }
 
+    public static FindMyMentoRespDTO fromMyMento(Mento mento) {
+        FindMyMentoRespDTO findMyMentoRespDTO = FindMyMentoRespDTO.builder()
+                .mentoId(mento.getMentoId())
+                .nickname(mento.getNickname())
+                .introduction(mento.getIntroduction())
+                .profileImage(mento.getProfile().getSavedProfileName())
+                .majors(mento.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
+                .fields(mento.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
+                .grade(mento.getGrade())
+                .build();
+        return findMyMentoRespDTO;
+    }
 }

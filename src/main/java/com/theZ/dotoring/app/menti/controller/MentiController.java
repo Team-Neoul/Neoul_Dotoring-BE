@@ -2,9 +2,7 @@ package com.theZ.dotoring.app.menti.controller;
 
 import com.theZ.dotoring.app.auth.model.MemberDetails;
 import com.theZ.dotoring.app.menti.dto.*;
-import com.theZ.dotoring.app.menti.handler.FindAllMentiHandler;
-import com.theZ.dotoring.app.menti.handler.SaveMentiHandler;
-import com.theZ.dotoring.app.menti.handler.UpdateMentiDesiredFieldHandler;
+import com.theZ.dotoring.app.menti.handler.*;
 import com.theZ.dotoring.app.menti.service.MentiService;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
@@ -27,6 +25,8 @@ import java.io.IOException;
 public class MentiController {
 
     private final SaveMentiHandler saveMentiHandler;
+    private final FindMentiHandler findMentiHandler;
+    private final FindMyMentiHandler findMyMentiHandler;
     private final MentiService mentiService;
     private final FindAllMentiHandler findAllMentiHandler;
     private final UpdateMentiDesiredFieldHandler updateMentiDesiredFieldHandler;
@@ -48,7 +48,7 @@ public class MentiController {
     @ApiOperation(value = "멘티 홈에서 해당 멘티 상세 조회시 사용")
     @GetMapping("/menti/{id}")
     public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> findMentiById(@PathVariable Long id){
-        FindMentiByIdRespDTO findMentiByIdRespDTO = mentiService.findMentiWithProfile(id);
+        FindMentiByIdRespDTO findMentiByIdRespDTO = findMentiHandler.execute(id);
         return ApiResponseGenerator.success(findMentiByIdRespDTO,HttpStatus.OK);
     }
 
@@ -99,6 +99,13 @@ public class MentiController {
     public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> updateMentiDesiredField(@RequestBody @Valid UpdateMentiDesiredFieldRqDTO updateMentiDesiredFieldRqDTO){
         FindMentiByIdRespDTO findMentiByIdRespDTO = updateMentiDesiredFieldHandler.execute(updateMentiDesiredFieldRqDTO);
         return ApiResponseGenerator.success(findMentiByIdRespDTO,HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "멘티 마이페이지 정보 조회")
+    @GetMapping("/menti/my-page")
+    public ApiResponse<ApiResponse.CustomBody<FindMyMentiRespDTO>> findMyMenti(@AuthenticationPrincipal MemberDetails memberDetails){
+        FindMyMentiRespDTO findMyMentiRespDTO = findMyMentiHandler.execute(memberDetails.getId());
+        return ApiResponseGenerator.success(findMyMentiRespDTO,HttpStatus.OK);
     }
 
 

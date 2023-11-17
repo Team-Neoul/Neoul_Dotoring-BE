@@ -9,7 +9,7 @@ import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.menti.repository.MentiRepository;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.common.MessageCode;
-import com.theZ.dotoring.common.URLConverter;
+import com.theZ.dotoring.common.URLService;
 import com.theZ.dotoring.enums.Status;
 import com.theZ.dotoring.exception.NicknameDuplicateException;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +39,6 @@ import java.util.stream.Collectors;
 public class MentiService {
 
     private final MentiRepository mentiRepository;
-    private final URLConverter urlConverter;
 
     /**
      * 인자로 받은 매개변수들을 사용하여 Menti 엔티티를 생성하여 이를 DB에 저장한 후 반환하는 메서드
@@ -83,9 +82,7 @@ public class MentiService {
     public FindMentiByIdRespDTO findMentiWithProfile(Long mentiId){
         Menti menti = mentiRepository.findMentiWithProfileUsingFetchJoinByMentiId(mentiId).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘티입니다."));
         menti.updateViewCount();
-        FindMentiByIdRespDTO findMentiByIdDTO = MentiMapper.fromDetail(menti);
-        FindMentiByIdRespDTO findMentiByIdRespDTO = urlConverter.getFindMentiRespDTO(findMentiByIdDTO);
-        return findMentiByIdRespDTO;
+        return MentiMapper.fromDetail(menti);
     }
 
     /**
@@ -140,6 +137,12 @@ public class MentiService {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
         return MentiMapper.from(sortedRecommendMentis);
+    }
+
+
+    public FindMyMentiRespDTO findMyMentiWithProfile(Long mentiId){
+        Menti menti = mentiRepository.findMentiWithProfileUsingFetchJoinByMentiId(mentiId).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘티입니다."));
+        return MentiMapper.fromMyMenti(menti);
     }
 
 

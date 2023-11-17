@@ -150,4 +150,28 @@ class MentoControllerTest {
         resultActions.andExpect(jsonPath("$.response.grade").value(3));
     }
 
+    @Test
+    @WithUserDetails(value = "dotoring11")
+    void findMyMento() throws Exception {
+
+        ResultActions resultActions = mockMvc.perform(
+                get("/api/mento/my-page")
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+
+        System.out.println("findMyMento_test : " + responseBody);
+
+        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(jsonPath("$.success").value(true));
+        resultActions.andExpect(jsonPath("$.response").exists());
+        resultActions.andExpect(jsonPath("$.response.mentoId").exists());
+        resultActions.andExpect(jsonPath("$.response.grade").exists());
+        resultActions.andExpect(jsonPath("$.response.nickname").exists());
+        resultActions.andExpect(jsonPath("$.response.profileImage").exists());
+        resultActions.andExpect(jsonPath("$.response.introduction").exists());
+        resultActions.andExpect(jsonPath("$.response.majors").exists());
+        resultActions.andExpect(jsonPath("$.response.fields").exists());
+    }
+
 }

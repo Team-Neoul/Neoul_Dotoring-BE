@@ -8,7 +8,7 @@ import com.theZ.dotoring.app.mento.repository.MentoRepository;
 import com.theZ.dotoring.app.profile.controller.ProfileRequestDTO;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.app.profile.repository.ProfileRepository;
-import com.theZ.dotoring.common.S3Service;
+import com.theZ.dotoring.common.S3Connector;
 import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.common.UploadFile;
 import com.theZ.dotoring.exception.DefaultProfileImageNotFoundException;
@@ -33,7 +33,7 @@ import java.util.NoSuchElementException;
 @Transactional
 public class ProfileService {
 
-    private final S3Service s3Service;
+    private final S3Connector s3Connector;
     private final ProfileRepository profileRepository;
     private final MemberAccountService memberAccountService;
     private final MentoRepository mentoRepository;
@@ -60,7 +60,7 @@ public class ProfileService {
      */
 
     public void updateProfile(MultipartFile multipartFile, ProfileRequestDTO profileRequestDTO) throws IOException {
-        UploadFile uploadFile = s3Service.storeProfile(multipartFile);
+        UploadFile uploadFile = s3Connector.storeProfile(multipartFile);
         Profile profile = Profile.createProfile(uploadFile.getStoreFileName(), uploadFile.getOriginalFileName());
         Profile savedProfile = profileRepository.save(profile);
         if(memberAccountService.isMento(profileRequestDTO.getMemberId())){
