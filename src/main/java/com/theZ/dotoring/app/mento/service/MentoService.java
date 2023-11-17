@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@Transactional
+@Transactional(readOnly = true)
 public class MentoService {
 
     private final MentoRepository mentoRepository;
@@ -53,6 +53,7 @@ public class MentoService {
      * @param memberMajors
      *
      */
+    @Transactional
     public void saveMento(SaveMentoRqDTO saveMentoRqDTO, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
         Mento mento = Mento.createMento(saveMentoRqDTO.getNickname(), saveMentoRqDTO.getIntroduction(), saveMentoRqDTO.getSchool(), saveMentoRqDTO.getGrade(), memberAccount,profile,desiredFields,memberMajors);
         mentoRepository.save(mento);
@@ -80,7 +81,7 @@ public class MentoService {
      *
      * @retrun findMentoByIdRespDTO
      */
-    @Transactional(readOnly = true)
+    @Transactional
     public FindMentoByIdRespDTO findMentoWithProfile(Long mentoId){
         Mento mento = mentoRepository.findMentoWithProfileUsingFetchJoinByMentoId(mentoId).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘토입니다."));
         mento.updateViewCount();
@@ -94,7 +95,6 @@ public class MentoService {
      *
      * @retrun Mento
      */
-    @Transactional(readOnly = true)
     public Mento findMento(Long mentoId){
         return mentoRepository.findById(mentoId).orElseThrow(() -> new NoSuchElementException("존재하지 않는 멘토입니다."));
     }
@@ -107,7 +107,6 @@ public class MentoService {
      * @retrun findAllMentoRespDTOList
      */
 
-    @Transactional(readOnly = true)
     public List<FindAllMentoRespDTO> findRecommendMentos(List<Long> mentoIds){
         List<Mento> recommendMentos = mentoRepository.findMentosWithProfileAndFieldsAndMajorsUsingFetchJoinByMentoId(mentoIds, Status.ACTIVE);
         return getSortedRecommendMentos(mentoIds, recommendMentos);
@@ -133,13 +132,19 @@ public class MentoService {
      * @retrun FindWaitMentoRespDTO
      */
 
-    @Transactional(readOnly = true)
     public Page<FindWaitMentoRespDTO> findWaitMentos(Pageable pageable){
         Sort sort = Sort.by("createdAt");
         PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
         Page<Mento> pagingMento = mentoRepository.findMentosByStatus(Status.WAIT, pageRequest);
         Page<FindWaitMentoRespDTO> findWaitMentoRespDTOS = MentoMapper.fromWaitMento(pagingMento);
         return findWaitMentoRespDTOS;
+    }
+
+
+    public FindMyMentoRespDTO findMyMentoWithProfile(Long mentoId){
+        Mento mento = mentoRepository.findMentoWithProfileAndMajorsUsingFetchJoinByMentoId(mentoId).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
+        FindMyMentoRespDTO findMyMentoRespDTO = MentoMapper.fromMyMento(mento);
+        return findMyMentoRespDTO;
     }
 
     /**
@@ -150,6 +155,7 @@ public class MentoService {
      * @retrun findMentoByIdRespDTO
      */
 
+    @Transactional
     public FindMentoByIdRespDTO updateMentoringSystem(UpdateMentoringSystemRqDTO updateMentoringSystemRqDTO){
         Mento mento = mentoRepository.findById(updateMentoringSystemRqDTO.getMentoId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
         mento.updateMentoringSystem(updateMentoringSystemRqDTO.getMentoringSystem());
@@ -165,6 +171,7 @@ public class MentoService {
      * @retrun findMentoByIdRespDTO
      */
 
+    @Transactional
     public FindMentoByIdRespDTO updateIntroduction(UpdateMentoIntroductionRqDTO updateMentoIntroductionRqDTO) {
         Mento mento = mentoRepository.findById(updateMentoIntroductionRqDTO.getMentoId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
         mento.updateIntroduction(updateMentoIntroductionRqDTO.getIntroduction());
@@ -179,6 +186,7 @@ public class MentoService {
      *
      * @retrun findMentoByIdRespDTO
      */
+    @Transactional
     public FindMentoByIdRespDTO updateNickname(UpdateMentoNicknameRqDTO updateMentoNicknameRqDTO) {
         Mento mento = mentoRepository.findById(updateMentoNicknameRqDTO.getMentoId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
         mento.updateNickname(updateMentoNicknameRqDTO.getNickname());
@@ -194,6 +202,7 @@ public class MentoService {
      *
      * @retrun findMentoByIdRespDTO
      */
+    @Transactional
     public FindMentoByIdRespDTO updateDesiredFields(List<DesiredField> desiredFields, Long mentoId) {
         Mento mento = mentoRepository.findMentoWithProfileAndMajorsUsingFetchJoinByMentoId(mentoId).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
         mento.updateDesiredField(desiredFields);
@@ -207,8 +216,10 @@ public class MentoService {
      * @parma approveWaitMentosRqDTO
      *
      */
+    @Transactional
     public void approveWaitMentos(ApproveWaitMentosRqDTO approveWaitMentosRqDTO) {
         List<Mento> mentos = mentoRepository.findAllById(approveWaitMentosRqDTO.getMentoIds());
         mentos.stream().forEach(i -> i.approveStatus());
     }
+
 }
