@@ -5,19 +5,20 @@ import com.theZ.dotoring.app.menti.dto.FindMentiByIdRespDTO;
 import com.theZ.dotoring.app.mento.dto.FindAllMentoRespDTO;
 import com.theZ.dotoring.app.mento.dto.FindMentoByIdRespDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 @RequiredArgsConstructor
-public class URLConverter {
+public class URLService {
 
-    private final S3Service s3Service;
+    private final S3Connector s3Connector;
 
     public List<FindAllMentiRespDTO> getFindAllMentiRespDTOS(List<FindAllMentiRespDTO> recommendMentis) {
         return recommendMentis.stream().map(mentiRespDTO -> new FindAllMentiRespDTO(mentiRespDTO.getId(),
-                s3Service.getPreSignedUrl(mentiRespDTO.getProfileImage()),
+                s3Connector.getPreSignedUrl(mentiRespDTO.getProfileImage()),
                 mentiRespDTO.getNickname(),
                 mentiRespDTO.getPreferredMentoringSystem(),
                 mentiRespDTO.getFields(),
@@ -27,7 +28,7 @@ public class URLConverter {
 
     public List<FindAllMentoRespDTO> getFindAllMentoRespDTOS(List<FindAllMentoRespDTO> recommendMentors) {
         return recommendMentors.stream().map(mentoRespDTO -> new FindAllMentoRespDTO(mentoRespDTO.getId(),
-                s3Service.getPreSignedUrl(mentoRespDTO.getProfileImage()),
+                s3Connector.getPreSignedUrl(mentoRespDTO.getProfileImage()),
                 mentoRespDTO.getNickname(),
                 mentoRespDTO.getMentoringSystem(),
                 mentoRespDTO.getFields(),
@@ -37,7 +38,7 @@ public class URLConverter {
 
     public FindMentiByIdRespDTO getFindMentiRespDTO(FindMentiByIdRespDTO findMentiByIdRespDTO){
         return new FindMentiByIdRespDTO(findMentiByIdRespDTO.getMentiId(),
-                s3Service.getPreSignedUrl(findMentiByIdRespDTO.getProfileImage()),
+                s3Connector.getPreSignedUrl(findMentiByIdRespDTO.getProfileImage()),
                 findMentiByIdRespDTO.getNickname(),
                 findMentiByIdRespDTO.getPreferredMentoring(),
                 findMentiByIdRespDTO.getFields(),
@@ -48,7 +49,7 @@ public class URLConverter {
 
     public FindMentoByIdRespDTO getFindMentoRespDTO(FindMentoByIdRespDTO findMentoByIdRespDTO){
         return new FindMentoByIdRespDTO(findMentoByIdRespDTO.getMentoId(),
-                s3Service.getPreSignedUrl(findMentoByIdRespDTO.getProfileImage()),
+                s3Connector.getPreSignedUrl(findMentoByIdRespDTO.getProfileImage()),
                 findMentoByIdRespDTO.getNickname(),
                 findMentoByIdRespDTO.getMentoringSystem(),
                 findMentoByIdRespDTO.getFields(),
