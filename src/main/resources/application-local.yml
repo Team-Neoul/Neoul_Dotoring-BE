@@ -44,15 +44,14 @@ email:
   link: https://dotoring.com
   validTime: 300000
 
-jwt:
-  secretKey: dotoringTestlocal109304i4023912431243r34
-  # 2일
-  accessTokenExp: 172800000
-  # 5일
-  refreshTokenExp: 432000000
-
 file:
   path: ./images/
 
 profileUrl: http://localhost:8080/images/
 
+cloud:
+  aws:
+    region:
+      static: "ap-northeast-2"
+    stack:
+      auto: false
