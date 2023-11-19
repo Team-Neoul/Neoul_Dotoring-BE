@@ -11,7 +11,7 @@ import com.theZ.dotoring.app.menti.dto.SaveMentiRqDTO;
 import com.theZ.dotoring.app.mento.dto.SaveMentoRqDTO;
 import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.enums.MemberType;
-import com.theZ.dotoring.exception.LoginIdDuplicateException;
+import com.theZ.dotoring.exception.signupException.LoginIdDuplicateException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

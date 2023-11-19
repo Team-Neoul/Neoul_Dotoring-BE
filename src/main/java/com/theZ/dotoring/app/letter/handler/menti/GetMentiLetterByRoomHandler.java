@@ -6,7 +6,7 @@ import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.menti.service.MentiService;
 import com.theZ.dotoring.app.room.domain.Room;
 import com.theZ.dotoring.app.room.service.RoomService;
-import com.theZ.dotoring.exception.NotFoundLetterException;
+import com.theZ.dotoring.exception.letterException.NotFoundLetterException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

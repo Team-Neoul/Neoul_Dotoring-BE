@@ -1,4 +1,4 @@
-package com.theZ.dotoring.exception;
+package com.theZ.dotoring.exception.signupException;
 
 import com.theZ.dotoring.common.MessageCode;
 import lombok.Getter;
