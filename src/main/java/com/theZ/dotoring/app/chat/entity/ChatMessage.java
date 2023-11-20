@@ -18,7 +18,7 @@ public class ChatMessage extends CommonEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "chatMessageId", nullable = false)
+    @Column(name = "chat_message_id", nullable = false)
     private Long id;
 
     //채팅방 ID
