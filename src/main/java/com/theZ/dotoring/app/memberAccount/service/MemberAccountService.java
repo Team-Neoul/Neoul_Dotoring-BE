@@ -4,11 +4,13 @@ import com.theZ.dotoring.app.certificate.model.Certificate;
 import com.theZ.dotoring.app.memberAccount.dto.UpdateMemberLoginIdRequestDTO;
 import com.theZ.dotoring.app.memberAccount.dto.UpdateMemberPasswordRequestDTO;
 import com.theZ.dotoring.app.memberAccount.model.MemberRole;
+import com.theZ.dotoring.app.menti.repository.MentiRepository;
 import com.theZ.dotoring.app.mento.dto.MemberPasswordRequestDTO;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.memberAccount.repository.MemberAccountRepository;
 import com.theZ.dotoring.app.menti.dto.SaveMentiRqDTO;
 import com.theZ.dotoring.app.mento.dto.SaveMentoRqDTO;
+import com.theZ.dotoring.app.mento.repository.MentoRepository;
 import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.enums.MemberType;
 import com.theZ.dotoring.exception.signupException.LoginIdDuplicateException;
@@ -20,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 /**
  * MemberAccount 관한 비즈니스 로직이 담겨있습니다.
@@ -35,6 +38,8 @@ public class MemberAccountService{
 
     private final MemberAccountRepository memberAccountRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final MentoRepository mentoRepository;
+    private final MentiRepository mentiRepository;
 
 
     /**
@@ -156,5 +161,21 @@ public class MemberAccountService{
     public void updatePassword(UpdateMemberPasswordRequestDTO updateMemberPasswordRequestDTO) {
         MemberAccount memberAccount = memberAccountRepository.findById(updateMemberPasswordRequestDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
         memberAccount.updatePassword(updateMemberPasswordRequestDTO.getPassword());
+    }
+
+    public String getMemberNickname(MemberAccount memberAccount){
+
+        // 멘토라면
+        if (Objects.equals(memberAccount.getMemberType().toString(), "MENTO")){
+            return mentoRepository.findMentoByMemberAccountId(memberAccount.getId())
+                    // todo CustomException 작성하기
+                    .orElseThrow(RuntimeException::new)
+                    .getNickname();
+        }
+
+        return mentiRepository.findMentiByMemberAccountId(memberAccount.getId())
+                // todo CustomException 작성하기
+                .orElseThrow(RuntimeException::new)
+                .getNickname();
     }
 }

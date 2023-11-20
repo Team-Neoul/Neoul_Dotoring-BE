@@ -18,9 +18,9 @@ public class ChatMessageResponsePageDTO {
 
     private List<ChatMessageResp> contents;
 
-    public ChatMessageResponsePageDTO(List<ChatMessage> chatMessages, MemberAccount memberAccount) {
+    public ChatMessageResponsePageDTO(List<ChatMessage> chatMessages, String memberNickname) {
         this.contents = chatMessages.stream()
-                .map(chatMessage -> ChatMessageResponsePageDTO.from(chatMessage, memberAccount.getLoginId()))
+                .map(chatMessage -> ChatMessageResponsePageDTO.from(chatMessage, memberNickname))
                 .collect(Collectors.toList());
     }
 
@@ -40,11 +40,11 @@ public class ChatMessageResponsePageDTO {
 
     }
 
-    public static ChatMessageResp from(ChatMessage message, String memberName) {
+    public static ChatMessageResp from(ChatMessage message, String memberNickname) {
         return ChatMessageResp.builder()
                 .id(message.getId())
                 .senderName(message.getSenderName())
-                .writer(Objects.equals(message.getSenderName(), memberName))
+                .writer(Objects.equals(message.getSenderName(), memberNickname))
                 .message(message.getMessage())
                 .createdAt(message.getCreatedAt())
                 .build();
