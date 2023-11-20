@@ -13,6 +13,7 @@ import com.theZ.dotoring.app.mento.dto.SaveMentoRqDTO;
 import com.theZ.dotoring.app.mento.repository.MentoRepository;
 import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.enums.MemberType;
+import com.theZ.dotoring.exception.NotFoundMemberException;
 import com.theZ.dotoring.exception.signupException.LoginIdDuplicateException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -163,19 +164,17 @@ public class MemberAccountService{
         memberAccount.updatePassword(updateMemberPasswordRequestDTO.getPassword());
     }
 
-    public String getMemberNickname(MemberAccount memberAccount){
+    public String getMemberNickname(MemberAccount memberAccount) throws NotFoundMemberException {
 
         // 멘토라면
         if (Objects.equals(memberAccount.getMemberType().toString(), "MENTO")){
             return mentoRepository.findMentoByMemberAccountId(memberAccount.getId())
-                    // todo CustomException 작성하기
-                    .orElseThrow(RuntimeException::new)
+                    .orElseThrow(() -> new NotFoundMemberException(MessageCode.MEMBER_NOT_FOUND))
                     .getNickname();
         }
 
         return mentiRepository.findMentiByMemberAccountId(memberAccount.getId())
-                // todo CustomException 작성하기
-                .orElseThrow(RuntimeException::new)
+                .orElseThrow(() -> new NotFoundMemberException(MessageCode.MEMBER_NOT_FOUND))
                 .getNickname();
     }
 }
