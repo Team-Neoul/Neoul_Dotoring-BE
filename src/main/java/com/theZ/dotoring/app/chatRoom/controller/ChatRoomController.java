@@ -27,9 +27,9 @@ public class ChatRoomController {
       기존 채팅방이 있으면 해당 채팅방 반환, 없으면 새로운 채팅방 생성후 반환
     */
    @PostMapping("/room")
-   public ApiResponse<ApiResponse.CustomBody<ChatRoomResponseDTO.ChatRoomDTO>> findRoomOrcreateRoom(@AuthenticationPrincipal MemberDetails memberDetails, @RequestBody ChatRoomRequestDTO chatRoomRequestDTO){
+   public ApiResponse<ApiResponse.CustomBody<ChatRoomResponseDTO.ChatRoomDTO>> findRoomOrCreateRoom(@AuthenticationPrincipal MemberDetails memberDetails, @RequestBody ChatRoomRequestDTO chatRoomRequestDTO){
 
-        ChatRoomResponseDTO.ChatRoomDTO chatRoom = chatRoomService.findRoomOrcreateRoom(memberDetails.getMemberAccount(), chatRoomRequestDTO.getReceiverName());
+        ChatRoomResponseDTO.ChatRoomDTO chatRoom = chatRoomService.findRoomOrCreateRoom(memberDetails.getMemberAccount(), chatRoomRequestDTO.getReceiverName());
 
        return ApiResponseGenerator.success(chatRoom, HttpStatus.OK);
    }
@@ -38,7 +38,7 @@ public class ChatRoomController {
     @GetMapping("/rooms")
     public ApiResponse<ApiResponse.CustomBody<ChatRoomResponseDTO>> findAllRooms(@AuthenticationPrincipal MemberDetails memberDetails){
 
-        List<ChatRoom> chatRooms = chatRoomService.findAllRooms(memberDetails);
+        List<ChatRoom> chatRooms = chatRoomService.findAllRooms(memberDetails.getMemberAccount());
 
         return ApiResponseGenerator.success(new ChatRoomResponseDTO(chatRooms), HttpStatus.OK);
     }

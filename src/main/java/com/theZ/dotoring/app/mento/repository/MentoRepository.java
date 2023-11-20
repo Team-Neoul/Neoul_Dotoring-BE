@@ -13,6 +13,9 @@ import java.util.Optional;
 
 public interface MentoRepository extends JpaRepository<Mento,Long> {
 
+    @Query("select m from Mento m where m.memberAccount.id = :memberAccountId ")
+    Optional<Mento> findMentoByMemberAccountId(Long memberAccountId);
+
     @Query("SELECT M FROM Mento M JOIN FETCH M.profile WHERE M.mentoId = :mentoId")
     Optional<Mento> findMentoWithProfileUsingFetchJoinByMentoId(@Param("mentoId") Long mentoId);
 

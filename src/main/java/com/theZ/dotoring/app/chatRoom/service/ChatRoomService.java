@@ -8,12 +8,17 @@ import com.theZ.dotoring.app.chatRoom.dto.ChatRoomResponseDTO;
 import com.theZ.dotoring.app.chatRoom.entity.ChatRoom;
 import com.theZ.dotoring.app.chatRoom.repository.ChatRoomRespository;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
+import com.theZ.dotoring.app.memberAccount.repository.MemberAccountRepository;
+import com.theZ.dotoring.app.memberAccount.service.MemberAccountService;
+import com.theZ.dotoring.app.menti.repository.MentiRepository;
+import com.theZ.dotoring.app.mento.repository.MentoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -25,36 +30,34 @@ public class ChatRoomService {
 
     private final MessageRepository messageRepository;
 
+    private final MemberAccountService memberAccountService;
+
 
     /*
       기존 채팅방이 있으면 해당 채팅방 반환, 없으면 새로운 채팅방 생성후 반환
     */
     @Transactional
-    public ChatRoomResponseDTO.ChatRoomDTO findRoomOrcreateRoom(MemberAccount memberAccount, String receiverName) {
-        Optional<ChatRoom> chatRoom = chatRoomRespository.findByUserNameAndReceiverName(memberAccount.getLoginId(), receiverName);
+    public ChatRoomResponseDTO.ChatRoomDTO findRoomOrCreateRoom(MemberAccount memberAccount, String receiverName) {
+        String memberNickname = memberAccountService.getMemberNickname(memberAccount);
 
-        if (chatRoom.isPresent()) {
-            return ChatRoomResponseDTO.from(chatRoom.get());
+        ChatRoom chatRoom = chatRoomRespository.findByUserNameAndReceiverName(memberNickname, receiverName).orElse(null);
+
+        if (chatRoom != null){
+            return ChatRoomResponseDTO.from(chatRoom);
         }
 
-        /*
-            추후 멘토, 멘티에 따른 분기처리 필요
-         */
+        if (memberAccount.getMemberType().toString().equals("MENTO")){
+            return ChatRoomResponseDTO.from(ChatRoom.of(memberNickname, receiverName));
+        }
 
-        ChatRoom chatRoomObj = ChatRoom.builder()
-                .mentoName(memberAccount.getLoginId())
-                .menteeName(receiverName)
-                .build();
-
-        chatRoomObj.setRandomRoomName();
-
-        return ChatRoomResponseDTO.from(chatRoomRespository.save(chatRoomObj));
+        return ChatRoomResponseDTO.from(ChatRoom.of(receiverName, memberNickname));
     }
 
     @Transactional
-    public List<ChatRoom> findAllRooms(MemberDetails memberDetails){
+    public List<ChatRoom> findAllRooms(MemberAccount memberAccount){
 
-        return chatRoomRespository.findChatRoomsByVisitedUserName(memberDetails.getUsername());
+        // getMemberNickName 찾기
+        return chatRoomRespository.findChatRoomsByVisitedUserName(memberAccountService.getMemberNickname(memberAccount));
     }
 
     @Transactional
@@ -62,6 +65,9 @@ public class ChatRoomService {
 
         List<ChatMessage> messages = messageRepository.findByRoomNameOrderByCreatedAtDesc(roomName);
 
-        return new ChatMessageResponsePageDTO(messages, memberAccount);
+        String memberNickname = memberAccountService.getMemberNickname(memberAccount);
+
+        // nickName 넘겨야함
+        return new ChatMessageResponsePageDTO(messages, memberNickname);
     }
 }

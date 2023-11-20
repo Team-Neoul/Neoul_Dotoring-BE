@@ -25,7 +25,6 @@ public class ChatMessage extends CommonEntity {
     private String roomName;
 
     //보내는 사람
-    // senderName이 나을 것 같은 이유 -> Mento, Menti 분리에도 영향을 안받기 위해
     private String senderName;
 
     //내용

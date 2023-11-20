@@ -22,14 +22,14 @@ public class MessageController {
 
     private final MessageService messageService;
 
-    private final ChatRoomService chatRoomService;
-
-    // todo FCM 도입시 재구현하기
-    //private final FCMNotificationService fcmNotificationService;
-
-
-    @MessageMapping("/{roomId}")
-    @SendTo("/app/chat/message")
+    /*
+    @MessageMapping() - 위의 prefix, endpoint 설정을 포함한 입력한 url로 발행된 메세지 구독
+    @SendTo() - 해당 메서드의 return값을 url을 구독하는 클라이언트에게 메세지 발행
+    @DestinationVariable - 구독 및 발행 url 의 pathparameter
+    @Payload - 수신된 메세지의 데이터
+     */
+    @MessageMapping("/{roomName}")
+    @SendTo("/app/chat/message/{roomName}")
     public ChatMessageReponseDTO.ChatDTO sendMessage(
             @AuthenticationPrincipal MemberDetails memberDetails,
             @DestinationVariable String roomName,
@@ -39,12 +39,4 @@ public class MessageController {
         return messageService.saveMessage(memberDetails.getMemberAccount() , chatMessage);
     }
 
-
-//    private void alertTalk(List<String> visitedNames, ChatMessageReponseDTO.ChatDTO chatMessage){
-//        for (String name : visitedNames) {
-//            String ans = fcmNotificationService.sendNotificationByToken(
-//                    new FCMNotificationRequestDto(name, chatMessage.getSenderName() + "님이 채팅을 보내셨습니다.", chatMessage.getMessage()));
-//            log.info(ans);
-//        }
-//    }
 }

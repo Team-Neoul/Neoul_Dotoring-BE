@@ -20,6 +20,9 @@ public interface ChatRoomRespository extends JpaRepository<ChatRoom, Long> {
 
     Optional<ChatRoom> findByRoomName(String roomName);
 
-    @Query("SELECT distinct cr FROM ChatRoom cr WHERE cr.menteeName = :userName or cr.mentoName = :userName ORDER BY cr.updatedAt DESC")
+    @Query("SELECT distinct cr " +
+            "FROM ChatRoom cr " +
+            "WHERE cr.menteeName = :userName or cr.mentoName = :userName " +
+            "ORDER BY cr.updatedAt DESC ")
     List<ChatRoom> findChatRoomsByVisitedUserName(String userName);
 }

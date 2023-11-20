@@ -1,5 +1,6 @@
 package com.theZ.dotoring.app.chatRoom.entity;
 
+import com.theZ.dotoring.app.chatRoom.dto.ChatRoomRequestDTO;
 import com.theZ.dotoring.common.CommonEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,9 +32,12 @@ public class ChatRoom extends CommonEntity {
 
     private String menteeName;
 
-    // todo: roomName 랜덤하게 생성
-    public void setRandomRoomName(){
-        this.roomName = UUID.randomUUID().toString();
+    public static ChatRoom of(String mentoName, String menteeName){
+        return ChatRoom.builder()
+                .roomName(UUID.randomUUID().toString())
+                .mentoName(mentoName)
+                .menteeName(menteeName)
+                .build();
     }
 
     public void updateLastRecievedChat(String lastReceivedChat){
