@@ -28,15 +28,15 @@ public class MessageController {
     @DestinationVariable - 구독 및 발행 url 의 pathparameter
     @Payload - 수신된 메세지의 데이터
      */
+    // "ws/app/{roomName}" 으로 보내면 "ws/sub/{roomName}"으로 메시지 전송
     @MessageMapping("/{roomName}")
-    @SendTo("/app/chat/message/{roomName}")
+    @SendTo("/sub/{roomName}")
     public ChatMessageReponseDTO.ChatDTO sendMessage(
             @AuthenticationPrincipal MemberDetails memberDetails,
             @DestinationVariable String roomName,
             @Payload ChatMessageRequestDTO chatMessage
     )
     {
-        return messageService.saveMessage(memberDetails.getMemberAccount() , chatMessage);
+        return messageService.saveMessage(memberDetails.getMemberAccount() , chatMessage, roomName);
     }
-
 }

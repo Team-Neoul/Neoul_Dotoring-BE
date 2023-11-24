@@ -18,9 +18,9 @@ public class MessageService {
     private final MessageRepository messageRepository;
 
     @Transactional
-    public ChatMessageReponseDTO.ChatDTO saveMessage(MemberAccount memberAccount, ChatMessageRequestDTO messageDTO) {
+    public ChatMessageReponseDTO.ChatDTO saveMessage(MemberAccount memberAccount, ChatMessageRequestDTO messageDTO, String roomName) {
 
-        ChatMessage message = ChatMessage.from(messageDTO);
+        ChatMessage message = ChatMessage.from(messageDTO, roomName);
 
         messageRepository.save(message);
 
