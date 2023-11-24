@@ -13,6 +13,4 @@ public class ChatMessageRequestDTO {
 
     private String senderName;
 
-    private String roomName;
-
 }
