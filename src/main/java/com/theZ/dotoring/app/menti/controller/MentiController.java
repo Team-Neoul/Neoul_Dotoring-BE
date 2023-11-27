@@ -72,34 +72,34 @@ public class MentiController {
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
-    @ApiOperation(value = "마이페이지에서 멘티 선호 멘토링 수정", notes = "선호 멘토링에 대해서 10글자 이상 300자 이하를 작성해야합니다.")
-    @PatchMapping("/menti/preferredMentoring")
-    public ApiResponse<ApiResponse.CustomBody<FindAllMentiRespDTO>> updateMentiMentoringSystem(@RequestBody @Valid UpdateMentiMentoringSystemRqDTO updateMentiMentoringSystemRqDTO){
-        FindAllMentiRespDTO findAllMentiRespDTO = mentiService.updatePreferredMentoring(updateMentiMentoringSystemRqDTO);
-        return ApiResponseGenerator.success(findAllMentiRespDTO,HttpStatus.OK);
-    }
-
-    @ApiOperation(value = "마이페이지에서 멘티 소개 수정 ", notes = "10글자에서 100글자 사이로 입력해주세요")
-    @PatchMapping("/menti/introduction")
-    public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> updateMentiIntroduction(@RequestBody @Valid UpdateMentiIntroductionRqDTO updateMentiIntroductionRqDTO){
-        FindMentiByIdRespDTO findMentiByIdRespDTO = mentiService.updateItroduction(updateMentiIntroductionRqDTO);
-        return ApiResponseGenerator.success(findMentiByIdRespDTO,HttpStatus.OK);
-    }
-
-    @ApiOperation(value = "마이페이지에서 멘티 닉네임 수정 ", notes = "이름은 3자 이상 8자 이하로 입력해주세요.")
-    @PatchMapping("/menti/nickname")
-    public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> updateMentiNickname(@RequestBody @Valid UpdateMentiNicknameRqDTO updateMentiNicknameRqDTO){
-        FindMentiByIdRespDTO findMentiByIdRespDTO = mentiService.updateNickname(updateMentiNicknameRqDTO);
-        return ApiResponseGenerator.success(findMentiByIdRespDTO,HttpStatus.OK);
-    }
-
-
-    @ApiOperation(value = "마이페이지에서 희망 멘토링 분야 수정 ")
-    @PatchMapping("/menti/desiredField")
-    public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> updateMentiDesiredField(@RequestBody @Valid UpdateMentiDesiredFieldRqDTO updateMentiDesiredFieldRqDTO){
-        FindMentiByIdRespDTO findMentiByIdRespDTO = updateMentiDesiredFieldHandler.execute(updateMentiDesiredFieldRqDTO);
-        return ApiResponseGenerator.success(findMentiByIdRespDTO,HttpStatus.OK);
-    }
+//    @ApiOperation(value = "마이페이지에서 멘티 선호 멘토링 수정", notes = "선호 멘토링에 대해서 10글자 이상 300자 이하를 작성해야합니다.")
+//    @PatchMapping("/menti/preferredMentoring")
+//    public ApiResponse<ApiResponse.CustomBody<FindAllMentiRespDTO>> updateMentiMentoringSystem(@RequestBody @Valid UpdateMentiMentoringSystemRqDTO updateMentiMentoringSystemRqDTO){
+//        FindAllMentiRespDTO findAllMentiRespDTO = mentiService.updatePreferredMentoring(updateMentiMentoringSystemRqDTO);
+//        return ApiResponseGenerator.success(findAllMentiRespDTO,HttpStatus.OK);
+//    }
+//
+//    @ApiOperation(value = "마이페이지에서 멘티 소개 수정 ", notes = "10글자에서 100글자 사이로 입력해주세요")
+//    @PatchMapping("/menti/introduction")
+//    public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> updateMentiIntroduction(@RequestBody @Valid UpdateMentiIntroductionRqDTO updateMentiIntroductionRqDTO){
+//        FindMentiByIdRespDTO findMentiByIdRespDTO = mentiService.updateItroduction(updateMentiIntroductionRqDTO);
+//        return ApiResponseGenerator.success(findMentiByIdRespDTO,HttpStatus.OK);
+//    }
+//
+//    @ApiOperation(value = "마이페이지에서 멘티 닉네임 수정 ", notes = "이름은 3자 이상 8자 이하로 입력해주세요.")
+//    @PatchMapping("/menti/nickname")
+//    public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> updateMentiNickname(@RequestBody @Valid UpdateMentiNicknameRqDTO updateMentiNicknameRqDTO){
+//        FindMentiByIdRespDTO findMentiByIdRespDTO = mentiService.updateNickname(updateMentiNicknameRqDTO);
+//        return ApiResponseGenerator.success(findMentiByIdRespDTO,HttpStatus.OK);
+//    }
+//
+//
+//    @ApiOperation(value = "마이페이지에서 희망 멘토링 분야 수정 ")
+//    @PatchMapping("/menti/desiredField")
+//    public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> updateMentiDesiredField(@RequestBody @Valid UpdateMentiDesiredFieldRqDTO updateMentiDesiredFieldRqDTO){
+//        FindMentiByIdRespDTO findMentiByIdRespDTO = updateMentiDesiredFieldHandler.execute(updateMentiDesiredFieldRqDTO);
+//        return ApiResponseGenerator.success(findMentiByIdRespDTO,HttpStatus.OK);
+//    }
 
     @ApiOperation(value = "멘티 마이페이지 정보 조회")
     @GetMapping("/menti/my-page")
