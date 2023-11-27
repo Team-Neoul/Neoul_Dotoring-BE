@@ -30,7 +30,6 @@ public class MentoController {
     private final FindMentoHandler findMentoHandler;
     private final FindMyMentoHandler findMyMentoHandler;
     private final MentoService mentoService;
-    private final UpdateMentoDesiredFieldHandler updateMentoDesiredFieldHandler;
 
     @ApiOperation(value = "멘토 최종 회원가입때 사용")
     @PostMapping(value = "/signup-mento", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -74,35 +73,6 @@ public class MentoController {
         return ApiResponseGenerator.success(findMentoByIdRespDTO,HttpStatus.OK);
     }
 
-//    @ApiOperation(value = "마이페이지에서 멘토 멘토링 방식 수정")
-//    @PatchMapping ("/mento/mentoringSystem")
-//    public ApiResponse<ApiResponse.CustomBody<FindMentoByIdRespDTO>> updateMentoMentoringSystem(@RequestBody @Valid UpdateMentoringSystemRqDTO updateMentoringSystemRqDTO){
-//
-//        FindMentoByIdRespDTO findMentoByIdRespDTO = mentoService.updateMentoringSystem(updateMentoringSystemRqDTO);
-//        return ApiResponseGenerator.success(findMentoByIdRespDTO,HttpStatus.OK);
-//    }
-//
-//    @ApiOperation(value = "마이페이지에서 멘토 소개 수정 ", notes = "10글자에서 100글자 사이로 입력해주세요")
-//    @PatchMapping("/mento/introduction")
-//    public ApiResponse<ApiResponse.CustomBody<FindMentoByIdRespDTO>> updateMentoIntroduction(@RequestBody @Valid UpdateMentoIntroductionRqDTO updateMentoIntroductionRqDTO){
-//        FindMentoByIdRespDTO findMentoByIdRespDTO = mentoService.updateIntroduction(updateMentoIntroductionRqDTO);
-//        return ApiResponseGenerator.success(findMentoByIdRespDTO,HttpStatus.OK);
-//    }
-//
-//    @ApiOperation(value = "마이페이지에서 멘토 닉네임 수정 ", notes = "이름은 3자 이상 8자 이하로 입력해주세요.")
-//    @PatchMapping("/mento/nickname")
-//    public ApiResponse<ApiResponse.CustomBody<FindMentoByIdRespDTO>> updateMentoNickname(@RequestBody @Valid UpdateMentoNicknameRqDTO updateMentoNicknameRqDTO){
-//        FindMentoByIdRespDTO findMentoByIdRespDTO = mentoService.updateNickname(updateMentoNicknameRqDTO);
-//        return ApiResponseGenerator.success(findMentoByIdRespDTO,HttpStatus.OK);
-//    }
-//
-//    @ApiOperation(value = "마이페이지에서 희망 멘토링 분야 수정 ")
-//    @PatchMapping("/mento/desiredField")
-//    public ApiResponse<ApiResponse.CustomBody<FindMentoByIdRespDTO>> updateMentoDesiredField(@RequestBody @Valid UpdateMentoDesiredFieldRqDTO updateMentoDesiredFieldRqDTO){
-//        FindMentoByIdRespDTO findMentoByIdRespDTO = updateMentoDesiredFieldHandler.execute(updateMentoDesiredFieldRqDTO);
-//        return ApiResponseGenerator.success(findMentoByIdRespDTO,HttpStatus.OK);
-//    }
-
     @ApiOperation(value = "멘토 마이페이지 정보 조회")
     @GetMapping("/mento/my-page")
     public ApiResponse<ApiResponse.CustomBody<FindMyMentoRespDTO>> findMentoMyPage(@AuthenticationPrincipal MemberDetails memberDetails){
@@ -110,8 +80,6 @@ public class MentoController {
         return ApiResponseGenerator.success(findMyMentoRespDTO,HttpStatus.OK);
     }
 
-
-    // 학과, 학년 및 학과 + 증명서
 
 
 
