@@ -25,7 +25,7 @@ public class URLService {
                 mentiRespDTO.getPreferredMentoringSystem(),
                 mentiRespDTO.getFields(),
                 mentiRespDTO.getMajors(),
-                mentiRespDTO.getIntroduction())).collect(Collectors.toList());
+                mentiRespDTO.getTags())).collect(Collectors.toList());
     }
 
     public List<FindAllMentoRespDTO> getFindAllMentoRespDTOS(List<FindAllMentoRespDTO> recommendMentors) {
@@ -45,7 +45,7 @@ public class URLService {
                 findMentiByIdRespDTO.getPreferredMentoring(),
                 findMentiByIdRespDTO.getFields(),
                 findMentiByIdRespDTO.getMajors(),
-                findMentiByIdRespDTO.getIntroduction(),
+                findMentiByIdRespDTO.getTags(),
                 findMentiByIdRespDTO.getGrade());
     }
 
@@ -76,7 +76,7 @@ public class URLService {
                 findMyMentiRespDTO.getNickname(),
                 findMyMentiRespDTO.getFields(),
                 findMyMentiRespDTO.getMajors(),
-                findMyMentiRespDTO.getIntroduction(),
+                findMyMentiRespDTO.getTags(),
                 findMyMentiRespDTO.getGrade());
     }
 }

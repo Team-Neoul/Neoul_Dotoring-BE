@@ -9,7 +9,7 @@ import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.menti.repository.MentiRepository;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.common.MessageCode;
-import com.theZ.dotoring.common.URLService;
+import com.theZ.dotoring.common.TagUtils;
 import com.theZ.dotoring.enums.Status;
 import com.theZ.dotoring.exception.NicknameDuplicateException;
 import lombok.RequiredArgsConstructor;
@@ -51,7 +51,7 @@ public class MentiService {
      *
      */
     public void saveMenti(SaveMentiRqDTO saveMentiRqDTO, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
-        Menti menti = Menti.createMenti(saveMentiRqDTO.getNickname(), saveMentiRqDTO.getIntroduction(), saveMentiRqDTO.getSchool(), saveMentiRqDTO.getGrade(), memberAccount,profile,desiredFields,memberMajors);
+        Menti menti = Menti.createMenti(saveMentiRqDTO.getNickname(), TagUtils.attachTags(saveMentiRqDTO.getTags()), saveMentiRqDTO.getSchool(), saveMentiRqDTO.getGrade(), memberAccount,profile,desiredFields,memberMajors);
         mentiRepository.save(menti);
     }
 
