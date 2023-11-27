@@ -41,7 +41,7 @@ public class Menti extends CommonEntity {
     private String nickname;
 
     @Size(min = 10, max = 100)
-    private String introduction;
+    private String tags;
 
     private String school;
 
@@ -65,19 +65,19 @@ public class Menti extends CommonEntity {
     private Long viewCount;
 
     @Builder
-    public Menti(String nickname, String introduction, String school, Long grade) {
+    public Menti(String nickname, String tags, String school, Long grade) {
         this.nickname = nickname;
-        this.introduction = introduction;
+        this.tags = tags;
         this.school = school;
         this.grade = grade;
         this.status = Status.WAIT;
         this.viewCount = 0L;
     }
 
-    public static Menti createMenti(String nickname, String introduction, String school, Long grade, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
+    public static Menti createMenti(String nickname, String tags, String school, Long grade, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
         Menti menti = Menti.builder()
                 .nickname(nickname)
-                .introduction(introduction)
+                .tags(tags)
                 .school(school)
                 .grade(grade)
                 .build();
@@ -138,7 +138,7 @@ public class Menti extends CommonEntity {
     }
 
     public void updateIntroduction(String introduction) {
-        this.introduction = introduction;
+        this.tags = introduction;
     }
 
     public void updateNickname(String nickname) {
