@@ -18,18 +18,18 @@ public class FindMentoByIdRespDTO {
     private String mentoringSystem;
     private List<String> fields;
     private List<String> majors;
-    private String introduction;
+    private List<String> tags;
     private Long grade;
 
     @Builder
-    public FindMentoByIdRespDTO(Long mentoId, String profileImage, String nickname, String mentoringSystem, List<String> fields, List<String> majors, String introduction, Long grade) {
+    public FindMentoByIdRespDTO(Long mentoId, String profileImage, String nickname, String mentoringSystem, List<String> fields, List<String> majors, List<String> tags, Long grade) {
         this.mentoId = mentoId;
         this.profileImage = profileImage;
         this.nickname = nickname;
         this.mentoringSystem = mentoringSystem;
         this.fields = fields;
         this.majors = majors;
-        this.introduction = introduction;
+        this.tags = tags;
         this.grade = grade;
     }
 

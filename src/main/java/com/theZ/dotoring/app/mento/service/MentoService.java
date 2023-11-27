@@ -9,6 +9,7 @@ import com.theZ.dotoring.app.mento.repository.MentoRepository;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.common.MessageCode;
+import com.theZ.dotoring.common.TagUtils;
 import com.theZ.dotoring.common.URLService;
 import com.theZ.dotoring.enums.Status;
 import com.theZ.dotoring.exception.NicknameDuplicateException;
@@ -40,7 +41,6 @@ import java.util.stream.Collectors;
 public class MentoService {
 
     private final MentoRepository mentoRepository;
-    private final URLService urlService;
 
 
     /**
@@ -55,7 +55,7 @@ public class MentoService {
      */
     @Transactional
     public void saveMento(SaveMentoRqDTO saveMentoRqDTO, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
-        Mento mento = Mento.createMento(saveMentoRqDTO.getNickname(), saveMentoRqDTO.getIntroduction(), saveMentoRqDTO.getSchool(), saveMentoRqDTO.getGrade(), memberAccount,profile,desiredFields,memberMajors);
+        Mento mento = Mento.createMento(saveMentoRqDTO.getNickname(), TagUtils.attachTags(saveMentoRqDTO.getTags()), saveMentoRqDTO.getSchool(), saveMentoRqDTO.getGrade(), memberAccount,profile,desiredFields,memberMajors);
         mentoRepository.save(mento);
     }
 
