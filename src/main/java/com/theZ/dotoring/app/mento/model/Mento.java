@@ -8,7 +8,6 @@ import com.theZ.dotoring.common.CommonEntity;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.enums.Status;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -39,7 +38,7 @@ public class Mento extends CommonEntity {
     private String nickname;
 
     @Size(min = 10, max = 100)
-    private String introduction;
+    private String tags;
 
     private String school;
 
@@ -66,9 +65,9 @@ public class Mento extends CommonEntity {
 
 
     @Builder
-    public Mento(String nickname, String introduction, String school, Long grade, Integer mentoringCount) {
+    public Mento(String nickname, String tags, String school, Long grade, Integer mentoringCount) {
         this.nickname = nickname;
-        this.introduction = introduction;
+        this.tags = tags;
         this.school = school;
         this.grade = grade;
         this.mentoringCount = mentoringCount;
@@ -76,10 +75,10 @@ public class Mento extends CommonEntity {
         viewCount = 0L;
     }
 
-    public static Mento createMento(String nickname, String introduction, String school, Long grade, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
+    public static Mento createMento(String nickname, String tags, String school, Long grade, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
         Mento mento = Mento.builder()
                 .nickname(nickname)
-                .introduction(introduction)
+                .tags(tags)
                 .school(school)
                 .grade(grade)
                 .mentoringCount(0)
@@ -128,7 +127,7 @@ public class Mento extends CommonEntity {
     }
 
     public void updateIntroduction(String introduction){
-        this.introduction = introduction;
+        this.tags = introduction;
     }
 
     public void updateDesiredField(List<DesiredField> desiredFields) {
@@ -150,7 +149,7 @@ public class Mento extends CommonEntity {
                 "mentoId=" + mentoId +
                 ", memberAccount=" + memberAccount +
                 ", nickname='" + nickname + '\'' +
-                ", introduction='" + introduction + '\'' +
+                ", introduction='" + tags + '\'' +
                 ", school='" + school + '\'' +
                 ", grade=" + grade +
                 ", mentoringSystem='" + mentoringSystem + '\'' +
