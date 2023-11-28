@@ -8,6 +8,7 @@ import com.theZ.dotoring.common.CommonEntity;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.enums.Status;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -45,6 +46,7 @@ public class Mento extends CommonEntity {
     private Long grade;
 
     @Size(min = 10, max = 300)
+    @ColumnDefault("''")
     private String mentoringSystem;
 
     private Integer mentoringCount;

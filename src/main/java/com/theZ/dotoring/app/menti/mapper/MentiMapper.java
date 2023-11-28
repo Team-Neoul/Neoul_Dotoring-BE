@@ -90,6 +90,7 @@ public class MentiMapper {
                 .majors(menti.getMemberMajors().stream().map(memberMajor -> memberMajor.getMajor().getMajorName()).collect(Collectors.toList()))
                 .tags(TagUtils.splitTags(menti.getTags()))
                 .grade(menti.getGrade())
+                .preferredMentoring(menti.getPreferredMentoring())
                 .build();
     }
 }
