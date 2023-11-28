@@ -80,6 +80,7 @@ public class MentoMapper {
                 .majors(mento.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                 .fields(mento.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                 .grade(mento.getGrade())
+                .mentoringSystem(mento.getMentoringSystem())
                 .build();
         return findMyMentoRespDTO;
     }

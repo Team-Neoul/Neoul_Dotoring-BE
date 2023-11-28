@@ -67,7 +67,8 @@ public class URLService {
                 findMyMentoRespDTO.getFields(),
                 findMyMentoRespDTO.getMajors(),
                 findMyMentoRespDTO.getTags(),
-                findMyMentoRespDTO.getGrade());
+                findMyMentoRespDTO.getGrade(),
+                findMyMentoRespDTO.getMentoringSystem());
     }
 
     public FindMyMentiRespDTO getMyMentiRespDTO(FindMyMentiRespDTO findMyMentiRespDTO) {

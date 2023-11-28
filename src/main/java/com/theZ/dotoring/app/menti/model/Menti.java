@@ -11,6 +11,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -48,6 +49,7 @@ public class Menti extends CommonEntity {
     private Long grade;
 
     @Size(min = 10, max = 300)
+    @ColumnDefault("''")
     private String preferredMentoring;
 
     @OneToOne(fetch = FetchType.LAZY)
