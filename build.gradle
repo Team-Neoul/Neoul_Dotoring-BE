@@ -77,6 +77,12 @@ test {
 // queryDSL 추가 : QueryDSL 빌드 옵션
 def querydslDir = "$buildDir/generated/'querydsl'"
 
+/*** comileQuerydsl.doFirst 추가*/
+compileQuerydsl.doFirst {
+	if(file(querydslDir).exists() )
+		delete(file(querydslDir))
+}
+
 // JPA 사용여부 및 사용 경로 설정
 querydsl {
 	jpa = true
