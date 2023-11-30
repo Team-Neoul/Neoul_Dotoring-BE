@@ -28,8 +28,7 @@ public class SaveMentoRqDTO {
     @Size(min = 3, max = 8, message = "이름은 3자 이상 8자 이하로 입력해주세요.")
     private String nickname;
 
-    @Size(min = 10, max = 100)
-    private String introduction;
+    private List<String> tags;
 
     @Pattern(regexp = "^[a-zA-Z0-9]{8,12}$", message = "아이디는 영문과 숫자를 포함한 8~12글자여야 합니다.")
     private String loginId;

@@ -9,7 +9,7 @@ import com.theZ.dotoring.app.mento.repository.MentoRepository;
 import com.theZ.dotoring.app.profile.model.Profile;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.common.MessageCode;
-import com.theZ.dotoring.common.URLService;
+import com.theZ.dotoring.common.StringListUtils;
 import com.theZ.dotoring.enums.Status;
 import com.theZ.dotoring.exception.NicknameDuplicateException;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +40,6 @@ import java.util.stream.Collectors;
 public class MentoService {
 
     private final MentoRepository mentoRepository;
-    private final URLService urlService;
 
 
     /**
@@ -55,7 +54,7 @@ public class MentoService {
      */
     @Transactional
     public void saveMento(SaveMentoRqDTO saveMentoRqDTO, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
-        Mento mento = Mento.createMento(saveMentoRqDTO.getNickname(), saveMentoRqDTO.getIntroduction(), saveMentoRqDTO.getSchool(), saveMentoRqDTO.getGrade(), memberAccount,profile,desiredFields,memberMajors);
+        Mento mento = Mento.createMento(saveMentoRqDTO.getNickname(), StringListUtils.attach(saveMentoRqDTO.getTags()), saveMentoRqDTO.getSchool(), saveMentoRqDTO.getGrade(), memberAccount, profile, desiredFields, memberMajors);
         mentoRepository.save(mento);
     }
 
@@ -151,13 +150,12 @@ public class MentoService {
      * mentoId가 일치하는 Mento 엔티티들을 DB에서 조회한 후 멘토링 수행 방법을 수정하는 메서드
      *
      * @parma updateMentoringSystemRqDTO
-     *
      * @retrun findMentoByIdRespDTO
      */
 
     @Transactional
-    public FindMentoByIdRespDTO updateMentoringSystem(UpdateMentoringSystemRqDTO updateMentoringSystemRqDTO){
-        Mento mento = mentoRepository.findById(updateMentoringSystemRqDTO.getMentoId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
+    public FindMentoByIdRespDTO updateMentoringSystem(Long mentoId, UpdateMentoringSystemRqDTO updateMentoringSystemRqDTO) {
+        Mento mento = mentoRepository.findById(mentoId).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
         mento.updateMentoringSystem(updateMentoringSystemRqDTO.getMentoringSystem());
         FindMentoByIdRespDTO findMentoByIdRespDTO = MentoMapper.fromDetail(mento);
         return findMentoByIdRespDTO;
@@ -213,13 +211,24 @@ public class MentoService {
     /**
      * mentoId가 일치하는 Mento 엔티티들을 DB에서 조회한 후 대기 상태를 활동 상태로 바꿔주는 메서드
      *
-     * @parma approveWaitMentosRqDTO
-     *
+     * @parma updateMentoStatusRqDTO
      */
     @Transactional
-    public void approveWaitMentos(ApproveWaitMentosRqDTO approveWaitMentosRqDTO) {
-        List<Mento> mentos = mentoRepository.findAllById(approveWaitMentosRqDTO.getMentoIds());
-        mentos.stream().forEach(i -> i.approveStatus());
+    public void updateActive(UpdateMentoStatusRqDTO updateMentoStatusRqDTO) {
+        Mento mento = mentoRepository.findById(updateMentoStatusRqDTO.getMentoId()).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
+        mento.updateActive();
     }
 
+    @Transactional
+    public void updateWait(Long mentoId) {
+        Mento mento = mentoRepository.findById(mentoId).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
+        mento.updateWait();
+    }
+
+    public FindMentoByIdRespDTO updateTags(Long id, UpdateTagsRqDTO updateTagsRqDTO) {
+        Mento mento = mentoRepository.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 멘토입니다."));
+        mento.updateTags(StringListUtils.attach(updateTagsRqDTO.getTags()));
+        FindMentoByIdRespDTO findMentoByIdRespDTO = MentoMapper.fromDetail(mento);
+        return findMentoByIdRespDTO;
+    }
 }

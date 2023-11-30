@@ -5,6 +5,7 @@ import com.theZ.dotoring.app.menti.dto.FindMentiByIdRespDTO;
 import com.theZ.dotoring.app.menti.dto.FindMyMentiRespDTO;
 import com.theZ.dotoring.app.menti.dto.FindWaitMentiRespDTO;
 import com.theZ.dotoring.app.menti.model.Menti;
+import com.theZ.dotoring.common.StringListUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
@@ -23,7 +24,7 @@ public class MentiMapper {
                 .id(menti.getMentiId())
                 .nickname(menti.getNickname())
                 .preferredMentoringSystem(menti.getPreferredMentoring())
-                .introduction(menti.getIntroduction())
+                .tags(StringListUtils.split(menti.getTags()))
                 .profileImage(menti.getProfile().getSavedProfileName())
                 .majors(menti.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                 .fields(menti.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
@@ -35,7 +36,7 @@ public class MentiMapper {
                 .mentiId(menti.getMentiId())
                 .nickname(menti.getNickname())
                 .preferredMentoring(menti.getPreferredMentoring())
-                .introduction(menti.getIntroduction())
+                .tags(StringListUtils.split(menti.getTags()))
                 .profileImage(menti.getProfile().getSavedProfileName())
                 .majors(menti.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                 .fields(menti.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
@@ -54,7 +55,7 @@ public class MentiMapper {
                                 .id(mentis.get(i).getMentiId())
                                 .nickname(mentis.get(i).getNickname())
                                 .preferredMentoringSystem(mentis.get(i).getPreferredMentoring())
-                                .introduction(mentis.get(i).getIntroduction())
+                                .tags(StringListUtils.split(mentis.get(i).getTags()))
                                 .profileImage(mentis.get(i).getProfile().getSavedProfileName())
                                 .majors(mentis.get(i).getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                                 .fields(mentis.get(i).getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
@@ -87,8 +88,10 @@ public class MentiMapper {
                 .profileImage(menti.getProfile().getSavedProfileName())
                 .fields(menti.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                 .majors(menti.getMemberMajors().stream().map(memberMajor -> memberMajor.getMajor().getMajorName()).collect(Collectors.toList()))
-                .introduction(menti.getIntroduction())
+                .tags(StringListUtils.split(menti.getTags()))
                 .grade(menti.getGrade())
+                .preferredMentoring(menti.getPreferredMentoring())
+                .school(menti.getSchool())
                 .build();
     }
 }

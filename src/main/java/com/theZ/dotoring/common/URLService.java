@@ -20,63 +20,67 @@ public class URLService {
 
     public List<FindAllMentiRespDTO> getFindAllMentiRespDTOS(List<FindAllMentiRespDTO> recommendMentis) {
         return recommendMentis.stream().map(mentiRespDTO -> new FindAllMentiRespDTO(mentiRespDTO.getId(),
-                s3Connector.getPreSignedUrl(mentiRespDTO.getProfileImage()),
+                s3Connector.getProfilePreSignedUrl(mentiRespDTO.getProfileImage()),
                 mentiRespDTO.getNickname(),
                 mentiRespDTO.getPreferredMentoringSystem(),
                 mentiRespDTO.getFields(),
                 mentiRespDTO.getMajors(),
-                mentiRespDTO.getIntroduction())).collect(Collectors.toList());
+                mentiRespDTO.getTags())).collect(Collectors.toList());
     }
 
     public List<FindAllMentoRespDTO> getFindAllMentoRespDTOS(List<FindAllMentoRespDTO> recommendMentors) {
         return recommendMentors.stream().map(mentoRespDTO -> new FindAllMentoRespDTO(mentoRespDTO.getId(),
-                s3Connector.getPreSignedUrl(mentoRespDTO.getProfileImage()),
+                s3Connector.getProfilePreSignedUrl(mentoRespDTO.getProfileImage()),
                 mentoRespDTO.getNickname(),
                 mentoRespDTO.getMentoringSystem(),
                 mentoRespDTO.getFields(),
                 mentoRespDTO.getMajors(),
-                mentoRespDTO.getIntroduction())).collect(Collectors.toList());
+                mentoRespDTO.getTags())).collect(Collectors.toList());
     }
 
     public FindMentiByIdRespDTO getFindMentiRespDTO(FindMentiByIdRespDTO findMentiByIdRespDTO){
         return new FindMentiByIdRespDTO(findMentiByIdRespDTO.getMentiId(),
-                s3Connector.getPreSignedUrl(findMentiByIdRespDTO.getProfileImage()),
+                s3Connector.getProfilePreSignedUrl(findMentiByIdRespDTO.getProfileImage()),
                 findMentiByIdRespDTO.getNickname(),
                 findMentiByIdRespDTO.getPreferredMentoring(),
                 findMentiByIdRespDTO.getFields(),
                 findMentiByIdRespDTO.getMajors(),
-                findMentiByIdRespDTO.getIntroduction(),
+                findMentiByIdRespDTO.getTags(),
                 findMentiByIdRespDTO.getGrade());
     }
 
     public FindMentoByIdRespDTO getFindMentoRespDTO(FindMentoByIdRespDTO findMentoByIdRespDTO){
         return new FindMentoByIdRespDTO(findMentoByIdRespDTO.getMentoId(),
-                s3Connector.getPreSignedUrl(findMentoByIdRespDTO.getProfileImage()),
+                s3Connector.getProfilePreSignedUrl(findMentoByIdRespDTO.getProfileImage()),
                 findMentoByIdRespDTO.getNickname(),
                 findMentoByIdRespDTO.getMentoringSystem(),
                 findMentoByIdRespDTO.getFields(),
                 findMentoByIdRespDTO.getMajors(),
-                findMentoByIdRespDTO.getIntroduction(),
+                findMentoByIdRespDTO.getTags(),
                 findMentoByIdRespDTO.getGrade());
     }
 
     public FindMyMentoRespDTO getMyMentoRespDTO(FindMyMentoRespDTO findMyMentoRespDTO) {
         return new FindMyMentoRespDTO(findMyMentoRespDTO.getMentoId(),
-                s3Connector.getPreSignedUrl(findMyMentoRespDTO.getProfileImage()),
+                s3Connector.getProfilePreSignedUrl(findMyMentoRespDTO.getProfileImage()),
                 findMyMentoRespDTO.getNickname(),
                 findMyMentoRespDTO.getFields(),
                 findMyMentoRespDTO.getMajors(),
-                findMyMentoRespDTO.getIntroduction(),
-                findMyMentoRespDTO.getGrade());
+                findMyMentoRespDTO.getTags(),
+                findMyMentoRespDTO.getGrade(),
+                findMyMentoRespDTO.getMentoringSystem()
+                , findMyMentoRespDTO.getSchool());
     }
 
     public FindMyMentiRespDTO getMyMentiRespDTO(FindMyMentiRespDTO findMyMentiRespDTO) {
         return new FindMyMentiRespDTO(findMyMentiRespDTO.getMentiId(),
-                s3Connector.getPreSignedUrl(findMyMentiRespDTO.getProfileImage()),
+                s3Connector.getProfilePreSignedUrl(findMyMentiRespDTO.getProfileImage()),
                 findMyMentiRespDTO.getNickname(),
                 findMyMentiRespDTO.getFields(),
                 findMyMentiRespDTO.getMajors(),
-                findMyMentiRespDTO.getIntroduction(),
-                findMyMentiRespDTO.getGrade());
+                findMyMentiRespDTO.getTags(),
+                findMyMentiRespDTO.getGrade(),
+                findMyMentiRespDTO.getPreferredMentoring(),
+                findMyMentiRespDTO.getSchool());
     }
 }

@@ -2,8 +2,8 @@ package com.theZ.dotoring.app.menti.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theZ.dotoring.app.desiredField.repository.QueryDesiredFieldRepository;
-import com.theZ.dotoring.app.menti.dto.FindAllMentiRespDTO;
-import com.theZ.dotoring.common.ApiResponse;
+import com.theZ.dotoring.app.menti.dto.UpdatePreferredMentoringRqDTO;
+import com.theZ.dotoring.app.mento.dto.UpdateTagsRqDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,30 +13,25 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
+
+import java.util.List;
+import java.util.Map;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
-@TestPropertySource(properties = {
-        "jwt.secretKey=yourtestsecretkeydotoring123459393dsafsdfasadf",
-        "jwt.accessTokenExp=86400000",
-        "jwt.refreshTokenExp=432000000",
-        "cloud.aws.credentials.accessKey=yourtestaccesskeydotoring123459393",
-        "cloud.aws.credentials.secretKey=yourtestsecretkeydotoring123459393",
-        "cloud.aws.s3.bucket=yourtestbucketdotoring123459393",
-        "profileUrl=https://your-test-bucket-dotoring-12345-9393.s3.ap-northeast-2.amazonaws.com/"
-})
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql("classpath:db/init.sql")
 class MentiControllerTest {
 
@@ -48,9 +43,6 @@ class MentiControllerTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
-
-    @Autowired
-    private QueryDesiredFieldRepository queryDesiredFieldRepository;
 
     @BeforeEach
     public void setup() {
@@ -167,8 +159,43 @@ class MentiControllerTest {
         resultActions.andExpect(jsonPath("$.response.grade").exists());
         resultActions.andExpect(jsonPath("$.response.nickname").exists());
         resultActions.andExpect(jsonPath("$.response.profileImage").exists());
-        resultActions.andExpect(jsonPath("$.response.introduction").exists());
+        resultActions.andExpect(jsonPath("$.response.tags").exists());
         resultActions.andExpect(jsonPath("$.response.majors").exists());
         resultActions.andExpect(jsonPath("$.response.fields").exists());
     }
+
+    @Test
+    @WithUserDetails(value = "dotoring1")
+    void updateTags() throws Exception {
+
+        UpdateTagsRqDTO updateTagsRqDTO = new UpdateTagsRqDTO(List.of("#운영체제"));
+
+        ResultActions resultActions = mockMvc.perform(
+                patch("/api/menti/tags")
+                        .content(objectMapper.writeValueAsString(updateTagsRqDTO))
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+        System.out.println("updateTags_test : " + responseBody);
+
+        resultActions.andExpect(status().isOk());
+    }
+
+    @Test
+    @WithUserDetails(value = "dotoring1")
+    void updatePreferredMentoring() throws Exception {
+
+        UpdatePreferredMentoringRqDTO updatePreferredMentoringRqDTO = new UpdatePreferredMentoringRqDTO("온라인을 매우매우 선호합니다.");
+
+        ResultActions resultActions = mockMvc.perform(
+                patch("/api/menti/preferred-mentoring")
+                        .content(objectMapper.writeValueAsString(updatePreferredMentoringRqDTO))
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+        System.out.println("updateTags_test : " + responseBody);
+
+        resultActions.andExpect(status().isOk());
+    }
+
 }

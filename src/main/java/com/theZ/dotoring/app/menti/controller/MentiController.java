@@ -4,6 +4,7 @@ import com.theZ.dotoring.app.auth.model.MemberDetails;
 import com.theZ.dotoring.app.menti.dto.*;
 import com.theZ.dotoring.app.menti.handler.*;
 import com.theZ.dotoring.app.menti.service.MentiService;
+import com.theZ.dotoring.app.mento.dto.UpdateTagsRqDTO;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
 import io.swagger.annotations.ApiOperation;
@@ -29,7 +30,7 @@ public class MentiController {
     private final FindMyMentiHandler findMyMentiHandler;
     private final MentiService mentiService;
     private final FindAllMentiHandler findAllMentiHandler;
-    private final UpdateMentiDesiredFieldHandler updateMentiDesiredFieldHandler;
+    private final UpdateMentiHandler updateMentiHandler;
 
     @ApiOperation(value = "멘티 최종 회원가입때 사용")
     @PostMapping(value = "/signup-menti", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -67,49 +68,38 @@ public class MentiController {
     }
 
     @PatchMapping("/menti/status")
-    public ApiResponse<ApiResponse.CustomBody<Void>> approveWaitMentis(@RequestBody ApproveWaitMentisRqDTO approveWaitMentisRqDTO){
-        mentiService.approveWaitMentis(approveWaitMentisRqDTO);
+    public ApiResponse<ApiResponse.CustomBody<Void>> approveWaitMentis(@RequestBody UpdateMentiStatusRqDTO updateMentiStatusRqDTO) {
+        mentiService.updateActive(updateMentiStatusRqDTO);
         return ApiResponseGenerator.success(HttpStatus.OK);
-    }
-
-    @ApiOperation(value = "마이페이지에서 멘티 선호 멘토링 수정", notes = "선호 멘토링에 대해서 10글자 이상 300자 이하를 작성해야합니다.")
-    @PatchMapping("/menti/preferredMentoring")
-    public ApiResponse<ApiResponse.CustomBody<FindAllMentiRespDTO>> updateMentiMentoringSystem(@RequestBody @Valid UpdateMentiMentoringSystemRqDTO updateMentiMentoringSystemRqDTO){
-        FindAllMentiRespDTO findAllMentiRespDTO = mentiService.updatePreferredMentoring(updateMentiMentoringSystemRqDTO);
-        return ApiResponseGenerator.success(findAllMentiRespDTO,HttpStatus.OK);
-    }
-
-    @ApiOperation(value = "마이페이지에서 멘티 소개 수정 ", notes = "10글자에서 100글자 사이로 입력해주세요")
-    @PatchMapping("/menti/introduction")
-    public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> updateMentiIntroduction(@RequestBody @Valid UpdateMentiIntroductionRqDTO updateMentiIntroductionRqDTO){
-        FindMentiByIdRespDTO findMentiByIdRespDTO = mentiService.updateItroduction(updateMentiIntroductionRqDTO);
-        return ApiResponseGenerator.success(findMentiByIdRespDTO,HttpStatus.OK);
-    }
-
-    @ApiOperation(value = "마이페이지에서 멘티 닉네임 수정 ", notes = "이름은 3자 이상 8자 이하로 입력해주세요.")
-    @PatchMapping("/menti/nickname")
-    public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> updateMentiNickname(@RequestBody @Valid UpdateMentiNicknameRqDTO updateMentiNicknameRqDTO){
-        FindMentiByIdRespDTO findMentiByIdRespDTO = mentiService.updateNickname(updateMentiNicknameRqDTO);
-        return ApiResponseGenerator.success(findMentiByIdRespDTO,HttpStatus.OK);
-    }
-
-
-    @ApiOperation(value = "마이페이지에서 희망 멘토링 분야 수정 ")
-    @PatchMapping("/menti/desiredField")
-    public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> updateMentiDesiredField(@RequestBody @Valid UpdateMentiDesiredFieldRqDTO updateMentiDesiredFieldRqDTO){
-        FindMentiByIdRespDTO findMentiByIdRespDTO = updateMentiDesiredFieldHandler.execute(updateMentiDesiredFieldRqDTO);
-        return ApiResponseGenerator.success(findMentiByIdRespDTO,HttpStatus.OK);
     }
 
     @ApiOperation(value = "멘티 마이페이지 정보 조회")
     @GetMapping("/menti/my-page")
-    public ApiResponse<ApiResponse.CustomBody<FindMyMentiRespDTO>> findMyMenti(@AuthenticationPrincipal MemberDetails memberDetails){
+    public ApiResponse<ApiResponse.CustomBody<FindMyMentiRespDTO>> findMyMenti(@AuthenticationPrincipal MemberDetails memberDetails) {
         FindMyMentiRespDTO findMyMentiRespDTO = findMyMentiHandler.execute(memberDetails.getId());
-        return ApiResponseGenerator.success(findMyMentiRespDTO,HttpStatus.OK);
+        return ApiResponseGenerator.success(findMyMentiRespDTO, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "멘티 마이페이지 정보 수정")
+    @PatchMapping("/menti/my-page")
+    public ApiResponse<ApiResponse.CustomBody<Void>> updateMenti(@ModelAttribute @Valid UpdateMentiRqDTO updateMentiRqDTO, @AuthenticationPrincipal MemberDetails memberDetails) throws IOException {
+        updateMentiHandler.execute(memberDetails.getId(), updateMentiRqDTO);
+        return ApiResponseGenerator.success(HttpStatus.OK);
+    }
 
-    // 학과, 학년 및 학과 + 증명서
+    @ApiOperation(value = "멘티 태그 수정")
+    @PatchMapping("/menti/tags")
+    public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> updateTags(@RequestBody UpdateTagsRqDTO updateTagsRqDTO, @AuthenticationPrincipal MemberDetails memberDetails) {
+        FindMentiByIdRespDTO findMentiByIdRespDTO = mentiService.updateTags(memberDetails.getId(), updateTagsRqDTO);
+        return ApiResponseGenerator.success(findMentiByIdRespDTO, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "멘티 마이페이지 선호 멘토링 수정")
+    @PatchMapping("/menti/preferred-mentoring")
+    public ApiResponse<ApiResponse.CustomBody<Void>> updatePreferredMentoring(@RequestBody UpdatePreferredMentoringRqDTO updatePreferredMentoringRqDTO, @AuthenticationPrincipal MemberDetails memberDetails) {
+        mentiService.updatePreferredMentoring(memberDetails.getId(), updatePreferredMentoringRqDTO);
+        return ApiResponseGenerator.success(HttpStatus.OK);
+    }
 
 }
 

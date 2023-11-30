@@ -38,14 +38,14 @@ public class Mento extends CommonEntity {
     @Size(min = 3, max = 8)
     private String nickname;
 
-    @Size(min = 10, max = 100)
-    private String introduction;
+    private String tags;
 
     private String school;
 
     private Long grade;
 
     @Size(min = 10, max = 300)
+    @ColumnDefault("''")
     private String mentoringSystem;
 
     private Integer mentoringCount;
@@ -66,9 +66,9 @@ public class Mento extends CommonEntity {
 
 
     @Builder
-    public Mento(String nickname, String introduction, String school, Long grade, Integer mentoringCount) {
+    public Mento(String nickname, String tags, String school, Long grade, Integer mentoringCount) {
         this.nickname = nickname;
-        this.introduction = introduction;
+        this.tags = tags;
         this.school = school;
         this.grade = grade;
         this.mentoringCount = mentoringCount;
@@ -76,10 +76,10 @@ public class Mento extends CommonEntity {
         viewCount = 0L;
     }
 
-    public static Mento createMento(String nickname, String introduction, String school, Long grade, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
+    public static Mento createMento(String nickname, String tags, String school, Long grade, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
         Mento mento = Mento.builder()
                 .nickname(nickname)
-                .introduction(introduction)
+                .tags(tags)
                 .school(school)
                 .grade(grade)
                 .mentoringCount(0)
@@ -91,19 +91,23 @@ public class Mento extends CommonEntity {
         return mento;
     }
 
-    public void updateViewCount(){
-        this.viewCount ++;
+    public void updateViewCount() {
+        this.viewCount++;
     }
 
-    public void mappingProfile(Profile profile){
+    public void updateTags(String tags) {
+        this.tags = tags;
+    }
+
+    public void mappingProfile(Profile profile) {
         this.profile = profile;
     }
 
-    private void mappingMemberAccount(MemberAccount memberAccount){
+    private void mappingMemberAccount(MemberAccount memberAccount) {
         this.memberAccount = memberAccount;
     }
 
-    private void addDesiredFields(List<DesiredField> desiredFields){
+    private void addDesiredFields(List<DesiredField> desiredFields) {
         if(desiredFields.isEmpty()){
             throw new IllegalArgumentException("희망 멘토링 분야가 1개 이상 있어야합니다.");
         }
@@ -128,7 +132,7 @@ public class Mento extends CommonEntity {
     }
 
     public void updateIntroduction(String introduction){
-        this.introduction = introduction;
+        this.tags = introduction;
     }
 
     public void updateDesiredField(List<DesiredField> desiredFields) {
@@ -150,7 +154,7 @@ public class Mento extends CommonEntity {
                 "mentoId=" + mentoId +
                 ", memberAccount=" + memberAccount +
                 ", nickname='" + nickname + '\'' +
-                ", introduction='" + introduction + '\'' +
+                ", introduction='" + tags + '\'' +
                 ", school='" + school + '\'' +
                 ", grade=" + grade +
                 ", mentoringSystem='" + mentoringSystem + '\'' +
@@ -167,8 +171,12 @@ public class Mento extends CommonEntity {
         this.nickname = nickname;
     }
 
-    public void approveStatus(){
+    public void updateActive() {
         this.status = Status.ACTIVE;
+    }
+
+    public void updateWait() {
+        this.status = Status.WAIT;
     }
 }
 
