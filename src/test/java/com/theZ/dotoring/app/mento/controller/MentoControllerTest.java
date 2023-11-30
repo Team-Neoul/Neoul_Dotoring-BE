@@ -2,6 +2,8 @@ package com.theZ.dotoring.app.mento.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theZ.dotoring.app.desiredField.repository.QueryDesiredFieldRepository;
+import com.theZ.dotoring.app.menti.dto.UpdatePreferredMentoringRqDTO;
+import com.theZ.dotoring.app.mento.dto.UpdateTagsRqDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,22 +20,17 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
+
+import java.util.List;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
-@TestPropertySource(properties = {
-        "jwt.secretKey=yourtestsecretkeydotoring123459393dsafsdfasadf",
-        "jwt.accessTokenExp=86400000",
-        "jwt.refreshTokenExp=432000000",
-        "cloud.aws.credentials.accessKey=yourtestaccesskeydotoring123459393",
-        "cloud.aws.credentials.secretKey=yourtestsecretkeydotoring123459393",
-        "cloud.aws.s3.bucket=yourtestbucketdotoring123459393",
-        "profileUrl=https://your-test-bucket-dotoring-12345-9393.s3.ap-northeast-2.amazonaws.com/"
-})
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @Sql("classpath:db/init.sql")
 class MentoControllerTest {
@@ -169,9 +166,43 @@ class MentoControllerTest {
         resultActions.andExpect(jsonPath("$.response.grade").exists());
         resultActions.andExpect(jsonPath("$.response.nickname").exists());
         resultActions.andExpect(jsonPath("$.response.profileImage").exists());
-        resultActions.andExpect(jsonPath("$.response.introduction").exists());
+        resultActions.andExpect(jsonPath("$.response.tags").exists());
         resultActions.andExpect(jsonPath("$.response.majors").exists());
         resultActions.andExpect(jsonPath("$.response.fields").exists());
+    }
+
+    @Test
+    @WithUserDetails(value = "dotoring11")
+    void updateTags() throws Exception {
+
+        UpdateTagsRqDTO updateTagsRqDTO = new UpdateTagsRqDTO(List.of("#운영체제"));
+
+        ResultActions resultActions = mockMvc.perform(
+                patch("/api/mento/tags")
+                        .content(objectMapper.writeValueAsString(updateTagsRqDTO))
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+        System.out.println("updateTags_test : " + responseBody);
+
+        resultActions.andExpect(status().isOk());
+    }
+
+    @Test
+    @WithUserDetails(value = "dotoring11")
+    void updatePreferredMentoring() throws Exception {
+
+        UpdatePreferredMentoringRqDTO updatePreferredMentoringRqDTO = new UpdatePreferredMentoringRqDTO("멘토링은 온라인으로 진행될 예정입니다.");
+
+        ResultActions resultActions = mockMvc.perform(
+                patch("/api/mento/mentoring-system")
+                        .content(objectMapper.writeValueAsString(updatePreferredMentoringRqDTO))
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+        System.out.println("updateTags_test : " + responseBody);
+
+        resultActions.andExpect(status().isOk());
     }
 
 }
