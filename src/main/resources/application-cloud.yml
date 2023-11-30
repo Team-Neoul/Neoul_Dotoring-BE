@@ -1,0 +1,67 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://${DB_URL}:${DB_PORT}/${DB_DATABASE_NAME}?characterEncoding=UTF-8&serverTimezone=UTC
+    username: ${DB_name}
+    password: ${DB_password}
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        show_sql: true
+    default_batch_fetch_size: 1000
+    defer-datasource-initialization: true
+  servlet:
+    multipart:
+      maxFileSize: 20MB
+      maxRequestSize: 40MB
+  sql:
+    init:
+      data-locations: classpath:db/init.sql
+
+  redis:
+    host: localhost
+    port: 6379
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+logging:
+  level:
+    root: info
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql: trace
+
+email:
+  name: Dotoring
+  link: https://dotoring.com
+  validTime: 300000
+
+file:
+  path: ./images/
+
+jwt:
+  secretKey: ${SECRET_KEY}
+  # 2일
+  accessTokenExp: ${ACCESS_EXP}
+  # 5일
+  refreshTokenExp: ${REFRESH_EXP}
+
+cloud:
+  aws:
+    s3:
+      bucket: ${Bucket_name}
+    stack.auto: false
+    region.static: ap-northeast-2
+    credentials:
+      accessKey: ${ACCESS_KEY}
+      secretKey: ${SECRET_KEY}
+
+profileUrl: ${PROFILE_URL}
