@@ -2,7 +2,7 @@ package com.theZ.dotoring.app.field.service;
 
 import com.theZ.dotoring.app.field.repository.FieldRepository;
 import com.theZ.dotoring.common.Field;
-import com.theZ.dotoring.common.Major;
+import com.theZ.dotoring.common.MessageCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -47,7 +47,10 @@ public class FieldService {
         /**
          * uncertainFields에 중복된 값이 들어왔는 지 확인
          */
-
+        int size = uncertainFields.stream().distinct().collect(Collectors.toList()).size();
+        if(uncertainFields.size() != size){
+            throw new IllegalArgumentException(MessageCode.DUPLICATED_VALUE.getValue());
+        }
 
         /**
          *  uncertainField가 유효한 Field인지 확인

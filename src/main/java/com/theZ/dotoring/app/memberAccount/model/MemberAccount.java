@@ -4,15 +4,12 @@ package com.theZ.dotoring.app.memberAccount.model;
 import com.theZ.dotoring.app.certificate.model.Certificate;
 import com.theZ.dotoring.common.CommonEntity;
 import com.theZ.dotoring.enums.MemberType;
-import com.theZ.dotoring.enums.Status;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +22,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MemberAccount extends CommonEntity {
+public class MemberAccount extends CommonEntity implements Serializable {
 
 
     @Id
@@ -47,25 +44,32 @@ public class MemberAccount extends CommonEntity {
     @Enumerated(EnumType.STRING)
     private MemberType memberType;
 
+    @Setter
+    @Column(nullable = false, length = 50)
+    @Enumerated(EnumType.STRING)
+    private MemberRole memberRole;
+
     @OneToMany(mappedBy = "memberAccount")
     private List<Certificate> certificates = new ArrayList<>();
 
     @Builder
-    public MemberAccount(String loginId, String password, String email, List<Certificate> certificates, MemberType memberType) {
+    public MemberAccount(String loginId, String password, String email, List<Certificate> certificates, MemberType memberType, MemberRole memberRole) {
         this.loginId = loginId;
         this.password = password;
         this.email = email;
         this.certificates = certificates;
         this.memberType = memberType;
+        this.memberRole = memberRole;
     }
 
-    public static MemberAccount createMemberAccount(String loginId, String password, String email, MemberType memberType ,List<Certificate> certificates){
+    public static MemberAccount createMemberAccount(String loginId, String password, String email, MemberType memberType ,List<Certificate> certificates, MemberRole memberRole){
         MemberAccount memberAccount = MemberAccount.builder()
                 .loginId(loginId)
                 .password(password)
                 .email(email)
                 .certificates(certificates)
                 .memberType(memberType)
+                .memberRole(memberRole)
                 .build();
         memberAccount.mappingCertificate(certificates);
         return memberAccount;

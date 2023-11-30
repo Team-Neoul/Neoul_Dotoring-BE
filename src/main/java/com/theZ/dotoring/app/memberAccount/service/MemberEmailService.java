@@ -2,11 +2,11 @@ package com.theZ.dotoring.app.memberAccount.service;
 
 import com.theZ.dotoring.app.memberAccount.dto.MemberEmailCodeResponseDTO;
 import com.theZ.dotoring.app.memberAccount.dto.MemberEmailRequestDTO;
-import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.memberAccount.repository.MemberAccountRepository;
 import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.common.RedisUtil;
-import com.theZ.dotoring.exception.EmailCodeException;
+import com.theZ.dotoring.exception.signupException.EmailAlreadyExistsException;
+import com.theZ.dotoring.exception.signupException.NotMatchEmailAndCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -36,19 +36,50 @@ public class MemberEmailService {
     private Long validTime;
 
     /**
-     * 등록되어 있는 이메일인 지 확인 후 등록된 이메일이라면, 코드 생성후 코드를 이메일로 발송하고 레디스를 사용해 이메일과 코드의 유효기간 설정
+     * 회원가입 시 기존에 등록되어 있는 이메일인 지 확인하고 등록되어 있다면 에러 발생! 아니라면, 코드 생성후 코드를 이메일로 발송하고 레디스를 사용해 이메일과 코드의 유효기간 설정
+     *
      *
      * @param memberEmailRequestDTO
      *
      * @return memberEmailCodeResponseDTO - 인증 코드
      */
     @Transactional
+    public MemberEmailCodeResponseDTO sendEmailForSignup(MemberEmailRequestDTO memberEmailRequestDTO) throws MessagingException {
+
+        boolean hasEmail = memberAccountRepository.findByEmail(memberEmailRequestDTO.getEmail()).isPresent();
+
+        if(hasEmail){
+            throw new EmailAlreadyExistsException(MessageCode.ALREADY_EXISTS_EMAIL);
+        }
+
+        MemberEmailCodeResponseDTO memberEmailCodeResponseDTO = createCode();
+
+        redisUtil.setDataAndExpire(memberEmailCodeResponseDTO.getEmailVerificationCode(),memberEmailRequestDTO.getEmail(),validTime);
+//        MimeMessage message = javaMailSender.createMimeMessage();
+//        message.addRecipients(MimeMessage.RecipientType.TO, memberEmailRequestDTO.getEmail()); // 보낼 이메일 설정
+//        message.setSubject("안녕하세요. dotoring입니다. " + memberEmailCodeResponseDTO.getEmailVerificationCode()); // 이메일 제목
+//        message.setText(setContext(memberEmailCodeResponseDTO.getEmailVerificationCode()), "utf-8", "html"); // 내용 설정(Template Process)
+//        javaMailSender.send(message);
+        // todo 실제 이메일이 만들어진다면 사용!
+        return memberEmailCodeResponseDTO;
+    }
+
+
+    /**
+     * 아이디 찾기 시 등록되어 있는 이메일인 지 확인 후 등록된 이메일이라면, 코드 생성후 코드를 이메일로 발송하고 레디스를 사용해 이메일과 코드의 유효기간 설정
+     *
+     * @param memberEmailRequestDTO
+     *
+     * @return memberEmailCodeResponseDTO - 인증 코드
+     */
+
+    @Transactional
     public MemberEmailCodeResponseDTO sendEmail(MemberEmailRequestDTO memberEmailRequestDTO) throws MessagingException {
 
         /**
          *  등록되어 있는 이메일인 지  확인!
          */
-        memberAccountRepository.findByEmail(memberEmailRequestDTO.getEmail()).orElseThrow(() -> new IllegalArgumentException("등록되지 않은 이메일입니다."));
+        memberAccountRepository.findByEmail(memberEmailRequestDTO.getEmail()).orElseThrow(() -> new IllegalArgumentException(MessageCode.EMAIL_NOT_FOUND.getValue()));
 
         /**
          *  등록된 이메일이라면, 코드 생성 후 코드를 이메일로 발송 + 레디스를 활용해 유효기간 설정!
@@ -109,14 +140,24 @@ public class MemberEmailService {
         /**
          *  등록되지 않은 이메일인지 확인!
          */
-        memberAccountRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("등록되지 않은 이메일입니다."));
+        memberAccountRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException(MessageCode.EMAIL_NOT_FOUND.getValue()));
 
         String savedEmail = redisUtil.getData(code); // 입력 받은 인증 코드(key)를 이용해 email(value)을 꺼낸다.
 
         if (savedEmail == null || !savedEmail.equals(email)) { // email이 존재하지 않으면, 유효 기간 만료이거나 코드 잘못 입력
-            throw new EmailCodeException(MessageCode.WRONG_CODE);
+            throw new NotMatchEmailAndCode(MessageCode.NOT_MATCH_CODE);
         }
         return email;
     }
+
+    public void validateCodeForSignUp(String code, String email){
+
+        String savedEmail = redisUtil.getData(code); // 입력 받은 인증 코드(key)를 이용해 email(value)을 꺼낸다.
+
+        if (savedEmail == null || !savedEmail.equals(email)) { // email이 존재하지 않으면, 유효 기간 만료이거나 코드 잘못 입력
+            throw new NotMatchEmailAndCode(MessageCode.NOT_MATCH_CODE);
+        }
+    }
+
 
 }

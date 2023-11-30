@@ -3,6 +3,7 @@ package com.theZ.dotoring.app.mento.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
@@ -21,6 +22,8 @@ public class SaveMentoRqDTO {
     private List<String> majors;
 
     private List<String> fields;
+
+    private List<MultipartFile> certifications;
 
     @Size(min = 3, max = 8, message = "이름은 3자 이상 8자 이하로 입력해주세요.")
     private String nickname;

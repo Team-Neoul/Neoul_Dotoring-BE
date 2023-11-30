@@ -2,17 +2,19 @@ package com.theZ.dotoring.app.menti.mapper;
 
 import com.theZ.dotoring.app.menti.dto.FindAllMentiRespDTO;
 import com.theZ.dotoring.app.menti.dto.FindMentiByIdRespDTO;
+import com.theZ.dotoring.app.menti.dto.FindMyMentiRespDTO;
 import com.theZ.dotoring.app.menti.dto.FindWaitMentiRespDTO;
 import com.theZ.dotoring.app.menti.model.Menti;
-import com.theZ.dotoring.app.mento.dto.FindWaitMentoRespDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@Component
 public class MentiMapper {
 
     public static FindAllMentiRespDTO fromCard(Menti menti){
@@ -37,6 +39,7 @@ public class MentiMapper {
                 .profileImage(menti.getProfile().getSavedProfileName())
                 .majors(menti.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                 .fields(menti.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
+                .grade(menti.getGrade())
                 .build();
 
         return findMentiByIdRespDTO;
@@ -75,5 +78,17 @@ public class MentiMapper {
 
         Page<FindWaitMentiRespDTO> findWaitMentiPagindRespDTOS = new PageImpl<>(findWaitMentiRespDTOS,pagingMenti.getPageable(),pagingMenti.getTotalPages());
         return findWaitMentiPagindRespDTOS;
+    }
+
+    public static FindMyMentiRespDTO fromMyMenti(Menti menti) {
+        return FindMyMentiRespDTO.builder()
+                .mentiId(menti.getMentiId())
+                .nickname(menti.getNickname())
+                .profileImage(menti.getProfile().getSavedProfileName())
+                .fields(menti.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
+                .majors(menti.getMemberMajors().stream().map(memberMajor -> memberMajor.getMajor().getMajorName()).collect(Collectors.toList()))
+                .introduction(menti.getIntroduction())
+                .grade(menti.getGrade())
+                .build();
     }
 }

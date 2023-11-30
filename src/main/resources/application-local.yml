@@ -1,0 +1,57 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:Ndotoring;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: dotoring
+    password: dotoring
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        show_sql: true
+    default_batch_fetch_size: 1000
+    defer-datasource-initialization: true
+  servlet:
+    multipart:
+      maxFileSize: 20MB
+      maxRequestSize: 40MB
+  sql:
+    init:
+      data-locations: classpath:db/init.sql
+
+  redis:
+    host: localhost
+    port: 6379
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+logging:
+  level:
+    root: info
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+              sql: trace
+
+email:
+  name: Dotoring
+  link: https://dotoring.com
+  validTime: 300000
+
+file:
+  path: ./images/
+
+profileUrl: http://localhost:8080/images/
+
+cloud:
+  aws:
+    region:
+      static: "ap-northeast-2"
+    stack:
+      auto: false

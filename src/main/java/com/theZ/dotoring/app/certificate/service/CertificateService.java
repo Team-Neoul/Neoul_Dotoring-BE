@@ -3,9 +3,8 @@ package com.theZ.dotoring.app.certificate.service;
 import com.theZ.dotoring.app.certificate.mapper.CertificateMapper;
 import com.theZ.dotoring.app.certificate.model.Certificate;
 import com.theZ.dotoring.app.certificate.repository.CertificateRepository;
-import com.theZ.dotoring.common.FileUtils;
+import com.theZ.dotoring.common.S3Connector;
 import com.theZ.dotoring.common.UploadFile;
-import com.theZ.dotoring.exception.NotFoundRoomException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,10 +24,10 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@Transactional
+@Transactional(readOnly = true)
 public class CertificateService {
 
-    private final FileUtils fileUtils;
+    private final S3Connector s3Connector;
     private final CertificateRepository certificateRepository;
 
     /**
@@ -39,12 +38,10 @@ public class CertificateService {
      * @return certificate 엔티티들을 반환
      */
 
+    @Transactional(rollbackFor = IOException.class)
     public List<Certificate> saveCertifications(List<MultipartFile> certificates) throws IOException {
-        List<UploadFile> uploadFiles = fileUtils.storeFiles(certificates);
+        List<UploadFile> uploadFiles = s3Connector.storeCertificates(certificates);
         List<Certificate> certificateList = CertificateMapper.to(uploadFiles);
-        /**
-         *  null인지 확인!
-         */
         certificateRepository.saveAll(certificateList);
         return certificateList;
     }

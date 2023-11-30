@@ -3,23 +3,27 @@ package com.theZ.dotoring.app.memberAccount.service;
 import com.theZ.dotoring.app.certificate.model.Certificate;
 import com.theZ.dotoring.app.memberAccount.dto.UpdateMemberLoginIdRequestDTO;
 import com.theZ.dotoring.app.memberAccount.dto.UpdateMemberPasswordRequestDTO;
+import com.theZ.dotoring.app.memberAccount.model.MemberRole;
+import com.theZ.dotoring.app.menti.repository.MentiRepository;
 import com.theZ.dotoring.app.mento.dto.MemberPasswordRequestDTO;
-import com.theZ.dotoring.app.mento.dto.ValidateMentoNicknameRqDTO;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.memberAccount.repository.MemberAccountRepository;
 import com.theZ.dotoring.app.menti.dto.SaveMentiRqDTO;
 import com.theZ.dotoring.app.mento.dto.SaveMentoRqDTO;
+import com.theZ.dotoring.app.mento.repository.MentoRepository;
 import com.theZ.dotoring.common.MessageCode;
 import com.theZ.dotoring.enums.MemberType;
-import com.theZ.dotoring.exception.LoginIdDuplicateException;
-import com.theZ.dotoring.exception.NicknameDuplicateException;
+import com.theZ.dotoring.exception.NotFoundMemberException;
+import com.theZ.dotoring.exception.signupException.LoginIdDuplicateException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 /**
  * MemberAccount 관한 비즈니스 로직이 담겨있습니다.
@@ -31,9 +35,12 @@ import java.util.NoSuchElementException;
 @Log4j2
 @RequiredArgsConstructor
 @Transactional
-public class MemberAccountService {
+public class MemberAccountService{
 
     private final MemberAccountRepository memberAccountRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final MentoRepository mentoRepository;
+    private final MentiRepository mentiRepository;
 
 
     /**
@@ -46,7 +53,7 @@ public class MemberAccountService {
      */
 
     public MemberAccount saveMentoAccount(SaveMentoRqDTO mentoSignupRequestDTO, List<Certificate> certificates){
-        MemberAccount memberAccount = MemberAccount.createMemberAccount(mentoSignupRequestDTO.getLoginId(), mentoSignupRequestDTO.getPassword(), mentoSignupRequestDTO.getEmail(), MemberType.MENTO, certificates);
+        MemberAccount memberAccount = MemberAccount.createMemberAccount(mentoSignupRequestDTO.getLoginId(), bCryptPasswordEncoder.encode(mentoSignupRequestDTO.getPassword()), mentoSignupRequestDTO.getEmail(), MemberType.MENTO, certificates, MemberRole.ROLE_WAIT);
         memberAccountRepository.save(memberAccount);
         return memberAccount;
     }
@@ -60,7 +67,7 @@ public class MemberAccountService {
      * @return memberAccount
      */
     public MemberAccount saveMentiAccount(SaveMentiRqDTO saveMentiRqDTO, List<Certificate> certificates){
-        MemberAccount memberAccount = MemberAccount.createMemberAccount(saveMentiRqDTO.getLoginId(), saveMentiRqDTO.getPassword(), saveMentiRqDTO.getEmail(),MemberType.MENTI, certificates);
+        MemberAccount memberAccount = MemberAccount.createMemberAccount(saveMentiRqDTO.getLoginId(), bCryptPasswordEncoder.encode(saveMentiRqDTO.getPassword()), saveMentiRqDTO.getEmail(),MemberType.MENTI, certificates, MemberRole.ROLE_WAIT);
         memberAccountRepository.save(memberAccount);
         return memberAccount;
     }
@@ -89,7 +96,7 @@ public class MemberAccountService {
      */
     @Transactional(readOnly = true)
     public String findLoginId(String email){
-        MemberAccount memberAccount = memberAccountRepository.findByEmail(email).orElseThrow(() -> new NoSuchElementException("존재하지 않는 이메일입니다."));
+        MemberAccount memberAccount = memberAccountRepository.findByEmail(email).orElseThrow(() -> new NoSuchElementException(MessageCode.EMAIL_NOT_FOUND.getValue()));
         return memberAccount.getLoginId();
     }
 
@@ -157,4 +164,17 @@ public class MemberAccountService {
         memberAccount.updatePassword(updateMemberPasswordRequestDTO.getPassword());
     }
 
+    public String getMemberNickname(MemberAccount memberAccount) throws NotFoundMemberException {
+
+        // 멘토라면
+        if (Objects.equals(memberAccount.getMemberType().toString(), "MENTO")){
+            return mentoRepository.findMentoByMemberAccountId(memberAccount.getId())
+                    .orElseThrow(() -> new NotFoundMemberException(MessageCode.MEMBER_NOT_FOUND))
+                    .getNickname();
+        }
+
+        return mentiRepository.findMentiByMemberAccountId(memberAccount.getId())
+                .orElseThrow(() -> new NotFoundMemberException(MessageCode.MEMBER_NOT_FOUND))
+                .getNickname();
+    }
 }

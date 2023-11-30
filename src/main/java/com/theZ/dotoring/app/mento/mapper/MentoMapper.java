@@ -2,16 +2,20 @@ package com.theZ.dotoring.app.mento.mapper;
 
 import com.theZ.dotoring.app.mento.dto.FindAllMentoRespDTO;
 import com.theZ.dotoring.app.mento.dto.FindMentoByIdRespDTO;
+import com.theZ.dotoring.app.mento.dto.FindMyMentoRespDTO;
 import com.theZ.dotoring.app.mento.dto.FindWaitMentoRespDTO;
 import com.theZ.dotoring.app.mento.model.Mento;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@Component
 public class MentoMapper {
 
     public static FindAllMentoRespDTO fromCard(Mento mento){
@@ -37,6 +41,7 @@ public class MentoMapper {
                 .profileImage(mento.getProfile().getSavedProfileName())
                 .majors(mento.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                 .fields(mento.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
+                .grade(mento.getGrade())
                 .build();
         return findMentoByIdRespDTO;
     }
@@ -77,5 +82,18 @@ public class MentoMapper {
 
         Page<FindWaitMentoRespDTO> findWaitMentoPagindRespDTOS = new PageImpl<>(findWaitMentoRespDTOS,pagingMento.getPageable(),pagingMento.getTotalPages());
         return findWaitMentoPagindRespDTOS;
+    }
+
+    public static FindMyMentoRespDTO fromMyMento(Mento mento) {
+        FindMyMentoRespDTO findMyMentoRespDTO = FindMyMentoRespDTO.builder()
+                .mentoId(mento.getMentoId())
+                .nickname(mento.getNickname())
+                .introduction(mento.getIntroduction())
+                .profileImage(mento.getProfile().getSavedProfileName())
+                .majors(mento.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
+                .fields(mento.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
+                .grade(mento.getGrade())
+                .build();
+        return findMyMentoRespDTO;
     }
 }
