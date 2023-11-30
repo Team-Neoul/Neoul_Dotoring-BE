@@ -41,7 +41,6 @@ public class Menti extends CommonEntity {
     @Size(min = 3, max = 8)
     private String nickname;
 
-    @Size(min = 10, max = 100)
     private String tags;
 
     private String school;
@@ -147,7 +146,15 @@ public class Menti extends CommonEntity {
         this.nickname = nickname;
     }
 
-    public void approveStatus() {
+    public void updateActive() {
         this.status = Status.ACTIVE;
+    }
+
+    public void updateWait() {
+        this.status = Status.WAIT;
+    }
+
+    public void updateTags(String tags) {
+        this.tags = tags;
     }
 }

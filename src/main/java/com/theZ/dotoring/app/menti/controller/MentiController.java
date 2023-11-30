@@ -4,6 +4,7 @@ import com.theZ.dotoring.app.auth.model.MemberDetails;
 import com.theZ.dotoring.app.menti.dto.*;
 import com.theZ.dotoring.app.menti.handler.*;
 import com.theZ.dotoring.app.menti.service.MentiService;
+import com.theZ.dotoring.app.mento.dto.UpdateTagsRqDTO;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
 import io.swagger.annotations.ApiOperation;
@@ -29,6 +30,7 @@ public class MentiController {
     private final FindMyMentiHandler findMyMentiHandler;
     private final MentiService mentiService;
     private final FindAllMentiHandler findAllMentiHandler;
+    private final UpdateMentiHandler updateMentiHandler;
 
     @ApiOperation(value = "멘티 최종 회원가입때 사용")
     @PostMapping(value = "/signup-menti", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -66,18 +68,38 @@ public class MentiController {
     }
 
     @PatchMapping("/menti/status")
-    public ApiResponse<ApiResponse.CustomBody<Void>> approveWaitMentis(@RequestBody ApproveWaitMentisRqDTO approveWaitMentisRqDTO){
-        mentiService.approveWaitMentis(approveWaitMentisRqDTO);
+    public ApiResponse<ApiResponse.CustomBody<Void>> approveWaitMentis(@RequestBody UpdateMentiStatusRqDTO updateMentiStatusRqDTO) {
+        mentiService.updateActive(updateMentiStatusRqDTO);
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
     @ApiOperation(value = "멘티 마이페이지 정보 조회")
     @GetMapping("/menti/my-page")
-    public ApiResponse<ApiResponse.CustomBody<FindMyMentiRespDTO>> findMyMenti(@AuthenticationPrincipal MemberDetails memberDetails){
+    public ApiResponse<ApiResponse.CustomBody<FindMyMentiRespDTO>> findMyMenti(@AuthenticationPrincipal MemberDetails memberDetails) {
         FindMyMentiRespDTO findMyMentiRespDTO = findMyMentiHandler.execute(memberDetails.getId());
-        return ApiResponseGenerator.success(findMyMentiRespDTO,HttpStatus.OK);
+        return ApiResponseGenerator.success(findMyMentiRespDTO, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "멘티 마이페이지 정보 수정")
+    @PatchMapping("/menti/my-page")
+    public ApiResponse<ApiResponse.CustomBody<Void>> updateMenti(@ModelAttribute @Valid UpdateMentiRqDTO updateMentiRqDTO, @AuthenticationPrincipal MemberDetails memberDetails) throws IOException {
+        updateMentiHandler.execute(memberDetails.getId(), updateMentiRqDTO);
+        return ApiResponseGenerator.success(HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "멘티 태그 수정")
+    @PatchMapping("/menti/tags")
+    public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> updateTags(@RequestBody UpdateTagsRqDTO updateTagsRqDTO, @AuthenticationPrincipal MemberDetails memberDetails) {
+        FindMentiByIdRespDTO findMentiByIdRespDTO = mentiService.updateTags(memberDetails.getId(), updateTagsRqDTO);
+        return ApiResponseGenerator.success(findMentiByIdRespDTO, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "멘티 마이페이지 선호 멘토링 수정")
+    @PatchMapping("/menti/preferred-mentoring")
+    public ApiResponse<ApiResponse.CustomBody<Void>> updatePreferredMentoring(@RequestBody UpdatePreferredMentoringRqDTO updatePreferredMentoringRqDTO, @AuthenticationPrincipal MemberDetails memberDetails) {
+        mentiService.updatePreferredMentoring(memberDetails.getId(), updatePreferredMentoringRqDTO);
+        return ApiResponseGenerator.success(HttpStatus.OK);
+    }
 
 }
 
