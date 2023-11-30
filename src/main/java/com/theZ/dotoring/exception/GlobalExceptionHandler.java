@@ -22,26 +22,6 @@ import java.io.IOException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-<<<<<<< HEAD
-    @ExceptionHandler(IllegalStateException.class)
-    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(IllegalStateException illegalStateException){
-        return ApiResponseGenerator.fail(MessageCode.VALIDATION_FAIL.getCode(),illegalStateException.getMessage(), HttpStatus.BAD_REQUEST);
-=======
-    @ExceptionHandler(BindException.class)
-    public ApiResponse<ApiResponse.CustomBody> handleBindException(BindException e){
-        return ApiResponseGenerator.fail(e.getFieldError().getDefaultMessage(),null, HttpStatus.BAD_REQUEST);
-    }
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ApiResponse<ApiResponse.CustomBody> handleConstraintViolationException(ConstraintViolationException e){
-        return ApiResponseGenerator.fail(MessageCode.DUPLICATED_VALUE.getCode(),MessageCode.DUPLICATED_VALUE.getValue(),HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(DefaultProfileImageNotFoundException.class)
-    public ApiResponse<ApiResponse.CustomBody> handleBindException(DefaultProfileImageNotFoundException e){
-        return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.INTERNAL_SERVER_ERROR);
->>>>>>> 299e6891686129f955b15780fbf3f43f2520c139
-    }
-
     @ExceptionHandler(EmailAlreadyExistsException.class)
     public ApiResponse<ApiResponse.CustomBody> handleBindException(EmailAlreadyExistsException e){
         return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.BAD_REQUEST);
