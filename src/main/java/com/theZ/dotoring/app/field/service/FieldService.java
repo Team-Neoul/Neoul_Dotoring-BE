@@ -18,22 +18,13 @@ import java.util.stream.Collectors;
  * @version 1.0
  */
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Slf4j
 public class FieldService {
 
     private final FieldRepository fieldRepository;
 
-    /**
-     * 서버가 시작할 때, Enum Field에 정의되어 있는 분야들을 모두 Field 엔티티로 만들어 DB에 이를 저장하는 메서드
-     *
-     */
-    public void saveAll(){
-        List<String> fieldNames = Field.getFields().stream().map(f -> f.toString()).collect(Collectors.toList());
-        List<com.theZ.dotoring.app.field.model.Field> fields = com.theZ.dotoring.app.field.model.Field.createFields(fieldNames);
-        fieldRepository.saveAll(fields);
-    }
 
     /**
      * 인자로 받은 uncertainFields 사용하여 이들이 유효한 Field인지 확인하는 메서드
@@ -68,7 +59,6 @@ public class FieldService {
      *
      * @return fieldList
      */
-    @Transactional(readOnly = true)
     public List<com.theZ.dotoring.app.field.model.Field> findFields(List<String> fields){
         List<com.theZ.dotoring.app.field.model.Field> fieldList = fieldRepository.findAllById(fields);
         return fieldList;
