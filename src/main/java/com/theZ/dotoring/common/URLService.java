@@ -20,7 +20,7 @@ public class URLService {
 
     public List<FindAllMentiRespDTO> getFindAllMentiRespDTOS(List<FindAllMentiRespDTO> recommendMentis) {
         return recommendMentis.stream().map(mentiRespDTO -> new FindAllMentiRespDTO(mentiRespDTO.getId(),
-                s3Connector.getPreSignedUrl(mentiRespDTO.getProfileImage()),
+                s3Connector.getProfilePreSignedUrl(mentiRespDTO.getProfileImage()),
                 mentiRespDTO.getNickname(),
                 mentiRespDTO.getPreferredMentoringSystem(),
                 mentiRespDTO.getFields(),
@@ -30,7 +30,7 @@ public class URLService {
 
     public List<FindAllMentoRespDTO> getFindAllMentoRespDTOS(List<FindAllMentoRespDTO> recommendMentors) {
         return recommendMentors.stream().map(mentoRespDTO -> new FindAllMentoRespDTO(mentoRespDTO.getId(),
-                s3Connector.getPreSignedUrl(mentoRespDTO.getProfileImage()),
+                s3Connector.getProfilePreSignedUrl(mentoRespDTO.getProfileImage()),
                 mentoRespDTO.getNickname(),
                 mentoRespDTO.getMentoringSystem(),
                 mentoRespDTO.getFields(),
@@ -40,7 +40,7 @@ public class URLService {
 
     public FindMentiByIdRespDTO getFindMentiRespDTO(FindMentiByIdRespDTO findMentiByIdRespDTO){
         return new FindMentiByIdRespDTO(findMentiByIdRespDTO.getMentiId(),
-                s3Connector.getPreSignedUrl(findMentiByIdRespDTO.getProfileImage()),
+                s3Connector.getProfilePreSignedUrl(findMentiByIdRespDTO.getProfileImage()),
                 findMentiByIdRespDTO.getNickname(),
                 findMentiByIdRespDTO.getPreferredMentoring(),
                 findMentiByIdRespDTO.getFields(),
@@ -51,7 +51,7 @@ public class URLService {
 
     public FindMentoByIdRespDTO getFindMentoRespDTO(FindMentoByIdRespDTO findMentoByIdRespDTO){
         return new FindMentoByIdRespDTO(findMentoByIdRespDTO.getMentoId(),
-                s3Connector.getPreSignedUrl(findMentoByIdRespDTO.getProfileImage()),
+                s3Connector.getProfilePreSignedUrl(findMentoByIdRespDTO.getProfileImage()),
                 findMentoByIdRespDTO.getNickname(),
                 findMentoByIdRespDTO.getMentoringSystem(),
                 findMentoByIdRespDTO.getFields(),
@@ -62,23 +62,25 @@ public class URLService {
 
     public FindMyMentoRespDTO getMyMentoRespDTO(FindMyMentoRespDTO findMyMentoRespDTO) {
         return new FindMyMentoRespDTO(findMyMentoRespDTO.getMentoId(),
-                s3Connector.getPreSignedUrl(findMyMentoRespDTO.getProfileImage()),
+                s3Connector.getProfilePreSignedUrl(findMyMentoRespDTO.getProfileImage()),
                 findMyMentoRespDTO.getNickname(),
                 findMyMentoRespDTO.getFields(),
                 findMyMentoRespDTO.getMajors(),
                 findMyMentoRespDTO.getTags(),
                 findMyMentoRespDTO.getGrade(),
-                findMyMentoRespDTO.getMentoringSystem());
+                findMyMentoRespDTO.getMentoringSystem()
+                , findMyMentoRespDTO.getSchool());
     }
 
     public FindMyMentiRespDTO getMyMentiRespDTO(FindMyMentiRespDTO findMyMentiRespDTO) {
         return new FindMyMentiRespDTO(findMyMentiRespDTO.getMentiId(),
-                s3Connector.getPreSignedUrl(findMyMentiRespDTO.getProfileImage()),
+                s3Connector.getProfilePreSignedUrl(findMyMentiRespDTO.getProfileImage()),
                 findMyMentiRespDTO.getNickname(),
                 findMyMentiRespDTO.getFields(),
                 findMyMentiRespDTO.getMajors(),
                 findMyMentiRespDTO.getTags(),
                 findMyMentiRespDTO.getGrade(),
-                findMyMentiRespDTO.getPreferredMentoring());
+                findMyMentiRespDTO.getPreferredMentoring(),
+                findMyMentiRespDTO.getSchool());
     }
 }

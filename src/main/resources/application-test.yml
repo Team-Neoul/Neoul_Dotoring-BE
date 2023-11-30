@@ -66,4 +66,4 @@ cloud:
     s3:
       bucket: dotorig-test
 
-profileUrl: https://dotoring-test.s3.ap-northeast-2.amazonaws.com/profile/
+s3Url: https://dotoring-test.s3.ap-northeast-2.amazonaws.com/
