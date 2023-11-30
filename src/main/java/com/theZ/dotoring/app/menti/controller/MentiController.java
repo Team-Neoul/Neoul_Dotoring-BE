@@ -96,9 +96,9 @@ public class MentiController {
 
     @ApiOperation(value = "멘티 마이페이지 선호 멘토링 수정")
     @PatchMapping("/menti/preferred-mentoring")
-    public ApiResponse<ApiResponse.CustomBody<Void>> updatePreferredMentoring(@RequestBody UpdatePreferredMentoringRqDTO updatePreferredMentoringRqDTO, @AuthenticationPrincipal MemberDetails memberDetails) {
-        mentiService.updatePreferredMentoring(memberDetails.getId(), updatePreferredMentoringRqDTO);
-        return ApiResponseGenerator.success(HttpStatus.OK);
+    public ApiResponse<ApiResponse.CustomBody<FindMentiByIdRespDTO>> updatePreferredMentoring(@RequestBody UpdatePreferredMentoringRqDTO updatePreferredMentoringRqDTO, @AuthenticationPrincipal MemberDetails memberDetails) {
+        FindMentiByIdRespDTO findMentiByIdRespDTO = mentiService.updatePreferredMentoring(memberDetails.getId(), updatePreferredMentoringRqDTO);
+        return ApiResponseGenerator.success(findMentiByIdRespDTO,HttpStatus.OK);
     }
 
 }
