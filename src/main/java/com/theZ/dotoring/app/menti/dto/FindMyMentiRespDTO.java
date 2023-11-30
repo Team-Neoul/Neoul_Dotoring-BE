@@ -20,9 +20,10 @@ public class FindMyMentiRespDTO {
     private List<String> tags;
     private Long grade;
     private String preferredMentoring;
+    private String school;
 
     @Builder
-    public FindMyMentiRespDTO(Long mentiId, String profileImage, String nickname, List<String> fields, List<String> majors, List<String> tags, Long grade, String preferredMentoring) {
+    public FindMyMentiRespDTO(Long mentiId, String profileImage, String nickname, List<String> fields, List<String> majors, List<String> tags, Long grade, String preferredMentoring, String school) {
         this.mentiId = mentiId;
         this.profileImage = profileImage;
         this.nickname = nickname;
@@ -31,5 +32,6 @@ public class FindMyMentiRespDTO {
         this.tags = tags;
         this.grade = grade;
         this.preferredMentoring = preferredMentoring;
+        this.school = school;
     }
 }
