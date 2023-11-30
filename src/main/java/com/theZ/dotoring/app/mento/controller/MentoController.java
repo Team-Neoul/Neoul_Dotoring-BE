@@ -1,7 +1,6 @@
 package com.theZ.dotoring.app.mento.controller;
 
 import com.theZ.dotoring.app.auth.model.MemberDetails;
-import com.theZ.dotoring.app.menti.dto.UpdateMentoDesiredFieldRqDTO;
 import com.theZ.dotoring.app.mento.dto.*;
 import com.theZ.dotoring.app.mento.handler.*;
 import com.theZ.dotoring.app.mento.service.MentoService;
@@ -29,6 +28,7 @@ public class MentoController {
     private final FindAllMentoHandler findAllMentoHandler;
     private final FindMentoHandler findMentoHandler;
     private final FindMyMentoHandler findMyMentoHandler;
+    private final UpdateMentoHandler updateMentoHandler;
     private final MentoService mentoService;
 
     @ApiOperation(value = "멘토 최종 회원가입때 사용")
@@ -61,8 +61,8 @@ public class MentoController {
     }
 
     @PatchMapping("/mento/status")
-    public ApiResponse<ApiResponse.CustomBody<Void>> approveWaitMentos(@RequestBody ApproveWaitMentosRqDTO approveWaitMentosRqDTO){
-        mentoService.approveWaitMentos(approveWaitMentosRqDTO);
+    public ApiResponse<ApiResponse.CustomBody<Void>> approveMento(@RequestBody UpdateMentoStatusRqDTO approveWaitMentosRqDTO) {
+        mentoService.updateActive(approveWaitMentosRqDTO);
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
@@ -70,17 +70,36 @@ public class MentoController {
     @GetMapping("/mento/{id}")
     public ApiResponse<ApiResponse.CustomBody<FindMentoByIdRespDTO>> findMentoById(@PathVariable Long id){
         FindMentoByIdRespDTO findMentoByIdRespDTO = findMentoHandler.execute(id);
-        return ApiResponseGenerator.success(findMentoByIdRespDTO,HttpStatus.OK);
+        return ApiResponseGenerator.success(findMentoByIdRespDTO, HttpStatus.OK);
     }
 
     @ApiOperation(value = "멘토 마이페이지 정보 조회")
     @GetMapping("/mento/my-page")
-    public ApiResponse<ApiResponse.CustomBody<FindMyMentoRespDTO>> findMentoMyPage(@AuthenticationPrincipal MemberDetails memberDetails){
+    public ApiResponse<ApiResponse.CustomBody<FindMyMentoRespDTO>> findMentoMyPage(@AuthenticationPrincipal MemberDetails memberDetails) {
         FindMyMentoRespDTO findMyMentoRespDTO = findMyMentoHandler.execute(memberDetails.getId());
-        return ApiResponseGenerator.success(findMyMentoRespDTO,HttpStatus.OK);
+        return ApiResponseGenerator.success(findMyMentoRespDTO, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "멘토 마이페이지 정보 수정")
+    @PutMapping("/mento/my-page")
+    public ApiResponse<ApiResponse.CustomBody<Void>> updateMento(@AuthenticationPrincipal MemberDetails memberDetails, @ModelAttribute UpdateMentoRqDTO updateMentoRqDTO) throws IOException {
+        updateMentoHandler.execute(memberDetails.getId(), updateMentoRqDTO);
+        return ApiResponseGenerator.success(HttpStatus.OK);
+    }
 
+    @ApiOperation(value = "멘토 마이페이지 태그 수정")
+    @PatchMapping("/mento/tags")
+    public ApiResponse<ApiResponse.CustomBody<FindMentoByIdRespDTO>> updateTags(@AuthenticationPrincipal MemberDetails memberDetails, @RequestBody @Valid UpdateTagsRqDTO updateTagsRqDTO) {
+        FindMentoByIdRespDTO findMentoByIdRespDTO = mentoService.updateTags(memberDetails.getId(), updateTagsRqDTO);
+        return ApiResponseGenerator.success(findMentoByIdRespDTO, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "멘토 마이페이지 멘토링 수행 방법 수정")
+    @PatchMapping("/mento/mentoring-system")
+    public ApiResponse<ApiResponse.CustomBody<FindMentoByIdRespDTO>> updateMentoringSystem(@AuthenticationPrincipal MemberDetails memberDetails, @RequestBody @Valid UpdateMentoringSystemRqDTO updateMentoringSystemRqDTO) {
+        FindMentoByIdRespDTO findMentoByIdRespDTO = mentoService.updateMentoringSystem(memberDetails.getId(), updateMentoringSystemRqDTO);
+        return ApiResponseGenerator.success(findMentoByIdRespDTO, HttpStatus.OK);
+    }
 
 
 }

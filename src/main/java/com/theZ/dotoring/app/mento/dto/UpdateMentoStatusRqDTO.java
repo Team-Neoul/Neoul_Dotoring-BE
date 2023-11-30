@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ApproveWaitMentosRqDTO {
+public class UpdateMentoStatusRqDTO {
 
-    private List<Long> mentoIds;
+    private Long mentoId;
 }

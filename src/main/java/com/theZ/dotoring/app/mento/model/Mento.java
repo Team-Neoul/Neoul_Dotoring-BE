@@ -38,7 +38,6 @@ public class Mento extends CommonEntity {
     @Size(min = 3, max = 8)
     private String nickname;
 
-    @Size(min = 10, max = 100)
     private String tags;
 
     private String school;
@@ -92,19 +91,23 @@ public class Mento extends CommonEntity {
         return mento;
     }
 
-    public void updateViewCount(){
-        this.viewCount ++;
+    public void updateViewCount() {
+        this.viewCount++;
     }
 
-    public void mappingProfile(Profile profile){
+    public void updateTags(String tags) {
+        this.tags = tags;
+    }
+
+    public void mappingProfile(Profile profile) {
         this.profile = profile;
     }
 
-    private void mappingMemberAccount(MemberAccount memberAccount){
+    private void mappingMemberAccount(MemberAccount memberAccount) {
         this.memberAccount = memberAccount;
     }
 
-    private void addDesiredFields(List<DesiredField> desiredFields){
+    private void addDesiredFields(List<DesiredField> desiredFields) {
         if(desiredFields.isEmpty()){
             throw new IllegalArgumentException("희망 멘토링 분야가 1개 이상 있어야합니다.");
         }
@@ -168,8 +171,12 @@ public class Mento extends CommonEntity {
         this.nickname = nickname;
     }
 
-    public void approveStatus(){
+    public void updateActive() {
         this.status = Status.ACTIVE;
+    }
+
+    public void updateWait() {
+        this.status = Status.WAIT;
     }
 }
 
