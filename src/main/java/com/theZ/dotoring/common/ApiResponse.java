@@ -23,12 +23,9 @@ public class ApiResponse<B> extends ResponseEntity<B> {
     @Getter
     @AllArgsConstructor
     public static class CustomBody<D> implements Serializable {
-
         private Boolean success;
         private D response;
         private Error error;
-
     }
-
 }
 

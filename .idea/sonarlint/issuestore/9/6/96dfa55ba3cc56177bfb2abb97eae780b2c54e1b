@@ -1,4 +1,0 @@
-
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ºâ—Ÿ8†³ì÷¥1
-˜
-java:S11304"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(³Ÿ”‰ùÿÿÿÿ8‘³ì÷¥1
