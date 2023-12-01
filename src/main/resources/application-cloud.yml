@@ -65,4 +65,4 @@ cloud:
       accessKey: ${ACCESS_KEY}
       secretKey: ${SECRET_KEY}
 
-profileUrl: ${PROFILE_URL}
+s3Url: ${PROFILE_URL}
