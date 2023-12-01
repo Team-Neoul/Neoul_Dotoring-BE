@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76b9bcd3-772d-4ab2-9d96-c4ee18f15126" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/dotoring.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/dotoring.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-cloud.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-cloud.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +60,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "release",
+    "git-widget-placeholder": "feat#91",
     "last_opened_file_path": "/Users/iseung-geon/dotoring_be/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -241,7 +239,7 @@
       <workItem from="1697004523620" duration="8391000" />
       <workItem from="1697429843311" duration="6264000" />
       <workItem from="1701361174413" duration="1175000" />
-      <workItem from="1701363046135" duration="173000" />
+      <workItem from="1701363046135" duration="1213000" />
     </task>
     <servers />
   </component>
