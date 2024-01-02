@@ -26,13 +26,14 @@ public class Notification extends CommonEntity {
 
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author")
-    private MemberAccount author;
+    private String author;
 
     private String introduction;
 
-    @Convert(converter = StringListConverter.class)
+    // Converter 사용시 Querydsl contain 사용 불가
+    //@Convert(converter = StringListConverter.class)
+    @ElementCollection(fetch = FetchType.LAZY)
+    @Column(name = "NOTIFICATION_GOAL")
     private List<String> notificationGoals;
 
     // 최대 모집 인원
@@ -46,11 +47,14 @@ public class Notification extends CommonEntity {
     @Builder.Default
     private int curParticipation = 0;
 
+    @Builder.Default
+    private boolean isClose = false;
 
-    public static Notification of(NotificationReqDTO notificationReqDTO, MemberAccount memberAccount){
+
+    public static Notification of(NotificationReqDTO notificationReqDTO, String memberNickname){
         return Notification.builder()
                 .title(notificationReqDTO.getTitle())
-                .author(memberAccount)
+                .author(memberNickname)
                 .notificationGoals(notificationReqDTO.getGoals())
                 .maxRecruitment(notificationReqDTO.getMaxRecruitment())
                 .build();

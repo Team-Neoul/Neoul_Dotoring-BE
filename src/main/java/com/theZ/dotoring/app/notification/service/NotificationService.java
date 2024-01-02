@@ -6,15 +6,18 @@ import com.theZ.dotoring.app.menti.repository.MentiRepository;
 import com.theZ.dotoring.app.mento.model.Mento;
 import com.theZ.dotoring.app.mento.repository.MentoRepository;
 import com.theZ.dotoring.app.notification.dto.NotificationReqDTO;
+import com.theZ.dotoring.app.notification.dto.NotificationResDTO;
 import com.theZ.dotoring.app.notification.dto.NotificationSaveResDTO;
 import com.theZ.dotoring.app.notification.dto.NotificationUpdateResDTO;
 import com.theZ.dotoring.app.notification.model.Notification;
 import com.theZ.dotoring.app.notification.repository.NotificationRepository;
+import com.theZ.dotoring.app.notification.repository.NotificationRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -24,6 +27,8 @@ public class NotificationService {
 
     private final NotificationRepository notificationRepository;
 
+    private final NotificationRepositoryImpl notificationRepositoryImpl;
+
     private final MentoRepository mentoRepository;
 
     private final MentiRepository mentiRepository;
@@ -31,24 +36,38 @@ public class NotificationService {
     @Transactional
     public NotificationSaveResDTO saveNotification(MemberAccount memberAccount, NotificationReqDTO reqDTO){
 
-        Notification notification = notificationRepository.save(Notification.of(reqDTO, memberAccount));
-
         Map<String, String> map = getMemberNicknameAndMajor(memberAccount);
+
+        Notification notification = notificationRepository.save(Notification.of(reqDTO, map.get("memberNickname")));
 
         return NotificationSaveResDTO.of(notification, map.get("memberNickname"), map.get("memberMajor"));
     }
 
-
     @Transactional
     public NotificationUpdateResDTO updateNotification(MemberAccount memberAccount, Long notificationId, NotificationReqDTO reqDTO){
-        Notification notification = notificationRepository.findById(notificationId).orElseThrow(() -> new RuntimeException("notification이 존재하지 않습니다."));
-
-        notification.updateNotification(reqDTO);
 
         Map<String, String> map = getMemberNicknameAndMajor(memberAccount);
 
+        Notification notification = notificationRepository.findById(notificationId).orElseThrow(() -> new RuntimeException("notification이 존재하지 않습니다."));
+
+        // 유저 본인이 아니라면 업데이트를 할 수 없게 예외 발생
+        if (!Objects.equals(notification.getAuthor(), map.get("memberNickname"))){
+            throw new RuntimeException("글 작성한 본인만 수정할 수 있습니다.");
+        }
+
+        notification.updateNotification(reqDTO);
+
         return NotificationUpdateResDTO.of(notification, map.get("memberNickname"), map.get("memberMajor"));
     }
+
+
+    @Transactional(readOnly = true)
+    public NotificationResDTO getNotificationByFilter(String title, String goal, boolean isClose){
+        List<Notification> notifications = notificationRepositoryImpl.getNotificationByFilter(title, goal, isClose);
+
+        return new NotificationResDTO(notifications);
+    }
+
 
 
     /***
