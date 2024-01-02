@@ -5,10 +5,7 @@ import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.menti.repository.MentiRepository;
 import com.theZ.dotoring.app.mento.model.Mento;
 import com.theZ.dotoring.app.mento.repository.MentoRepository;
-import com.theZ.dotoring.app.notification.dto.NotificationReqDTO;
-import com.theZ.dotoring.app.notification.dto.NotificationResDTO;
-import com.theZ.dotoring.app.notification.dto.NotificationSaveResDTO;
-import com.theZ.dotoring.app.notification.dto.NotificationUpdateResDTO;
+import com.theZ.dotoring.app.notification.dto.*;
 import com.theZ.dotoring.app.notification.model.Notification;
 import com.theZ.dotoring.app.notification.repository.NotificationRepository;
 import com.theZ.dotoring.app.notification.repository.NotificationRepositoryImpl;
@@ -60,7 +57,6 @@ public class NotificationService {
         return NotificationUpdateResDTO.of(notification, map.get("memberNickname"), map.get("memberMajor"));
     }
 
-
     @Transactional(readOnly = true)
     public NotificationResDTO getNotificationByFilter(String title, String goal, boolean isClose){
         List<Notification> notifications = notificationRepositoryImpl.getNotificationByFilter(title, goal, isClose);
@@ -68,7 +64,14 @@ public class NotificationService {
         return new NotificationResDTO(notifications);
     }
 
+    @Transactional(readOnly = true)
+    public NotificationDetailDTO getNotification(MemberAccount memberAccount, Long notificationId){
+        Notification notification = notificationRepository.findById(notificationId).orElseThrow(() -> new RuntimeException("해당 지원 공고가 존재하지 않습니다."));
 
+        Map<String, String> map = getMemberNicknameAndMajor(memberAccount);
+
+        return NotificationDetailDTO.of(notification, map.get("memberMajor"), map.get("memberNickname"));
+    }
 
     /***
      * Member의 멘토나 멘티 분기에 따라서 닉네임, 전공을 Map 자료구조로 반환하는 메서드

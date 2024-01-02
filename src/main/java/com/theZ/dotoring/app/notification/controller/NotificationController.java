@@ -1,6 +1,7 @@
 package com.theZ.dotoring.app.notification.controller;
 
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
+import com.theZ.dotoring.app.notification.dto.NotificationDetailDTO;
 import com.theZ.dotoring.app.notification.dto.NotificationReqDTO;
 import com.theZ.dotoring.app.notification.dto.NotificationResDTO;
 import com.theZ.dotoring.app.notification.service.NotificationService;
@@ -32,6 +33,14 @@ public class NotificationController {
     public ApiResponse<ApiResponse.CustomBody<NotificationResDTO>> getNotificationByFilter(@RequestParam String title, @RequestParam String goal, @RequestParam boolean isClose){
 
         NotificationResDTO notificationResDTO =  notificationService.getNotificationByFilter(title, goal, isClose);
+
+        return ApiResponseGenerator.success(notificationResDTO, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/notification/{notificationId}")
+    public ApiResponse<ApiResponse.CustomBody<NotificationDetailDTO>> getNotification(@AuthenticationPrincipal MemberAccount memberAccount, @PathVariable Long notificationId){
+
+        NotificationDetailDTO notificationResDTO =  notificationService.getNotification(memberAccount, notificationId);
 
         return ApiResponseGenerator.success(notificationResDTO, HttpStatus.OK);
     }
