@@ -2,7 +2,6 @@ package com.theZ.dotoring.app.notification.model;
 
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.notification.dto.NotificationReqDTO;
-import com.theZ.dotoring.app.notification.dto.NotificationUpdateReqDTO;
 import com.theZ.dotoring.common.CommonEntity;
 import com.theZ.dotoring.common.StringListConverter;
 import lombok.AllArgsConstructor;
@@ -57,7 +56,7 @@ public class Notification extends CommonEntity {
                 .build();
     }
 
-    public void updateNotification(NotificationUpdateReqDTO notificationUpdateReqDTO){
+    public void updateNotification(NotificationReqDTO notificationUpdateReqDTO){
         if (!notificationUpdateReqDTO.getTitle().isEmpty()){
             this.title = notificationUpdateReqDTO.getTitle();
         }
