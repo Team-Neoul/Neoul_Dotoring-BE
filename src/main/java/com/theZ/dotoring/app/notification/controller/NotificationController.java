@@ -2,6 +2,7 @@ package com.theZ.dotoring.app.notification.controller;
 
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.notification.dto.NotificationReqDTO;
+import com.theZ.dotoring.app.notification.dto.NotificationResDTO;
 import com.theZ.dotoring.app.notification.service.NotificationService;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
@@ -27,5 +28,12 @@ public class NotificationController {
         return ApiResponseGenerator.success(notificationService.saveNotification(memberAccount, notificationReqDTO), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/notification")
+    public ApiResponse<ApiResponse.CustomBody<NotificationResDTO>> getNotificationByFilter(@RequestParam String title, @RequestParam String goal, @RequestParam boolean isClose){
+
+        NotificationResDTO notificationResDTO =  notificationService.getNotificationByFilter(title, goal, isClose);
+
+        return ApiResponseGenerator.success(notificationResDTO, HttpStatus.OK);
+    }
 }
 
