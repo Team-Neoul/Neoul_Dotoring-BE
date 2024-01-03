@@ -4,6 +4,7 @@ import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.notification.dto.NotificationDetailDTO;
 import com.theZ.dotoring.app.notification.dto.NotificationReqDTO;
 import com.theZ.dotoring.app.notification.dto.NotificationResDTO;
+import com.theZ.dotoring.app.notification.dto.NotificationStatusDTO;
 import com.theZ.dotoring.app.notification.service.NotificationService;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
@@ -41,6 +42,14 @@ public class NotificationController {
     public ApiResponse<ApiResponse.CustomBody<NotificationDetailDTO>> getNotification(@AuthenticationPrincipal MemberAccount memberAccount, @PathVariable Long notificationId){
 
         NotificationDetailDTO notificationResDTO =  notificationService.getNotification(memberAccount, notificationId);
+
+        return ApiResponseGenerator.success(notificationResDTO, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/notification/end/{notificationId}")
+    public ApiResponse<ApiResponse.CustomBody<NotificationStatusDTO>> makeStatusToEnd(@AuthenticationPrincipal MemberAccount memberAccount, @PathVariable Long notificationId){
+
+        NotificationStatusDTO notificationResDTO =  notificationService.makeStatusToEnd(memberAccount, notificationId);
 
         return ApiResponseGenerator.success(notificationResDTO, HttpStatus.OK);
     }

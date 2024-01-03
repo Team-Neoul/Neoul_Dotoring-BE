@@ -73,6 +73,23 @@ public class NotificationService {
         return NotificationDetailDTO.of(notification, map.get("memberMajor"), map.get("memberNickname"));
     }
 
+    @Transactional
+    public NotificationStatusDTO makeStatusToEnd(MemberAccount memberAccount, Long notificationId){
+
+        Map<String, String> map = getMemberNicknameAndMajor(memberAccount);
+
+        Notification notification = notificationRepository.findById(notificationId).orElseThrow(() -> new RuntimeException("해당 지원 공고가 존재하지 않습니다."));
+
+        // 유저 본인이 아니라면 업데이트를 할 수 없게 예외 발생
+        if (!Objects.equals(notification.getAuthor(), map.get("memberNickname"))){
+            throw new RuntimeException("글 작성한 본인만 게시글을 마감할 수 있습니다..");
+        }
+
+        notification.updateStatusToIsClose();
+
+        return NotificationStatusDTO.from(notification);
+    }
+
     /***
      * Member의 멘토나 멘티 분기에 따라서 닉네임, 전공을 Map 자료구조로 반환하는 메서드
      *
