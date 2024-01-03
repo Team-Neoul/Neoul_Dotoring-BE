@@ -47,15 +47,28 @@ public class ChatRoomService {
         }
 
         if (memberAccount.getMemberType().toString().equals("MENTO")){
-            return ChatRoomResponseDTO.from(ChatRoom.of(memberNickname, receiverName));
+            ChatRoom chatRoomOP = ChatRoom.of(memberNickname, receiverName);
+
+            return ChatRoomResponseDTO.from(chatRoomRespository.save(chatRoomOP));
         }
 
-        return ChatRoomResponseDTO.from(ChatRoom.of(receiverName, memberNickname));
+        ChatRoom chatRoomOP = ChatRoom.of(receiverName, memberNickname);
+
+        return ChatRoomResponseDTO.from(chatRoomRespository.save(chatRoomOP));
     }
 
     @Transactional
     public String getRoomName(String mentoName, String menteeName){
 
+        ChatRoom chatRoom = chatRoomRespository.findByUserNameAndReceiverName(mentoName, menteeName).orElse(null);
+
+        if (chatRoom != null){
+            return chatRoom.getRoomName();
+        }
+
+        ChatRoom chatRoomOP = ChatRoom.of(mentoName, menteeName);
+
+        return chatRoomRespository.save(chatRoomOP).getRoomName();
 
     }
 
