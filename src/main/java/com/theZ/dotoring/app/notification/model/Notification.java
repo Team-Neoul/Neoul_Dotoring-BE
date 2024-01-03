@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -50,6 +51,10 @@ public class Notification extends CommonEntity {
     @Builder.Default
     private boolean isClose = false;
 
+    @ElementCollection(fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<String> participations = new ArrayList<>();
+
 
     public static Notification of(NotificationReqDTO notificationReqDTO, String memberNickname){
         return Notification.builder()
@@ -73,5 +78,9 @@ public class Notification extends CommonEntity {
         if (notificationUpdateReqDTO.getMaxRecruitment() != 0){
             this.maxRecruitment = notificationUpdateReqDTO.getMaxRecruitment();
         }
+    }
+
+    public void updateStatusToIsClose(){
+        this.isClose = true;
     }
 }

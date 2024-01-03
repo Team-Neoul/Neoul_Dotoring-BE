@@ -48,6 +48,10 @@ class NotificationRepositoryImplTest {
                 .maxRecruitment(10)
                 .build();
 
+        notification1.getParticipations().add("이승건1");
+        notification1.getParticipations().add("이승건2");
+
+
         entityManager.persist(notification1);
         entityManager.persist(notification2);
         entityManager.persist(notification3);
@@ -64,7 +68,7 @@ class NotificationRepositoryImplTest {
         // eye
         for (Notification notification : result) {
             System.out.println(notification.getTitle());
-            System.out.println(notification.getNotificationGoals());
+            System.out.println(notification.getParticipations().size());
         }
 
         // 검증
