@@ -1,10 +1,7 @@
 package com.theZ.dotoring.app.notification.controller;
 
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
-import com.theZ.dotoring.app.notification.dto.NotificationDetailDTO;
-import com.theZ.dotoring.app.notification.dto.NotificationReqDTO;
-import com.theZ.dotoring.app.notification.dto.NotificationResDTO;
-import com.theZ.dotoring.app.notification.dto.NotificationStatusDTO;
+import com.theZ.dotoring.app.notification.dto.*;
 import com.theZ.dotoring.app.notification.service.NotificationService;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
@@ -53,5 +50,14 @@ public class NotificationController {
 
         return ApiResponseGenerator.success(notificationResDTO, HttpStatus.OK);
     }
+
+    @PostMapping(value = "/notification/application/{notificationId}")
+    public ApiResponse<ApiResponse.CustomBody<Void>> joinNotification(@AuthenticationPrincipal MemberAccount memberAccount, @PathVariable Long notificationId, @RequestBody(required = false) NotificationParticipateReqDTO notificationParticipateReqDTO){
+
+        notificationService.joinNotification(memberAccount, notificationId, notificationParticipateReqDTO);
+
+        return ApiResponseGenerator.success(null, HttpStatus.OK);
+    }
+
 }
 

@@ -30,13 +30,22 @@ public class ChatMessage extends CommonEntity {
     //내용
     private String message;
 
-    public static ChatMessage from(ChatMessageRequestDTO requestDTO, String roomName){
+    public static ChatMessage of(ChatMessageRequestDTO requestDTO, String roomName){
         return ChatMessage.builder()
                 .message(requestDTO.getMessage())
                 .senderName(requestDTO.getSenderName())
                 .roomName(roomName)
                 .build();
     }
+
+    public static ChatMessage of(String message, String senderName, String roomName){
+        return ChatMessage.builder()
+                .message(message)
+                .senderName(senderName)
+                .roomName(roomName)
+                .build();
+    }
+
 
     public void updateSenderName(String username){
         this.senderName = username;
