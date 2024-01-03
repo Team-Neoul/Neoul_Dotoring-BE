@@ -53,7 +53,7 @@ public class NotificationService {
     }
 
     @Transactional
-    public NotificationUpdateResDTO updateNotification(MemberAccount memberAccount, Long notificationId, NotificationReqDTO reqDTO){
+    public NotificationUpdateResDTO updateNotification(MemberAccount memberAccount, Long notificationId, NotificationReqDTO reqDTO) throws NotFoundNotificationException, NotAuthorNotificationException {
 
         Map<String, String> map = getMemberNicknameAndMajor(memberAccount);
 
@@ -78,7 +78,7 @@ public class NotificationService {
     }
 
     @Transactional(readOnly = true)
-    public NotificationDetailDTO getNotification(MemberAccount memberAccount, Long notificationId){
+    public NotificationDetailDTO getNotification(MemberAccount memberAccount, Long notificationId) throws NotFoundNotificationException {
         Notification notification = notificationRepository.findById(notificationId).orElseThrow(
                 () -> new NotFoundNotificationException(MessageCode.NOTIFICATION_NOT_FOUND));
 
@@ -88,7 +88,7 @@ public class NotificationService {
     }
 
     @Transactional
-    public NotificationStatusDTO makeStatusToEnd(MemberAccount memberAccount, Long notificationId){
+    public NotificationStatusDTO makeStatusToEnd(MemberAccount memberAccount, Long notificationId) throws NotFoundNotificationException, NotAuthorNotificationException{
 
         Map<String, String> map = getMemberNicknameAndMajor(memberAccount);
 
@@ -105,13 +105,12 @@ public class NotificationService {
         return NotificationStatusDTO.from(notification);
     }
 
-    // todo: 지원자 수를 응답내는 것은 어떤가?
     @Transactional
-    public void joinNotification(MemberAccount memberAccount, Long notificationId, NotificationParticipateReqDTO notificationParticipateReqDTO){
+    public void joinNotification(MemberAccount memberAccount, Long notificationId, NotificationParticipateReqDTO notificationParticipateReqDTO) throws NotFoundNotificationException, DuplicateParticipationException {
 
         Map<String, String> map = getMemberNicknameAndMajor(memberAccount);
 
-        Notification notification = notificationRepository.findById(notificationId).orElseThrow(() -> new RuntimeException("해당 지원 공고가 존재하지 않습니다."));
+        Notification notification = notificationRepository.findById(notificationId).orElseThrow(() -> new NotFoundNotificationException(MessageCode.NOTIFICATION_NOT_FOUND));
 
         // 이미 참여 신청한 유저인지 확인
         if (!notification.getParticipations().contains(map.get(MEMBER_NICKNAME))){
