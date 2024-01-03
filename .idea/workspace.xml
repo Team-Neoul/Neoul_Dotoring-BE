@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="76b9bcd3-772d-4ab2-9d96-c4ee18f15126" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chat/entity/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chat/entity/ChatMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chat/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chat/service/MessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chatRoom/service/ChatRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chatRoom/service/ChatRoomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/controller/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/model/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/model/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/service/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/dto/NotificationDetailDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/dto/NotificationDetailDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +69,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feat#109",
+    "git-widget-placeholder": "feat#110",
     "last_opened_file_path": "/Users/iseung-geon/dotoring_be",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -281,7 +277,7 @@
       <workItem from="1701363046135" duration="4225000" />
       <workItem from="1702291395767" duration="868000" />
       <workItem from="1704114059412" duration="10899000" />
-      <workItem from="1704186274026" duration="19145000" />
+      <workItem from="1704186274026" duration="20521000" />
     </task>
     <servers />
   </component>
