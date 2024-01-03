@@ -34,7 +34,13 @@ public enum MessageCode {
 
     ROOM_NOT_FOUND("4013","채팅방이 존재하지 않습니다."),
 
-    LETTER_NOT_FOUND("4014","쪽지가 존재하지 않습니다.");
+    LETTER_NOT_FOUND("4014","쪽지가 존재하지 않습니다."),
+
+    NOT_AUTHOR_NOTIFICATION("4443","지원 공고 작성자만 수정할 수 있습니다."),
+
+    DUPLICATE_PARTICIPATION_NOTIFICATION("4444","이미 지원한 공고입니다."),
+
+    NOTIFICATION_NOT_FOUND("4445","지원 공고가 존재하지 않습니다.");
 
 
 

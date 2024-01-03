@@ -3,6 +3,9 @@ package com.theZ.dotoring.exception;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
 import com.theZ.dotoring.common.MessageCode;
+import com.theZ.dotoring.exception.notificationException.DuplicateParticipationException;
+import com.theZ.dotoring.exception.notificationException.NotAuthorNotificationException;
+import com.theZ.dotoring.exception.notificationException.NotFoundNotificationException;
 import com.theZ.dotoring.exception.signupException.EmailAlreadyExistsException;
 import com.theZ.dotoring.exception.signupException.LoginIdDuplicateException;
 import com.theZ.dotoring.exception.signupException.NotMatchEmailAndCode;
@@ -97,6 +100,25 @@ public class GlobalExceptionHandler {
         return ApiResponseGenerator.fail(MessageCode.NOT_ALLOWED_FILE_EXT.getCode(),MessageCode.NOT_ALLOWED_FILE_EXT.getValue(), HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * 지원공고 Exception Handler
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(DuplicateParticipationException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleDuplicateParticipationException(DuplicateParticipationException e){
+        return ApiResponseGenerator.fail(MessageCode.DUPLICATE_PARTICIPATION_NOTIFICATION.getCode(),MessageCode.DUPLICATE_PARTICIPATION_NOTIFICATION.getValue(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotAuthorNotificationException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleNotAuthorNotificationException(NotAuthorNotificationException e){
+        return ApiResponseGenerator.fail(MessageCode.NOT_AUTHOR_NOTIFICATION.getCode(),MessageCode.NOT_AUTHOR_NOTIFICATION.getValue(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotFoundNotificationException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleNotFoundNotificationException(NotFoundNotificationException e){
+        return ApiResponseGenerator.fail(MessageCode.NOTIFICATION_NOT_FOUND.getCode(),MessageCode.NOTIFICATION_NOT_FOUND.getValue(), HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler(RuntimeException.class)
     public ApiResponse<ApiResponse.CustomBody> handleRuntimeException(RuntimeException e){

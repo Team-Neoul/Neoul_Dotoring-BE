@@ -10,6 +10,11 @@ import com.theZ.dotoring.app.notification.dto.*;
 import com.theZ.dotoring.app.notification.model.Notification;
 import com.theZ.dotoring.app.notification.repository.NotificationRepository;
 import com.theZ.dotoring.app.notification.repository.NotificationRepositoryImpl;
+import com.theZ.dotoring.common.MessageCode;
+import com.theZ.dotoring.exception.NotFoundMemberException;
+import com.theZ.dotoring.exception.notificationException.DuplicateParticipationException;
+import com.theZ.dotoring.exception.notificationException.NotAuthorNotificationException;
+import com.theZ.dotoring.exception.notificationException.NotFoundNotificationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,14 +38,18 @@ public class NotificationService {
 
     private final MentiRepository mentiRepository;
 
+    private static final String MEMBER_NICKNAME = "memberNickname";
+
+    private static final String MEMBER_MAJOR = "memberMajor";
+
     @Transactional
     public NotificationSaveResDTO saveNotification(MemberAccount memberAccount, NotificationReqDTO reqDTO){
 
         Map<String, String> map = getMemberNicknameAndMajor(memberAccount);
 
-        Notification notification = notificationRepository.save(Notification.of(reqDTO, map.get("memberNickname")));
+        Notification notification = notificationRepository.save(Notification.of(reqDTO, map.get(MEMBER_NICKNAME)));
 
-        return NotificationSaveResDTO.of(notification, map.get("memberNickname"), map.get("memberMajor"));
+        return NotificationSaveResDTO.of(notification, map.get(MEMBER_NICKNAME), map.get(MEMBER_MAJOR));
     }
 
     @Transactional
@@ -48,16 +57,17 @@ public class NotificationService {
 
         Map<String, String> map = getMemberNicknameAndMajor(memberAccount);
 
-        Notification notification = notificationRepository.findById(notificationId).orElseThrow(() -> new RuntimeException("notification이 존재하지 않습니다."));
+        Notification notification = notificationRepository.findById(notificationId).orElseThrow(
+                () -> new NotFoundNotificationException(MessageCode.NOTIFICATION_NOT_FOUND));
 
         // 유저 본인이 아니라면 업데이트를 할 수 없게 예외 발생
-        if (!Objects.equals(notification.getAuthor(), map.get("memberNickname"))){
-            throw new RuntimeException("글 작성한 본인만 수정할 수 있습니다.");
+        if (!Objects.equals(notification.getAuthor(), map.get(MEMBER_NICKNAME))){
+            throw new NotAuthorNotificationException(MessageCode.NOT_AUTHOR_NOTIFICATION);
         }
 
         notification.updateNotification(reqDTO);
 
-        return NotificationUpdateResDTO.of(notification, map.get("memberNickname"), map.get("memberMajor"));
+        return NotificationUpdateResDTO.of(notification, map.get(MEMBER_NICKNAME), map.get(MEMBER_MAJOR));
     }
 
     @Transactional(readOnly = true)
@@ -69,11 +79,12 @@ public class NotificationService {
 
     @Transactional(readOnly = true)
     public NotificationDetailDTO getNotification(MemberAccount memberAccount, Long notificationId){
-        Notification notification = notificationRepository.findById(notificationId).orElseThrow(() -> new RuntimeException("해당 지원 공고가 존재하지 않습니다."));
+        Notification notification = notificationRepository.findById(notificationId).orElseThrow(
+                () -> new NotFoundNotificationException(MessageCode.NOTIFICATION_NOT_FOUND));
 
         Map<String, String> map = getMemberNicknameAndMajor(memberAccount);
 
-        return NotificationDetailDTO.of(notification, map.get("memberMajor"), map.get("memberNickname"));
+        return NotificationDetailDTO.of(notification, map.get(MEMBER_MAJOR), map.get(MEMBER_NICKNAME));
     }
 
     @Transactional
@@ -81,11 +92,12 @@ public class NotificationService {
 
         Map<String, String> map = getMemberNicknameAndMajor(memberAccount);
 
-        Notification notification = notificationRepository.findById(notificationId).orElseThrow(() -> new RuntimeException("해당 지원 공고가 존재하지 않습니다."));
+        Notification notification = notificationRepository.findById(notificationId).orElseThrow(
+                () -> new NotFoundNotificationException(MessageCode.NOTIFICATION_NOT_FOUND));
 
         // 유저 본인이 아니라면 업데이트를 할 수 없게 예외 발생
-        if (!Objects.equals(notification.getAuthor(), map.get("memberNickname"))){
-            throw new RuntimeException("글 작성한 본인만 게시글을 마감할 수 있습니다..");
+        if (!Objects.equals(notification.getAuthor(), map.get(MEMBER_NICKNAME))){
+            throw new NotAuthorNotificationException(MessageCode.NOT_AUTHOR_NOTIFICATION);
         }
 
         notification.updateStatusToIsClose();
@@ -102,22 +114,22 @@ public class NotificationService {
         Notification notification = notificationRepository.findById(notificationId).orElseThrow(() -> new RuntimeException("해당 지원 공고가 존재하지 않습니다."));
 
         // 이미 참여 신청한 유저인지 확인
-        if (!notification.getParticipations().contains(map.get("memberNickname"))){
-            notification.getParticipations().add(map.get("memberNickname"));
+        if (!notification.getParticipations().contains(map.get(MEMBER_NICKNAME))){
+            notification.getParticipations().add(map.get(MEMBER_NICKNAME));
         } else {
-            throw new RuntimeException("이미 참여하기를 누른 유저입니다.");
+            throw new DuplicateParticipationException(MessageCode.DUPLICATE_PARTICIPATION_NOTIFICATION);
         }
 
         // 글 작성자에게 해당 유저가 보내는 채팅 메시지 보내기 -> 합성 사용
         // 현재 유저가 멘토인지 아닌지 분기해서 보내주어야 함.
         if (memberAccount.getMemberType().toString().equals("MENTO")){
             boolean isMentoChatSender = false;
-            messageService.sendJoinNotificationMessage(map.get("memberNickname"), notification.getAuthor(), isMentoChatSender, notificationParticipateReqDTO.getParticipationForm());
+            messageService.sendJoinNotificationMessage(map.get(MEMBER_NICKNAME), notification.getAuthor(), isMentoChatSender, notificationParticipateReqDTO.getParticipationForm());
         }
 
         if (memberAccount.getMemberType().toString().equals("MENTI")){
             boolean isMentoChatSender = true;
-            messageService.sendJoinNotificationMessage(notification.getAuthor(), map.get("memberNickname"), isMentoChatSender, notificationParticipateReqDTO.getParticipationForm());
+            messageService.sendJoinNotificationMessage(notification.getAuthor(), map.get(MEMBER_NICKNAME), isMentoChatSender, notificationParticipateReqDTO.getParticipationForm());
         }
 
         // 더티 체킹으로 지원자 수 증대
@@ -136,17 +148,21 @@ public class NotificationService {
         Map<String, String> map = new HashMap<>();
 
         if (Objects.equals(memberAccount.getMemberType().toString(), "MENTO")){
-            Mento mento = mentoRepository.findById(memberAccount.getId()).get();
+            Mento mento = mentoRepository.findById(memberAccount.getId()).orElseThrow(
+                    () -> new NotFoundMemberException(MessageCode.MEMBER_NOT_FOUND)
+            );
 
-            map.put("memberNickname", mento.getNickname());
-            map.put("memberMajor", mento.getMemberMajors().get(0).toString());
+            map.put(MEMBER_NICKNAME, mento.getNickname());
+            map.put(MEMBER_MAJOR, mento.getMemberMajors().get(0).toString());
         }
 
         if(Objects.equals(memberAccount.getMemberType().toString(), "MENTI")){
-            Menti menti = mentiRepository.findById(memberAccount.getId()).get();
+            Menti menti = mentiRepository.findById(memberAccount.getId()).orElseThrow(
+                    () -> new NotFoundMemberException(MessageCode.MEMBER_NOT_FOUND)
+            );
 
-            map.put("memberNickname", menti.getNickname());
-            map.put("memberMajor", menti.getMemberMajors().get(0).toString());
+            map.put(MEMBER_NICKNAME, menti.getNickname());
+            map.put(MEMBER_MAJOR, menti.getMemberMajors().get(0).toString());
         }
 
         return map;
