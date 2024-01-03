@@ -80,6 +80,16 @@ public class Notification extends CommonEntity {
         }
     }
 
+    // 현재 참여 인원 추가
+    public void addCurRecruitment(){
+        this.curRecruitment++;
+    }
+
+    // 현재 신청 인원 추가
+    public void addCurParticipation(){
+        this.curParticipation++;
+    }
+
     public void updateStatusToIsClose(){
         this.isClose = true;
     }

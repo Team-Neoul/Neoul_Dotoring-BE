@@ -54,6 +54,13 @@ public class ChatRoomService {
     }
 
     @Transactional
+    public String getRoomName(String mentoName, String menteeName){
+
+
+    }
+
+
+    @Transactional
     public List<ChatRoom> findAllRooms(MemberAccount memberAccount){
 
         // getMemberNickName 찾기

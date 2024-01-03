@@ -1,5 +1,6 @@
 package com.theZ.dotoring.app.notification.service;
 
+import com.theZ.dotoring.app.chat.service.MessageService;
 import com.theZ.dotoring.app.memberAccount.model.MemberAccount;
 import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.menti.repository.MentiRepository;
@@ -21,6 +22,8 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 public class NotificationService {
+
+    private final MessageService messageService;
 
     private final NotificationRepository notificationRepository;
 
@@ -89,6 +92,39 @@ public class NotificationService {
 
         return NotificationStatusDTO.from(notification);
     }
+
+    // todo: 지원자 수를 응답내는 것은 어떤가?
+    @Transactional
+    public void joinNotification(MemberAccount memberAccount, Long notificationId, NotificationParticipateReqDTO notificationParticipateReqDTO){
+
+        Map<String, String> map = getMemberNicknameAndMajor(memberAccount);
+
+        Notification notification = notificationRepository.findById(notificationId).orElseThrow(() -> new RuntimeException("해당 지원 공고가 존재하지 않습니다."));
+
+        // 이미 참여 신청한 유저인지 확인
+        if (!notification.getParticipations().contains(map.get("memberNickname"))){
+            notification.getParticipations().add(map.get("memberNickname"));
+        } else {
+            throw new RuntimeException("이미 참여하기를 누른 유저입니다.");
+        }
+
+        // 글 작성자에게 해당 유저가 보내는 채팅 메시지 보내기 -> 합성 사용
+        // 현재 유저가 멘토인지 아닌지 분기해서 보내주어야 함.
+        if (memberAccount.getMemberType().toString().equals("MENTO")){
+            boolean isMentoChatSender = false;
+            messageService.sendJoinNotificationMessage(map.get("memberNickname"), notification.getAuthor(), isMentoChatSender, notificationParticipateReqDTO.getParticipationForm());
+        }
+
+        if (memberAccount.getMemberType().toString().equals("MENTI")){
+            boolean isMentoChatSender = true;
+            messageService.sendJoinNotificationMessage(notification.getAuthor(), map.get("memberNickname"), isMentoChatSender, notificationParticipateReqDTO.getParticipationForm());
+        }
+
+        // 더티 체킹으로 지원자 수 증대
+        notification.addCurParticipation();
+
+    }
+
 
     /***
      * Member의 멘토나 멘티 분기에 따라서 닉네임, 전공을 Map 자료구조로 반환하는 메서드

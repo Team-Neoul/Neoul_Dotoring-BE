@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76b9bcd3-772d-4ab2-9d96-c4ee18f15126" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chat/entity/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chat/entity/ChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chat/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chat/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chatRoom/service/ChatRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chatRoom/service/ChatRoomService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/controller/NotificationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/model/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/model/Notification.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/service/NotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/theZ/dotoring/app/notification/repository/NotificationRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/theZ/dotoring/app/notification/repository/NotificationRepositoryImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,8 +41,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -73,7 +73,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feat#107",
+    "git-widget-placeholder": "feat#109",
     "last_opened_file_path": "/Users/iseung-geon/dotoring_be",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -281,7 +281,7 @@
       <workItem from="1701363046135" duration="4225000" />
       <workItem from="1702291395767" duration="868000" />
       <workItem from="1704114059412" duration="10899000" />
-      <workItem from="1704186274026" duration="13003000" />
+      <workItem from="1704186274026" duration="19145000" />
     </task>
     <servers />
   </component>
@@ -315,12 +315,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/repository/NotificationRepositoryImpl.java</url>
           <line>63</line>
           <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/dto/NotificationDetailDTO.java</url>
-          <line>22</line>
-          <properties field="maxRecruitment" class="com.theZ.dotoring.app.notification.dto.NotificationDetailDTO" />
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
