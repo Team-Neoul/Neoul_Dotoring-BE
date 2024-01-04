@@ -199,6 +199,7 @@ $RECYCLE.BIN/
 *.lnk
 
 ### Gradle ###
+.gradle/
 .gradle
 **/build/
 !src/**/build/
@@ -224,6 +225,7 @@ gradle-app.setting
 ### Gradle Patch ###
 # Java heap dump
 *.hprof
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,gradle,intellij+all,visualstudiocode,java,redis
 
 # env
