@@ -3,6 +3,9 @@ package com.theZ.dotoring.exception;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
 import com.theZ.dotoring.common.MessageCode;
+import com.theZ.dotoring.exception.signupException.EmailAlreadyExistsException;
+import com.theZ.dotoring.exception.signupException.LoginIdDuplicateException;
+import com.theZ.dotoring.exception.signupException.NotMatchEmailAndCode;
 import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
 import org.apache.tomcat.util.http.fileupload.impl.SizeLimitExceededException;
 import org.hibernate.exception.ConstraintViolationException;
@@ -18,20 +21,6 @@ import java.io.IOException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
-    @ExceptionHandler(BindException.class)
-    public ApiResponse<ApiResponse.CustomBody> handleBindException(BindException e){
-        return ApiResponseGenerator.fail(e.getFieldError().getDefaultMessage(),null, HttpStatus.BAD_REQUEST);
-    }
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ApiResponse<ApiResponse.CustomBody> handleConstraintViolationException(ConstraintViolationException e){
-        return ApiResponseGenerator.fail(MessageCode.DUPLICATED_VALUE.getCode(),MessageCode.DUPLICATED_VALUE.getValue(),HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(DefaultProfileImageNotFoundException.class)
-    public ApiResponse<ApiResponse.CustomBody> handleBindException(DefaultProfileImageNotFoundException e){
-        return ApiResponseGenerator.fail(e.messageCode.getCode(),e.messageCode.getValue(), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
 
     @ExceptionHandler(EmailAlreadyExistsException.class)
     public ApiResponse<ApiResponse.CustomBody> handleBindException(EmailAlreadyExistsException e){

@@ -9,7 +9,7 @@ import com.theZ.dotoring.app.letter.handler.menti.GetRoomByMentiHandler;
 import com.theZ.dotoring.app.room.dto.RoomResponseDTO;
 import com.theZ.dotoring.common.ApiResponse;
 import com.theZ.dotoring.common.ApiResponseGenerator;
-import com.theZ.dotoring.exception.NotFoundLetterException;
+import com.theZ.dotoring.exception.letterException.NotFoundLetterException;
 import com.theZ.dotoring.exception.NotFoundRoomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;

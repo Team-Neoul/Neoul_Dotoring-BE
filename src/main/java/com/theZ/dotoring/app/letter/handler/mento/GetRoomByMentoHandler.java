@@ -6,7 +6,6 @@ import com.theZ.dotoring.app.room.domain.Room;
 import com.theZ.dotoring.app.room.dto.RoomResponseDTO;
 import com.theZ.dotoring.app.room.mapper.RoomMapper;
 import com.theZ.dotoring.app.room.service.RoomService;
-import com.theZ.dotoring.exception.NotFoundLetterException;
 import com.theZ.dotoring.exception.NotFoundRoomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

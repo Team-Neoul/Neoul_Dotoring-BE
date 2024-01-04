@@ -18,22 +18,12 @@ import java.util.stream.Collectors;
  * @version 1.0
  */
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Slf4j
 public class MajorService {
 
     private final MajorRepository majorRepository;
-
-    /**
-     * 서버가 시작할 때, Enum Major에 정의되어 있는 학과들을 모두 Majro 엔티티로 만들어 DB에 이를 저장하는 메서드
-     *
-     */
-    public void saveAll(){
-        List<String> majorNames = Major.getMajors().stream().map(m -> m.toString()).collect(Collectors.toList());
-        List<com.theZ.dotoring.app.major.model.Major> majors = com.theZ.dotoring.app.major.model.Major.createMajors(majorNames);
-        majorRepository.saveAll(majors);
-    }
 
     /**
      * 인자로 받은 uncertainMajors를 사용하여 이들이 유효한 Major인지 확인하는 메서드

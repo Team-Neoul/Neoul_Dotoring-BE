@@ -13,10 +13,14 @@ plugins {
 }
 
 group = 'com.theZ'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 
 java {
 	sourceCompatibility = '17'
+}
+
+jar {
+	enabled = false
 }
 
 configurations {
@@ -35,9 +39,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	testImplementation 'org.springframework.security:spring-security-test'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	implementation 'org.mariadb.jdbc:mariadb-java-client'
+
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
@@ -54,6 +63,15 @@ dependencies {
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.3.1'
+	implementation 'software.amazon.awssdk:s3:2.17.89'
+
+	// socket
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+	// fcm
+	implementation 'com.google.firebase:firebase-admin:9.1.1'
+	implementation 'com.squareup.okhttp3:okhttp:4.11.0'
 }
 
 test {
@@ -62,6 +80,12 @@ test {
 
 // queryDSL 추가 : QueryDSL 빌드 옵션
 def querydslDir = "$buildDir/generated/'querydsl'"
+
+/*** comileQuerydsl.doFirst 추가*/
+compileQuerydsl.doFirst {
+	if(file(querydslDir).exists() )
+		delete(file(querydslDir))
+}
 
 // JPA 사용여부 및 사용 경로 설정
 querydsl {

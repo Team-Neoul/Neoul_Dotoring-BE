@@ -15,6 +15,9 @@ import java.util.Optional;
 
 public interface MentiRepository extends JpaRepository<Menti,Long> {
 
+    @Query("select m from Menti m where m.memberAccount.id = :memberAccountId ")
+    Optional<Menti> findMentiByMemberAccountId(Long memberAccountId);
+
     @Query("SELECT M FROM Menti M JOIN FETCH M.profile WHERE M.mentiId = :mentiId")
     Optional<Menti> findMentiWithProfileUsingFetchJoinByMentiId(@Param("mentiId") Long mentiId);
 

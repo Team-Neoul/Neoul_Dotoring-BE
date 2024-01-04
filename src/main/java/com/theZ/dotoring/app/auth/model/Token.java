@@ -105,5 +105,20 @@ public class Token {
         }
     }
 
+    public static TokenStatus isValidTokenInStomp(String accessToken) throws IOException {
+        try {
+            getClaimsFormToken(accessToken);
+            return TokenStatus.VALID;
+        } catch (MalformedJwtException e) {
+            return TokenStatus.INVALID;
+        } catch (IllegalArgumentException e) {
+            return TokenStatus.INVALID;
+        } catch(ExpiredJwtException e){
+            return TokenStatus.EXPIRED;
+        }catch (JwtException e){
+            return TokenStatus.INVALID;
+        }
+    }
+
 
 }

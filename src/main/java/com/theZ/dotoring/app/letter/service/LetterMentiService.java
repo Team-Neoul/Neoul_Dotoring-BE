@@ -8,7 +8,7 @@ import com.theZ.dotoring.app.letter.repository.LetterRepository;
 import com.theZ.dotoring.app.menti.model.Menti;
 import com.theZ.dotoring.app.room.domain.Room;
 import com.theZ.dotoring.common.MessageCode;
-import com.theZ.dotoring.exception.NotFoundLetterException;
+import com.theZ.dotoring.exception.letterException.NotFoundLetterException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -16,8 +16,6 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**

@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
+import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 
 @Getter
@@ -20,15 +21,13 @@ public class ApiResponse<B> extends ResponseEntity<B> {
         this.getHeaders().setContentType(mediaType);
     }
 
+
     @Getter
     @AllArgsConstructor
     public static class CustomBody<D> implements Serializable {
-
         private Boolean success;
         private D response;
         private Error error;
-
     }
-
 }
 

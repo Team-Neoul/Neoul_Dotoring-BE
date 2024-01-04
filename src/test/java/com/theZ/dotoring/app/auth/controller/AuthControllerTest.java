@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -26,8 +27,17 @@ import java.time.Instant;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-@ActiveProfiles("local")
+@ActiveProfiles("test")
 @AutoConfigureMockMvc
+@TestPropertySource(properties = {
+        "jwt.secretKey=yourtestsecretkeydotoring123459393dsafsdfasadf",
+        "jwt.accessTokenExp=86400000",
+        "jwt.refreshTokenExp=432000000",
+        "cloud.aws.credentials.accessKey=yourtestaccesskeydotoring123459393",
+        "cloud.aws.credentials.secretKey=yourtestsecretkeydotoring123459393",
+        "cloud.aws.s3.bucket=yourtestbucketdotoring123459393",
+        "profileUrl=https://your-test-bucket-dotoring-12345-9393.s3.ap-northeast-2.amazonaws.com/"
+})
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class AuthControllerTest {
 

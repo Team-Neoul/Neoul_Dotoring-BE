@@ -85,7 +85,7 @@ fabric.properties
 # that are supposed to be shared within teams.
 
 .idea/*
-
+.idea/**
 !.idea/codeStyles
 !.idea/runConfigurations
 
@@ -227,3 +227,6 @@ gradle-app.setting
 *.hprof
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,gradle,intellij+all,visualstudiocode,java,redis
+
+# env
+src/main/resources/env.yaml

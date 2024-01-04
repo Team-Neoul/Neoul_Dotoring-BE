@@ -9,6 +9,7 @@ import com.theZ.dotoring.app.auth.service.MemberDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -51,11 +52,13 @@ WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().disable()
 
                 .authorizeRequests()//요청에 대한 인증/인가 규칙을 설정합니다. 즉, 특정한 URL 패턴에 대해 어떤 역할(Role)을 가진 사용자만 접근을 허용할지를 지정합니다.
-                    .antMatchers("/api/fields","/api/majors","/api/member/code","/api/member/loginId","/api/member/password",
-                            "/api/member/signup/code","/api/member/signup/valid-code","/api/member/valid-code","/api/member/valid-loginId",
-                            "/api/menti/valid-nickname","/api/mento/valid-nickname","/api/member/login","/api/signup-menti","/api/signup-mento","/api/auth/reIssue").permitAll()
-                    .antMatchers("/api/menti/{id}","/api/mento/desiredField","/api/mento/introduction","/api/mento/mentoringSystem","/api/mento/nickname","/api/profile","/api/menti").hasRole("MENTO")
-                    .antMatchers("/api/mento/{id}","/api/menti/desiredField","/api/menti/introduction","/api/menti/mentoringSystem","/api/menti/nickname","/api/profile","/api/mento").hasRole("MENTI");
+                .antMatchers("/api/fields", "/api/majors", "/api/member/code", "/api/member/loginId", "/api/member/password",
+                        "/api/member/signup/code", "/api/member/signup/valid-code", "/api/member/valid-code", "/api/member/valid-loginId",
+                        "/api/menti/valid-nickname", "/api/mento/valid-nickname", "/api/member/login", "/api/signup-menti", "/api/signup-mento", "/api/auth/reIssue").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/menti/{id}", "/api/mento/my-page", "/api/profile", "/api/menti").hasRole("MENTO")
+                .antMatchers(HttpMethod.PATCH, "/api/mento/tags", "/api/mento/mentoring-system", "/api/mento/my-page").hasRole("MENTO")
+                .antMatchers(HttpMethod.GET, "/api/mento/{id}", "/api/menti/my-page", "/api/profile", "/api/mento").hasRole("MENTI")
+                .antMatchers(HttpMethod.PATCH, "/api/menti/tags", "/api/menti/preferred-mentoring", "/api/menti/my-page").hasRole("MENTI");
 
 
         http.addFilterBefore(jwtAuthenticationFilter(), BasicAuthenticationFilter.class);

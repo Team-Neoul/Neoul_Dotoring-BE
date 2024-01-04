@@ -2,10 +2,10 @@ package com.theZ.dotoring.app.menti.mapper;
 
 import com.theZ.dotoring.app.menti.dto.FindAllMentiRespDTO;
 import com.theZ.dotoring.app.menti.dto.FindMentiByIdRespDTO;
+import com.theZ.dotoring.app.menti.dto.FindMyMentiRespDTO;
 import com.theZ.dotoring.app.menti.dto.FindWaitMentiRespDTO;
 import com.theZ.dotoring.app.menti.model.Menti;
-import com.theZ.dotoring.app.mento.dto.FindWaitMentoRespDTO;
-import org.springframework.beans.factory.annotation.Value;
+import com.theZ.dotoring.common.StringListUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
@@ -18,21 +18,14 @@ import java.util.stream.IntStream;
 @Component
 public class MentiMapper {
 
-    private static String url;
-
-    @Value("${url}")
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public static FindAllMentiRespDTO fromCard(Menti menti){
 
         return FindAllMentiRespDTO.builder()
                 .id(menti.getMentiId())
                 .nickname(menti.getNickname())
                 .preferredMentoringSystem(menti.getPreferredMentoring())
-                .introduction(menti.getIntroduction())
-                .profileImage(makeUrl(menti.getProfile().getProfilePath()))
+                .tags(StringListUtils.split(menti.getTags()))
+                .profileImage(menti.getProfile().getSavedProfileName())
                 .majors(menti.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                 .fields(menti.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                 .build();
@@ -43,8 +36,8 @@ public class MentiMapper {
                 .mentiId(menti.getMentiId())
                 .nickname(menti.getNickname())
                 .preferredMentoring(menti.getPreferredMentoring())
-                .introduction(menti.getIntroduction())
-                .profileImage(makeUrl(menti.getProfile().getProfilePath()))
+                .tags(StringListUtils.split(menti.getTags()))
+                .profileImage(menti.getProfile().getSavedProfileName())
                 .majors(menti.getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                 .fields(menti.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                 .grade(menti.getGrade())
@@ -62,8 +55,8 @@ public class MentiMapper {
                                 .id(mentis.get(i).getMentiId())
                                 .nickname(mentis.get(i).getNickname())
                                 .preferredMentoringSystem(mentis.get(i).getPreferredMentoring())
-                                .introduction(mentis.get(i).getIntroduction())
-                                .profileImage(makeUrl(mentis.get(i).getProfile().getProfilePath()))
+                                .tags(StringListUtils.split(mentis.get(i).getTags()))
+                                .profileImage(mentis.get(i).getProfile().getSavedProfileName())
                                 .majors(mentis.get(i).getMemberMajors().stream().map(m -> m.getMajor().getMajorName()).collect(Collectors.toList()))
                                 .fields(mentis.get(i).getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
                                 .build())
@@ -88,7 +81,17 @@ public class MentiMapper {
         return findWaitMentiPagindRespDTOS;
     }
 
-    private static String makeUrl(String imageUri) {
-        return url + imageUri;
+    public static FindMyMentiRespDTO fromMyMenti(Menti menti) {
+        return FindMyMentiRespDTO.builder()
+                .mentiId(menti.getMentiId())
+                .nickname(menti.getNickname())
+                .profileImage(menti.getProfile().getSavedProfileName())
+                .fields(menti.getDesiredFields().stream().map(desiredField -> desiredField.getField().getFieldName()).collect(Collectors.toList()))
+                .majors(menti.getMemberMajors().stream().map(memberMajor -> memberMajor.getMajor().getMajorName()).collect(Collectors.toList()))
+                .tags(StringListUtils.split(menti.getTags()))
+                .grade(menti.getGrade())
+                .preferredMentoring(menti.getPreferredMentoring())
+                .school(menti.getSchool())
+                .build();
     }
 }

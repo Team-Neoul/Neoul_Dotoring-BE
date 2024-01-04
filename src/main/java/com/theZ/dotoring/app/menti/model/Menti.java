@@ -11,6 +11,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -40,14 +41,14 @@ public class Menti extends CommonEntity {
     @Size(min = 3, max = 8)
     private String nickname;
 
-    @Size(min = 10, max = 100)
-    private String introduction;
+    private String tags;
 
     private String school;
 
     private Long grade;
 
     @Size(min = 10, max = 300)
+    @ColumnDefault("''")
     private String preferredMentoring;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -65,19 +66,19 @@ public class Menti extends CommonEntity {
     private Long viewCount;
 
     @Builder
-    public Menti(String nickname, String introduction, String school, Long grade) {
+    public Menti(String nickname, String tags, String school, Long grade) {
         this.nickname = nickname;
-        this.introduction = introduction;
+        this.tags = tags;
         this.school = school;
         this.grade = grade;
         this.status = Status.WAIT;
         this.viewCount = 0L;
     }
 
-    public static Menti createMenti(String nickname, String introduction, String school, Long grade, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
+    public static Menti createMenti(String nickname, String tags, String school, Long grade, MemberAccount memberAccount, Profile profile, List<DesiredField> desiredFields, List<MemberMajor> memberMajors){
         Menti menti = Menti.builder()
                 .nickname(nickname)
-                .introduction(introduction)
+                .tags(tags)
                 .school(school)
                 .grade(grade)
                 .build();
@@ -138,14 +139,22 @@ public class Menti extends CommonEntity {
     }
 
     public void updateIntroduction(String introduction) {
-        this.introduction = introduction;
+        this.tags = introduction;
     }
 
     public void updateNickname(String nickname) {
         this.nickname = nickname;
     }
 
-    public void approveStatus() {
+    public void updateActive() {
         this.status = Status.ACTIVE;
+    }
+
+    public void updateWait() {
+        this.status = Status.WAIT;
+    }
+
+    public void updateTags(String tags) {
+        this.tags = tags;
     }
 }

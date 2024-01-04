@@ -18,16 +18,16 @@ public class FindAllMentiRespDTO {
     private String preferredMentoringSystem;
     private List<String> fields;
     private List<String> majors;
-    private String introduction;
+    private List<String> tags;
 
     @Builder
-    public FindAllMentiRespDTO(Long id, String profileImage, String nickname, String preferredMentoringSystem, List<String> fields, List<String> majors, String introduction) {
+    public FindAllMentiRespDTO(Long id, String profileImage, String nickname, String preferredMentoringSystem, List<String> fields, List<String> majors, List<String> tags) {
         this.id = id;
         this.profileImage = profileImage;
         this.nickname = nickname;
         this.preferredMentoringSystem = preferredMentoringSystem;
         this.fields = fields;
         this.majors = majors;
-        this.introduction = introduction;
+        this.tags = tags;
     }
 }
