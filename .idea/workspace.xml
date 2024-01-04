@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76b9bcd3-772d-4ab2-9d96-c4ee18f15126" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chatRoom/service/ChatRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/chatRoom/service/ChatRoomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/dto/NotificationDetailDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theZ/dotoring/app/notification/dto/NotificationDetailDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-cloud.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-cloud.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +29,17 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="EDOTORING" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="EDOTORING" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -70,7 +82,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "feat#110",
-    "last_opened_file_path": "/Users/iseung-geon/dotoring_be",
+    "last_opened_file_path": "/Users/hwangdaeseon/Project/EDOTORING",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -115,7 +127,7 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="MentiControllerTest.updateTags" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -139,7 +151,7 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="MentoControllerTest.findMyMento" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -163,7 +175,7 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="NotificationRepositoryImplTest.testGetNotificationByFilter" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -187,7 +199,7 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="NotificationRepositoryImplTest.test_GetNotificationByFilter" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -211,7 +223,7 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
@@ -278,6 +290,7 @@
       <workItem from="1702291395767" duration="868000" />
       <workItem from="1704114059412" duration="10899000" />
       <workItem from="1704186274026" duration="20521000" />
+      <workItem from="1704327957126" duration="741000" />
     </task>
     <servers />
   </component>
